@@ -1,0 +1,36 @@
+<div class="card">
+    <form class="question-form" [formGroup]="questionForm">
+        <h2>Create a new Question</h2>
+        <label for="title">
+            Title
+            <input type="text" [formControlName]="'label'">
+        </label>
+        <br>
+
+
+        <!--Answer Part-->
+
+        <button class="button-card" (click) ="addAnswer()">Add answers</button>
+
+        <div class="answer" formArrayName="answers">
+            <!-- On recupere le getter answers de (get answers()) et avec controls on parcours avec un index -->
+            <div *ngFor="let address of answers.controls; let i = index">
+                <div class="answer-form" [formGroupName] ="i">
+                    <label>
+                        Answer
+                        <input type="text" [formControlName]="'value'">
+                        <br>
+                        Correct
+                        <input type="checkbox" [formControlName]="'isCorrect'">
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <!--Answer Part-->
+
+
+        <button class="button-card" (click)="addQuestion()">Create</button>
+    </form>
+</div>
+<br><br>{{questionForm.getRawValue() | json}}

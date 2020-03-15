@@ -1,5 +1,6 @@
 <app-header></app-header>
 <div class="main-content">
-    <app-quiz-form></app-quiz-form>
-    <app-quiz-list></app-quiz-list>
+    <!-- <app-quiz-form></app-quiz-form> Ici on a le component de quiz form avec tous ces element deja set sur le dossier quizForm-->
+    <!-- <app-quiz-list></app-quiz-list> Ici on a le component de quiz list avec tous ces element deja set sur le dossier quizList -->
+    <router-outlet></router-outlet> <!-- Cette balise va afficher le component correpondant en fonction du component appeler sur url cf(app.routing.module)-->
 </div>

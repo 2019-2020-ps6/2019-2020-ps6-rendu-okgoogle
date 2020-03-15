@@ -1,0 +1,9 @@
+<div class="card">
+    <h3>
+        <i class="fab fa-leanpub"></i>
+        {{question.label}}
+    </h3>
+        <div *ngFor="let answer of question.answers">
+            <p>{{answer.value}} -> {{answer.isCorrect}}</p>
+        </div>
+</div>
