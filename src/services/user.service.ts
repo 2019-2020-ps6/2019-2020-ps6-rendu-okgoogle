@@ -29,30 +29,28 @@ export class UserService {
 
   constructor(private http: HttpClient) {
     this.getUser();
-
-}
+  }
   
 
 
-getUser() : void {
-  this.http.get<{users : User[]}>(this.lien).subscribe((user : {users: User[]}) =>{
-    for(var i in user){
-      this.users.push(user[i])
-    }
+  getUser() : void {
+    this.http.get<{users : User[]}>(this.lien).subscribe((user : {users: User[]}) =>{
+      for(var i in user){
+        this.users.push(user[i])
+      }
+      this.users$.next(this.users);
+    })
+  }
+
+
+  addUser(user: User){
+    this.http.post(this.lien,user).subscribe()
+    this.users.push(user);
     this.users$.next(this.users);
-  })
-  
-}
+  }
 
-
-addUser(user: User){
-  this.http.post(this.lien,user).subscribe()
-  this.users.push(user);
-  this.users$.next(this.users);
-}
-
-  deleteUser(user: User) {
-    const url = this.lien+user.name;
+  deleteUser(user: any) {
+    const url = this.lien+user.id.toString();
     const header = this.prepareHeader();
     this.users.splice(this.users.indexOf(user), 1);
     this.users$.next(this.users);

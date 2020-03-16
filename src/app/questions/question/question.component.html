@@ -6,4 +6,5 @@
         <div *ngFor="let answer of question.answers">
             <p>{{answer.value}} -> {{answer.isCorrect}}</p>
         </div>
+        <button (click)="deleteQuestion(question,question.id)">Supprimer la question</button>
 </div>

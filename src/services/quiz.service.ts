@@ -70,7 +70,6 @@ export class QuizService {
   }
 
   addQuiz(quiz: Quiz): void {
-    console.log(quiz)
     this.http.post(this.lien,quiz).subscribe()
     this.setQuizzesFromUrl()
   }
@@ -89,11 +88,16 @@ export class QuizService {
   }
 
   addQuestion(quiz: Quiz,question: Question){
-    console.log(quiz)
-    console.log(question)
     //le .subscribe() est TRES IMPORTANT sinon fonctionne pas
-    this.http.post(this.lien+quiz.id.toString()+"/questions/",question).subscribe()
-    quiz.questions.push(question);
-    this.quizzes$.next(this.quizzes);
+    this.http.post<Question>(this.lien+quiz.id.toString()+"/questions/",question).subscribe((question)=> this.questions.push(question))
+    this.questions$.next(this.questions)
+  }
+
+
+  deleteQuestion(idQuiz:string,idQuestion: string) : Observable<{}>{
+    const url = "http://localhost:9428/api/quizzes/"+idQuiz.toString()+"/questions/"+idQuestion.toString(); // DELETE api/heroes/42
+    const header = this.prepareHeader();
+    this.questions$.next(this.questions)
+    return this.http.delete(url,header)
   }
 }

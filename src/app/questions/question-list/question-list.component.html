@@ -1,7 +1,9 @@
 <div class="question-list">
+    <span><a routerLink="users-list/">Gestion utilisateur</a></span>
     <div class="question" *ngFor="let question of questionList">
         <!--Inputs & Output allow communication between parent & child components.-->
         <!--More information: https://angular.io/guide/component-interaction-->
-        <app-question [question]="question"></app-question>
+        <app-question (questionDeleted)="questionDeletion($event,$event)" [question]="question"></app-question>
+
     </div>
 </div>
