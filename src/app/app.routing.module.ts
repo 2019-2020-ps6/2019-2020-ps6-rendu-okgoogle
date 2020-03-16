@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {editQuizComponent} from './quizzes/edit-quiz/edit-quiz.component';
 import {QuizListComponent} from './quizzes/quiz-list/quiz-list.component';
+import {UserListComponent} from './users/user-list/user-list.component';
 
 const routes: Routes = [
     //path = ce qui y aura sur l'url
@@ -9,12 +10,13 @@ const routes: Routes = [
     //il faut le déclarer dans app.module.ts (edit quiz component)
     {path: 'quiz-list', component: QuizListComponent},
     {path: 'edit-quiz/:id', component: editQuizComponent},
+    {path: 'users-list', component: UserListComponent},
     {path: '', component: QuizListComponent}
 ];
 
 @NgModule({
     //Insere les routes dans le module et l'export vers l'appelant
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes,{onSameUrlNavigation: 'reload'})],
     exports: [RouterModule]
 })
 

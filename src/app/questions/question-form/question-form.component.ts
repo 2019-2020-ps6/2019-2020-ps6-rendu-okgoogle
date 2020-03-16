@@ -44,5 +44,4 @@ export class QuestionFormComponent{
         this.quizService.addQuestion(this.quizTmp, this.questionForm.getRawValue());
     }
 
-    
 }

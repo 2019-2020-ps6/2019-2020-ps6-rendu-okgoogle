@@ -12,23 +12,20 @@ export class QuestionListComponent implements OnInit {
 
   public questionList: Question[] = [];
 
-  constructor(private route: ActivatedRoute,public quizService: QuizService) {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.quizService.quizzes$.subscribe((quiz) => {
-      console.log(quiz)
-      for (let index = 0; index < quiz.length; index++) {
-        if(quiz[index].id.toString() === id.toString()){
-          console.log(quiz[index].questions)
-          this.questionList = quiz[index].questions;
-        }
-      }
-    });
-    console.log(this.questionList)
-
-  }
-
   ngOnInit() {
+    const id = +this.route.snapshot.paramMap.get('id');
+
+    this.quizService.getQuestions(id.toString()).subscribe((question) =>{
+      this.questionList = question;
+    })
   }
+
+  constructor(private route: ActivatedRoute,public quizService: QuizService) {
+
+
+  }
+
+
 
   
 

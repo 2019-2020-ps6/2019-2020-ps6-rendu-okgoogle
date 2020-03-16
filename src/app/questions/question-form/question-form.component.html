@@ -14,10 +14,10 @@
 
         <div class="answer" formArrayName="answers">
             <!-- On recupere le getter answers de (get answers()) et avec controls on parcours avec un index -->
-            <div *ngFor="let address of answers.controls; let i = index">
+            <div *ngFor="let bra of answers.controls; let i = index">
                 <div class="answer-form" [formGroupName] ="i">
-                    <label>
-                        Answer
+                    Answer
+                        <label>
                         <input type="text" [formControlName]="'value'">
                         <br>
                         Correct

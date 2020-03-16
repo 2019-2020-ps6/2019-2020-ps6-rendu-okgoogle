@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
 
@@ -19,7 +19,7 @@ export class QuizListComponent implements OnInit {
   }
 
   quizSelected(selected: boolean) {
-    console.log('event received from child:', selected);
+
   }
 
   quizDeleted(selected: Quiz) {

@@ -36,24 +36,13 @@ export class QuizService {
   }
   
 
-  addQuiz(quiz: Quiz) {
-    // You need here to update the list of quiz and then update our observable (Subject) with the new list
-    // More info: https://angular.io/tutorial/toh-pt6#the-searchterms-rxjs-subject
-    this.quizzes.push(quiz);
-    this.quizzes$.next(this.quizzes);
-  }
-
-  /** DELETE: delete the hero from the server */
+  /** DELETE: delete the quiz from the server */
   deleteQuiz (quiz: Quiz): Observable<{}> {
     const url = "http://localhost:9428/api/quizzes/"+quiz.id; // DELETE api/heroes/42
     const header = this.prepareHeader();
-    return this.http.delete(url,header )
+    this.quizzes$.next(this.quizzes)
+    return this.http.delete(url,header)
   }
-
-//   deleteQuiz(quiz: Quiz): Observable<void> {
-//     console.log(quiz)
-//     return this.http.delete<void>()
-// }
 
   protected prepareHeader(): object {
     const headers = new HttpHeaders(
@@ -68,7 +57,7 @@ export class QuizService {
 
   setQuizzesFromUrl(){
     this.http.get<{quizzes: Quiz[]}>(this.lien).subscribe((quizzess: {quizzes: Quiz[]}) => {
-
+      this.quizzes = []
       for(var i in quizzess)
         this.quizzes.push(quizzess[i]);
       
@@ -76,36 +65,28 @@ export class QuizService {
     });
   }
 
-  //je recupere la liste de question d'un quiz avec l'id passer en parametre
-  setQuestionsFromUrl(quizId: string){
-    this.http.get<{questions: Question[]}>(this.lien+ quizId +"/questions").subscribe((questionss: {questions: Question[]}) => {
-
-      for(var i in questionss){
-        if(questionss[i].quizId.toString() === quizId){
-          this.questions.push(questionss[i]);
-        }
-      }
-    
-      this.questions$.next(this.questions);
-    });
-  }
-
   getQuiz(id: string): Observable<Quiz> {
     return of(this.quizzes.filter((quiz) => quiz.id.toString() === id)[0]);
   }
 
-  getQuestions(id: string): Observable<Question[]> {
-    this.setQuestionsFromUrl(id);
-    return of(this.questions)
+  addQuiz(quiz: Quiz): void {
+    console.log(quiz)
+    this.http.post(this.lien,quiz).subscribe()
+    this.setQuizzesFromUrl()
   }
 
-  // getQuestions(id: string): Observable<Question[]> {
-  //   return of(this.quizzes.filter((quiz) =>{
-  //     if(quiz.id.toString() === id){
-  //       return quiz.questions
-  //     }
-  //   }));
-  // }
+  getQuestions(id: string): Observable<Question[]> {
+    this.questions = []
+
+    this.http.get<{questions: Question[]}>(this.lien+ id +"/questions").subscribe((questionss: {questions: Question[]}) => {
+      for(var i in questionss){
+        if(questionss[i].quizId.toString() === id){
+          this.questions.push(questionss[i]);
+        }
+      }
+    });
+    return of(this.questions);
+  }
 
   addQuestion(quiz: Quiz,question: Question){
     console.log(quiz)
@@ -115,5 +96,4 @@ export class QuizService {
     quiz.questions.push(question);
     this.quizzes$.next(this.quizzes);
   }
-
 }
