@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {editQuizComponent} from './quizzes/edit-quiz/edit-quiz.component';
 import {QuizListComponent} from './quizzes/quiz-list/quiz-list.component';
 import {UserListComponent} from './users/user-list/user-list.component';
+import {UserLoginComponent} from './users/user-login/user-login.component';
 
 const routes: Routes = [
     //path = ce qui y aura sur l'url
@@ -11,7 +12,8 @@ const routes: Routes = [
     {path: 'quiz-list', component: QuizListComponent},
     {path: 'edit-quiz/:id', component: editQuizComponent},
     {path: 'users-list', component: UserListComponent},
-    {path: '', component: QuizListComponent}
+    {path: 'users-login', component: UserLoginComponent},
+    {path: '', component: UserLoginComponent}
 ];
 
 @NgModule({

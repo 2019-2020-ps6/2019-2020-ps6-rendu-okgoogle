@@ -15,6 +15,7 @@ import { QuestionFormComponent } from './questions/question-form/question-form.c
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { UserComponent } from './users/user/user.component';
 import { UserListComponent } from './users/user-list/user-list.component';
+import { UserLoginComponent } from './users/user-login/user-login.component';
 import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AppRoutingModule } from './app.routing.module';
     questionComponent,
     UserFormComponent,
     UserComponent,
-    UserListComponent
+    UserListComponent,
+    UserLoginComponent
   ],
   imports: [
     BrowserModule,
