@@ -12,13 +12,13 @@
     </label>
     <br>
     <label for="sexe">Sexe: 
-        <input type="radio" id="F" name="sexe" value="F"/> <label for="F"> Feminin</label>
-        <input type="radio" id="M" name="sexe" value="M"> <label for="M"> Masculin</label>
+        <input type="radio" id="F" name="sexe" value="F" [formControlName]="'sexe'"/> <label for="F"> Feminin</label>
+        <input type="radio" id="M" name="sexe" value="M" [formControlName]="'sexe'"/> <label for="M"> Masculin</label>
     </label>
     <br>
 
     <label for="description"> Description: <br>
-      <textarea style="border:solid 1px;" placeholder="Description" name="description" id="description" cols="80" rows="10"></textarea>
+      <textarea style="border:solid 1px;" placeholder="Description" name="description" id="description" cols="80" rows="10" [formControlName]="'description'"></textarea>
     </label>
     <br>
     <button type="submit" class="button-card" (click)="addUser()">Create</button>

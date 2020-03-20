@@ -24,7 +24,10 @@ export class UserFormComponent implements OnInit {
     // Form creation
     this.userForm = this.formBuilder.group({
       name: [''],
-      age:0
+      surname: [''],
+      age:0,
+      sexe: [''],
+      description: ['']
     });
     // You can also add validators to your inputs such as required, maxlength or even create your own validator!
     // More information: https://angular.io/guide/reactive-forms#simple-form-validation
