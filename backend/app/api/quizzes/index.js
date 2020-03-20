@@ -1,10 +1,11 @@
 const { Router } = require('express')
 
-const { Quiz } = require('../../models')
+const { Quiz, Question, Answer } = require('../../models/')
+
+const QuestionRouter = require('./questions')
+const AnswerRouter = require('./questions/answers')
 
 const router = new Router()
-const QuestionRouteur = require('./questions')
-
 
 router.get('/', (req, res) => {
   try {
@@ -14,23 +15,43 @@ router.get('/', (req, res) => {
   }
 })
 
-router.get('/:quizId', (req, res) => {
+router.get('/:quizid', (req, res) => {
   try {
-    res.status(200).json(Quiz.getById(req.params.quizId))
+    const quiz =Quiz.getById(req.params.quizid);
+    
+    res.status(200).json({...quiz, questions : Question.get().filter(
+      //On va utiliser filter qui va implémenter une fonction anonyme pour trier et ranger les données
+      question => {
+        question.quizId === parseInt(req.params.quizid);
+        //on va filtrer les données recu en ne retournant QUE les elements dont l'id est egale a l'id de la question
+        question.answers = Answer.get().filter(answer =>{
+          if(answer.questionId == question.id){
+            return answer;
+          }
+        })
+        return question;
+      }
+    )
+    })
+  } catch (err) {
+    console.log(err)
+    res.status(500).json(err)
+  }
+})
+
+router.delete('/:quizid', (req, res) => {
+  try {
+    Quiz.delete(req.params.quizid)
+    res.status(200).json()
   } catch (err) {
     res.status(500).json(err)
   }
 })
-router.delete('/:quizId', (req, res) => {
+
+router.put('/:quizid', (req, res) => {
   try {
-    res.status(200).json(Quiz.delete(req.params.quizId))
-  } catch (err) {
-    res.status(500).json(err)
-  }
-})
-router.put('/:quizId', (req, res) => {
-  try {
-    res.status(200).json(Quiz.update(req.params.quizId,req.body))
+    const quiz = Quiz.update(req.params.quizid, req.body)
+    res.status(200).json(quiz)
   } catch (err) {
     res.status(500).json(err)
   }
@@ -48,6 +69,6 @@ router.post('/', (req, res) => {
     }
   }
 })
-router.use('/:quizId/questions',QuestionRouteur)
-
+router.use("/:quizid/questions",QuestionRouter)
+router.use("/:quizid/questions/:questionid/answers",AnswerRouter)
 module.exports = router
