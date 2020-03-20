@@ -16,10 +16,13 @@
         <input type="radio" id="M" name="sexe" value="M"> <label for="M"> Masculin</label>
     </label>
     <br>
+
+    <label for="description"> Description: <br>
+      <textarea style="border:solid 1px;" placeholder="Description" name="description" id="description" cols="80" rows="10"></textarea>
+    </label>
+    <br>
     <button type="submit" class="button-card" (click)="addUser()">Create</button>
   </form>
 </div>
 <!-- Uncomment below to see your form structure and how it changes-->
 <br><br>{{userForm.getRawValue() | json}}
-
-
