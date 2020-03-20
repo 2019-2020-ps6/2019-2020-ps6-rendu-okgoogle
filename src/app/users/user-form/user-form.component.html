@@ -1,13 +1,19 @@
 <div class="card">
   <h2>Create a new User</h2>
   <form class="user-form" [formGroup]="userForm">
-    <label for="title">
-      Nom <br>
-      <input class="input-custom" type="text" id="name" [formControlName]="'name'">
+    <label for="nom">
+      Nom: <input class="input-custom" type="text" id="name" [formControlName]="'name'">
+    </label>
+    <label for="prenom">
+      *Prenom: <input class="nom" type="text" required id="surname" [formControlName]="'surname'">
     </label>
     <label for="age">
-      <br> Age <br>
-      <input type="text" name="age" id="age" [formControlName]="'age'">
+      <br> Age:  <input type="text" name="age" id="age" [formControlName]="'age'">
+    </label>
+    <br>
+    <label for="sexe">Sexe: 
+        <input type="radio" id="F" name="sexe" value="F"/> <label for="F"> Feminin</label>
+        <input type="radio" id="M" name="sexe" value="M"> <label for="M"> Masculin</label>
     </label>
     <br>
     <button type="submit" class="button-card" (click)="addUser()">Create</button>
@@ -15,3 +21,5 @@
 </div>
 <!-- Uncomment below to see your form structure and how it changes-->
 <br><br>{{userForm.getRawValue() | json}}
+
+
