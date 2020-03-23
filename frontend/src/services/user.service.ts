@@ -28,12 +28,12 @@ export class UserService {
   public users$: BehaviorSubject<User[]> = new BehaviorSubject(this.users);
 
   constructor(private http: HttpClient) {
-    this.getUser();
+    this.getUsers();
   }
   
 
 
-  getUser() : void {
+  getUsers() : void {
     this.http.get<{users : User[]}>(this.lien).subscribe((user : {users: User[]}) =>{
       for(var i in user){
         this.users.push(user[i])

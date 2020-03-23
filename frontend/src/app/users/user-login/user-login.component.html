@@ -1,14 +1,14 @@
 <div style="width: 100%;margin-left: auto;margin-right: auto;">
     <div >
-        <div id="struct_circle">
+        <div  id="struct_circle">
             <div class="contenu_circle">
-                 <a routerLink="main-admin"><div class="personnel circle"></div></a>
+                 <a (click)="setAdminUser()" routerLink="main-admin"><div class="personnel circle"></div></a>
             </div>
         </div>
         
         <div id="struct_circle">
             <div class="contenu_circle">
-                 <a routerLink="/users-list"><div class="accueilli circle"></div></a>
+                 <a (click)="setStdUser()" routerLink="/users-list"><div class="accueilli circle"></div></a>
             </div>
         </div>
         

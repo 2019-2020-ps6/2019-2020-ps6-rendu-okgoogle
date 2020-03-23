@@ -41,6 +41,12 @@ export class UserFormComponent implements OnInit {
     // We retrieve here the quiz object from the quizForm and we cast the type "as Quiz".
     const userToCreate: User = this.userForm.getRawValue() as User;
 
+    if(userToCreate.sexe == "F"){
+      userToCreate.img = "https://www.w3schools.com/howto/img_avatar2.png";
+    }else{
+      userToCreate.img = "https://www.w3schools.com/howto/img_avatar.png";
+    }
+
     // Do you need to log your object here in your class? Uncomment the code below
     // and open your console in your browser by pressing F12 and choose the tab "Console".
     // You will see your quiz object when you click on the create button.

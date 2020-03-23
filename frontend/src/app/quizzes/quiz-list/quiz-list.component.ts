@@ -19,7 +19,7 @@ export class QuizListComponent implements OnInit {
   }
 
   quizSelected(selected: boolean) {
-
+    
   }
 
   quizDeleted(selected: Quiz) {

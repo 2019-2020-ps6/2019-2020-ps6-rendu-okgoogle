@@ -8,11 +8,20 @@ import { UserService } from '../../../services/user.service';
 })
 export class UserLoginComponent implements OnInit {
 
+  private cookieValue : string;
+
   constructor(public userService: UserService) {
 
   }
 
   ngOnInit() {
+  }
+
+  setAdminUser(): void{
+    sessionStorage.setItem("status", "admin");
+  }
+  setStdUser(): void{
+    sessionStorage.setItem("status", "user");
   }
 
 }
