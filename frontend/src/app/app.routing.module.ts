@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {editQuizComponent} from './admin/edit-quiz/edit-quiz.component';
 import {QuizListComponent} from './quizzes/quiz-list/quiz-list.component';
+import {ThemeListComponent} from './themes/theme-list/theme-list.component';
 import {UserListComponent} from './users/user-list/user-list.component';
 import {UserLoginComponent} from './users/user-login/user-login.component';
 import {UserFormComponent} from './admin/create-user/user-form.component';
@@ -13,13 +14,14 @@ const routes: Routes = [
     //path = ce qui y aura sur l'url
     //on a une route quiz-list qui affiche le composant QuizListComponent
     //il faut le déclarer dans app.module.ts (edit quiz component)
-    {path: 'quiz-list', component: QuizListComponent},
-    {path: 'edit-quiz/:id', component: editQuizComponent},
+    {path: 'theme-list', component: ThemeListComponent},
+    {path: 'theme-list/:themeid', component: QuizListComponent},
+    {path: 'edit-quiz/:quizid', component: editQuizComponent},
     {path: 'users-list', component: UserListComponent},
     {path: 'users-login', component: UserLoginComponent},
     {path: 'create-user', component: UserFormComponent},
     {path: 'create-quiz', component: QuizFormComponent},
-    {path: 'create-user/edit-user/:id', component: editUserComponent},
+    {path: 'edit-user/:userid', component: editUserComponent},
     {path: 'main-admin', component: MainAdminComponent},
     {path: '', component: UserLoginComponent}
 ];

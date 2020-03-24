@@ -1,12 +1,10 @@
 <div class="card">
-    <span *ngIf="quiz.name === 'Les Acteurs'"> Icon Acteurs</span>
     <h2>
         <i class="fab fa-leanpub"></i>
         {{quiz.name}}
 
         <p *ngIf="quiz.creationDate != null"> Date: {{quiz.creationDate | date:'mediumDate'}} </p>
     </h2>
-    <button class="button-card" (click)="selectQuiz()">Select</button>
-    <a routerLink="/edit-quiz/{{quiz.id}}">Edit</a>
+    <a (click)="selectQuiz()" routerLink="/edit-quiz/{{quiz.id}}">Edit</a>
     <button class="button-card" (click)="deleteQuiz(quiz)">Delete</button>
 </div>

@@ -1,47 +1,56 @@
-import {Component} from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { Question } from '../../../models/question.model';
-import { Quiz } from '../../../models/quiz.model';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
-import { ActivatedRoute } from "@angular/router";
+import { Quiz } from 'src/models/quiz.model';
+import { Question } from 'src/models/question.model';
 
 @Component({
-    selector: 'app-question-form',
-    templateUrl: './question-form.component.html',
-    styleUrls: ['./question-form.component.scss']
+  selector: 'app-question-form',
+  templateUrl: './question-form.component.html',
+  styleUrls: ['./question-form.component.scss']
 })
+export class QuestionFormComponent implements OnInit {
 
-export class QuestionFormComponent{
+  @Input()
+  quiz: Quiz;
 
-    public questionForm: FormGroup;
-    public quizTmp : Quiz;
+  public questionForm: FormGroup;
 
-    constructor(private route: ActivatedRoute,public FormB: FormBuilder, public quizService: QuizService){
-        this.questionForm = this.FormB.group({
-            label: [''],
-            answers: this.FormB.array([])
-        })
+  constructor(public formBuilder: FormBuilder, private quizService: QuizService) {
+    // Form creation
+    this.initializeQuestionForm();
+  }
+
+  private initializeQuestionForm() {
+    this.questionForm = this.formBuilder.group({
+      label: ['', Validators.required],
+      answers: this.formBuilder.array([])
+    });
+  }
+
+  ngOnInit() {
+  }
+
+  get answers() {
+    return this.questionForm.get('answers') as FormArray;
+  }
+
+  private createAnswer() {
+    return this.formBuilder.group({
+      value: '',
+      isCorrect: false,
+    });
+  }
+
+  addAnswer() {
+    this.answers.push(this.createAnswer());
+  }
+
+  addQuestion() {
+    if(this.questionForm.valid) {
+      const question = this.questionForm.getRawValue() as Question;
+      this.quizService.addQuestion(question);
+      this.initializeQuestionForm();
     }
-//le component.html pourra avoir acces a laide juste du mot clé answers, get answers creer une sorte de variable ou on peut avoir acces
-    get answers(){
-        return this.questionForm.get('answers') as FormArray;
-    }
-
-    private createAnswer(){
-        return this.FormB.group({
-            value:'',
-            isCorrect: false
-        });
-    }
-
-    addAnswer(){
-        this.answers.push(this.createAnswer());
-    }
-
-    addQuestion() {
-        const id = +this.route.snapshot.paramMap.get('id');
-        this.quizService.getQuiz(id.toString()).subscribe((quiz) => this.quizTmp = quiz);
-        this.quizService.addQuestion(this.quizTmp, this.questionForm.getRawValue());
-    }
-
+  }
 }

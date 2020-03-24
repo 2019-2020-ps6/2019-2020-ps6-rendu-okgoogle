@@ -8,11 +8,12 @@ import { Quiz } from '../../../models/quiz.model';
 })
 export class QuizAdminComponent implements OnInit {
 
+
   @Input()
   quiz: Quiz;
 
   @Output()
-  quizSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
+  quizSelected: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
   @Output()
   quizDeleted: EventEmitter<Quiz> = new EventEmitter<Quiz>();
@@ -21,11 +22,12 @@ export class QuizAdminComponent implements OnInit {
 
   }
 
-  ngOnInit() {  
+  ngOnInit() {
+
   }
 
   selectQuiz() {
-    this.quizSelected.emit(true);
+    this.quizSelected.emit(this.quiz);
   }
 
   deleteQuiz(quiz: Quiz) {

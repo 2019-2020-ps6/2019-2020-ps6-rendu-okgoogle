@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from "@angular/router";
 
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
+import { Theme } from 'src/models/theme.model';
+import { ThemeService } from 'src/services/theme.service';
+import { parse } from 'querystring';
 
 @Component({
   selector: 'app-quiz-form',
@@ -11,8 +15,7 @@ import { Quiz } from '../../../models/quiz.model';
 })
 export class QuizFormComponent implements OnInit {
   
-  public themes: String[] = ["Choisir un theme","theme1", "theme2", "theme3", "theme4"];
-
+  private themes: Theme[] = [];
   // Note: We are using here ReactiveForms to create our form. Be careful when you look for some documentation to
   // avoid TemplateDrivenForm (another type of form)
 
@@ -22,23 +25,41 @@ export class QuizFormComponent implements OnInit {
    */
   public quizForm: FormGroup;
 
-  constructor(public formBuilder: FormBuilder, public quizService: QuizService) {
+  constructor(private route: ActivatedRoute,private themeService: ThemeService,public formBuilder: FormBuilder, public quizService: QuizService) {
     // Form creation
     this.quizForm = this.formBuilder.group({
       name: [''],
-      theme:['']
+      themeId: 0
     });
     // You can also add validators to your inputs such as required, maxlength or even create your own validator!
     // More information: https://angular.io/guide/reactive-forms#simple-form-validation
     // Advanced validation: https://angular.io/guide/form-validation#reactive-form-validation
   }
 
-  ngOnInit() {
+  get lesThemes(): Theme[]{
+    return this.themes;
   }
 
+  ngOnInit() {
+    this.themeService.setThemesFromUrl();
+    this.themeService.themes$.subscribe((theme) => this.themes = theme);
+  }
+
+
+
   addQuiz() {
+    // const id = +this.route.snapshot.paramMap.get('themeid');
     // We retrieve here the quiz object from the quizForm and we cast the type "as Quiz".
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
+
+    console.log(quizToCreate)
+
+    var res = Number(quizToCreate.themeId);
+
+    quizToCreate.themeId = res;
+
+    console.log(quizToCreate.themeId)
+
     quizToCreate.questions = [];
     quizToCreate.creationDate = new Date();
 
@@ -48,7 +69,7 @@ export class QuizFormComponent implements OnInit {
     console.log('Add quiz: ', quizToCreate);
 
     // Now, add your quiz in the list!
-    this.quizService.addQuiz(quizToCreate);
+    this.quizService.addQuiz(quizToCreate.themeId.toString(),quizToCreate);
   }
 
 }

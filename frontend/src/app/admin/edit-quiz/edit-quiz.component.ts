@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, OnInit, Input} from '@angular/core'
 import {QuizService} from '../../../services/quiz.service'
 import { Quiz } from '../../../models/quiz.model';
 import { ActivatedRoute, Router } from "@angular/router";
@@ -15,26 +15,18 @@ import { Question } from 'src/models/question.model';
 })
 
 export class editQuizComponent implements OnInit{
-    public quizTmp : Quiz;
-
-    ngOnInit(): void {
-        const id = +this.route.snapshot.paramMap.get('id');
-        this.quizService.quizzes$.subscribe((quiz) => {
-            for(var i in quiz){
-                if(quiz[i].id.toString() === id.toString()){
-                    this.quizTmp = quiz[i]
-                    this.quizService.questions$.subscribe(data => { // subscribe once to the data stream
-                        this.quizTmp.questions = data;
-                    })
-                }
-            }
-        })
-    }
-
-    constructor(private router: Router,private route: ActivatedRoute, private quizService: QuizService){
 
 
-    }
+  public quiz: Quiz;
 
+  constructor(private route: ActivatedRoute, private quizService: QuizService) { 
+    const id = this.route.snapshot.paramMap.get('id');
+    this.quizService.setSelectedQuiz(id);
+    this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
+    console.log(this.quiz)
+  }
 
+  ngOnInit() {
+    
+  }
 }

@@ -20,6 +20,9 @@ import { UserListComponent } from './users/user-list/user-list.component';
 import { editUserComponent } from './admin/edit-user/edit-user.component';
 import { UserLoginComponent } from './users/user-login/user-login.component';
 import { MainAdminComponent } from './admin/main-admin/main-admin.component';
+import { ThemeComponent } from './themes/theme/theme.component';
+import { ThemeListComponent } from './themes/theme-list/theme-list.component';
+
 import { AppRoutingModule } from './app.routing.module';
 
 @NgModule({
@@ -40,7 +43,9 @@ import { AppRoutingModule } from './app.routing.module';
     UserListComponent,
     UserLoginComponent,
     editUserComponent,
-    MainAdminComponent
+    MainAdminComponent,
+    ThemeComponent,
+    ThemeListComponent
   ],
   imports: [
     BrowserModule,

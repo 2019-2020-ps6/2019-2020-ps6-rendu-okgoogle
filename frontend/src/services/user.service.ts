@@ -34,10 +34,8 @@ export class UserService {
 
 
   getUsers() : void {
-    this.http.get<{users : User[]}>(this.lien).subscribe((user : {users: User[]}) =>{
-      for(var i in user){
-        this.users.push(user[i])
-      }
+    this.http.get<User[]>(this.lien).subscribe((userss) =>{
+      this.users=userss;
       this.users$.next(this.users);
     })
   }

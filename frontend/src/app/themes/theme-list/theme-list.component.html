@@ -1,0 +1,9 @@
+<button class="button-card" routerLink="/main-admin">Back</button>
+
+<div class="themes-list">
+    <div class="theme" *ngFor="let theme of themesList">
+        <!--Inputs & Output allow communication between parent & child components.-->
+        <!--More information: https://angular.io/guide/component-interaction-->
+        <app-theme [theme]="theme" (themeSelected)="themeSelected($event)"></app-theme>
+    </div>
+  </div>
