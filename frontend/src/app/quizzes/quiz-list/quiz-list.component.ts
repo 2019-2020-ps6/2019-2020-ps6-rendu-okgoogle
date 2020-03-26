@@ -4,6 +4,7 @@ import { ThemeService } from '../../../services/theme.service';
 import { Quiz } from '../../../models/quiz.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Theme } from 'src/models/theme.model';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-quiz-list',
@@ -15,8 +16,10 @@ export class QuizListComponent implements OnInit {
   public quizList: Quiz[] = [];
   public curTheme: Theme;
   private id = 0;
+  private curStatus: string;
 
-  constructor(private router: Router, private route: ActivatedRoute , private quizService: QuizService, private themeService: ThemeService) {
+
+  constructor(private _location: Location,private router: Router, private route: ActivatedRoute , private quizService: QuizService, private themeService: ThemeService) {
     // faut laisser le temps a quiService 2000-3000
     setTimeout(() => {
       this.id = +this.route.snapshot.paramMap.get('themeid');
@@ -30,12 +33,22 @@ export class QuizListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.curStatus = sessionStorage.getItem("status");
+  }
 
+  back_click(){
+    this._location.back();
+  }
+
+  quizEdited(selected: Quiz) {
+    console.log(selected);
+    this.quizService.setSelectedQuiz(selected.id.toString());
   }
 
   quizSelected(selected: Quiz) {
     console.log(selected);
     this.quizService.setSelectedQuiz(selected.id.toString());
+    
   }
 
   quizDeleted(selected: Quiz) {

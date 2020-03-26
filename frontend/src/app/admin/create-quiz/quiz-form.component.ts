@@ -15,7 +15,8 @@ import { parse } from 'querystring';
 })
 export class QuizFormComponent implements OnInit {
   
-  private themes: Theme[] = [];
+  public themes: Theme[] = [];
+  public curTheme: Theme;
   // Note: We are using here ReactiveForms to create our form. Be careful when you look for some documentation to
   // avoid TemplateDrivenForm (another type of form)
 
@@ -29,7 +30,6 @@ export class QuizFormComponent implements OnInit {
     // Form creation
     this.quizForm = this.formBuilder.group({
       name: [''],
-      themeId: 0
     });
     // You can also add validators to your inputs such as required, maxlength or even create your own validator!
     // More information: https://angular.io/guide/reactive-forms#simple-form-validation
@@ -48,13 +48,14 @@ export class QuizFormComponent implements OnInit {
 
 
   addQuiz() {
-    // const id = +this.route.snapshot.paramMap.get('themeid');
+
+    const id = +this.route.snapshot.paramMap.get('themeid');
     // We retrieve here the quiz object from the quizForm and we cast the type "as Quiz".
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
-
+    
     console.log(quizToCreate)
 
-    var res = Number(quizToCreate.themeId);
+    var res = Number(id);
 
     quizToCreate.themeId = res;
 

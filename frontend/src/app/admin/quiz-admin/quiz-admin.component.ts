@@ -16,6 +16,9 @@ export class QuizAdminComponent implements OnInit {
   quizSelected: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
   @Output()
+  quizEdited: EventEmitter<Quiz> = new EventEmitter<Quiz>();
+
+  @Output()
   quizDeleted: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
   constructor() {
@@ -27,7 +30,11 @@ export class QuizAdminComponent implements OnInit {
   }
 
   selectQuiz() {
-    this.quizSelected.emit(this.quiz);
+    this.quizEdited.emit(this.quiz);
+  }
+
+  editQuiz() {
+    this.quizEdited.emit(this.quiz);
   }
 
   deleteQuiz(quiz: Quiz) {

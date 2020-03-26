@@ -5,12 +5,12 @@
       Title <br>
       <input class="input-custom" type="text" id="name" [formControlName]="'name'">
     </label>
-    <label for="theme">
+    <!-- <label for="theme">
       <br> Theme: <br>
       <select [formControlName]="'themeId'">
         <option *ngFor="let theme of lesThemes"  [value]="theme.id">{{theme.name}}</option>
       </select>
-    </label>
+    </label> -->
     <br>
     <button type="submit" class="button-card" (click)="addQuiz()">Create</button>
   </form>

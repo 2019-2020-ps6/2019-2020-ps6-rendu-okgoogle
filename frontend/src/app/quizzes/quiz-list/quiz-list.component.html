@@ -1,10 +1,14 @@
-<button class="button-card" routerLink="/theme-list">Back</button><br>
+<button class="button-card" (click)="back_click()">Back</button><br>
 <p>{{curTheme.name}}</p>
-<app-quiz-form></app-quiz-form>
+
+<h3 *ngIf="quizList.length === 0">Il n'y a aucun quiz :(</h3>
+
+<app-quiz-form *ngIf="curStatus === 'admin'"></app-quiz-form>
 <div class="quiz-list">
     <div class="quiz" *ngFor="let quiz of quizList">
         <!--Inputs & Output allow communication between parent & child components.-->
         <!--More information: https://angular.io/guide/component-interaction-->
-        <app-quiz-admin [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizDeleted)="quizDeleted($event)"></app-quiz-admin>
+        <app-quiz-admin *ngIf="curStatus === 'admin'" [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizSelected($event)" (quizDeleted)="quizDeleted($event)"></app-quiz-admin>
+        <app-quiz *ngIf="curStatus === 'user'" [quiz]="quiz" (quizSelected)="quizSelected($event)"></app-quiz>
     </div>
 </div>

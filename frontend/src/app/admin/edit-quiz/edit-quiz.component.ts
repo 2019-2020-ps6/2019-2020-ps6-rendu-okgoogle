@@ -4,6 +4,7 @@ import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { Theme } from 'src/models/theme.model';
 import { ThemeService } from 'src/services/theme.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-edit-quiz',
@@ -15,7 +16,7 @@ export class editQuizComponent implements OnInit {
   public quiz: Quiz;
   public curTheme: Theme
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private themeService: ThemeService) { 
+  constructor(private _location: Location,private route: ActivatedRoute, private quizService: QuizService, private themeService: ThemeService) { 
       setTimeout(()=> {
         const id = this.route.snapshot.paramMap.get('quizid');
         this.quizService.setSelectedQuiz(id.toString());
@@ -24,11 +25,12 @@ export class editQuizComponent implements OnInit {
       },100)
 
   }
+  back_click(){
+    this._location.back();
+  }
 
   ngOnInit() {
-
-
-
+    
   }
 
 }

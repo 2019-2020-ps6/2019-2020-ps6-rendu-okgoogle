@@ -8,8 +8,6 @@ import { UserService } from '../../../services/user.service';
 })
 export class UserLoginComponent implements OnInit {
 
-  private cookieValue : string;
-
   constructor(public userService: UserService) {
 
   }
