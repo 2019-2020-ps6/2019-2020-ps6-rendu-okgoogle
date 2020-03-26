@@ -11,14 +11,13 @@ import { Question } from 'src/models/question.model';
 })
 export class QuestionFormComponent implements OnInit {
 
-  @Input()
-  quiz: Quiz;
-
   public questionForm: FormGroup;
 
   constructor(public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
     this.initializeQuestionForm();
+
+    
   }
 
   private initializeQuestionForm() {

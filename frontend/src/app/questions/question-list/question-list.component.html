@@ -1,8 +1,8 @@
 <div class="question-list">
-    <div class="question" *ngFor="let question of questionList">
+    <div class="question" *ngFor="let question of quiz.questions">
         <!--Inputs & Output allow communication between parent & child components.-->
         <!--More information: https://angular.io/guide/component-interaction-->
-        <app-question (questionDeleted)="questionDeletion($event,$event)" [question]="question"></app-question>
+        <app-question (questionDeleted)="questionDeletion($event)" [question]="question"></app-question>
 
     </div>
 </div>

@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
+import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import { Question } from '../../../models/question.model';
 
 @Component({
@@ -7,20 +7,24 @@ import { Question } from '../../../models/question.model';
     styleUrls: ['./question.component.scss']
 })
 
-export class questionComponent{
+export class questionComponent implements OnInit{
 
     @Input()
     question: Question;
 
     @Output()
-    questionDeleted: EventEmitter<{question : Question, questionNumber : number}> = new EventEmitter<{question : Question, questionNumber : number}>();
+    questionDeleted: EventEmitter<Question> = new EventEmitter<Question>();
 
     constructor(){
-
+        
     }
 
-    deleteQuestion(question :Question, questionNumber : number){
-        this.questionDeleted.emit({question, questionNumber});
+    ngOnInit(){
+        
+    }
+
+    deleteQuestion(){
+        this.questionDeleted.emit(this.question);
     }
 
 }

@@ -22,6 +22,6 @@ export class ThemeListComponent implements OnInit {
   }
 
   themeSelected(selected: Theme) {
-    this.themeService.setSelectedTheme(selected);
+    this.themeService.getTheme(selected.id.toString());
   }
 }

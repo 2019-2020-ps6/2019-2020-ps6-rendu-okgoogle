@@ -8,6 +8,7 @@ import {UserLoginComponent} from './users/user-login/user-login.component';
 import {UserFormComponent} from './admin/create-user/user-form.component';
 import {QuizFormComponent} from './admin/create-quiz/quiz-form.component';
 import {editUserComponent} from './admin/edit-user/edit-user.component';
+import {CreateThemeComponent} from './admin/create-theme/create-theme.component';
 import {MainAdminComponent} from './admin/main-admin/main-admin.component';
 
 const routes: Routes = [
@@ -21,6 +22,7 @@ const routes: Routes = [
     {path: 'users-login', component: UserLoginComponent},
     {path: 'create-user', component: UserFormComponent},
     {path: 'create-quiz', component: QuizFormComponent},
+    {path: 'create-theme', component: CreateThemeComponent},
     {path: 'edit-user/:userid', component: editUserComponent},
     {path: 'main-admin', component: MainAdminComponent},
     {path: '', component: UserLoginComponent}

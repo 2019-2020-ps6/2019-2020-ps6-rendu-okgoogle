@@ -12,30 +12,27 @@ import { Quiz } from 'src/models/quiz.model';
 export class QuestionListComponent implements OnInit {
 
   @Input()
-  quiz: Quiz
-
-  public questionList: Question[] = [];
-
-  ngOnInit() {
-    this.setQuestion()
-    this.quizService.questions$.subscribe()
-  }
-
-  setQuestion(){
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.quizService.getQuestions(id.toString())
-    this.quizService.questions$.subscribe((question) =>this.questionList = question);
-  }
+  quiz:Quiz
 
   constructor(private route: ActivatedRoute,public quizService: QuizService) {
+  }
+
+  ngOnInit(){
 
   }
 
-  questionDeletion(obj) {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.quizService.deleteQuestion(obj.questionNumber.toString()).subscribe(() =>{
-       this.questionList.splice(this.questionList.indexOf(obj.question), 1);
-    })
+  questionDeletion(question: Question) {
+    console.log("goo")
+    this.quizService.deleteQuestion(this.quiz, question);
+    this.quiz.questions.splice(this.quiz.questions.indexOf(question),1)
   }
+  // questionDeletion(question: Question) {
+  //   const id = +this.route.snapshot.paramMap.get('id');
+
+    
+  //   this.quizService.deleteQuestion(obj.questionNumber.toString()).subscribe(() =>{
+  //      this.quizService.quizSelected.questions.splice(this.quizService.quizSelected.questions.indexOf(obj.question), 1);
+  //   })
+  // }
 
 }

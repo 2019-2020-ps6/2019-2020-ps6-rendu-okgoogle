@@ -22,6 +22,7 @@ import { UserLoginComponent } from './users/user-login/user-login.component';
 import { MainAdminComponent } from './admin/main-admin/main-admin.component';
 import { ThemeComponent } from './themes/theme/theme.component';
 import { ThemeListComponent } from './themes/theme-list/theme-list.component';
+import { CreateThemeComponent } from './admin/create-theme/create-theme.component';
 
 import { AppRoutingModule } from './app.routing.module';
 
@@ -45,7 +46,8 @@ import { AppRoutingModule } from './app.routing.module';
     editUserComponent,
     MainAdminComponent,
     ThemeComponent,
-    ThemeListComponent
+    ThemeListComponent,
+    CreateThemeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,32 +1,34 @@
-import {Component, OnInit, Input} from '@angular/core'
-import {QuizService} from '../../../services/quiz.service'
-import { Quiz } from '../../../models/quiz.model';
-import { ActivatedRoute, Router } from "@angular/router";
-import { Question } from 'src/models/question.model';
-
-/**
- * Recupere un quiz avec plusieurs questions
- */
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Quiz } from 'src/models/quiz.model';
+import { QuizService } from 'src/services/quiz.service';
+import { Theme } from 'src/models/theme.model';
+import { ThemeService } from 'src/services/theme.service';
 
 @Component({
-    selector:'app-edit-quiz',
-    templateUrl: './edit-quiz.component.html',
-    styleUrls: ['./edit-quiz.component.scss']  
+  selector: 'app-edit-quiz',
+  templateUrl: './edit-quiz.component.html',
+  styleUrls: ['./edit-quiz.component.scss']
 })
-
-export class editQuizComponent implements OnInit{
-
+export class editQuizComponent implements OnInit {
 
   public quiz: Quiz;
+  public curTheme: Theme
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService) { 
-    const id = this.route.snapshot.paramMap.get('id');
-    this.quizService.setSelectedQuiz(id);
-    this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
-    console.log(this.quiz)
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private themeService: ThemeService) { 
+      setTimeout(()=> {
+        const id = this.route.snapshot.paramMap.get('quizid');
+        this.quizService.setSelectedQuiz(id.toString());
+        this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
+        this.themeService.themeSelected$.subscribe((theme)=> this.curTheme = theme)
+      },100)
+
   }
 
   ngOnInit() {
-    
+
+
+
   }
+
 }
