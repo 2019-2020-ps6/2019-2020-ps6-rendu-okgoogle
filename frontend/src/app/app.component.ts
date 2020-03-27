@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {Location} from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'starter-quiz';
+
+  title = 'Quizle';
+
+  constructor(private _location: Location,private router: Router){
+    
+  }
+
+  back_click(){
+    this._location.back();
+  }
+
 }

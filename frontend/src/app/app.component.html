@@ -1,4 +1,5 @@
 <app-header></app-header>
+<button *ngIf="router.url != '/'" class="button-card" (click)="back_click()">Back</button><br>
 <div class="main-content">
     <!-- <app-quiz-form></app-quiz-form> Ici on a le component de quiz form avec tous ces element deja set sur le dossier quizForm-->
     <!-- <app-quiz-list></app-quiz-list> Ici on a le component de quiz list avec tous ces element deja set sur le dossier quizList -->
