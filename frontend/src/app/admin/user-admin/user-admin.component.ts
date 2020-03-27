@@ -15,7 +15,10 @@ export class UserAdminComponent implements OnInit {
   userDeleted: EventEmitter<User> = new EventEmitter<User>();
 
   @Output()
-  userSelected: EventEmitter<User> = new EventEmitter<User>();
+  userSelected: EventEmitter<User> = new EventEmitter<User>();  
+  
+  @Output()
+  userEdited: EventEmitter<User> = new EventEmitter<User>();
 
   constructor() {
 
@@ -26,6 +29,10 @@ export class UserAdminComponent implements OnInit {
 
   selectUser(user: User) {
     this.userSelected.emit(user);
+  }
+
+  editUser(user:User){
+    this.userEdited.emit(user);
   }
 
   deleteUser(user: User) {

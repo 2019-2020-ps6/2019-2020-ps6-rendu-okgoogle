@@ -25,6 +25,10 @@ export class UserListComponent implements OnInit {
     this.userService.deleteUser(selected);
   }
   
+  userEdited(selected: User) {
+    this.route.navigate(['/edit-user/', selected.id])
+  }
+  
   userSelected(selected: User) {
     //On affiche les theme
     this.route.navigate(['/theme-list'])

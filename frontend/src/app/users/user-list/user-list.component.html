@@ -6,6 +6,6 @@
                <!-- v -->
 
         <app-user *ngIf="curStatus === 'user'" [user]="user" (userSelected)="userSelected($event)"></app-user>
-        <app-user-admin *ngIf="curStatus === 'admin'" [user]="user" (userDeleted)="userDeleted($event)" (userSelected)="userSelected($event)"></app-user-admin>
+        <app-user-admin *ngIf="curStatus === 'admin'" [user]="user" (userDeleted)="userDeleted($event)" (userEdited)="userEdited($event)" (userSelected)="userSelected($event)"></app-user-admin>
     </div>
   </div>

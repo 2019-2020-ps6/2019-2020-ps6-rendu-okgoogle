@@ -47,7 +47,7 @@ export class QuizListComponent implements OnInit {
   }
 
   quizDeleted(selected: Quiz) {
-    this.quizService.deleteQuiz(this.id.toString(), selected ).subscribe(() => {
+    this.quizService.deleteQuiz( selected ).subscribe(() => {
       this.quizList.splice(this.quizList.indexOf(selected), 1);
     });
   }

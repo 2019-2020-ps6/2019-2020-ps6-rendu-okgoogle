@@ -68,7 +68,7 @@ export class QuizService {
   }
 
   /** DELETE: delete the quiz from the server */
-  deleteQuiz (id : string,quiz: Quiz): Observable<{}> {
+  deleteQuiz (quiz: Quiz): Observable<{}> {
     const url = this.lien+this.themeSelected.id+"/quizzes/"+quiz.id; // DELETE api/heroes/42
     const header = this.prepareHeader();
     this.quizzes$.next(this.quizzes)
@@ -88,9 +88,6 @@ export class QuizService {
   }
 
   setSelectedQuiz(lequiz: string) {
-    console.log("gooo")
-    console.log(this.themeService.themeSelected.id.toString())
-    console.log(lequiz.toString())
     const urlWithId = this.lien + this.themeService.themeSelected.id.toString() + '/quizzes/' + lequiz.toString();
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
       console.log("Le selected"+quiz);

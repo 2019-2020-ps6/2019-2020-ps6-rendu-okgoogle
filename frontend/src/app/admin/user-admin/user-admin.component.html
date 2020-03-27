@@ -8,6 +8,7 @@
             <span>Sexe: {{user.sexe}}</span>
             <span>Age: {{user.age}}</span>
             <span>Infos description: {{user.description}}</span>
+            <button class="button-card" (click)="editUser(user)">Editer</button>
             <button class="button-card" (click)="deleteUser(user)">Delete</button>
             <button class="button-card" (click)="selectUser(user)">Selectionner</button>
        </div><!-- .card-content -->

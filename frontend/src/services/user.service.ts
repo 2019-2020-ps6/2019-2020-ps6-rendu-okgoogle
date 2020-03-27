@@ -8,6 +8,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
+
   /**
    * Services Documentation:
    * https://angular.io/docs/ts/latest/tutorial/toh-pt4.html
@@ -18,6 +19,7 @@ export class UserService {
     * The list is retrieved from the mock.
     */
   private users: User[] = [];
+  private userSelected: User;
 
   private lien = "http://localhost:9428/api/users/";
 
@@ -26,12 +28,21 @@ export class UserService {
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
    */
   public users$: BehaviorSubject<User[]> = new BehaviorSubject(this.users);
+  public userSelected$: BehaviorSubject<User> = new BehaviorSubject(this.userSelected);
 
   constructor(private http: HttpClient) {
     this.getUsers();
   }
   
-
+  setSelectedUser(idUser: string) {
+    console.log("ici")
+    const urlWithId = this.lien + idUser.toString();
+    this.http.get<User>(urlWithId).subscribe((user) => {
+      console.log("Le selected"+user);
+      this.userSelected = user;
+      this.userSelected$.next(user);
+    });
+  }
 
   getUsers() : void {
     this.http.get<User[]>(this.lien).subscribe((userss) =>{
@@ -42,18 +53,14 @@ export class UserService {
 
 
   addUser(user: User){
-    this.http.post(this.lien,user).subscribe()
-    this.users.push(user);
-    this.users$.next(this.users);
+    this.http.post(this.lien,user).subscribe(()=> this.getUsers());
   }
 
-  deleteUser(user: any) {
+  deleteUser(user:User) {
     const url = this.lien+user.id.toString();
     const header = this.prepareHeader();
-    this.users.splice(this.users.indexOf(user), 1);
+    this.http.delete(url,header).subscribe(()=> this.getUsers())
     this.users$.next(this.users);
-
-    return this.http.delete(url,header).subscribe()
     // You need here to update the list of quiz and then update our observable (Subject) with the new list
     // More info: https://angular.io/tutorial/toh-pt6#the-searchterms-rxjs-subject
   }
