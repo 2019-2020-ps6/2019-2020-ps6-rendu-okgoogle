@@ -1,18 +1,17 @@
 <div style="width: 100%;margin-top: 180px;margin-left: auto;margin-right: auto;">
-<div id="quiz">
-    <app-quiz-form></app-quiz-form>
-<div class="quiz-list">
-    <div class="quiz" *ngFor="let quiz of quizList">
-        <!--Inputs & Output allow communication between parent & child components.-->
-        <!--More information: https://angular.io/guide/component-interaction-->
-        <app-quiz [quiz]="quiz" (quizSelected)="quizSelected($event)" (deleteQuiz)="deleteQuiz($event)" (editQuiz)="editQuiz($event)"></app-quiz>
+<ng-container *ngIf="quiz">
+  <div id="quiz">
+    <h1 style="color: brown;" id="quiz-name">{{quiz.name}}</h1>
+    <div *ngFor="let question of quiz.questions, let i=index">
+      {{i+1}}: {{question.label}}
+      <div style="border: solid brown; margin: 10px 10px; padding: 5px 5px; cursor: pointer;" *ngFor="let answer of question.answers, let i=index">
+        Reponse: {{i+1}} - {{answer.value}} <ng-container *ngIf="answer.isCorrect"><i class="far fa-check-square"></i></ng-container> <br>
+      </div>
     </div>
-  </div>
-    <app-question-list></app-question-list>
-    <h1 id="quiz-name">{{quiz.name}}</h1>
+
     <button id="submit-button">Submit Answers</button>
     <button id="next-question-button">Next Question</button>
     <button id="prev-question-button">Previous</button>
-    
-    
   </div>
+</ng-container>
+<script >alert("reeerg")</script>

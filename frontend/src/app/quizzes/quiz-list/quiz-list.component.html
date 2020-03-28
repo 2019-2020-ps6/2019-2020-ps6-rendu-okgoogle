@@ -7,7 +7,7 @@
     <div class="quiz" *ngFor="let quiz of quizList">
         <!--Inputs & Output allow communication between parent & child components.-->
         <!--More information: https://angular.io/guide/component-interaction-->
-        <app-quiz-admin *ngIf="curStatus === 'admin'" [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizSelected($event)" (quizDeleted)="quizDeleted($event)"></app-quiz-admin>
+        <app-quiz-admin *ngIf="curStatus === 'admin'" [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizEdited($event)" (quizDeleted)="quizDeleted($event)"></app-quiz-admin>
         <app-quiz *ngIf="curStatus === 'user'" [quiz]="quiz" (quizSelected)="quizSelected($event)"></app-quiz>
     </div>
 </div>

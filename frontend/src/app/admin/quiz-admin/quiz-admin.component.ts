@@ -30,7 +30,7 @@ export class QuizAdminComponent implements OnInit {
   }
 
   selectQuiz() {
-    this.quizEdited.emit(this.quiz);
+    this.quizSelected.emit(this.quiz);
   }
 
   editQuiz() {

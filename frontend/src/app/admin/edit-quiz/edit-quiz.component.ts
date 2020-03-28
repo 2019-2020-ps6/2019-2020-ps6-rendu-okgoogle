@@ -21,7 +21,7 @@ export class editQuizComponent implements OnInit {
         this.quizService.setSelectedQuiz(id.toString());
         this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
         this.themeService.themeSelected$.subscribe((theme)=> this.curTheme = theme)
-      },100)
+      },10)
 
   }
   

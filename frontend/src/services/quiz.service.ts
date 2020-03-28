@@ -50,7 +50,7 @@ export class QuizService {
         this.themeSelected = theme
         this.themeSelected$.next(this.themeSelected)
       });
-    }, 1000);
+    }, 50);
     //faire une requete vers themeservice avec le themeID
   }
 

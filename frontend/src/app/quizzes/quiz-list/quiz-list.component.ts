@@ -43,7 +43,7 @@ export class QuizListComponent implements OnInit {
   quizSelected(selected: Quiz) {
     console.log(selected);
     this.quizService.setSelectedQuiz(selected.id.toString());
-    this.router.navigate(['play-quiz']);
+    this.router.navigate(['play-quiz', selected.id.toString()]);
   }
 
   quizDeleted(selected: Quiz) {
@@ -51,4 +51,5 @@ export class QuizListComponent implements OnInit {
       this.quizList.splice(this.quizList.indexOf(selected), 1);
     });
   }
+  
 }

@@ -26,8 +26,8 @@ const routes: Routes = [
     {path: 'create-theme', component: CreateThemeComponent},
     {path: 'edit-user/:userid', component: editUserComponent},
     {path: 'main-admin', component: MainAdminComponent},
+    {path: 'play-quiz/:quizid' , component: PlayQuizComponent},
     {path: '', component: UserLoginComponent},
-    {path: 'play-quiz' , component: PlayQuizComponent},
 ];
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from 'src/models/quiz.model';
-import { Question } from 'src/models/question.model';
 import { QuizService } from 'src/services/quiz.service';
+import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-play-quiz',
     templateUrl: './play-quiz.component.html',
@@ -11,15 +11,17 @@ import { QuizService } from 'src/services/quiz.service';
     public quiz: Quiz;
     private curStatus: string;
 
-    constructor(public quizService: QuizService) {
+    constructor(private route: ActivatedRoute,public quizService: QuizService) {
+      setTimeout(()=>{
+        const id = this.route.snapshot.paramMap.get('quizid');
+        this.quizService.setSelectedQuiz(id.toString());
+        this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
+      },300)
       
-    
     }
   
-    ngOnInit() {
-      setTimeout(() => {
-        this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
-    console.log(this.quiz)
-        }, 2000);
+    ngOnInit() {        
+      this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
+
     }
 }
