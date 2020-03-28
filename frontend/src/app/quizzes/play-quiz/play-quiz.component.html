@@ -1,0 +1,18 @@
+<div style="width: 100%;margin-top: 180px;margin-left: auto;margin-right: auto;">
+<div id="quiz">
+    <app-quiz-form></app-quiz-form>
+<div class="quiz-list">
+    <div class="quiz" *ngFor="let quiz of quizList">
+        <!--Inputs & Output allow communication between parent & child components.-->
+        <!--More information: https://angular.io/guide/component-interaction-->
+        <app-quiz [quiz]="quiz" (quizSelected)="quizSelected($event)" (deleteQuiz)="deleteQuiz($event)" (editQuiz)="editQuiz($event)"></app-quiz>
+    </div>
+  </div>
+    <app-question-list></app-question-list>
+    <h1 id="quiz-name">{{quiz.name}}</h1>
+    <button id="submit-button">Submit Answers</button>
+    <button id="next-question-button">Next Question</button>
+    <button id="prev-question-button">Previous</button>
+    
+    
+  </div>

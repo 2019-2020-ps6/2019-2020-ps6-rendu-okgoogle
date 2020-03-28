@@ -23,6 +23,7 @@ import { MainAdminComponent } from './admin/main-admin/main-admin.component';
 import { ThemeComponent } from './themes/theme/theme.component';
 import { ThemeListComponent } from './themes/theme-list/theme-list.component';
 import { CreateThemeComponent } from './admin/create-theme/create-theme.component';
+import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
 
 import { AppRoutingModule } from './app.routing.module';
 
@@ -47,7 +48,8 @@ import { AppRoutingModule } from './app.routing.module';
     MainAdminComponent,
     ThemeComponent,
     ThemeListComponent,
-    CreateThemeComponent
+    CreateThemeComponent,
+    PlayQuizComponent
   ],
   imports: [
     BrowserModule,

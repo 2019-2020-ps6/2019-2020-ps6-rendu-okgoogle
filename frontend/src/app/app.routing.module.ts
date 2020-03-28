@@ -10,6 +10,7 @@ import {QuizFormComponent} from './admin/create-quiz/quiz-form.component';
 import {editUserComponent} from './admin/edit-user/edit-user.component';
 import {CreateThemeComponent} from './admin/create-theme/create-theme.component';
 import {MainAdminComponent} from './admin/main-admin/main-admin.component';
+import {PlayQuizComponent} from  './quizzes/play-quiz/play-quiz.component';
 
 const routes: Routes = [
     //path = ce qui y aura sur l'url
@@ -25,7 +26,8 @@ const routes: Routes = [
     {path: 'create-theme', component: CreateThemeComponent},
     {path: 'edit-user/:userid', component: editUserComponent},
     {path: 'main-admin', component: MainAdminComponent},
-    {path: '', component: UserLoginComponent}
+    {path: '', component: UserLoginComponent},
+    {path: 'play-quiz' , component: PlayQuizComponent},
 ];
 
 @NgModule({

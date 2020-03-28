@@ -43,7 +43,7 @@ export class QuizListComponent implements OnInit {
   quizSelected(selected: Quiz) {
     console.log(selected);
     this.quizService.setSelectedQuiz(selected.id.toString());
-    
+    this.router.navigate(['play-quiz']);
   }
 
   quizDeleted(selected: Quiz) {
