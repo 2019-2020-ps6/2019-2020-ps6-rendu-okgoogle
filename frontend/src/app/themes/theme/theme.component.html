@@ -1,7 +1,9 @@
-<div class="card">
-    <h2>
-        <i class="fab fa-leanpub"></i>
-        Theme : {{theme.name}}
-    </h2>
-    <a (click)="selectTheme()" routerLink="/theme-list/{{theme.id}}"> Voir les quizzes</a>
-</div>
+<ng-container *ngIf="theme">
+    <div class="card">
+        <h2>
+            <i class="fab fa-leanpub"></i>
+            Theme : {{theme.name}}
+        </h2>
+        <a (click)="selectTheme()" routerLink="/theme-list/{{theme.id}}"> Voir les quizzes</a>
+    </div>
+</ng-container>
