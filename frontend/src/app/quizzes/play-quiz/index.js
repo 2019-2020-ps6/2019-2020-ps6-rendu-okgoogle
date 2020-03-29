@@ -1,12 +1,6 @@
 // Array of all the questions and choices to populate the questions. This might be saved in some JSON file or a database and we would have to read the data in.
 var all_questions = this.quiz;
 console.log("ssdsfs")
-
-var test = (function() {
-
-  alert("sdvsv")
-
-})
   
   // An object for a Quiz, which will contain Question objects.
   var Quiz = function(quiz_name) {

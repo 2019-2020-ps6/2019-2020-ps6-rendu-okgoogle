@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
-import { ActivatedRoute } from '@angular/router'
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-play-quiz',
     templateUrl: './play-quiz.component.html',
@@ -23,5 +22,6 @@ import { ActivatedRoute } from '@angular/router'
   
     ngOnInit() {        
       this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
+
     }
 }
