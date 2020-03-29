@@ -1,7 +1,7 @@
 const { Router } = require('express')
 
 const { User } = require('../../models')
-const {ResultRouter} = require('./result')
+const resultRouter = require('./result/index')
 
 const router = new Router()
 
@@ -52,6 +52,6 @@ router.post('/', (req, res) => {
     }
 })
 
-router.use("/:userid/result", ResultRouter)
+router.use("/:userid/result",resultRouter)
 
 module.exports = router;
