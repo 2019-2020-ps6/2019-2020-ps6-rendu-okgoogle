@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Statistiques </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<div id="all">
+    <div id="partiegauche">
+        <h2>Statistiques de l'utilisateur :</h2>
+        <label for="label">
+            Nom Utilisateur: <br>
+            <h4>Quizz: </h4>
+            <h5> </h5>
+        </label>
+        <div id="parentErreurCorrect">
+            <div id="erreurs"> erreurs:</div>
+            <div id="corrects">correctes</div>
+        </div>
+        <div  id=parentaidesthemes>
+            <div id="nb_aides">nombres d'aides :</div>
+            <div id="theme_fav">theme favoris :</div>
+        </div>
+        <div id="nb_Q"></div>
+        <button class="buttonDetail" (click)="addAnswer()">Plus de details</button>
+        <div class="answer" formArrayName="answers">
+           
+        </div>
+    </div>
+    <div id="partiedroite">
+        <h6>Liste des quizs réalisés</h6>
+        <div id="listeQ"></div>
+         <div *ngFor="let address of answers.controls; let i=index">
+                <div class="answer-form" [formGroupName]="i">
+                </div>
+            </div>
+    </div>
+
+</div>
