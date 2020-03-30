@@ -51,7 +51,6 @@ export class QuizService {
         this.themeSelected$.next(this.themeSelected)
       });
     }, 50);
-    //faire une requete vers themeservice avec le themeID
   }
 
   ngOnInit(){
@@ -103,9 +102,7 @@ export class QuizService {
 
   addQuiz(id: string,quiz: Quiz): void {
     this.http.post(this.lien+id.toString()+"/quizzes/",quiz).subscribe((quiz) => {this.setQuizzesFromUrl()})
-    this
   }
-
 
   addQuestion(question: Question){
     //le .subscribe() est TRES IMPORTANT sinon fonctionne pas

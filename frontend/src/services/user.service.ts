@@ -19,7 +19,7 @@ export class UserService {
     * The list is retrieved from the mock.
     */
   private users: User[] = [];
-  private userSelected: User;
+  public userSelected: User;
 
   private lien = "http://localhost:9428/api/users/";
 

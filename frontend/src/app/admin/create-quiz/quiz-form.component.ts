@@ -53,13 +53,7 @@ export class QuizFormComponent implements OnInit {
     // We retrieve here the quiz object from the quizForm and we cast the type "as Quiz".
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
     
-    console.log(quizToCreate)
-
-    var res = Number(id);
-
-    quizToCreate.themeId = res;
-
-    console.log(quizToCreate.themeId)
+    quizToCreate.themeId = id.toString();
 
     quizToCreate.questions = [];
     quizToCreate.creationDate = new Date();
@@ -67,7 +61,6 @@ export class QuizFormComponent implements OnInit {
     // Do you need to log your object here in your class? Uncomment the code below
     // and open your console in your browser by pressing F12 and choose the tab "Console".
     // You will see your quiz object when you click on the create button.
-    console.log('Add quiz: ', quizToCreate);
 
     // Now, add your quiz in the list!
     this.quizService.addQuiz(quizToCreate.themeId.toString(),quizToCreate);

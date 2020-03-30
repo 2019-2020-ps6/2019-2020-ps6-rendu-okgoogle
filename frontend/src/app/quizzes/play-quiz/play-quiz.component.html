@@ -1,6 +1,7 @@
 <div style="width: 100%;margin-top: 180px;margin-left: auto;margin-right: auto;">
 <ng-container *ngIf="quiz">
   <div id="quiz">
+    <span>{{timer}}</span>
     <h1 style="color: brown;" id="quiz-name">{{quiz.name}}</h1>
     <div *ngFor="let question of quiz.questions, let i=index">
       {{i+1}}: {{question.label}}
