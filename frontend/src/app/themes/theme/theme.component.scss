@@ -1,1 +1,12 @@
 @import '../../../styles/card.scss';
+
+#struct_circle{
+    display: inline-block;
+    width: 200px;
+    margin-left: 100px;
+    height: 300px;
+    background-color: rgb(189, 207, 224)  ;
+    border : inset slategrey ;
+    margin-bottom: 40px;
+    cursor: grab; 
+}

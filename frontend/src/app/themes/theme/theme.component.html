@@ -1,10 +1,24 @@
 <ng-container *ngIf="theme">
-    <div class="card">
+    <div *ngIf="curStatus === 'user'">
+        <div id="struct_circle" (click)="selectTheme()">
+            
+            <div style=" border:inset black;background-color:yellow;font-weight: bold; margin: 10%; padding: 5%;">
+                {{theme.name}}
+                <!---<app-theme [theme]="theme" (themeSelected)="themeSelected($event)" (themeDeleted)="themeDeleted($event)"></app-theme> -->
+            </div>
+            <br>
+            <div style="margin-left: 20%;">
+                CLIQUEZ ICI
+            </div>
+        </div>
+        
+    </div>
+    <div *ngIf="curStatus === 'admin'" class="card">
         <h2>
             <i class="fab fa-leanpub"></i>
             Theme : {{theme.name}}
         </h2>
-        <button (click)="selectTheme()" > Voir les quizzes</button>
-        <button *ngIf="curStatus === 'admin'" (click)="deleteTheme()" >Delete</button>
+        <button (click)="selectTheme()" > Voir les quiz</button>
+        <button (click)="deleteTheme()" >Delete</button>
     </div>
 </ng-container>
