@@ -30,7 +30,7 @@ export class UserListComponent implements OnInit {
   }
   
   userSelected(selected: User) {
-    //On affiche les theme
+    this.userService.setSelectedUser(selected.id.toString())
     this.route.navigate(['/theme-list'])
   }
 }

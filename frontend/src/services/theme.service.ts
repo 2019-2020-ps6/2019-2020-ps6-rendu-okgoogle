@@ -73,11 +73,12 @@ export class ThemeService implements OnInit {
   
 
   /** DELETE: delete the quiz from the server */
-  deleteTheme (): Observable<{}> {
-    const url = this.lien+this.themeSelected.id.toString(); // DELETE api/heroes/42
+  deleteTheme(selected: string) {
+    const url = this.lien+selected.toString(); // DELETE api/heroes/42
     const header = this.prepareHeader();
     this.themes$.next(this.themes)
-    return this.http.delete(url,header)
+    this.http.delete(url,header).subscribe(()=> this.setThemesFromUrl())
+    
   }
 
   protected prepareHeader(): object {

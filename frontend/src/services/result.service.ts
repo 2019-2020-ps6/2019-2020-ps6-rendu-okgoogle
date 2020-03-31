@@ -2,75 +2,112 @@ import {Answer} from '../models/answer.model';
 import {Result} from '../models/result.model';
 import { ActivatedRoute } from '@angular/router';
 import {QuizService} from './quiz.service'
+import {Location} from '@angular/common';
 
-import {BehaviorSubject, Subject, from} from 'rxjs';
+import { Subject } from 'rxjs';
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
-import { Quiz } from 'src/models/quiz.model';
+import { Question } from 'src/models/question.model';
+import { User } from 'src/models/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ResultService implements OnInit{
+export class ResultService {
 
-  private resultFinal: Result;
+  public resultFinal: Result ;
+  private questionSelected: Question;
+  private userSelected: User;
+  private questions: Question[];
   private answers: Answer[];
-  private currentGoodAnswer: Answer;
-  private quizSelected: Quiz;
-  private nbEssai: Number = 0;
+  private nbAide: number = 0;
+  private ptrQuestion:number=0;
+  public timer: number = 0;
 
-
-  /**
-   * Observable which contains the list of the quiz.
-   * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
-   */
-  public result$: BehaviorSubject<Result> = new BehaviorSubject(this.resultFinal);
-  public answers$: BehaviorSubject<Answer[]> = new BehaviorSubject(this.answers);
-  public nbEssai$: BehaviorSubject<Number>= new BehaviorSubject(this.nbEssai);
-
-  //Pour la recup de result
-  public quizSelected$: Subject<Quiz> = new Subject();
-  public answerSelected$: Subject<Answer> = new Subject();
-  public currentGoodAnswer$:Subject<Answer> = new Subject();
+  public resultFinal$: Subject<Result> = new Subject();
+  public questionSelected$: Subject<Question> = new Subject();
+  public userSelected$: Subject<User> = new Subject();
 
   private lien = "http://localhost:9428/api/"
 
-  constructor(private route: ActivatedRoute,private http: HttpClient, private quizService:QuizService, private userService: UserService) {
+  constructor(private _location: Location,private route: ActivatedRoute,private http: HttpClient, private quizService:QuizService, private userService: UserService) {
+    this.resultFinal = new Object() as Result;
+    setTimeout(()=>{
+      this.answers = [];
+      this.userSelected = this.userService.userSelected
+      this.userSelected$.next(this.userSelected)
+      this.questions = quizService.quizSelected.questions;
+      this.questionSelected = this.questions[this.ptrQuestion];
+      this.questionSelected$.next(this.questionSelected);
+    },2000)
+    setInterval(()=> {this.timer+=1}, 1000)
     
-    this.nbEssai$.subscribe((nbEssai) => this.nbEssai = nbEssai);
-    this.result$.subscribe((res) => this.resultFinal = res);
-    this.answers$.subscribe((answer) => this.answers = answer)
-
-
-
   }
 
-  ngOnInit(){
-        //Set resultFinal
-        this.resultFinal.quizId = this.quizService.themeSelected.id.toString();
-        this.resultFinal.userId = this.userService.userSelected.id.toString();
-  }
-
-  setSelectedAnswer(quizId: string, questionId: string, answerId: string) {
-    if(this.nbEssai == 2){
-      const urlWithId = this.lien + "themes/"+ this.quizSelected.themeId.toString() + '/quizzes/' + this.quizSelected.id.toString() + '/questions/' + questionId + '/answers/' + answerId;
-      this.http.get<Answer>(urlWithId).subscribe((answer) => {
-        this.resultFinal.answers.push(answer)
-      });
-    }
-  }
-
-  getAnswerOfQuestion(questionId: string){
-    const urlWithId = this.lien + "themes/"+ this.quizSelected.themeId.toString() + '/quizzes/' + this.quizSelected.id.toString() + '/questions/' + questionId;
-    this.http.get<Answer[]>(urlWithId).subscribe((answer) => {
-      this.answers = answer
+  setSelectedQuestion(questionId: string){
+    const urlWithId = this.lien + "themes/"+ this.quizService.quizSelected.themeId.toString() + '/quizzes/' + this.quizService.quizSelected.id.toString() + '/questions/' + questionId;
+    this.http.get<Question>(urlWithId).subscribe((question) => {
+      this.questionSelected = question;
+      this.questionSelected$.next();
     });
   }
 
+  setSelectedAnswer(questionId: string,answerId: string) {
+    const urlWithId = this.lien + "themes/"+ this.quizService.quizSelected.themeId.toString() + '/quizzes/' +this.quizService.quizSelected.id.toString() + '/questions/' + questionId.toString() + '/answers/' + answerId;
+    this.http.get<Answer>(urlWithId).subscribe((answer) => {
+      this.VerifyAnswer(answer)
+    });
+  }
+
+  VerifyAnswer(answer: Answer){
+    if(answer.isCorrect){
+        
+      this.answers.push(answer)
+      this.ptrQuestion+=1;
+      this.questionSelected = this.quizService.quizSelected.questions[this.ptrQuestion];
+      this.questionSelected$.next(this.questionSelected)
+      if(this.ptrQuestion === this.questions.length){
+        this.ptrQuestion = 0;
+        this.questionSelected = this.quizService.quizSelected.questions[this.ptrQuestion];
+        this.questionSelected$.next(this.questionSelected)
+        console.log(this.timer)
+        this.addResult(this.timer)
+      }
+    }else{
+      this.answers.push(answer)
+      for(var i in this.questionSelected.answers){
+        if(answer.id.toString() === this.questionSelected.answers[i].id.toString()){
+          this.questionSelected.answers.splice(this.questionSelected.answers.indexOf(this.questionSelected.answers[i]),1)
+          break;
+        }
+      }
+    }
+  }
+
+  popAnswerFalse(){
+    for(var i in this.questionSelected.answers){
+      if(!(this.questionSelected.answers[i].isCorrect)){
+        this.questionSelected.answers.splice(this.questionSelected.answers.indexOf(this.questionSelected.answers[i]),1)
+        break;
+      }
+    }
+    this.nbAide+=1;
+  }
+
+  goBack(){
+    this._location.back();
+  }
+
   addResult(dureeJeu: number){
+    this.resultFinal.quizId = this.questionSelected.quizId.toString()
+    this.resultFinal.userId = this.userSelected.id.toString();
+    this.resultFinal.answers = this.answers;
+    this.resultFinal.nbAide = this.nbAide;
     this.resultFinal.dureeJeu = dureeJeu;
     this.resultFinal.dateJeu = new Date().toString();
-    this.http.post(this.lien +"users"+ this.userService.userSelected.id.toString() +"/result/", this.resultFinal).subscribe();
+    this.http.post(this.lien +"users/"+ this.userSelected.id.toString() +"/result/", this.resultFinal).subscribe(()=> console.log("OUIUIUUI"));
+    alert("Bravoo, aller maintenant on va boire la soupe ;)")
+    this.goBack();
   }
 }

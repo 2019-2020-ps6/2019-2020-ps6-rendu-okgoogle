@@ -8,6 +8,8 @@ import { Theme } from 'src/models/theme.model';
 })
 export class ThemeComponent implements OnInit {
 
+  public curStatus:string;
+
   @Input()
   theme: Theme;
 
@@ -18,7 +20,7 @@ export class ThemeComponent implements OnInit {
   themeDeleted: EventEmitter<Theme> = new EventEmitter<Theme>();
 
   constructor() {
-
+    this.curStatus = sessionStorage.getItem("status")
   }
 
   ngOnInit() {  
@@ -28,7 +30,7 @@ export class ThemeComponent implements OnInit {
     this.themeSelected.emit(this.theme);
   }
 
-  deleteTheme(theme: Theme) {
-    this.themeDeleted.emit(theme);
+  deleteTheme() {
+    this.themeDeleted.emit(this.theme);
   }
 }

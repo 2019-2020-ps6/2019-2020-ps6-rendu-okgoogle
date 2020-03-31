@@ -5,7 +5,7 @@
 
         <p *ngIf="quiz.creationDate != null"> Date: {{quiz.creationDate | date:'mediumDate'}} </p>
     </h2>
-    <a (click)="editQuiz()" routerLink="/edit-quiz/{{quiz.id}}">Edit</a>
+    <button class="button-card" (click)="editQuiz()">Edit</button>
     <button class="button-card" (click)="deleteQuiz(quiz)">Delete</button>
     <button class="button-card" (click)="selectQuiz(quiz)">Select</button>
 </div>

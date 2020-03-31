@@ -11,6 +11,8 @@ import {editUserComponent} from './admin/edit-user/edit-user.component';
 import {CreateThemeComponent} from './admin/create-theme/create-theme.component';
 import {MainAdminComponent} from './admin/main-admin/main-admin.component';
 import {PlayQuizComponent} from  './quizzes/play-quiz/play-quiz.component';
+import { editQuestionComponent } from './admin/edit-question/edit-question.component'
+import { editAnswerComponent } from './admin/edit-answer/edit-answer.component'
 
 const routes: Routes = [
     //path = ce qui y aura sur l'url
@@ -19,6 +21,8 @@ const routes: Routes = [
     {path: 'theme-list', component: ThemeListComponent},
     {path: 'theme-list/:themeid', component: QuizListComponent},
     {path: 'edit-quiz/:quizid', component: editQuizComponent},
+    {path: 'edit-question/:questionid', component: editQuestionComponent},
+    {path: 'edit-answer/:answerid', component: editAnswerComponent},
     {path: 'user-list', component: UserListComponent},
     {path: 'user-login', component: UserLoginComponent},
     {path: 'create-user', component: UserFormComponent},

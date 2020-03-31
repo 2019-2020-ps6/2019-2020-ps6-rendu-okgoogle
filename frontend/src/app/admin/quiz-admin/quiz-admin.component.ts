@@ -8,7 +8,6 @@ import { Quiz } from '../../../models/quiz.model';
 })
 export class QuizAdminComponent implements OnInit {
 
-
   @Input()
   quiz: Quiz;
 

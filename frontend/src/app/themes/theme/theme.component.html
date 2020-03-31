@@ -5,5 +5,6 @@
             Theme : {{theme.name}}
         </h2>
         <a (click)="selectTheme()" routerLink="/theme-list/{{theme.id}}"> Voir les quizzes</a>
+        <button *ngIf="curStatus === 'admin'" (click)="deleteTheme()" >Delete</button>
     </div>
 </ng-container>

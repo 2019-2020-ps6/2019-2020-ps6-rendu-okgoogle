@@ -3,6 +3,8 @@ import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { ActivatedRoute } from '@angular/router';
 import { ResultService } from 'src/services/result.service';
+import { Question } from 'src/models/question.model';
+import { Answer } from 'src/models/answer.model';
 @Component({
     selector: 'app-play-quiz',
     templateUrl: './play-quiz.component.html',
@@ -10,19 +12,28 @@ import { ResultService } from 'src/services/result.service';
   })
   export class PlayQuizComponent implements OnInit {
     public quiz: Quiz;
-    public timer: number = 0;
+    public questionSelected: Question;
     private curStatus: string;
 
-    constructor(private route: ActivatedRoute,public quizService: QuizService,private resService: ResultService) {
-      setTimeout(()=>{
+    constructor(private route: ActivatedRoute,public quizService: QuizService,private resService: ResultService) {      
+      this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
+      this.resService.questionSelected$.subscribe((question) => this.questionSelected = question)
+    }
+  
+    ngOnInit() {    
         const id = this.route.snapshot.paramMap.get('quizid');
         this.quizService.setSelectedQuiz(id.toString());
         this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
-      },300)
-      setInterval(()=> {this.timer+=1}, 1000)
+        this.resService.questionSelected$.subscribe((question) => this.questionSelected = question)        
     }
-  
-    ngOnInit() {        
-      this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
+
+    selectAnswer(answer: Answer){
+      this.resService.setSelectedAnswer(this.questionSelected.id.toString(),answer.id.toString())
     }
+
+    aide(){
+      this.resService.popAnswerFalse()
+    }
+
+    
 }

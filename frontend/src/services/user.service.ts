@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Injectable, OnInit } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { Observable, of } from 'rxjs';
 import { User } from '../models/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService implements OnInit {
 
   /**
    * Services Documentation:
@@ -28,10 +28,15 @@ export class UserService {
    * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
    */
   public users$: BehaviorSubject<User[]> = new BehaviorSubject(this.users);
-  public userSelected$: BehaviorSubject<User> = new BehaviorSubject(this.userSelected);
+  public userSelected$: Subject<User> = new Subject();
 
   constructor(private http: HttpClient) {
     this.getUsers();
+
+  }
+
+  ngOnInit(){
+    console.log(this.users)
   }
   
   setSelectedUser(idUser: string) {
@@ -42,6 +47,7 @@ export class UserService {
       this.userSelected = user;
       this.userSelected$.next(user);
     });
+    this.userSelected$.next(this.userSelected)
   }
 
   getUsers() : void {

@@ -1,0 +1,12 @@
+<div class="card">
+    <span>
+        <i class="fab fa-leanpub"></i>
+        {{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i class="far fa-check-square"></i></ng-container> <br>
+    </span>
+    <button *ngIf="curStatus === 'admin'" class="button-card" (click)="editAnswer()">Edit</button>
+    <button *ngIf="curStatus === 'admin'" class="button-card" (click)="deleteAnswer()">Delete</button>
+</div>
+
+<!-- 
+<app-answer *ngIf="curStatus === 'user'" (click)="selectAnswer(answer)" [answer]="answer" ></app-answer>
+<app-answer *ngIf="curStatus === 'admin'" [answer]="answer" ></app-answer> -->

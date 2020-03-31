@@ -3,8 +3,14 @@
         <i class="fab fa-leanpub"></i>
         {{question.label}}
     </h2>
-    <div class="answer" *ngFor="let answer of question.answers; let i=index">
-        Reponse: {{i+1}} - {{answer.value}} <ng-container *ngIf="answer.isCorrect"><i class="far fa-check-square"></i></ng-container> <br>
+    <div class="answer" *ngFor="let answer of question.answers">
+        <span>
+            <i class="fab fa-leanpub"></i>
+            {{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i class="far fa-check-square"></i></ng-container> <br>
+        </span>
     </div>
-    <button class="button-card" (click)="deleteQuestion()">Delete</button>
+    
+    <button *ngIf="curStatus === 'admin'" class="button-card" (click)="editQuestion()">Edit</button>
+    <button *ngIf="curStatus === 'admin'" class="button-card" (click)="deleteQuestion()">Delete</button>
+
 </div>

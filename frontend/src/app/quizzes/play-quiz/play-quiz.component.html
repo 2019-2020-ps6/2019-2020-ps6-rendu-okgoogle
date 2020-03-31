@@ -1,18 +1,11 @@
 <div style="width: 100%;margin-top: 180px;margin-left: auto;margin-right: auto;">
-<ng-container *ngIf="quiz">
+<ng-container  *ngIf="questionSelected">
+  {{questionSelected.label}}
   <div id="quiz">
-    <span>{{timer}}</span>
-    <h1 style="color: brown;" id="quiz-name">{{quiz.name}}</h1>
-    <div *ngFor="let question of quiz.questions, let i=index">
-      {{i+1}}: {{question.label}}
-      <div style="border: solid brown; margin: 10px 10px; padding: 5px 5px; cursor: pointer;" *ngFor="let answer of question.answers, let i=index">
-        Reponse: {{i+1}} - {{answer.value}} <ng-container *ngIf="answer.isCorrect"><i class="far fa-check-square"></i></ng-container> <br>
-      </div>
+    <div style="border: solid brown; margin: 10px 10px; padding: 5px 5px; cursor: pointer;" *ngFor="let answer of questionSelected.answers">
+      <app-answer (click)="selectAnswer(answer)" [answer]="answer"></app-answer>
     </div>
-
-    <button id="submit-button">Submit Answers</button>
-    <button id="next-question-button">Next Question</button>
-    <button id="prev-question-button">Previous</button>
+  <button (click)="aide()" style="width: 300px;height: 50px;" id="submit-button">Aide</button>
   </div>
 </ng-container>
-<script >alert("reeerg")</script>
+<div ></div>

@@ -1,6 +1,5 @@
-
 <ng-container *ngIf="quiz">
     <h2>{{quiz.name}}</h2>
     <app-question-form></app-question-form>
-    <app-question-list [quiz]="quiz"></app-question-list>
+    <app-question-list (questionEdited)="questionEdition($event)" [quiz]="quiz"></app-question-list>
 </ng-container>
