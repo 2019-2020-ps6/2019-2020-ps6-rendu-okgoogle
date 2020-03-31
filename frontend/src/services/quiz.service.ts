@@ -57,7 +57,16 @@ export class QuizService {
 
   }
 
+  getQuizzesByThemeId(themeid: string){
+    this.http.get<Quiz[]>(this.lien + themeid + "/quizzes/").subscribe((quizzess) => {
+      this.quizzes = quizzess;  
+      console.log(quizzess)
+      this.quizzes$.next(this.quizzes);
+    });
+  }
+
   setQuizzesFromUrl(){
+    console.log("Un id"+this.themeSelected.id)
     this.http.get<Quiz[]>(this.lien + this.themeSelected.id + "/quizzes/").subscribe((quizzess) => {
       this.quizzes = quizzess;
       console.log(quizzess)
@@ -65,13 +74,13 @@ export class QuizService {
     });
   }
 
-  setQuizzesFromUrlWithIdTheme(themeid: string){
-    this.http.get<Quiz[]>(this.lien + themeid + "/quizzes/").subscribe((quizzess) => {
-      this.quizzes = quizzess;
-      console.log(quizzess)
-      this.quizzes$.next(this.quizzes);
-    });
-  }
+  // setQuizzesFromUrlWithIdTheme(themeid: string){
+  //   this.http.get<Quiz[]>(this.lien + themeid + "/quizzes/").subscribe((quizzess) => {
+  //     this.quizzes = quizzess;
+  //     console.log(quizzess)
+  //     this.quizzes$.next(this.quizzes);
+  //   });
+  // }
 
   /** DELETE: delete the quiz from the server */
   deleteQuiz (quiz: Quiz): Observable<{}> {

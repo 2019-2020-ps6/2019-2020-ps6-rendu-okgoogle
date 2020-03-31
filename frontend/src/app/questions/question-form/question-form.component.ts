@@ -16,12 +16,12 @@ export class QuestionFormComponent implements OnInit {
   constructor(public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
     this.initializeQuestionForm();
-    
   }
 
   private initializeQuestionForm() {
     this.questionForm = this.formBuilder.group({
       label: ['', Validators.required],
+      indice: ['', Validators.required],
       answers: this.formBuilder.array([])
     });
   }
@@ -47,6 +47,7 @@ export class QuestionFormComponent implements OnInit {
   addQuestion() {
     if(this.questionForm.valid) {
       const question = this.questionForm.getRawValue() as Question;
+      console.log(question)
       this.quizService.addQuestion(question);
       this.initializeQuestionForm();
     }

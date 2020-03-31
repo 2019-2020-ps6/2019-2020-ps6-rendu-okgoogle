@@ -62,7 +62,9 @@ export class ResultService {
 
   VerifyAnswer(answer: Answer){
     if(answer.isCorrect){
-        
+      var p = document.querySelector("#indice")
+      if(p.textContent != "")
+        p.innerHTML="";
       this.answers.push(answer)
       this.ptrQuestion+=1;
       this.questionSelected = this.quizService.quizSelected.questions[this.ptrQuestion];
@@ -85,13 +87,20 @@ export class ResultService {
     }
   }
 
-  popAnswerFalse(){
-    for(var i in this.questionSelected.answers){
-      if(!(this.questionSelected.answers[i].isCorrect)){
-        this.questionSelected.answers.splice(this.questionSelected.answers.indexOf(this.questionSelected.answers[i]),1)
-        break;
-      }
-    }
+  GiveClues(){
+    // for(var i in this.questionSelected.answers){
+    //   if(!(this.questionSelected.answers[i].isCorrect)){
+    //     this.questionSelected.answers.splice(this.questionSelected.answers.indexOf(this.questionSelected.answers[i]),1)
+    //     break;
+    //   }
+    // }
+    var p = document.querySelector("#indice")
+    p.innerHTML=this.questionSelected.indice;
+
+    var parentNode = document.querySelector("#quiz")
+
+    parentNode.appendChild(p)
+
     this.nbAide+=1;
   }
 
@@ -101,12 +110,13 @@ export class ResultService {
 
   addResult(dureeJeu: number){
     this.resultFinal.quizId = this.questionSelected.quizId.toString()
-    this.resultFinal.userId = this.userSelected.id.toString();
+    // this.resultFinal.userId = this.userSelected.id.toString();
+    this.resultFinal.userId = "1585561609233"
     this.resultFinal.answers = this.answers;
     this.resultFinal.nbAide = this.nbAide;
     this.resultFinal.dureeJeu = dureeJeu;
     this.resultFinal.dateJeu = new Date().toString();
-    this.http.post(this.lien +"users/"+ this.userSelected.id.toString() +"/result/", this.resultFinal).subscribe(()=> console.log("OUIUIUUI"));
+    this.http.post(this.lien +"users/"+ this.resultFinal.userId +"/result/", this.resultFinal).subscribe(()=> console.log("OUIUIUUI"));
     alert("Bravoo, aller maintenant on va boire la soupe ;)")
     this.goBack();
   }
