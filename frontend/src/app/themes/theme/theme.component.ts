@@ -27,6 +27,7 @@ export class ThemeComponent implements OnInit {
   }
 
   selectTheme() {
+    console.log("Theme selec"+ this.theme)
     this.themeSelected.emit(this.theme);
   }
 

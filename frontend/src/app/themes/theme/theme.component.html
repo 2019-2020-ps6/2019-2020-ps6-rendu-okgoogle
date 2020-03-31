@@ -4,7 +4,7 @@
             <i class="fab fa-leanpub"></i>
             Theme : {{theme.name}}
         </h2>
-        <a (click)="selectTheme()" routerLink="/theme-list/{{theme.id}}"> Voir les quizzes</a>
+        <button (click)="selectTheme()" > Voir les quizzes</button>
         <button *ngIf="curStatus === 'admin'" (click)="deleteTheme()" >Delete</button>
     </div>
 </ng-container>

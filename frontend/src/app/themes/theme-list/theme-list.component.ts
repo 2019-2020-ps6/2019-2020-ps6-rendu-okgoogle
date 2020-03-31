@@ -13,7 +13,7 @@ export class ThemeListComponent implements OnInit {
 
   public themesList: Theme[] = [];
 
-  constructor(private route: ActivatedRoute, public themeService: ThemeService) {  
+  constructor(private route: ActivatedRoute,private router:Router, public themeService: ThemeService) {  
     this.themeService.themes$.subscribe((theme) => this.themesList = theme);
   }
 
@@ -22,7 +22,8 @@ export class ThemeListComponent implements OnInit {
   }
 
   themeSelected(selected: Theme) {
-    this.themeService.getTheme(selected.id.toString());
+    this.themeService.setSelectedTheme(selected.id.toString());
+    this.router.navigate(['/theme-list/', selected.id.toString()]);
   }
   themeDeleted(selected: Theme) {
     this.themeService.deleteTheme(selected.id.toString());

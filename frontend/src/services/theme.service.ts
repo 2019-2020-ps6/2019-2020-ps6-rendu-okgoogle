@@ -60,15 +60,23 @@ export class ThemeService implements OnInit {
     });
   }
 
-  setSelectedTheme(theme: Theme) {
-    console.log("le theme est select: " + theme.name)
-    // const urlWithId = this.lien + theme.id.toString();
-    // this.http.get<Theme>(urlWithId).subscribe((theme) => {
-    //   this.themeSelected = theme;
-    //   this.themeSelected$.next(theme);
-    // });
-    this.themeSelected = theme;
+
+  getThemeById(themeid: string){
+    const urlWithId = this.lien + themeid;
+    this.http.get<Theme>(urlWithId).subscribe((theme) => {
+      this.themeSelected = theme;
+      this.themeSelected$.next(this.themeSelected);
+    })
+  }
+
+  setSelectedTheme(theme: string) {
+    const urlWithId = this.lien + theme.toString();
+    this.http.get<Theme>(urlWithId).subscribe((theme) => {
+      this.themeSelected = theme;
+      this.themeSelected$.next(theme);
     console.log(this.themeSelected)
+
+    });
   }
   
 
@@ -119,7 +127,7 @@ export class ThemeService implements OnInit {
   }
 
   getThemes(id: string) {
-    this.http.get<Theme[]>(this.lien+ id +"/themes").subscribe((themess) => {
+    this.http.get<Theme[]>(this.lien+ id).subscribe((themess) => {
       this.themes = themess;
       this.themes$.next(this.themes);
     });

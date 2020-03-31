@@ -32,7 +32,7 @@ import { Answer } from 'src/models/answer.model';
     }
 
     aide(){
-      this.resService.popAnswerFalse()
+      this.resService.GiveClues()
     }
 
     
