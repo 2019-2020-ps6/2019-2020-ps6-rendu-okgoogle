@@ -1,5 +1,5 @@
 <div class="card">
-    <h2>Create a new Quiz</h2>
+    <h2>Create a new Theme</h2>
     <form class="theme-form" [formGroup]="ThemeForm">
       <label for="title">
         Title <br>
@@ -11,5 +11,5 @@
   </div>
   <!-- Uncomment below to see your form structure and how it changes-->
   <br><br>{{ThemeForm.getRawValue() | json}}
-  
+
   <app-theme-list></app-theme-list>
