@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Créer un nouvel accueilli</h1>
+    <form class="cf">
+        <div class="half left cf">
+            <input type="text" id="input-name" placeholder="Nom">
+            <input type="number" id="input-email" placeholder="Age">
+            Sexe :
+                <input class="rad" type="radio" id="F" name="sexe" value="F"  /> <label for="F"> Feminin</label>
+                <input class="rad" type="radio" id="M" name="sexe" value="M"  /> <label for="M"> Masculin</label>
+        </div>
+        <div class="half right cf">
+            <input type="text" id="input-name" placeholder="Prénom">
+        </div>
+        <textarea name="message" type="text" id="input-message" placeholder="Description"></textarea>
+        <input type="submit" value="Creer" id="input-submit">
+    </form>
+</body>
+
+    <script>
+        var fem = document.querySelector("body > form > div.half.left.cf > label:nth-child(4)");
+        var mas = document.querySelector("body > form > div.half.left.cf > label:nth-child(6)");
+        var bool = false;
+
+        var radioElem = document.querySelector("#F");
+        var radioElem2 = document.querySelector("#M");
+        console.log(radioElem2);
+        console.log(radioElem2);
+        console.log(mas);
+
+        console.log(fem);
+        //target.addEventListener(type, function () {doSomething(parameter);});
+
+        radioElem.addEventListener('click', function () {
+            fem.style.color = "black";
+            mas.style.color = "#a8a8a8";
+        });
+
+        radioElem2.addEventListener('click', function () {
+            fem.style.color = "#a8a8a8";
+            mas.style.color = "black";
+        });
+
+        
+    </script>
+</html>
