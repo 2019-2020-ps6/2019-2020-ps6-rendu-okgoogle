@@ -32,4 +32,108 @@ body{
       margin-left: auto;
       margin-right: auto;
   }
+
+
+
+  // ###############################
+
+  #adminPanel{
+    display: flex;
+    justify-content: space-evenly;
+  }
  
+  a{
+    text-decoration: none;
+  }
+
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap');
+
+.card-circle{
+    text-align:center;
+     margin-top:50px;
+     background:#27496D;    
+     border:10px solid transparent;
+     color:#fff;
+     Font-family: Montserrat;
+     padding:50px;
+     border-radius:50%;
+}
+ .card-circle .card-title{
+    font-weight:600;
+     font-size:26px;
+}
+ .card-circle .card-text{
+    font-weight:400;
+}
+ .card-circle .card-icon i{
+     font-size:60px;
+     display:block;
+}
+ .card-circle:nth-child(2){
+    background:#142850;
+}
+ .card-circle .btn{
+    background:transparent;
+     border:1px solid #fff;
+     text-transform:uppercase;
+     padding:5px 30px;    
+     border-radius:0px;
+     Font-weight:600;
+}
+.card-circle .btn,.card-circle .card-icon i,.card-circle{
+   transition: all ease-in-out 0.2s;
+}
+ .card-circle:hover .btn{
+    background:#00A8CC;
+     color:#fff;
+   border: 1px solid transparent;
+}
+ .card-circle .btn:hover{
+    transform: scale(1.1);
+}
+ .card-circle:hover{
+    border:10px solid #00A8CC;
+}
+ .card-circle:hover i {
+   text-shadow: 0px -1px 10px #00A8CC;
+    transform:scale(1.2)rotate(20deg);
+}
+ @media only screen and (min-width: 1200px) {
+     .card-circle:nth-child(3){
+         margin-left:-40px;
+         z-index:0;
+    }
+     .card-circle{
+         width:250px;
+         height:250px;
+    }
+     .card-circle:nth-child(2){
+         margin-left:-20px;
+         box-shadow: 1px 2px 20px 8px rgba(241, 235, 235, 0.12);
+         transform: scale(1.2);
+         z-index:1;
+    }
+   .card-circle .card-icon i{
+      margin-top: 20px;
+     }
+}
+@media only screen and (min-width: 991px) and (max-width: 1200px) {
+   .card-circle{
+         width:340px;
+         height:340px;
+    }
+  .card-circle .card-icon i{
+     font-size:50px;
+   }
+  .card-circle .card-icon i{
+      margin-top: -25px;
+     }
+   .card-circle:nth-child(3){
+         margin-left:-50px;
+         z-index:0;
+    }
+   .card-circle:nth-child(2){
+         margin-left:-20px;
+         z-index:1;
+    }
+}
