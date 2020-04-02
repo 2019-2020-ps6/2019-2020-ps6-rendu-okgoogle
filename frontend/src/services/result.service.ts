@@ -9,7 +9,6 @@ import { Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UserService } from './user.service';
 import { Question } from 'src/models/question.model';
-import { User } from 'src/models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,6 @@ export class ResultService {
 
   public resultFinal: Result ;
   private questionSelected: Question;
-  private userSelected: User;
   private questions: Question[];
   private answers: Answer[];
   private nbAide: number = 0;
@@ -27,30 +25,19 @@ export class ResultService {
 
   public resultFinal$: Subject<Result> = new Subject();
   public questionSelected$: Subject<Question> = new Subject();
-  public userSelected$: Subject<User> = new Subject();
 
   private lien = "http://localhost:9428/api/"
 
   constructor(private _location: Location,private route: ActivatedRoute,private http: HttpClient, private quizService:QuizService, private userService: UserService) {
     this.resultFinal = new Object() as Result;
-    setTimeout(()=>{
-      this.answers = [];
-      this.userSelected = this.userService.userSelected
-      this.userSelected$.next(this.userSelected)
-      this.questions = quizService.quizSelected.questions;
+    this.answers = [];
+    quizService.quizSelected$.subscribe((quiz)=>{
+      this.questions = quiz.questions
       this.questionSelected = this.questions[this.ptrQuestion];
       this.questionSelected$.next(this.questionSelected);
-    },2000)
+    })
     setInterval(()=> {this.timer+=1}, 1000)
     
-  }
-
-  setSelectedQuestion(questionId: string){
-    const urlWithId = this.lien + "themes/"+ this.quizService.quizSelected.themeId.toString() + '/quizzes/' + this.quizService.quizSelected.id.toString() + '/questions/' + questionId;
-    this.http.get<Question>(urlWithId).subscribe((question) => {
-      this.questionSelected = question;
-      this.questionSelected$.next();
-    });
   }
 
   setSelectedAnswer(questionId: string,answerId: string) {
@@ -62,13 +49,16 @@ export class ResultService {
 
   VerifyAnswer(answer: Answer){
     if(answer.isCorrect){
+
       var p = document.querySelector("#indice")
       if(p.textContent != "")
         p.innerHTML="";
+
       this.answers.push(answer)
       this.ptrQuestion+=1;
       this.questionSelected = this.quizService.quizSelected.questions[this.ptrQuestion];
       this.questionSelected$.next(this.questionSelected)
+      
       if(this.ptrQuestion === this.questions.length){
         this.ptrQuestion = 0;
         this.questionSelected = this.quizService.quizSelected.questions[this.ptrQuestion];
@@ -88,12 +78,6 @@ export class ResultService {
   }
 
   GiveClues(){
-    // for(var i in this.questionSelected.answers){
-    //   if(!(this.questionSelected.answers[i].isCorrect)){
-    //     this.questionSelected.answers.splice(this.questionSelected.answers.indexOf(this.questionSelected.answers[i]),1)
-    //     break;
-    //   }
-    // }
     var p = document.querySelector("#indice")
     p.innerHTML=this.questionSelected.indice;
 
@@ -110,8 +94,7 @@ export class ResultService {
 
   addResult(dureeJeu: number){
     this.resultFinal.quizId = this.questionSelected.quizId.toString()
-    // this.resultFinal.userId = this.userSelected.id.toString();
-    this.resultFinal.userId = "1585561609233"
+    this.resultFinal.userId = sessionStorage.getItem("user_id");
     this.resultFinal.answers = this.answers;
     this.resultFinal.nbAide = this.nbAide;
     this.resultFinal.dureeJeu = dureeJeu;

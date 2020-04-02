@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from 'src/models/quiz.model';
 import { Question } from 'src/models/question.model';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-question-form',
@@ -12,8 +13,9 @@ import { Question } from 'src/models/question.model';
 export class QuestionFormComponent implements OnInit {
 
   public questionForm: FormGroup;
+  selectedFile: File[] = [];
 
-  constructor(public formBuilder: FormBuilder, private quizService: QuizService) {
+  constructor(private http: HttpClient,public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
     this.initializeQuestionForm();
   }
@@ -33,6 +35,11 @@ export class QuestionFormComponent implements OnInit {
     return this.questionForm.get('answers') as FormArray;
   }
 
+  onFileSelected(event, i: number){
+    console.log(event)
+    this.selectedFile[i] = event.target.files[0];
+  }
+
   private createAnswer() {
     return this.formBuilder.group({
       value: '',
@@ -45,8 +52,21 @@ export class QuestionFormComponent implements OnInit {
   }
 
   addQuestion() {
+
     if(this.questionForm.valid) {
       const question = this.questionForm.getRawValue() as Question;
+
+      // const fd = new FormData()
+      // for(let img of this.selectedFile){
+      //   fd.append('files', img);
+      // }
+
+      // this.http.post("http://localhost:9428/api/themes/"+this.quizService.quizSelected.themeId.toString()+ "/quizzes/"+ this.quizService.quizSelected.id+"/questions/images", fd).subscribe((response)=> console.log(response))
+
+      // // for(var i = 0; i<this.selectedFile.length; i++){
+      // //   question = this.selectedFile[i]
+      // // }
+    
       console.log(question)
       this.quizService.addQuestion(question);
       this.initializeQuestionForm();

@@ -31,23 +31,19 @@ export class UserService implements OnInit {
   public userSelected$: Subject<User> = new Subject();
 
   constructor(private http: HttpClient) {
-    this.getUsers();
 
   }
 
   ngOnInit(){
-    console.log(this.users)
+
   }
   
   setSelectedUser(idUser: string) {
-    console.log("ici")
     const urlWithId = this.lien + idUser.toString();
     this.http.get<User>(urlWithId).subscribe((user) => {
-      console.log("Le selected"+user);
       this.userSelected = user;
       this.userSelected$.next(user);
     });
-    this.userSelected$.next(this.userSelected)
   }
 
   getUsers() : void {
@@ -56,7 +52,6 @@ export class UserService implements OnInit {
       this.users$.next(this.users);
     })
   }
-
 
   addUser(user: User){
     this.http.post(this.lien,user).subscribe(()=> this.getUsers());

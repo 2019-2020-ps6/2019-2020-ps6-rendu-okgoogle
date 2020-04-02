@@ -15,14 +15,11 @@ import { editQuestionComponent } from './admin/edit-question/edit-question.compo
 import { editAnswerComponent } from './admin/edit-answer/edit-answer.component'
 
 const routes: Routes = [
-    //path = ce qui y aura sur l'url
-    //on a une route quiz-list qui affiche le composant QuizListComponent
-    //il faut le déclarer dans app.module.ts (edit quiz component)
     {path: 'theme-list', component: ThemeListComponent},
     {path: 'theme-list/:themeid', component: QuizListComponent},
-    {path: 'edit-quiz/:quizid', component: editQuizComponent},
-    {path: 'edit-question/:questionid', component: editQuestionComponent},
-    {path: 'edit-answer/:answerid', component: editAnswerComponent},
+    {path: 'theme-edit/:themeid/edit-quiz/:quizid', component: editQuizComponent},
+    {path: 'theme-edit/:themeid/edit-quiz/:quizid/edit-question/:questionid', component: editQuestionComponent},
+    {path: 'theme-edit/:themeid/edit-quiz/:quizid/edit-question/:questionid/edit-answer/:answerid', component: editAnswerComponent},
     {path: 'user-list', component: UserListComponent},
     {path: 'user-login', component: UserLoginComponent},
     {path: 'create-user', component: UserFormComponent},
@@ -30,13 +27,13 @@ const routes: Routes = [
     {path: 'create-theme', component: CreateThemeComponent},
     {path: 'edit-user/:userid', component: editUserComponent},
     {path: 'main-admin', component: MainAdminComponent},
-    {path: 'play-quiz/:quizid' , component: PlayQuizComponent},
+    {path: 'play-quiz/:themeid/quiz/:quizid' , component: PlayQuizComponent},
     {path: '', component: UserLoginComponent},
 ];
 
 @NgModule({
     //Insere les routes dans le module et l'export vers l'appelant
-    imports: [RouterModule.forRoot(routes,{onSameUrlNavigation: 'reload'})],
+    imports: [RouterModule.forRoot(routes)],
     exports: [RouterModule]
 })
 

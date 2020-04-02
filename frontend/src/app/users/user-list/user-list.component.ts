@@ -14,6 +14,7 @@ export class UserListComponent implements OnInit {
   private curStatus: string;
 
   constructor(private route: Router, public userService: UserService) {
+    this.userService.getUsers()
     this.userService.users$.subscribe((user) => this.userList = user);
   }
 
@@ -31,6 +32,7 @@ export class UserListComponent implements OnInit {
   
   userSelected(selected: User) {
     this.userService.setSelectedUser(selected.id.toString())
-    this.route.navigate(['/theme-list'])
+    sessionStorage.setItem("user_id", selected.id.toString())
+    this.route.navigate(['theme-list'])
   }
 }

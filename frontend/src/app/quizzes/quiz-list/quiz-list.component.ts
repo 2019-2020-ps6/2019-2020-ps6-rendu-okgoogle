@@ -14,39 +14,36 @@ export class QuizListComponent implements OnInit {
 
   public quizList: Quiz[] = [];
   public curTheme: Theme;
-  private id = 0;
+  public id;
   private curStatus: string;
 
   constructor(private router: Router, private route: ActivatedRoute , private quizService: QuizService, private themeService: ThemeService) {
-    // faut laisser le temps a quiService 2000-3000
-    setTimeout(() => {
-      this.id = +this.route.snapshot.paramMap.get('themeid');
-      this.themeService.getTheme(this.id.toString());
-      this.curTheme = this.themeService.themeSelected;
-      console.log("curtheme: " + this.curTheme);
-      this.quizService.setQuizzesFromUrl(); // pas besoin de retourner un array ou observable
-      // grace au concept de l'observable les resultat se met a jour automatiquement avec la func precedente
-      this.quizService.quizzes$.subscribe((quizzes) => this.quizList = quizzes);
-    }, 100 );
+    this.id = this.route.snapshot.paramMap.get('themeid');
+    this.themeService.setSelectedTheme(this.id.toString());
+    this.themeService.themeSelected$.subscribe((theme)=>this.curTheme = theme)
+    this.quizService.getQuizzesByThemeId(this.id.toString());
+    this.quizService.quizzes$.subscribe((quizzes) => this.quizList = quizzes);
   }
 
   ngOnInit() {
-    this.curStatus = sessionStorage.getItem("status");
+    this.curStatus = sessionStorage.getItem("status");   
   }
 
   quizEdited(selected: Quiz) {
-    this.quizService.setSelectedQuiz(selected.id.toString());
-    this.router.navigate(["/edit-quiz/",selected.id.toString()])
+    this.id = +this.route.snapshot.paramMap.get('themeid');
+    this.quizService.setSelectedQuiz(selected.id.toString(), this.id.toString());
+    this.router.navigate(["theme-edit",selected.themeId.toString(),"edit-quiz",selected.id.toString()])
   }
 
   quizSelected(selected: Quiz) {
-    console.log(selected);
-    this.quizService.setSelectedQuiz(selected.id.toString());
-    this.router.navigate(['play-quiz', selected.id.toString()]);
+    this.id = +this.route.snapshot.paramMap.get('themeid');
+    this.quizService.setSelectedQuiz(selected.id.toString(), this.id.toString());
+    this.router.navigate(['play-quiz', selected.themeId.toString(),'quiz',selected.id.toString()]);
   }
 
   quizDeleted(selected: Quiz) {
-    this.quizService.deleteQuiz( selected ).subscribe(() => {
+    this.id = +this.route.snapshot.paramMap.get('themeid');
+    this.quizService.deleteQuiz(this.id.toString(), selected ).subscribe(() => {
       this.quizList.splice(this.quizList.indexOf(selected), 1);
     });
   }

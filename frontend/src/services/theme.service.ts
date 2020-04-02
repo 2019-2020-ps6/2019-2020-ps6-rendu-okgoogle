@@ -34,32 +34,17 @@ export class ThemeService implements OnInit {
   public themeSelected$: Subject<Theme> = new Subject();
 
   constructor(private route: ActivatedRoute,private http: HttpClient) {
-    console.log("On va get")
-    //Ici on ne recupere rien : Probleme !!!!!!
-    this.http.get<Theme[]>(this.lien).subscribe((themes) => {
-      console.log("Themerecup :"+themes)
-      this.themes = themes;
-      this.themeSelected = this.themes[0]
-      this.themes$.next(this.themes);
-      this.themeSelected$.next(this.themeSelected)
-      console.log(this.themes)
-      console.log("on a fini de get"+ this.themeSelected)
-    });
-    //la phase en haut prend du temps a se faire du coup ce qui est en bas s'enchaine et = null
+    
   }
 
   ngOnInit(){
     this.http.get<Theme[]>(this.lien).subscribe((themes) => {
       console.log("Themerecup :"+themes)
       this.themes = themes;
-      this.themeSelected = this.themes[0]
       this.themes$.next(this.themes);
       this.themeSelected$.next(this.themeSelected)
-      console.log(this.themes)
-      console.log("on a fini de get"+ this.themeSelected)
     });
   }
-
 
   getThemeById(themeid: string){
     const urlWithId = this.lien + themeid;
@@ -68,14 +53,21 @@ export class ThemeService implements OnInit {
       this.themeSelected$.next(this.themeSelected);
     })
   }
+  // getTheme(id: string) {
+  //   this.themes.filter((theme) => {
+  //     if(theme.id.toString() === id){
+  //       this.themeSelected= theme
+  //       this.themeSelected$.next(this.themeSelected);
+  //     }
+  //   });
+  // }
 
   setSelectedTheme(theme: string) {
     const urlWithId = this.lien + theme.toString();
+    console.log(urlWithId)
     this.http.get<Theme>(urlWithId).subscribe((theme) => {
-      this.themeSelected = theme;
-      this.themeSelected$.next(theme);
-    console.log(this.themeSelected)
-
+      this.themeSelected = theme[0];
+      this.themeSelected$.next(this.themeSelected);
     });
   }
   
@@ -108,17 +100,6 @@ export class ThemeService implements OnInit {
     console.log("Les theme: " + this.themes)
   }
 
-  getTheme(id: string) {
-    console.log("On va get")
-    this.setThemesFromUrl();
-    this.themes.filter((theme) => {
-      if(theme.id.toString() === id){
-        this.themeSelected= theme
-        this.themeSelected$.next(this.themeSelected);
-      }
-    });
-    console.log("on a fini de get"+ this.themeSelected)
-  }
 
   addTheme(theme: Theme): void {
     this.http.post(this.lien,theme).subscribe()

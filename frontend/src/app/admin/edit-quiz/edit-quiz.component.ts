@@ -16,17 +16,25 @@ export class editQuizComponent implements OnInit {
   public curTheme: Theme
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private themeService: ThemeService) { 
-      setTimeout(()=> {
-        const id = this.route.snapshot.paramMap.get('quizid');
-        this.quizService.setSelectedQuiz(id.toString());
-        this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
-        this.themeService.themeSelected$.subscribe((theme)=> this.curTheme = theme)
-      },10)
-
+    const quizid = this.route.snapshot.paramMap.get('quizid');
+    const themeid = this.route.snapshot.paramMap.get('themeid');
+    this.themeService.setSelectedTheme(themeid.toString())
+    this.themeService.themeSelected$.subscribe((theme)=> {
+      this.curTheme = theme
+      this.quizService.setSelectedQuiz(quizid.toString(),themeid.toString());
+      this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
+    })
   }
   
   ngOnInit() {
-    
+    const quizid = this.route.snapshot.paramMap.get('quizid');
+    const themeid = this.route.snapshot.paramMap.get('themeid');
+    this.themeService.setSelectedTheme(themeid.toString())
+    this.themeService.themeSelected$.subscribe((theme)=> {
+      this.curTheme = theme
+      this.quizService.setSelectedQuiz(quizid.toString(),themeid.toString());
+      this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
+    })
   }
 
 }

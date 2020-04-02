@@ -13,16 +13,16 @@
         <br>
 
         <!--Answer Part-->
-
         <button class="button-card" (click) ="addAnswer()">Add answers</button>
 
         <div class="answer" formArrayName="answers">
             <!-- On recupere le getter answers de (get answers()) et avec controls on parcours avec un index -->
             <div *ngFor="let bra of answers.controls; let i = index">
-                <div class="answer-form" [formGroupName] ="i">
+                <div class="answer-form" [formGroupName]="i">
                     Answer
+                        <!-- Image: <input type="file" (change)="onFileSelected($event,i)"> -->
                         <label>
-                        <input type="text" [formControlName]="'value'">
+                        <input placeholder="Réponse" type="text" [formControlName]="'value'">
                         <br>
                         Correct
                         <input type="checkbox" [formControlName]="'isCorrect'">
@@ -30,7 +30,6 @@
                 </div>
             </div>
         </div>
-
         <!--Answer Part-->
 
 

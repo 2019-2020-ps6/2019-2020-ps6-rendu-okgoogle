@@ -1,12 +1,35 @@
 <div style="width: 100%;margin-top: 180px;margin-left: auto;margin-right: auto;">
 <ng-container  *ngIf="questionSelected">
-  {{questionSelected.label}}
+
+  <h2>{{curTheme.name}} > {{quiz.name}} </h2>
+
+  <p *ngIf="questionSelected === undefined">Aucune question pour ce quiz :(</p>
+  
   <div id="quiz">
+    <h3 id="quiz-name">{{questionSelected.label}}</h3>
     <p id="indice"></p>
-    <div style="border: solid brown; margin: 10px 10px; padding: 5px 5px; cursor: pointer;" *ngFor="let answer of questionSelected.answers">
-      <app-answer (click)="selectAnswer(answer)" [answer]="answer"></app-answer>
+    <div id="question">
+      
     </div>
-  <button (click)="aide()" style="width: 300px;height: 50px;" id="submit-button">Aide</button>
+
+    <div class="fit-test__question-container" data-question-num="2">
+      <div class="fit-test__answer-container">
+        <div class="fit-test__answer-option" *ngFor="let answer of questionSelected.answers">
+          <app-answer (click)="selectAnswer(answer)" [answer]="answer"></app-answer>
+        </div>
+      </div><!-- end .fit-test__answer-container -->
+    </div><!-- end .fit-test__question-container -->
+  
+    <button (click)="aide()" id="aide">Aide</button>
+    
+    <div id="quiz-results">
+      <p id="quiz-results-message"></p>
+      <p id="quiz-results-score"></p>
+    </div>
   </div>
 </ng-container>
-<div ></div>  
+
+</div>
+
+
+

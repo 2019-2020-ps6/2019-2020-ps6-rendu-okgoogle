@@ -44,13 +44,7 @@ export class QuizService {
   public themeSelected$: Subject<Theme> = new Subject();
 
   constructor(private http: HttpClient, private themeService : ThemeService) {
-    //faut laisser le temps a themeService
 
-      this.themeService.themeSelected$.subscribe((theme) =>{
-        this.themeSelected = theme
-        this.themeSelected$.next(this.themeSelected)
-        this.setQuizzesFromUrl()
-      });
   }
 
   ngOnInit(){
@@ -60,19 +54,18 @@ export class QuizService {
   getQuizzesByThemeId(themeid: string){
     this.http.get<Quiz[]>(this.lien + themeid + "/quizzes/").subscribe((quizzess) => {
       this.quizzes = quizzess;  
-      console.log(quizzess)
       this.quizzes$.next(this.quizzes);
     });
   }
 
-  setQuizzesFromUrl(){
-    console.log("Un id"+this.themeSelected.id)
-    this.http.get<Quiz[]>(this.lien + this.themeSelected.id + "/quizzes/").subscribe((quizzess) => {
-      this.quizzes = quizzess;
-      console.log(quizzess)
-      this.quizzes$.next(this.quizzes);
-    });
-  }
+  // setQuizzesFromUrl(){
+  //   console.log("Un id"+this.themeSelected.id)
+  //   this.http.get<Quiz[]>(this.lien + this.themeSelected.id + "/quizzes/").subscribe((quizzess) => {
+  //     this.quizzes = quizzess;
+  //     console.log(quizzess)
+  //     this.quizzes$.next(this.quizzes);
+  //   });
+  // }
 
   // setQuizzesFromUrlWithIdTheme(themeid: string){
   //   this.http.get<Quiz[]>(this.lien + themeid + "/quizzes/").subscribe((quizzess) => {
@@ -83,8 +76,8 @@ export class QuizService {
   // }
 
   /** DELETE: delete the quiz from the server */
-  deleteQuiz (quiz: Quiz): Observable<{}> {
-    const url = this.lien+this.themeSelected.id+"/quizzes/"+quiz.id; // DELETE api/heroes/42
+  deleteQuiz (themeid:string,quiz: Quiz): Observable<{}> {
+    const url = this.lien+themeid+"/quizzes/"+quiz.id; // DELETE api/heroes/42
     const header = this.prepareHeader();
     this.quizzes$.next(this.quizzes)
     return this.http.delete(url,header)
@@ -102,8 +95,8 @@ export class QuizService {
     };
   }
 
-  setSelectedQuiz(lequiz: string) {
-    const urlWithId = this.lien + this.themeService.themeSelected.id.toString() + '/quizzes/' + lequiz.toString();
+  setSelectedQuiz(lequiz: string, theme:string) {
+    const urlWithId = this.lien + theme + '/quizzes/' + lequiz.toString();
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
       console.log("Le selected"+quiz);
       this.quizSelected = quiz;
@@ -111,8 +104,8 @@ export class QuizService {
     });
   }
 
-  setSelectedQuestion(laquestion: string) {
-    const urlWithId = this.lien + this.themeService.themeSelected.id.toString() + '/quizzes/' +this.quizSelected.id.toString() + "/questions/"+ laquestion.toString();
+  setSelectedQuestion(themeid:string,quizid: string, questionid: string) {
+    const urlWithId = this.lien + themeid.toString() + '/quizzes/' +quizid.toString() + "/questions/"+ questionid.toString();
     this.http.get<Question>(urlWithId).subscribe((question) => {
       console.log("Le selected"+question.label);
       this.questionSelected = question;
@@ -134,10 +127,11 @@ export class QuizService {
   }
 
   addQuiz(id: string,quiz: Quiz): void {
-    this.http.post(this.lien+id.toString()+"/quizzes/",quiz).subscribe((quiz) => {this.setQuizzesFromUrl()})
+    this.http.post(this.lien+id.toString()+"/quizzes/",quiz).subscribe((quiz) => this.getQuizzesByThemeId(id))
   }
 
   addQuestion(question: Question){
+    console.log(question)
     //le .subscribe() est TRES IMPORTANT sinon fonctionne pas
     this.http.post<Question>(this.lien+ this.themeService.themeSelected.id +"/quizzes/"+this.quizSelected.id+"/questions/",question).subscribe((question)=> this.quizSelected.questions.push(question))
     this.questions$.next(this.questions);
@@ -149,8 +143,8 @@ export class QuizService {
     this.questions$.next(this.questions);
   }
 
-  deleteQuestion(quiz: Quiz, question: Question){
-    const url = this.lien + this.themeService.themeSelected.id.toString() + "/quizzes/" +quiz.id+"/questions/"+question.id.toString(); // DELETE api/heroes/42
+  deleteQuestion(themeid:string,quiz: Quiz, question: Question){
+    const url = this.lien + themeid + "/quizzes/" +quiz.id+"/questions/"+question.id.toString(); // DELETE api/heroes/42
     const header = this.prepareHeader();
     this.quizzes$.next(this.quizzes);
     this.http.delete(url,header).subscribe(()=> console.log("suppr"))
@@ -158,17 +152,17 @@ export class QuizService {
   }
 
   deleteAnswer(question: Question, answer: Answer){
-    const url = this.lien + this.themeService.themeSelected.id.toString() + "/quizzes/" +this.quizSelected.id.toString()+"/questions/"+question.id.toString() +"/answers/"+answer.id.toString(); // DELETE api/heroes/42
+    const url = this.lien + this.themeSelected.id + "/quizzes/" +this.quizSelected.id.toString()+"/questions/"+question.id.toString() +"/answers/"+answer.id.toString(); // DELETE api/heroes/42
     const header = this.prepareHeader();
     this.quizzes$.next(this.quizzes);
     this.http.delete(url,header).subscribe(()=> console.log("suppr"))
     this.questions$.next(this.questions);
   }
 
-  editQuestion(question: Question){
-    const url = this.lien + this.themeService.themeSelected.id.toString() + "/quizzes/" +this.quizSelected.id.toString()+"/questions/"+question.id.toString(); // DELETE api/heroes/42
+  editQuestion(themeid:string,quizid:string,oldQuestionId:string,question: Question){
+    const url = this.lien + themeid + "/quizzes/" +quizid+"/questions/"+oldQuestionId; // DELETE api/heroes/42
     this.quizzes$.next(this.quizzes);
-    this.http.put<Question>(url, question).subscribe((question)=> this.setQuizzesFromUrl())
+    this.http.put<Question>(url, question).subscribe(()=> this.getQuizzesByThemeId(themeid))
     this.quizzes$.next(this.quizzes)
   }
 

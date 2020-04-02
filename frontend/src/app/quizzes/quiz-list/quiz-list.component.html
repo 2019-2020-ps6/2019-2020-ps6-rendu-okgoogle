@@ -2,7 +2,7 @@
 
     <p>{{curTheme.name}}</p>
 
-    <h3 *ngIf="quizList.length === 0">Il n'y a aucun quiz :(</h3>
+    <h3 *ngIf="quizList.length == 0">Il n'y a aucun quiz :(</h3>
 
     <app-quiz-form *ngIf="curStatus === 'admin'"></app-quiz-form>
     <div class="quiz-list">

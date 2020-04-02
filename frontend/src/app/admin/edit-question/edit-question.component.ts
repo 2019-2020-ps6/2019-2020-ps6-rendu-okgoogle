@@ -1,9 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Quiz } from 'src/models/quiz.model';
+import {Location} from '@angular/common';
 import { QuizService } from 'src/services/quiz.service';
 import { Question } from 'src/models/question.model';
-import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { ThemeService } from 'src/services/theme.service';
 
 @Component({
   selector: 'app-edit-question',
@@ -17,15 +18,15 @@ export class editQuestionComponent implements OnInit {
   public questionForm: FormGroup;
 
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private formBuilder: FormBuilder) { 
-      setTimeout(()=>{
-        const id = this.route.snapshot.paramMap.get('questionid');
-        this.quizService.setSelectedQuestion(id.toString())
-        this.quizService.questionSelected$.subscribe((question)=> {
-          this.question = question
-          this.initializeQuestionForm();
-        })
-      }, 1000)
+  constructor(private _location: Location,private route: ActivatedRoute, private quizService: QuizService,private themeService: ThemeService, private formBuilder: FormBuilder) { 
+      const themeid = this.route.snapshot.paramMap.get('themeid');
+      const quizid = this.route.snapshot.paramMap.get('quizid');
+      const questionid = this.route.snapshot.paramMap.get('questionid');
+      this.quizService.setSelectedQuestion(themeid,quizid,questionid);
+      this.quizService.questionSelected$.subscribe((question)=> {
+        this.question = question
+        this.initializeQuestionForm();
+      })
   }
   private initializeQuestionForm() {
     this.questionForm = this.formBuilder.group({
@@ -39,11 +40,19 @@ export class editQuestionComponent implements OnInit {
   }
 
   editQuestion(){
+    
     if(this.questionForm.valid) {
+      const themeid = this.route.snapshot.paramMap.get('themeid');
+      const quizid = this.route.snapshot.paramMap.get('quizid');
+      const questionid = this.route.snapshot.paramMap.get('questionid');
       const question = this.questionForm.getRawValue() as Question;
-      this.quizService.editQuestion(this.question)
-      alert("question modifier")
+      this.quizService.editQuestion(themeid,quizid,questionid,this.question)
+      this.back_click()
     }
+  }
+
+  back_click(){
+    this._location.back();
   }
 
 }

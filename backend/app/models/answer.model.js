@@ -1,5 +1,5 @@
-const Joi = require('joi')
 const BaseModel = require('../utils/base-model.js')
+const Joi = require('joi')
 
 module.exports = new BaseModel('Answer', {
     id:Joi.string(),
