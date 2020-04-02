@@ -1,6 +1,19 @@
 .theme-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-around;
 }
 
+h1{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#all{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+.titreTheme{
+  font-weight: bold;
+  text-align: center;
+}
   
