@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
     <h2>
         <i class="fab fa-leanpub"></i>
         {{quiz.name}}
@@ -6,4 +6,9 @@
         <p *ngIf="quiz.creationDate != null"> Date: {{quiz.creationDate | date:'mediumDate'}} </p>
     </h2>
     <button class="button-card" (click)="selectQuiz()">Select</button>
-</div>
+</div> -->
+
+<label (click)="selectQuiz()">
+    <label style="color: #3551C2;">{{quiz.name}}</label>
+    <label *ngIf="quiz.creationDate != null"> Date: {{quiz.creationDate | date:'mediumDate'}} </label>
+</label>
