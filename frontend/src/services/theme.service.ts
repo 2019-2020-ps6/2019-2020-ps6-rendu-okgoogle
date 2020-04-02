@@ -38,12 +38,7 @@ export class ThemeService implements OnInit {
   }
 
   ngOnInit(){
-    this.http.get<Theme[]>(this.lien).subscribe((themes) => {
-      console.log("Themerecup :"+themes)
-      this.themes = themes;
-      this.themes$.next(this.themes);
-      this.themeSelected$.next(this.themeSelected)
-    });
+
   }
 
   getThemeById(themeid: string){

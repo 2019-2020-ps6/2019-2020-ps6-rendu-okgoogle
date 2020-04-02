@@ -4,7 +4,7 @@ import { Quiz } from '../models/quiz.model';
 import { Theme } from '../models/theme.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { Observable, of,Observer } from 'rxjs';
 import { Question } from '../models/question.model';
 import { ThemeService } from './theme.service';
 import { Answer } from 'src/models/answer.model';
@@ -44,7 +44,6 @@ export class QuizService {
   public themeSelected$: Subject<Theme> = new Subject();
 
   constructor(private http: HttpClient, private themeService : ThemeService) {
-
   }
 
   ngOnInit(){
@@ -98,7 +97,6 @@ export class QuizService {
   setSelectedQuiz(lequiz: string, theme:string) {
     const urlWithId = this.lien + theme + '/quizzes/' + lequiz.toString();
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
-      console.log("Le selected"+quiz);
       this.quizSelected = quiz;
       this.quizSelected$.next(quiz);
     });
@@ -107,7 +105,6 @@ export class QuizService {
   setSelectedQuestion(themeid:string,quizid: string, questionid: string) {
     const urlWithId = this.lien + themeid.toString() + '/quizzes/' +quizid.toString() + "/questions/"+ questionid.toString();
     this.http.get<Question>(urlWithId).subscribe((question) => {
-      console.log("Le selected"+question.label);
       this.questionSelected = question;
       this.questionSelected$.next(question);
     });
@@ -116,7 +113,6 @@ export class QuizService {
   setSelectedAnswer(lareponse: string) {
     const urlWithId = this.lien + this.themeSelected.id.toString() + '/quizzes/' +this.quizSelected.id.toString() + "/questions/"+ this.quizSelected.id.toString()+"/answers/"+lareponse.toString();
     this.http.get<Answer>(urlWithId).subscribe((answer) => {
-      console.log("Le selected"+answer.value);
       this.answerSelected = answer;
       this.answerSelected$.next(answer);
     });

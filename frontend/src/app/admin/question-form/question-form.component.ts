@@ -1,21 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ElementRef,Renderer2, Renderer } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
-import { Quiz } from 'src/models/quiz.model';
 import { Question } from 'src/models/question.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-question-form',
   templateUrl: './question-form.component.html',
   styleUrls: ['./question-form.component.scss']
 })
-export class QuestionFormComponent implements OnInit {
+export class QuestionFormComponent implements OnInit{
+
 
   public questionForm: FormGroup;
-  selectedFile: File[] = [];
+  public urlImage: string ;
 
-  constructor(private http: HttpClient,public formBuilder: FormBuilder, private quizService: QuizService) {
+  constructor(private renderer: Renderer2,private http: HttpClient,public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
     this.initializeQuestionForm();
   }
@@ -35,14 +35,24 @@ export class QuestionFormComponent implements OnInit {
     return this.questionForm.get('answers') as FormArray;
   }
 
-  onFileSelected(event, i: number){
-    console.log(event)
-    this.selectedFile[i] = event.target.files[0];
+  verifyUrl(i: number){
+    var ParentNode = document.querySelector(".question-form")
+    var divButtonAnswer = document.querySelector("#AnswerPart")
+    var divAnswer = document.createElement("div")
+    divAnswer.className="ImageUp"
+    divAnswer.innerHTML="Image uploadé: "
+    var img = document.createElement("img")
+    img.className="image"+i
+    img.setAttribute("src", this.questionForm.get(['answers',i,'imageUrl']).value);
+    img.setAttribute("style", "max-width:100px")
+    divAnswer.appendChild(img)
+    ParentNode.insertBefore(divAnswer, divButtonAnswer)
   }
-
+  
   private createAnswer() {
     return this.formBuilder.group({
       value: '',
+      imageUrl: '',
       isCorrect: false,
     });
   }
@@ -52,22 +62,11 @@ export class QuestionFormComponent implements OnInit {
   }
 
   addQuestion() {
-
+    var ParentNode = document.querySelector(".question-form")
+    var divAnswer = document.querySelector(".ImageUp")
+    ParentNode.removeChild(divAnswer)
     if(this.questionForm.valid) {
       const question = this.questionForm.getRawValue() as Question;
-
-      // const fd = new FormData()
-      // for(let img of this.selectedFile){
-      //   fd.append('files', img);
-      // }
-
-      // this.http.post("http://localhost:9428/api/themes/"+this.quizService.quizSelected.themeId.toString()+ "/quizzes/"+ this.quizService.quizSelected.id+"/questions/images", fd).subscribe((response)=> console.log(response))
-
-      // // for(var i = 0; i<this.selectedFile.length; i++){
-      // //   question = this.selectedFile[i]
-      // // }
-    
-      console.log(question)
       this.quizService.addQuestion(question);
       this.initializeQuestionForm();
     }

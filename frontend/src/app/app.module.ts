@@ -12,7 +12,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import { editQuizComponent } from './admin/edit-quiz/edit-quiz.component';
 import { questionComponent } from './questions/question/question.component';
 import { QuestionListComponent } from './questions/question-list/question-list.component';
-import { QuestionFormComponent } from './questions/question-form/question-form.component';
+import { QuestionFormComponent } from './admin/question-form/question-form.component';
 import { UserFormComponent } from './admin/create-user/user-form.component';
 import { UserAdminComponent } from './admin/user-admin/user-admin.component';
 import { UserComponent } from './users/user/user.component';

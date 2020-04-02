@@ -19,16 +19,16 @@ import { ThemeService } from 'src/services/theme.service';
     private curStatus: string;
 
     constructor(private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
-
       const themeid = this.route.snapshot.paramMap.get('themeid');
       const quizid = this.route.snapshot.paramMap.get('quizid');
-      this.themeService.setSelectedTheme(themeid.toString())
-      this.themeService.themeSelected$.subscribe((theme)=> this.curTheme = theme)
-      this.quizService.setSelectedQuiz(quizid.toString(),themeid.toString());
-      this.quizService.quizSelected$.subscribe((quiz) => {
+      //this.themeService.setSelectedTheme(themeid.toString())
+      this.themeService.themeSelected$.subscribe((theme)=>this.curTheme = theme)
+      this.resService.setSelectedQuiz(quizid.toString(),themeid.toString());
+      this.resService.quizSelected$.subscribe((quiz) => {
         this.quiz = quiz
         this.resService.questionSelected$.subscribe((question) => this.questionSelected = question)
       });
+
       
     }
   
@@ -36,9 +36,9 @@ import { ThemeService } from 'src/services/theme.service';
       const themeid = this.route.snapshot.paramMap.get('themeid');
       const quizid = this.route.snapshot.paramMap.get('quizid');
       this.themeService.setSelectedTheme(themeid.toString())
-      this.themeService.themeSelected$.subscribe((theme)=> this.curTheme = theme)
-      this.quizService.setSelectedQuiz(quizid.toString(),themeid.toString());
-      this.quizService.quizSelected$.subscribe((quiz) => {
+      this.themeService.themeSelected$.subscribe((theme)=>this.curTheme = theme)
+      this.resService.setSelectedQuiz(quizid.toString(),themeid.toString());
+      this.resService.quizSelected$.subscribe((quiz) => {
         this.quiz = quiz
         this.resService.questionSelected$.subscribe((question) => this.questionSelected = question)
       });

@@ -28,6 +28,7 @@ export class editQuestionComponent implements OnInit {
         this.initializeQuestionForm();
       })
   }
+  
   private initializeQuestionForm() {
     this.questionForm = this.formBuilder.group({
       label: this.question.label,

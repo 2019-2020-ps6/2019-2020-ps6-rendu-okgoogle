@@ -13,16 +13,16 @@
         <br>
 
         <!--Answer Part-->
-        <button class="button-card" (click) ="addAnswer()">Add answers</button>
+        <button id="AnswerPart" class="button-card" (click) ="addAnswer()">Add answers</button>
 
         <div class="answer" formArrayName="answers">
             <!-- On recupere le getter answers de (get answers()) et avec controls on parcours avec un index -->
-            <div *ngFor="let bra of answers.controls; let i = index">
+            <div *ngFor="let answer of answers.controls; let i = index">
                 <div class="answer-form" [formGroupName]="i">
                     Answer
-                        <!-- Image: <input type="file" (change)="onFileSelected($event,i)"> -->
-                        <label>
-                        <input placeholder="Réponse" type="text" [formControlName]="'value'">
+                        Insérer le lien vers l'image: <input type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'" (change)="verifyUrl(i)" >
+                        <label><br>
+                        <input placeholder="La réponse" placeholder="Réponse" type="text" [formControlName]="'value'">
                         <br>
                         Correct
                         <input type="checkbox" [formControlName]="'isCorrect'">
