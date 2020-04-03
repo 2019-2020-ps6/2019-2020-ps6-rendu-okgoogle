@@ -95,6 +95,15 @@ export class ResultService implements OnInit {
     this.nbAide+=1;
   }
 
+  previousQuestion(){
+    if(this.ptrQuestion > 0){
+      this.ptrQuestion--;
+      this.questionSelected = this.quizSelected.questions[this.ptrQuestion];
+      this.questionSelected$.next(this.questionSelected)
+    }
+
+  }
+
   goBack(){
     this._location.back();
   }

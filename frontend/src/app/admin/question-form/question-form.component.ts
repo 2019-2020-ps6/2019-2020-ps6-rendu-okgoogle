@@ -61,10 +61,14 @@ export class QuestionFormComponent implements OnInit{
     this.answers.push(this.createAnswer());
   }
 
-  addQuestion() {
+  addQuestion(i:number) {
     var ParentNode = document.querySelector(".question-form")
     var divAnswer = document.querySelector(".ImageUp")
-    ParentNode.removeChild(divAnswer)
+    if(ParentNode != undefined && divAnswer != undefined){
+      for(var j=0; j<i; j++){
+        ParentNode.removeChild(divAnswer)
+      }
+    }
     if(this.questionForm.valid) {
       const question = this.questionForm.getRawValue() as Question;
       this.quizService.addQuestion(question);

@@ -1,5 +1,7 @@
 <ng-container *ngIf="curTheme">
 
+    <app-quiz-form *ngIf="curStatus === 'admin'"></app-quiz-form>
+
     <h1 class="titreQuiz">Liste des Quiz : <label style="color: #e3aa0e ;">{{curTheme.name}}</label></h1>
 
 

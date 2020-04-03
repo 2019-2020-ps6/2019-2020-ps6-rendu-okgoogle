@@ -17,10 +17,11 @@
         <div class="fit-test__answer-option" *ngFor="let answer of questionSelected.answers">
           <app-answer (click)="selectAnswer(answer)" [answer]="answer"></app-answer>
         </div>
-      </div><!-- end .fit-test__answer-container -->
-    </div><!-- end .fit-test__question-container -->
+      </div>
+    </div>
   
     <button (click)="aide()" id="aide">Aide</button>
+    <button (click)="questionPrecedente()" id="aide">Question précédente</button>
     
     <div id="quiz-results">
       <p id="quiz-results-message"></p>

@@ -52,5 +52,9 @@ import { ThemeService } from 'src/services/theme.service';
       this.resService.GiveClues()
     }
 
+    questionPrecedente(){
+      this.resService.previousQuestion()
+    }
+
     
 }
