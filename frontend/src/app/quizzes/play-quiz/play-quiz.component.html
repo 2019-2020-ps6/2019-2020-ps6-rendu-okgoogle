@@ -1,36 +1,37 @@
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+</head>
 <div style="width: 100%;margin-left: auto;margin-right: auto;">
-<ng-container  *ngIf="questionSelected">
+  <ng-container *ngIf="questionSelected">
 
-  <h1 class="titreQuiz">{{curTheme.name}} - {{quiz.name}} </h1>
+    <h1 class="titreQuiz">{{curTheme.name}} - {{quiz.name}} </h1>
 
-  <p *ngIf="questionSelected === undefined">Aucune question pour ce quiz :(</p>
-  
-  <div id="quiz">
-    <h3 id="quiz-name">{{questionSelected.label}}</h3>
-    <p id="indice"></p>
-    <div id="question">
-      
-    </div>
+    <p *ngIf="questionSelected === undefined">Aucune question pour ce quiz :(</p>
 
-    <div class="fit-test__question-container" data-question-num="2">
-      <div class="fit-test__answer-container">
-        <div class="fit-test__answer-option" *ngFor="let answer of questionSelected.answers">
-          <app-answer (click)="selectAnswer(answer)" [answer]="answer"></app-answer>
+    <div id="quiz">
+      <h3 id="quiz-name">{{questionSelected.label}}</h3>
+      <p id="indice"></p>
+      <div id="question">
+
+      </div>
+
+      <div class="fit-test__question-container" data-question-num="2">
+        <div class="fit-test__answer-container">
+          <div class="fit-test__answer-option" *ngFor="let answer of questionSelected.answers">
+            <app-answer (click)="selectAnswer(answer)" [answer]="answer"></app-answer>
+          </div>
         </div>
       </div>
+
+      <button class="aide" (click)="aide()" id="aide"><i class="far fa-question-circle"></i> &nbsp; Aide</button>
+      <button class="precedent" (click)="questionPrecedente()" id="aide"><i class="fas fa-chevron-circle-left"></i>
+        &nbsp;Question précédente</button>
+
+      <div id="quiz-results">
+        <p id="quiz-results-message"></p>
+        <p id="quiz-results-score"></p>
+      </div>
     </div>
-  
-    <button (click)="aide()" id="aide">Aide</button>
-    <button (click)="questionPrecedente()" id="aide">Question précédente</button>
-    
-    <div id="quiz-results">
-      <p id="quiz-results-message"></p>
-      <p id="quiz-results-score"></p>
-    </div>
-  </div>
-</ng-container>
+  </ng-container>
 
 </div>
-
-
-

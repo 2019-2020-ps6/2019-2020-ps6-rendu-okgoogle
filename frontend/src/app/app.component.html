@@ -4,7 +4,7 @@
     </head>
     <body>
         <app-header></app-header>
-        <button *ngIf="router.url != '/'" class="button-card" (click)="back_click()">Back</button><br>
+        <button class="back" *ngIf="router.url != '/'" (click)="back_click()"><i class="fas fa-chevron-left"></i> &nbsp; Retour</button><br>
         <div class="main-content">
             <router-outlet></router-outlet> <!-- Cette balise va afficher le component correpondant en fonction du component appeler sur url cf(app.routing.module)-->
         </div>
