@@ -1,5 +1,5 @@
 <head>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
 </head>
 <div style="width: 100%;margin-left: auto;margin-right: auto;">
   <ng-container *ngIf="questionSelected">
@@ -10,7 +10,10 @@
 
     <div id="quiz">
       <h3 id="quiz-name">{{questionSelected.label}}</h3>
-      <p id="indice"></p>
+      <div id="emplacement_indice">
+        <p id="indice"></p>
+      </div>
+
       <div id="question">
 
       </div>
