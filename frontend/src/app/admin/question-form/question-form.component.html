@@ -11,6 +11,7 @@
             <input type="text" [formControlName]="'indice'">
         </label>
         <br>
+        
 
         <!--Answer Part-->
         <button id="AnswerPart" class="button-card" (click) ="addAnswer()">Add answers</button>
@@ -18,15 +19,13 @@
         <div class="answer" formArrayName="answers">
             <!-- On recupere le getter answers de (get answers()) et avec controls on parcours avec un index -->
             <div *ngFor="let answer of answers.controls; let i = index">
-                <div class="answer-form" [formGroupName]="i">
-                    Answer
-                        Insérer le lien vers l'image: <input type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'" (change)="verifyUrl(i)" >
-                        <label><br>
-                        <input placeholder="La réponse" placeholder="Réponse" type="text" [formControlName]="'value'">
-                        <br>
-                        Correct
-                        <input type="checkbox" [formControlName]="'isCorrect'">
-                    </label>
+                <div style="padding: 20px;" class="answer-form" [formGroupName]="i">
+                    Reponse {{i+1}}: <br> <input placeholder="La réponse" placeholder="Réponse" type="text" [formControlName]="'value'">
+                    <br>
+                    Lien vers l'image: 
+                    <input type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'" (change)="verifyUrl(i)" >
+                    Correct
+                    <input type="checkbox" [formControlName]="'isCorrect'">
                 </div>
             </div>
         </div>
@@ -35,5 +34,6 @@
 
         <button class="button-card" (click)="addQuestion()">Create</button>
     </form>
+    <div id="ImageUpload"></div>
 </div>
 <br><br>{{questionForm.getRawValue() | json}}

@@ -36,17 +36,16 @@ export class QuestionFormComponent implements OnInit{
   }
 
   verifyUrl(i: number){
-    var ParentNode = document.querySelector(".question-form")
-    var divButtonAnswer = document.querySelector("#AnswerPart")
+    var ParentNode = document.querySelector("#ImageUpload")
     var divAnswer = document.createElement("div")
     divAnswer.className="ImageUp"
-    divAnswer.innerHTML="Image uploadé: "
+    divAnswer.innerHTML="Image "+(i+1)+" uploadé: "
     var img = document.createElement("img")
-    img.className="image"+i
+    img.className="image"+i+1
     img.setAttribute("src", this.questionForm.get(['answers',i,'imageUrl']).value);
     img.setAttribute("style", "max-width:100px")
     divAnswer.appendChild(img)
-    ParentNode.insertBefore(divAnswer, divButtonAnswer)
+    ParentNode.appendChild(divAnswer)
   }
   
   private createAnswer() {
@@ -62,13 +61,12 @@ export class QuestionFormComponent implements OnInit{
   }
 
   addQuestion(i:number) {
-    var ParentNode = document.querySelector(".question-form")
-    var divAnswer = document.querySelector(".ImageUp")
-    if(ParentNode != undefined && divAnswer != undefined){
-      for(var j=0; j<i; j++){
-        ParentNode.removeChild(divAnswer)
-      }
-    }
+    var ParentNode = document.querySelector("#ImageUpload")
+    var child = ParentNode.lastElementChild;  
+    while (child) { 
+        ParentNode.removeChild(child); 
+        child = ParentNode.lastElementChild; 
+    } 
     if(this.questionForm.valid) {
       const question = this.questionForm.getRawValue() as Question;
       this.quizService.addQuestion(question);
