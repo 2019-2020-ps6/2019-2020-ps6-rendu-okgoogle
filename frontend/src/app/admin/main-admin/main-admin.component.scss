@@ -82,6 +82,7 @@
      .card-circle{
          width:250px;
          height:250px;
+         margin-top: 25px;
     }
      .card-circle:nth-child(2){
          margin-left:-20px;
@@ -124,6 +125,11 @@
     .card-circle{
         width:250px;
         height:250px;
+        margin-top: 25px;
+   }
+
+   .card card-circle{
+        margin-top: 0;
    }
 }
 
