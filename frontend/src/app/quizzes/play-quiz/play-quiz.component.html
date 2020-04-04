@@ -10,7 +10,7 @@
     A fake / hidden checkbox is used as click reciever,
     so you can use the :checked selector on it.
     -->
-    <input style="display: block;width: 40px; height: 32px;height: 32px;position: absolute;top: -7px;left: -5px;cursor: pointer;opacity: 0;z-index: 2;-webkit-touch-callout: none;" type="checkbox" />
+    <input onclick="close()" class="fermeture" type="checkbox" />
     
     <!--
     Some spans to act as a hamburger.
@@ -45,9 +45,6 @@
         <p id="indice"></p>
       </div>
 
-      <div id="question">
-
-      </div>
 
       <div class="fit-test__question-container" data-question-num="2">
         <div class="fit-test__answer-container">
