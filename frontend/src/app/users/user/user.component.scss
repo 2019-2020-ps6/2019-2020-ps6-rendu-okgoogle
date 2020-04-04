@@ -25,3 +25,19 @@ article{
   display: flex;
   justify-content: center;
 }
+
+
+@media screen and (max-width: 1200px) {
+  .cards{
+    display: block;
+  }
+
+  .card{
+    display: block;
+  
+  }
+
+  h2{
+    font-size: 0.7em;
+  }
+}
