@@ -39,7 +39,6 @@ export class UserStatComponent implements OnInit {
               if(this.result[i].quizId.toString() === this.quizzes[j].id.toString()){
                 this.quizList.push(this.quizzes[j])
                 this.quizzes.splice(this.quizzes.indexOf(this.quizzes[j]),1);
-                break;
               }
             }
           }
@@ -51,17 +50,10 @@ export class UserStatComponent implements OnInit {
   }
 
   ngOnInit() {  
-
   }
 
-  SelectedQuiz(quiz: Quiz){
-    this.statService.setSelectedQuiz(quiz.id, quiz.themeId)
-    this.statService.quizSelected$.subscribe((quiz)=> this.quizSelected = quiz)
-
-    for(var i in this.result){
-      if(this.result[i].quizId == quiz.id)
-        this.resSelected = this.result[i];
-    }
+  SelectedQuiz(quiz: Result,i:number){
+    this.resSelected = this.result[i];
   }
 
 }

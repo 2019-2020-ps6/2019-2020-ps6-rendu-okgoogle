@@ -26,8 +26,8 @@
         <h6>Liste des quizs réalisés</h6>
         <div id="listeQ"></div>
         <div *ngIf="quizList" >
-            <div (click)="SelectedQuiz(quiz)"  *ngFor="let quiz of quizList; let i=index">
-                Quiz n°{{i}}: {{quiz.name}} {{quiz.creationDate}}
+            <div (click)="SelectedQuiz(quiz,i)"  *ngFor="let res of result; let i=index">
+                Quiz n°{{i+1}}: {{res.nameQuiz}} {{res.dateQuiz}}
             </div>
         </div>
 

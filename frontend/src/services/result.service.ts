@@ -122,6 +122,8 @@ export class ResultService implements OnInit {
   }
 
   addResult(dureeJeu: number){
+    this.resultFinal.nameQuiz = this.quizSelected.name;
+    this.resultFinal.dateQuiz = this.quizSelected.creationDate.toString()
     this.resultFinal.quizId = this.questionSelected.quizId.toString()
     this.resultFinal.userId = sessionStorage.getItem("user_id");
     this.resultFinal.answers = this.answersRes;

@@ -4,6 +4,8 @@ export interface Result {
   id: string;
   userId: string; //ICI
   quizId: string;//ICI
+  nameQuiz: string;
+  dateQuiz: string;
   nbErreur: number; // seront incrémenter au fil des reponses //Backend
   nbCorrect: number; // seront incrémenter au fil des reponses //Backend
   nbAide: number; // seront incrémenter au fil des reponses //ICI

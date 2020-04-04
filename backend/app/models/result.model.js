@@ -5,6 +5,8 @@ module.exports = new BaseModel('Result', {
     id: Joi.string(),
     userId: Joi.string(),
     quizId: Joi.string(),
+    nameQuiz: Joi.string(),
+    dateQuiz: Joi.string(),
     nbErreur: Joi.number(),
     nbCorrect: Joi.number(),
     nbAide: Joi.number(),
