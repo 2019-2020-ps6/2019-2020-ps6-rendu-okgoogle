@@ -2,37 +2,35 @@
 
 <head>
     <title>Statistiques </title>
-    <link rel="stylesheet" href="style.css">
 </head>
 <div id="all">
     <div id="partiegauche">
         <h2>Statistiques de l'utilisateur :</h2>
         <label for="label">
-            Nom Utilisateur: <br>
-            <h4>Quizz: </h4>
+            Nom Utilisateur: {{user.name}} {{user.surname}}<br>
+            <h4 *ngIf="quizSelected">Quizz: {{quizSelected.name}}</h4>
             <h5> </h5>
         </label>
         <div id="parentErreurCorrect">
-            <div id="erreurs"> erreurs:</div>
-            <div id="corrects">correctes</div>
+            <div *ngIf="resSelected" id="erreurs"> erreurs: {{resSelected.nbErreur}}</div>
+            <div *ngIf="resSelected" id="corrects">correctes: {{resSelected.nbErreur}}</div>
         </div>
         <div  id=parentaidesthemes>
-            <div id="nb_aides">nombres d'aides :</div>
-            <div id="theme_fav">theme favoris :</div>
+            <div *ngIf="resSelected" id="nb_aides">nombres d'aides : {{resSelected.nbAide}}</div>
+            <div id="theme_fav">theme favoris : A faire</div>
         </div>
         <div id="nb_Q"></div>
-        <button class="buttonDetail" (click)="addAnswer()">Plus de details</button>
-        <div class="answer" formArrayName="answers">
-           
-        </div>
+        <button class="buttonDetail" (click)="Details()">Plus de details</button>
     </div>
     <div id="partiedroite">
         <h6>Liste des quizs réalisés</h6>
         <div id="listeQ"></div>
-         <div *ngFor="let address of answers.controls; let i=index">
-                <div class="answer-form" [formGroupName]="i">
-                </div>
+        <div *ngIf="quizList" >
+            <div (click)="SelectedQuiz(quiz)"  *ngFor="let quiz of quizList; let i=index">
+                Quiz n°{{i}}: {{quiz.name}} {{quiz.creationDate}}
             </div>
+        </div>
+
     </div>
 
 </div>

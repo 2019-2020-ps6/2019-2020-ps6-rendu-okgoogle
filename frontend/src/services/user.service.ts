@@ -84,4 +84,5 @@ export class UserService implements OnInit {
     this.http.put<User>(url, user).subscribe(()=> this.getUsers())
     this.users$.next(this.users)
   }
+
 }

@@ -17,6 +17,7 @@ import { UserFormComponent } from './admin/create-user/user-form.component';
 import { UserAdminComponent } from './admin/user-admin/user-admin.component';
 import { UserComponent } from './users/user/user.component';
 import { UserListComponent } from './users/user-list/user-list.component';
+import { UserStatComponent } from './users/user-stat/user-stat.component';
 import { editUserComponent } from './admin/edit-user/edit-user.component';
 import { UserLoginComponent } from './users/user-login/user-login.component';
 import { MainAdminComponent } from './admin/main-admin/main-admin.component';
@@ -59,7 +60,8 @@ import { AppRoutingModule } from './app.routing.module';
     AnswerListComponent,
     AnswerFormComponent,
     editAnswerComponent,
-    editQuestionComponent
+    editQuestionComponent,
+    UserStatComponent
   ],
   imports: [
     BrowserModule,

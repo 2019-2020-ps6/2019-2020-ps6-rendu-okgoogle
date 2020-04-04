@@ -17,6 +17,9 @@ export class AppComponent {
 
   back_click(){
     this._location.back();
+    var mainContent = document.querySelector("html")
+    mainContent.classList.add("contrast-white");
+    mainContent.classList.remove("contrast-black");
   }
 
 }

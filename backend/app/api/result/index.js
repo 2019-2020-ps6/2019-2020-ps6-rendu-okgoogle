@@ -1,20 +1,20 @@
 const { Router } = require('express')
-const { Result } = require('../../../models')
+const { Result } = require('../../models')
 const { isCorrectAnswerOrNot } = require('./manager')
 
-const router = new Router({ mergeParams: true })
+const router = new Router()
 
 router.get('/', (req, res) => {
   try {
-    res.status(200).json("Preciser l'id du Result dans l'url")
+    res.status(200).json(Result.get())
   } catch (err) {
     res.status(500).json(err)
   }
 })
 
-router.get('/:resultId', (req, res) => {
+router.get('/:userid', (req, res) => {
   try {
-    const result = Result.getById(req.params.resultId) // Construit pour avoir une stat sur un quiz
+    const result = Result.getByUserId(req.params.userid) // Construit pour avoir une stat sur un quiz
     res.status(200).json(result)
   } catch (err) {
     res.status(500).json(err)
@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
     })
     const nbMauvaiseReponses = reponseTotal - nbBonneReponses;
 
-    const result = Result.create({...req.body, nbMauvaiseReponses, nbBonneReponses});
+    const result = Result.create({...req.body, nbErreur: nbMauvaiseReponses,nbCorrect: nbBonneReponses});
 
     res.status(201).json(result)
   } catch (err) {
@@ -46,6 +46,5 @@ router.post('/', (req, res) => {
     }
   }
 })
-
 
 module.exports = router

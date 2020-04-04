@@ -29,10 +29,14 @@ export class UserListComponent implements OnInit {
   userEdited(selected: User) {
     this.route.navigate(['/edit-user/', selected.id])
   }
+
+  userStatistic(user: User){
+    this.route.navigate(['user-stat', user.id.toString()]);
+  }
   
   userSelected(selected: User) {
     this.userService.setSelectedUser(selected.id.toString())
     sessionStorage.setItem("user_id", selected.id.toString())
-    this.route.navigate(['theme-list'])
+    this.route.navigate(['theme-list']);
   }
 }

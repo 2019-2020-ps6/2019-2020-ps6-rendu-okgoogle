@@ -21,6 +21,9 @@ export class UserAdminComponent implements OnInit {
   
   @Output()
   userEdited: EventEmitter<User> = new EventEmitter<User>();
+    
+  @Output()
+  userStatistic: EventEmitter<User> = new EventEmitter<User>();
 
   constructor() {
 
@@ -40,5 +43,9 @@ export class UserAdminComponent implements OnInit {
 
   deleteUser(user: User) {
     this.userDeleted.emit(user);
+  }
+  
+  statistic(user: User){
+    this.userStatistic.emit(user);
   }
 }

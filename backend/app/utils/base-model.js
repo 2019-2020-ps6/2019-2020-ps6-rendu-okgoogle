@@ -42,6 +42,19 @@ module.exports = class BaseModel {
     if (!item) throw new NotFoundError(`Cannot get ${this.name} id=${id} : not found`)
     return item
   }
+  
+  //Result
+  getByUserId(id) {
+    var resList = [];
+    if (typeof id === 'string') id = parseInt(id, 10)
+    for(var i = 0 ; i < this.items.length ; i++){
+      if(this.items[i].userId == id){
+        resList.push(this.items[i])
+      }
+    }
+    if (!resList) throw new NotFoundError(`Cannot get ${this.name} id=${id} : not found`)
+    return resList
+  }
 
   create(obj = {}) {
     const item = { ...obj, id: Date.now()+Math.ceil(Math.random() * 10) } // ajout de Math.ceil car qqfois, il ya des duplication

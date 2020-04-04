@@ -71,7 +71,6 @@ import { ThemeService } from 'src/services/theme.service';
 
     changeContrastToBlack(){
       var mainContent = document.querySelector("html")
-
       mainContent.classList.add("contrast-black");
       mainContent.classList.remove("contrast-white");
     }

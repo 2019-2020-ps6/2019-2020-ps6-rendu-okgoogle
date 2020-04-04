@@ -13,6 +13,7 @@ import {MainAdminComponent} from './admin/main-admin/main-admin.component';
 import {PlayQuizComponent} from  './quizzes/play-quiz/play-quiz.component';
 import { editQuestionComponent } from './admin/edit-question/edit-question.component'
 import { editAnswerComponent } from './admin/edit-answer/edit-answer.component'
+import { UserStatComponent } from './users/user-stat/user-stat.component'
 
 const routes: Routes = [
     {path: 'theme-list', component: ThemeListComponent},
@@ -28,6 +29,7 @@ const routes: Routes = [
     {path: 'edit-user/:userid', component: editUserComponent},
     {path: 'main-admin', component: MainAdminComponent},
     {path: 'play-quiz/:themeid/quiz/:quizid' , component: PlayQuizComponent},
+    {path: 'user-stat/:userid' , component: UserStatComponent},
     {path: '', component: UserLoginComponent},
 ];
 
