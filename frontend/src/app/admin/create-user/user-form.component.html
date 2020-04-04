@@ -1,30 +1,25 @@
-
-<div class="card">
-  <h2>Create a new User</h2>
-  <form class="user-form" [formGroup]="userForm">
-    <label for="nom">
-      Nom: <input class="input-custom" type="text" id="name" [formControlName]="'name'">
-    </label>
-    <label for="prenom">
-      *Prenom: <input class="nom" type="text" required id="surname" [formControlName]="'surname'">
-    </label>
-    <label for="age">
-      <br> Age:  <input type="text" name="age" id="age" [formControlName]="'age'">
-    </label>
-    <br>
-    <label for="sexe">Sexe: 
-        <input type="radio" id="F" name="sexe" value="F" [formControlName]="'sexe'"/> <label for="F"> Feminin</label>
-        <input type="radio" id="M" name="sexe" value="M" [formControlName]="'sexe'"/> <label for="M"> Masculin</label>
-    </label>
-    <br>
-
-    <label for="description"> Description: <br>
-      <textarea style="border:solid 1px;" placeholder="Description" name="description" id="description" cols="80" rows="10" [formControlName]="'description'"></textarea>
-    </label>
-    <br>
-    <button *ngIf="goal === 'edit'" type="submit" class="button-card" (click)="editUser()">Modifier</button>
-    <button *ngIf="goal === 'create'" type="submit" class="button-card" (click)="addUser()">Créer</button>
+<body>
+  <h1>Créer un nouvel accueilli</h1>
+  <form class="cf" [formGroup]="userForm">
+    <div class="half left cf">
+      <input type="text" id="name" [formControlName]="'name'" placeholder="Nom">
+      <input type="number" id="age" [formControlName]="'age'" placeholder="Age">
+      Sexe :
+      <input  type="radio" id="F" name="sexe" value="F" [formControlName]="'sexe'" class="rad"/> <label for="F">
+        Feminin</label>
+      <input  type="radio" id="M" name="sexe" value="M" [formControlName]="'sexe'" class="rad"/> <label for="M">
+        Masculin</label>
+    </div>
+    <div class="half right cf">
+      <input type="text" required id="surname" [formControlName]="'surname'" placeholder="Prénom">
+    </div>
+    <textarea type="text" id="description" name="description" placeholder="Description"
+      [formControlName]="'description'"></textarea>
+    <input *ngIf="goal === 'edit'" type="submit" value="Modifier" id="input-submit" (click)="editUser()">
+    <input *ngIf="goal === 'create'" type="submit" value="Créer" id="input-submit" (click)="addUser()">
   </form>
-</div>
+</body>
+
+
 <!-- Uncomment below to see your form structure and how it changes-->
 <br><br>{{userForm.getRawValue() | json}}

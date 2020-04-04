@@ -6,13 +6,13 @@
 
 <body>
     <h1>Créer un nouvel accueilli</h1>
-    <form class="cf">
+    <form class="cf" [formGroup]="userForm">
         <div class="half left cf">
             <input type="text" id="input-name" placeholder="Nom">
             <input type="number" id="input-email" placeholder="Age">
-            Sexe :
-                <input class="rad" type="radio" id="F" name="sexe" value="F"  /> <label for="F"> Feminin</label>
-                <input class="rad" type="radio" id="M" name="sexe" value="M"  /> <label for="M"> Masculin</label>
+              Sexe :
+                <input class="choix" type="radio" id="F" name="sexe" value="F"  /> <label for="F"> Feminin</label>
+                <input class="choix" type="radio" id="M" name="sexe" value="M"  /> <label for="M"> Masculin</label>
         </div>
         <div class="half right cf">
             <input type="text" id="input-name" placeholder="Prénom">
@@ -22,7 +22,7 @@
     </form>
 </body>
 
-    <script>
+    <!-- <script>
         var fem = document.querySelector("body > form > div.half.left.cf > label:nth-child(4)");
         var mas = document.querySelector("body > form > div.half.left.cf > label:nth-child(6)");
         var bool = false;
@@ -47,5 +47,5 @@
         });
 
         
-    </script>
+    </script> -->
 </html>
