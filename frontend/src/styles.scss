@@ -9,3 +9,29 @@ body {
   margin: 0;
   background-color: $app-background-color;
 }
+
+/* Constrast Black */
+.contrast-black {
+  background-color: #333 !important;
+  color: #fff !important;
+  box-shadow: none;
+  body {
+    margin: 0;
+    background-color: #333 !important;
+  }
+}
+.contrast-black h1,
+html body.contrast-black p{
+color: #fff !important;
+}
+
+/* Constrast White */
+.contrast-white {
+    background-color: #fff !important;
+    color: #333 !important;
+    box-shadow: none;
+}
+.contrast-white h1,
+.contrast-white p{
+	color: #333 !important;
+}
