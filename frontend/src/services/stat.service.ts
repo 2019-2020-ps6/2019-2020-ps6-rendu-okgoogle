@@ -37,6 +37,7 @@ export class StatService implements OnInit {
     this.http.get<User>(urlWithId).subscribe((user) => {
       this.userSelected = user;
       this.userSelected$.next(this.userSelected);
+      console.log(user)
     });
   }
 
@@ -61,9 +62,8 @@ export class StatService implements OnInit {
     this.http.get<Quiz[]>(urlWithId).subscribe((quizzes)=>{
         this.quizzes = quizzes
         this.quizzes$.next(this.quizzes)
-        console.log(quizzes)
     })
-  }  
+  }
 
   goBack(){
     this._location.back();

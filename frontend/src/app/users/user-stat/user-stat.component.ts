@@ -14,8 +14,9 @@ import { Quiz } from 'src/models/quiz.model';
 export class UserStatComponent implements OnInit {
   public user: User;
     public result: Result[] = [];
-    public resSelected: Result;
+    public resSelected: Result = null;
     public quizSelected: Quiz;
+    public quizzes: Quiz[] = [];
     public quizList: Quiz[] = [];
 
   constructor(private route: ActivatedRoute,private statService: StatService) {
@@ -23,36 +24,43 @@ export class UserStatComponent implements OnInit {
     this.statService.setSelectedUser(id)
     this.statService.userSelected$.subscribe((user)=>{
       this.user = user;
+      console.log(this.user)
       this.statService.setSelectedResult(id)
       this.statService.resultsSelected$.subscribe(res => {
-          this.result = res
-          console.log(res)
-          statService.getAllQuizzes();
-          statService.quizzes$.subscribe((quiz)=> {
-  
-              for(var i = 0; i< this.result.length; i++){
-                  for(var j =0; j < quiz.length; j++){
-                      if(this.result[i].quizId == quiz[j].id){
-                          this.quizList.push(quiz[j])
-                      }
-                  }
+        this.result = res
+        console.log(res)
+        statService.getAllQuizzes();
+        statService.quizzes$.subscribe((quiz)=> {
+          this.quizzes = quiz;
+          console.log(this.quizzes)
+
+          for(var i = 0; i < this.result.length; i++){
+            for(var j =0; j < this.quizzes.length; j++){
+              if(this.result[i].quizId.toString() === this.quizzes[j].id.toString()){
+                this.quizList.push(this.quizzes[j])
+                this.quizzes.splice(this.quizzes.indexOf(this.quizzes[j]),1);
+                break;
               }
-  
-          })
+            }
+          }
+
+          console.log(this.quizList)
+        })
       })
     })
-
   }
 
   ngOnInit() {  
+
   }
 
   SelectedQuiz(quiz: Quiz){
     this.statService.setSelectedQuiz(quiz.id, quiz.themeId)
     this.statService.quizSelected$.subscribe((quiz)=> this.quizSelected = quiz)
+
     for(var i in this.result){
-        if(this.result[i].quizId == quiz.id)
-            this.resSelected = this.result[i];
+      if(this.result[i].quizId == quiz.id)
+        this.resSelected = this.result[i];
     }
   }
 
