@@ -19,8 +19,9 @@ export class ResultService implements OnInit {
   public resultFinal = new Object() as Result ;
   private quizSelected: Quiz;
   private questionSelected: Question;
-  private questions: Question[];
-  private answers: Answer[] = [];
+  private answersRes: Answer[] = [];
+  private TabAnswersQuestions: Answer[][] = [];
+  private answersError: Answer[]=[];
   private nbAide: number = 0;
   private ptrQuestion:number=0;
   public timer: number = 0;
@@ -35,7 +36,7 @@ export class ResultService implements OnInit {
     setInterval(()=> {this.timer+=1}, 1000)
   }
   ngOnInit(): void {
-    
+
   }
 
   setSelectedAnswer(questionId: string,answerId: string) {
@@ -52,17 +53,25 @@ export class ResultService implements OnInit {
       this.quizSelected$.next(quiz);
       this.questionSelected = this.quizSelected.questions[this.ptrQuestion];
       this.questionSelected$.next(this.questionSelected);
+      if(this.TabAnswersQuestions.length == 0){
+        for(var i = 0; i<this.quizSelected.questions.length; i++){
+          this.TabAnswersQuestions.push(this.quizSelected.questions[i].answers);
+        }
+        console.log(this.TabAnswersQuestions)
+      }
+
     });
   }
   VerifyAnswer(answer: Answer){
     if(answer.isCorrect){
-
       var p = document.querySelector("#indice")
       if(p.textContent != "")
         p.innerHTML="";
 
-      this.answers.push(answer)
-      this.ptrQuestion+=1;
+      this.answersRes.push(answer)
+
+      this.ptrQuestion+=1;        
+
       this.questionSelected = this.quizSelected.questions[this.ptrQuestion];
       this.questionSelected$.next(this.questionSelected)
       
@@ -74,9 +83,10 @@ export class ResultService implements OnInit {
         this.addResult(this.timer)
       }
     }else{
-      this.answers.push(answer)
+      this.answersRes.push(answer)
       for(var i in this.questionSelected.answers){
         if(answer.id.toString() === this.questionSelected.answers[i].id.toString()){
+          this.answersError.push(answer)
           this.questionSelected.answers.splice(this.questionSelected.answers.indexOf(this.questionSelected.answers[i]),1)
           break;
         }
@@ -98,10 +108,11 @@ export class ResultService implements OnInit {
   previousQuestion(){
     if(this.ptrQuestion > 0){
       this.ptrQuestion--;
+      var arrAnswer = [...this.TabAnswersQuestions[this.ptrQuestion]];
       this.questionSelected = this.quizSelected.questions[this.ptrQuestion];
+      this.questionSelected.answers = arrAnswer;
       this.questionSelected$.next(this.questionSelected)
     }
-
   }
 
   goBack(){
@@ -111,7 +122,7 @@ export class ResultService implements OnInit {
   addResult(dureeJeu: number){
     this.resultFinal.quizId = this.questionSelected.quizId.toString()
     this.resultFinal.userId = sessionStorage.getItem("user_id");
-    this.resultFinal.answers = this.answers;
+    this.resultFinal.answers = this.answersRes;
     this.resultFinal.nbAide = this.nbAide;
     this.resultFinal.dureeJeu = dureeJeu;
     this.resultFinal.dateJeu = new Date().toString();
