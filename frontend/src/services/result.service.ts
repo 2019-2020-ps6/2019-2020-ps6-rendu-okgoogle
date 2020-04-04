@@ -64,6 +64,8 @@ export class ResultService implements OnInit {
   }
   VerifyAnswer(answer: Answer){
     if(answer.isCorrect){
+      var zoomElement = document.querySelector("#zoom")
+      zoomElement.setAttribute("value", "20");
       var p = document.querySelector("#indice")
       if(p.textContent != "")
         p.innerHTML="";

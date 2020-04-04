@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { ActivatedRoute } from '@angular/router';
@@ -7,11 +7,13 @@ import { Question } from 'src/models/question.model';
 import { Theme } from 'src/models/theme.model';
 import { Answer } from 'src/models/answer.model';
 import { ThemeService } from 'src/services/theme.service';
+
 @Component({
     selector: 'app-play-quiz',
     templateUrl: './play-quiz.component.html',
-    styleUrls: ['./play-quiz.component.scss']
+    styleUrls: ['./play-quiz.component.scss'],
   })
+
   export class PlayQuizComponent implements OnInit {
     public quiz: Quiz;
     public curTheme: Theme;
@@ -56,5 +58,15 @@ import { ThemeService } from 'src/services/theme.service';
       this.resService.previousQuestion()
     }
 
+    changeFont(event){
+      console.log(event.target.value)
+      var pInSpan = document.querySelectorAll(".reponse")
+      console.log(pInSpan)
+
+      for (var i in pInSpan) {
+        pInSpan[i].setAttribute("style", "font-size:"+event.target.value+"px;");
+      }
+
+    }
     
 }

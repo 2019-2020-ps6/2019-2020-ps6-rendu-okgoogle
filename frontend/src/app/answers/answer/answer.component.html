@@ -1,7 +1,7 @@
 
     <span id="imageGestion">
         <img src="{{answer.imageUrl}}" alt=""><br>
-        {{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i class="far fa-check-square"></i></ng-container> <br>
+        <p class="reponse">{{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i class="far fa-check-square"></i></ng-container></p> <br>
     </span>
     <button *ngIf="curStatus === 'admin'" class="button-card" (click)="editAnswer()">Edit</button>
     <button *ngIf="curStatus === 'admin'" class="button-card" (click)="deleteAnswer()">Delete</button>

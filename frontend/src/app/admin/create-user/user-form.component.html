@@ -22,7 +22,8 @@
       <textarea style="border:solid 1px;" placeholder="Description" name="description" id="description" cols="80" rows="10" [formControlName]="'description'"></textarea>
     </label>
     <br>
-    <button type="submit" class="button-card" (click)="addUser()">Create</button>
+    <button *ngIf="goal === 'edit'" type="submit" class="button-card" (click)="editUser()">Modifier</button>
+    <button *ngIf="goal === 'create'" type="submit" class="button-card" (click)="addUser()">Créer</button>
   </form>
 </div>
 <!-- Uncomment below to see your form structure and how it changes-->

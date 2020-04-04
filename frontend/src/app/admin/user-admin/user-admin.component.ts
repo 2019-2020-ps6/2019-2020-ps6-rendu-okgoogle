@@ -8,6 +8,8 @@ import { User } from '../../../models/user.model';
 })
 export class UserAdminComponent implements OnInit {
 
+  private userStatus: string;
+
   @Input()
   user: User;
 
@@ -25,6 +27,7 @@ export class UserAdminComponent implements OnInit {
   }
 
   ngOnInit() {  
+    this.userStatus = sessionStorage.getItem('status');
   }
 
   selectUser(user: User) {

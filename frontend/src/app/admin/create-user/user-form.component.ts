@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { UserService } from '../../../services/user.service';
@@ -12,8 +12,13 @@ import { Router } from '@angular/router';
 })
 export class UserFormComponent implements OnInit {
 
+  public goal: string;
+
   @Input()
   user:User;
+
+  @Output()
+  userEdited: EventEmitter<User> = new EventEmitter<User>();
 
   public userForm: FormGroup;
 
@@ -23,9 +28,10 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit() {
     if(this.user != null){
+      this.goal = 'edit';
       this.userForm = this.formBuilder.group({
         name: this.user.name,
-        surname: new FormControl(this.user.name, [
+        surname: new FormControl(this.user.surname, [
           Validators.required,
           Validators.minLength(4)
         ]),
@@ -34,16 +40,17 @@ export class UserFormComponent implements OnInit {
         description: this.user.description
       });
     }else{
-    this.userForm = this.formBuilder.group({
-      name: [''],
-      surname: new FormControl([''], [
-        Validators.required,
-        Validators.minLength(4),
-      ]),
-      age:0,
-      sexe: [''],
-      description: ['']
-    });
+      this.goal = 'create';
+      this.userForm = this.formBuilder.group({
+        name: [''],
+        surname: new FormControl([''], [
+          Validators.required,
+          Validators.minLength(4),
+        ]),
+        age:0,
+        sexe: [''],
+        description: ['']
+      });
     }
   }
 
@@ -77,5 +84,9 @@ export class UserFormComponent implements OnInit {
     this.userService.addUser(userToCreate);
   }
 
+  editUser(){
+    const userToCreate: User = this.userForm.getRawValue() as User;
+    this.userEdited.emit(userToCreate);
+  }
 
 }

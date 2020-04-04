@@ -27,5 +27,10 @@ export class editUserComponent implements OnInit{
         this.userService.userSelected$.subscribe((user) => this.user = user);
     }
 
+    editUser(user: User){
+        this.userService.editUser(this.user.id.toString(),user);
+        this.router.navigate(['user-list'])
+    }
+
 
 }

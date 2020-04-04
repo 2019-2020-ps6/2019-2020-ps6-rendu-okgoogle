@@ -78,4 +78,10 @@ export class UserService implements OnInit {
     };
   }
 
+  editUser(userid:string,user: User){
+    const url = this.lien +userid; // DELETE api/heroes/42
+    this.users$.next(this.users);
+    this.http.put<User>(url, user).subscribe(()=> this.getUsers())
+    this.users$.next(this.users)
+  }
 }
