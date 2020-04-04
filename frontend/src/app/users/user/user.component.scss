@@ -4,6 +4,8 @@
   border-radius: 4px;
   padding: .5rem;
   color: #5d5e5e;
+  width: 50%;
+  margin-right: 0em;
 } /* li item */
 
 img {
@@ -12,4 +14,14 @@ img {
   border: 0;
   width: 100%;
   height: auto;
+}
+
+article{
+  margin-right: 0;
+}
+
+.cards{
+  margin-right: 0;
+  display: flex;
+  justify-content: center;
 }
