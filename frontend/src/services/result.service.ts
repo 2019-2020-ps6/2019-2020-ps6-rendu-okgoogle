@@ -2,7 +2,6 @@ import {Answer} from '../models/answer.model';
 import {Result} from '../models/result.model';
 import { ActivatedRoute } from '@angular/router';
 import {QuizService} from './quiz.service'
-import {Location} from '@angular/common';
 
 import { Subject } from 'rxjs';
 import { Injectable, OnInit } from '@angular/core';
@@ -33,7 +32,7 @@ export class ResultService implements OnInit {
 
   private lien = "http://localhost:9428/api/"
 
-  constructor(private _location: Location,private route: ActivatedRoute,private http: HttpClient, private quizService:QuizService, private userService: UserService) {
+  constructor(private route: ActivatedRoute,private http: HttpClient, private quizService:QuizService, private userService: UserService) {
     setInterval(()=> {this.timer+=1}, 1000)
   }
   ngOnInit(): void {
@@ -64,13 +63,7 @@ export class ResultService implements OnInit {
     });
   }
   VerifyAnswer(answer: Answer){
-    if(answer.isCorrect){
-      var zoomElement = document.querySelector("#zoom")
-      zoomElement.setAttribute("value", "20");
-      var p = document.querySelector("#indice")
-      if(p.textContent != "")
-        p.innerHTML="";
-      
+    if(answer.isCorrect){      
       this.questionsRes.push(this.questionSelected)
       this.answersRes.push(answer)
 
@@ -121,9 +114,6 @@ export class ResultService implements OnInit {
     }
   }
 
-  goBack(){
-    this._location.back();
-  }
 
   addResult(dureeJeu: number){
     this.resultFinal.nameQuiz = this.quizSelected.name;
@@ -137,6 +127,5 @@ export class ResultService implements OnInit {
     this.resultFinal.dateJeu = new Date().toString();
     this.http.post(this.lien +'result/', this.resultFinal).subscribe(()=> console.log("OUIUIUUI"));
     dureeJeu = 0;
-    this.goBack();
   }
 }

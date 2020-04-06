@@ -1,6 +1,17 @@
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
 </head>
+
+<div id="modal-container">
+  <div class="modal-background">
+    <div class="modal">
+      <img alt="">
+      <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
+					<rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
+			</svg>
+    </div>
+  </div>
+</div>
 <nav role='navigation'>
   <div id="menuToggle">
 
@@ -32,10 +43,9 @@
       </div>
 
 
-      <div class="fit-test__question-container" data-question-num="2">
+      <div class="fit-test__question-container">
         <div class="fit-test__answer-container">
-          <div (click)="selectAnswer(answer)" class="fit-test__answer-option"
-            *ngFor="let answer of questionSelected.answers">
+          <div (click)="selectAnswer(answer)" class="fit-test__answer-option" *ngFor="let answer of questionSelected.answers">
             <div *ngIf="answer"></div>
             <app-answer [answer]="answer"></app-answer>
           </div>
@@ -45,11 +55,6 @@
       <button class="aide" (click)="aide()" id="aide"><i class="far fa-question-circle"></i> &nbsp; Aide</button>
       <button class="precedent" (click)="questionPrecedente()" id="aide"><i class="fas fa-chevron-circle-left"></i>
         &nbsp;Question précédente</button>
-
-      <div id="quiz-results">
-        <p id="quiz-results-message"></p>
-        <p id="quiz-results-score"></p>
-      </div>
     </div>
   </ng-container>
 

@@ -53,8 +53,8 @@ trigger('routeAnimations', [
     transition('UserList => UserStat', slideto('right')),
     transition('UserStat => UserList', slideto('left')),
 
-    transition('UserStat <=> UserStatDetails', slideto('right')),
-    transition('UserStatDetails <=> UserStat', slideto('left')),
+    transition('UserStat => UserStatDetails', slideto('right')),
+    transition('UserStatDetails => UserStat', slideto('left')),
 ])
 
   function slideto(direction){
