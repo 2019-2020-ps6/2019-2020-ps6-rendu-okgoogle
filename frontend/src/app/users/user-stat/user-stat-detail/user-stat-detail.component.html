@@ -1,0 +1,17 @@
+<head>
+    <title>Plus de details</title>
+    <link rel="stylesheet" href="user-stat-detail.component.scss">
+</head>
+
+<h1>Details</h1>
+<div id="infoquiz">
+        Nom Utilisateur: {{user.name}} {{user.surname}}<br>
+        Quiz: {{quizselected.name}}<br>
+</div>
+<div id="listeQuestion">
+    <div *ngIf="questionList" >
+        <div (click)="Selectedquestion(question,i)"  *ngFor="let res of result; let i=index">
+        question n°{{i+1}}: {{res.nameQuestion}} {{res.reponseQuestion}} {{res.aideutilise}}
+         </div>
+    </div>
+</div>
