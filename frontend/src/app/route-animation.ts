@@ -11,7 +11,8 @@ import {
 export const slideInAnimation =
     
 trigger('routeAnimations', [
-    transition('Login => *', slideto('right')),
+    transition('Default => *', slideto('right')),
+    transition('* => Default', slideto('left')),
 
     transition('Login => UserList', slideto('right')),
     transition('UserList => Login', slideto('left')),
