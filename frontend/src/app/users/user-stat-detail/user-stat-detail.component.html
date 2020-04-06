@@ -5,14 +5,14 @@
 </head>
 <div id="all">
     <div id="partiedroite">
-        <h6>Details</h6>
+        <h6 id=detail>Details</h6>
         <div id="listeQ"></div>
         <div *ngIf="resSelected" >
             <div id="Bleu">
                 Nom Utilisateur: {{user.name}} {{user.surname}}
                 Quiz: {{resSelected.nameQuiz}}
             </div>
-            <div *ngFor="let question of resSelected.questions; let i=index">
+            <div *ngFor="let question of resSelected.questions; let i=index" id="listequestion">
                 <p>Question: {{question.label}}</p>
                 <div *ngFor="let answer of resSelected.answers; let i=index"> 
                     <td>Reponse: {{answer.value}} <i *ngIf="answer.isCorrect" class="far fa-check-square"></i><i *ngIf="!(answer.isCorrect)" class="fas fa-times"></i></td>
