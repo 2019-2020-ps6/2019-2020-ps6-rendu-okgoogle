@@ -19,6 +19,7 @@ import { ThemeService } from 'src/services/theme.service';
     public curTheme: Theme;
     public questionSelected: Question;
     private curStatus: string;
+    display = 'none';
 
     constructor(private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
       const themeid = this.route.snapshot.paramMap.get('themeid');
@@ -79,5 +80,13 @@ import { ThemeService } from 'src/services/theme.service';
       var mainContent = document.querySelector("html")
       mainContent.classList.add("contrast-white");
       mainContent.classList.remove("contrast-black");
+    }
+
+    onCloseHandled(){
+      this.display = 'none';
+    }
+
+    openModal(){
+      this.display = 'block';
     }
 }

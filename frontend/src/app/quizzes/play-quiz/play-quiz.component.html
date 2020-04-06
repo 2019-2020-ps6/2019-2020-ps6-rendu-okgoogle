@@ -5,15 +5,16 @@
   <div id="menuToggle">
 
     <input class="fermeture" type="checkbox" />
-    
+
     <span></span>
     <span></span>
     <span></span>
-    
+
     <ul id="menu">
       <li> Zoom: <input (mouseup)="changeFont($event)" id="zoom" value="20" min="20" max="40" type="range" /> </li>
-      <button id="contrast-b" (click)="changeContrastToBlack()" title="Contraste preto/branco">Contraste inverse</button> 
-			<button id="contrast-w" (click)="changeContrastToWhite()" title="Contraste branco/preto" >Contraste normal</button>
+      <button id="contrast-b" (click)="changeContrastToBlack()" title="Contraste preto/branco">Contraste
+        inverse</button>
+      <button id="contrast-w" (click)="changeContrastToWhite()" title="Contraste branco/preto">Contraste normal</button>
     </ul>
   </div>
 </nav>
@@ -33,7 +34,9 @@
 
       <div class="fit-test__question-container" data-question-num="2">
         <div class="fit-test__answer-container">
-          <div (click)="selectAnswer(answer)" class="fit-test__answer-option" *ngFor="let answer of questionSelected.answers">
+          <div (click)="selectAnswer(answer)" class="fit-test__answer-option"
+            *ngFor="let answer of questionSelected.answers">
+            <div *ngIf="answer"></div>
             <app-answer [answer]="answer"></app-answer>
           </div>
         </div>
