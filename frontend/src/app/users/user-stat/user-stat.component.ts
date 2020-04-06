@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { UserService} from '../../../services/user.service'
 import { User } from '../../../models/user.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Result } from 'src/models/result.model';
 import { StatService } from 'src/services/stat.service';
 import { Quiz } from 'src/models/quiz.model';
@@ -19,13 +19,13 @@ export class UserStatComponent implements OnInit {
     public quizzes: Quiz[] = [];
     public quizList: Quiz[] = [];
 
-  constructor(private route: ActivatedRoute,private statService: StatService) {
+  constructor(private route: ActivatedRoute,private router: Router,private statService: StatService) {
     const id = this.route.snapshot.paramMap.get("userid");
     this.statService.setSelectedUser(id)
     this.statService.userSelected$.subscribe((user)=>{
       this.user = user;
       console.log(this.user)
-      this.statService.setSelectedResult(id)
+      this.statService.setSelectedResultByUserId(id)
       this.statService.resultsSelected$.subscribe(res => {
         this.result = res
         console.log(res)
@@ -54,6 +54,10 @@ export class UserStatComponent implements OnInit {
 
   SelectedQuiz(quiz: Result,i:number){
     this.resSelected = this.result[i];
+  }
+
+  showDetails(){
+    this.router.navigate(["user-stat",this.user.id,"details", this.resSelected.id])
   }
 
 }

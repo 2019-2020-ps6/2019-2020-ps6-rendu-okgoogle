@@ -2,6 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
+
 import { AppComponent } from './app.component';
 import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
 import { QuizAdminComponent } from './admin/quiz-admin/quiz-admin.component';
@@ -18,6 +22,7 @@ import { UserAdminComponent } from './admin/user-admin/user-admin.component';
 import { UserComponent } from './users/user/user.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserStatComponent } from './users/user-stat/user-stat.component';
+import { UserStatDetailComponent } from './users/user-stat-detail/user-stat-detail.component'
 import { editUserComponent } from './admin/edit-user/edit-user.component';
 import { UserLoginComponent } from './users/user-login/user-login.component';
 import { MainAdminComponent } from './admin/main-admin/main-admin.component';
@@ -61,10 +66,12 @@ import { AppRoutingModule } from './app.routing.module';
     AnswerFormComponent,
     editAnswerComponent,
     editQuestionComponent,
-    UserStatComponent
+    UserStatComponent,
+    UserStatDetailComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule

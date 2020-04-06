@@ -16,11 +16,13 @@ export class StatService implements OnInit {
   private quizSelected: Quiz;
   private userSelected: User;
   private resultsSelected: Result[] = [];
+  private resSelected: Result;
   private quizzes: Quiz[]= [];
 
   public quizSelected$: Subject<Quiz> = new Subject();
   public userSelected$: Subject<User> = new Subject();
   public resultsSelected$: Subject<Result[]> = new Subject();
+  public resSelected$: Subject<Result> = new Subject();
   public quizzes$: Subject<Quiz[]> = new Subject();
 
   private lien = "http://localhost:9428/api/"
@@ -49,12 +51,19 @@ export class StatService implements OnInit {
     });
   }
 
-  setSelectedResult(userid: string){
-      const urlWithId = this.lien+'result/'+userid
-      this.http.get<Result[]>(urlWithId).subscribe((res)=>{
-        this.resultsSelected = res;
-        this.resultsSelected$.next(this.resultsSelected);
-      });
+  setSelectedResultByUserId(userid: string){
+    const urlWithId = this.lien+'result/'+userid
+    this.http.get<Result[]>(urlWithId).subscribe((res)=>{
+      this.resultsSelected = res;
+      this.resultsSelected$.next(this.resultsSelected);
+    }); 
+}
+  setSelectedResultById(userid: string, resultid: string){
+      const urlWithId = this.lien+'result/'+userid+"/details/"+resultid
+      this.http.get<Result>(urlWithId).subscribe((res)=>{
+        this.resSelected = res;
+        this.resSelected$.next(this.resSelected);
+      }); 
   }
 
   getAllQuizzes(){

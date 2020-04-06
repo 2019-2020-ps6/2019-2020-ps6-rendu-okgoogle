@@ -20,6 +20,7 @@ export class ResultService implements OnInit {
   private quizSelected: Quiz;
   private questionSelected: Question;
   private answersRes: Answer[] = [];
+  private questionsRes: Question[] = [];
   private TabAnswersQuestions: Answer[][] = [];
   private answersError: Answer[]=[];
   private nbAide: number = 0;
@@ -69,7 +70,8 @@ export class ResultService implements OnInit {
       var p = document.querySelector("#indice")
       if(p.textContent != "")
         p.innerHTML="";
-
+      
+      this.questionsRes.push(this.questionSelected)
       this.answersRes.push(answer)
 
       this.ptrQuestion+=1;        
@@ -86,6 +88,7 @@ export class ResultService implements OnInit {
       }
     }else{
       this.answersRes.push(answer)
+      this.questionsRes.push(this.questionSelected)
       for(var i in this.questionSelected.answers){
         if(answer.id.toString() === this.questionSelected.answers[i].id.toString()){
           this.answersError.push(answer)
@@ -105,6 +108,7 @@ export class ResultService implements OnInit {
     parentNode.appendChild(p)
 
     this.nbAide+=1;
+    this.questionsRes[this.ptrQuestion].aideUtilise = true;
   }
 
   previousQuestion(){
@@ -127,11 +131,13 @@ export class ResultService implements OnInit {
     this.resultFinal.quizId = this.questionSelected.quizId.toString()
     this.resultFinal.userId = sessionStorage.getItem("user_id");
     this.resultFinal.answers = this.answersRes;
+    this.resultFinal.questions = this.questionsRes;
     this.resultFinal.nbAide = this.nbAide;
     this.resultFinal.dureeJeu = dureeJeu;
     this.resultFinal.dateJeu = new Date().toString();
     this.http.post(this.lien +'result/', this.resultFinal).subscribe(()=> console.log("OUIUIUUI"));
     alert("Bravoo, aller maintenant on va boire la soupe ;)")
+    dureeJeu = 0;
     this.goBack();
   }
 }

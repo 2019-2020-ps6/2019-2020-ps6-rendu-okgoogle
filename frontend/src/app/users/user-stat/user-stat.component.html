@@ -20,7 +20,7 @@
             <div id="theme_fav">theme favoris : A faire</div>
         </div>
         <div id="nb_Q"></div>
-        <button class="buttonDetail" (click)="Details()">Plus de details</button>
+        <button *ngIf="resSelected" class="buttonDetail" (click)="showDetails()">Plus de details</button>
     </div>
     <div id="partiedroite">
         <h6>Liste des quizs réalisés</h6>

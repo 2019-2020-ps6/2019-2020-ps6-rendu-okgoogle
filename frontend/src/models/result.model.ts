@@ -1,4 +1,5 @@
 import {Answer} from './answer.model';
+import { Question } from './question.model';
 
 export interface Result {
   id: string;
@@ -9,6 +10,7 @@ export interface Result {
   nbErreur: number; // seront incrémenter au fil des reponses //Backend
   nbCorrect: number; // seront incrémenter au fil des reponses //Backend
   nbAide: number; // seront incrémenter au fil des reponses //ICI
+  questions: Question[], //ICI
   answers: Answer[], //ICI
   dateJeu: string; //ICI
   dureeJeu: number; //Durée de jeu ICI

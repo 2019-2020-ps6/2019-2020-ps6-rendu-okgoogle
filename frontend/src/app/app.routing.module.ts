@@ -14,23 +14,25 @@ import {PlayQuizComponent} from  './quizzes/play-quiz/play-quiz.component';
 import { editQuestionComponent } from './admin/edit-question/edit-question.component'
 import { editAnswerComponent } from './admin/edit-answer/edit-answer.component'
 import { UserStatComponent } from './users/user-stat/user-stat.component'
+import { UserStatDetailComponent } from './users/user-stat-detail/user-stat-detail.component'
 
 const routes: Routes = [
-    {path: 'theme-list', component: ThemeListComponent},
-    {path: 'theme-list/:themeid', component: QuizListComponent},
-    {path: 'theme-edit/:themeid/edit-quiz/:quizid', component: editQuizComponent},
-    {path: 'theme-edit/:themeid/edit-quiz/:quizid/edit-question/:questionid', component: editQuestionComponent},
-    {path: 'theme-edit/:themeid/edit-quiz/:quizid/edit-question/:questionid/edit-answer/:answerid', component: editAnswerComponent},
-    {path: 'user-list', component: UserListComponent},
-    {path: 'user-login', component: UserLoginComponent},
-    {path: 'create-user', component: UserFormComponent},
-    {path: 'create-quiz', component: QuizFormComponent},
-    {path: 'create-theme', component: CreateThemeComponent},
-    {path: 'edit-user/:userid', component: editUserComponent},
-    {path: 'main-admin', component: MainAdminComponent},
-    {path: 'play-quiz/:themeid/quiz/:quizid' , component: PlayQuizComponent},
-    {path: 'user-stat/:userid' , component: UserStatComponent},
-    {path: '', component: UserLoginComponent},
+    {path: 'theme-list', component: ThemeListComponent, data:{animation:'ThemeList'} },
+    {path: 'theme-list/:themeid', component: QuizListComponent, data:{animation:'QuizList'}},
+    {path: 'theme-edit/:themeid/edit-quiz/:quizid', component: editQuizComponent, data:{animation:'EditQuiz'}},
+    {path: 'theme-edit/:themeid/edit-quiz/:quizid/edit-question/:questionid', component: editQuestionComponent, data:{animation:'EditQuestion'}},
+    {path: 'theme-edit/:themeid/edit-quiz/:quizid/edit-question/:questionid/edit-answer/:answerid', component: editAnswerComponent, data:{animation:'EditAnswer'}},
+    {path: 'user-list', component: UserListComponent, data:{animation:'UserList'}},
+    {path: 'user-login', component: UserLoginComponent, data:{animation:'Home'}},
+    {path: 'create-user', component: UserFormComponent, data:{animation:'CreateUser'}},
+    {path: 'create-quiz', component: QuizFormComponent, data:{animation:'CreateQuiz'}},
+    {path: 'create-theme', component: CreateThemeComponent, data:{animation:'CreateTheme'}},
+    {path: 'edit-user/:userid', component: editUserComponent, data:{animation:'EditUser'}},
+    {path: 'main-admin', component: MainAdminComponent, data:{animation:'MainAdmin'}},
+    {path: 'play-quiz/:themeid/quiz/:quizid' , component: PlayQuizComponent, data:{animation:'PlayQuiz'}},
+    {path: 'user-stat/:userid' , component: UserStatComponent, data:{animation:'UserStat'}},
+    {path: 'user-stat/:userid/details/:resultid' , component: UserStatDetailComponent, data:{animation:'UserStatDetails'}},
+    {path: '**', component: UserLoginComponent, data:{animation:'Default'}},
 ];
 
 @NgModule({

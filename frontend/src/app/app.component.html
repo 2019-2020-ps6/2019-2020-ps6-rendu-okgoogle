@@ -5,8 +5,8 @@
     <body>
         <app-header></app-header>
         <button class="back" *ngIf="router.url != '/'" (click)="back_click()"><i class="fas fa-chevron-left"></i> &nbsp; Retour</button><br>
-        <div class="main-content">
-            <router-outlet></router-outlet> <!-- Cette balise va afficher le component correpondant en fonction du component appeler sur url cf(app.routing.module)-->
+        <div [@routeAnimations]="o && o.activatedRouteData && o.activatedRouteData['animation']" class="main-content">
+            <router-outlet #o="outlet"></router-outlet> <!-- Cette balise va afficher le component correpondant en fonction du component appeler sur url cf(app.routing.module)-->
         </div>
     </body>
 </html>

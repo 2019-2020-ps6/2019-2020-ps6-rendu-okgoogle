@@ -10,6 +10,7 @@ module.exports = new BaseModel('Result', {
     nbErreur: Joi.number(),
     nbCorrect: Joi.number(),
     nbAide: Joi.number(),
+    questions: Joi.array(),
     answers: Joi.array(),
     dateJeu: Joi.string(),
     dureeJeu: Joi.number()

@@ -21,6 +21,15 @@ router.get('/:userid', (req, res) => {
   }
 })
 
+router.get('/:userid/details/:resultid', (req, res) => {
+  try {
+    const result = Result.getById(req.params.resultid) // Construit pour avoir une stat sur un quiz
+    res.status(200).json(result)
+  } catch (err) {
+    res.status(500).json(err)
+  }
+})
+
 router.post('/', (req, res) => {
 
   try {
