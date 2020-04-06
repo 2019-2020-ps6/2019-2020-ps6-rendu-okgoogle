@@ -23,7 +23,7 @@ const routes: Routes = [
     {path: 'theme-edit/:themeid/edit-quiz/:quizid/edit-question/:questionid', component: editQuestionComponent, data:{animation:'EditQuestion'}},
     {path: 'theme-edit/:themeid/edit-quiz/:quizid/edit-question/:questionid/edit-answer/:answerid', component: editAnswerComponent, data:{animation:'EditAnswer'}},
     {path: 'user-list', component: UserListComponent, data:{animation:'UserList'}},
-    {path: 'user-login', component: UserLoginComponent, data:{animation:'Home'}},
+    {path: 'user-login', component: UserLoginComponent, data:{animation:'Login'}},
     {path: 'create-user', component: UserFormComponent, data:{animation:'CreateUser'}},
     {path: 'create-quiz', component: QuizFormComponent, data:{animation:'CreateQuiz'}},
     {path: 'create-theme', component: CreateThemeComponent, data:{animation:'CreateTheme'}},

@@ -136,7 +136,6 @@ export class ResultService implements OnInit {
     this.resultFinal.dureeJeu = dureeJeu;
     this.resultFinal.dateJeu = new Date().toString();
     this.http.post(this.lien +'result/', this.resultFinal).subscribe(()=> console.log("OUIUIUUI"));
-    alert("Bravoo, aller maintenant on va boire la soupe ;)")
     dureeJeu = 0;
     this.goBack();
   }
