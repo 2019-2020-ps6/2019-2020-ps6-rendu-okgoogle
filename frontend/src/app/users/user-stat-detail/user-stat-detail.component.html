@@ -10,14 +10,14 @@
         <div *ngIf="resSelected" >
             <div id="Bleu">
                 Nom Utilisateur: {{user.name}} {{user.surname}}
-                Quiz: {{resSelected.nameQuiz}}
+                Quiz: {{resSelected.quiz.name}}
             </div>
-            <div *ngFor="let question of resSelected.questions; let i=index" id="listequestion">
+            <div *ngFor="let question of resSelected.quiz.questions; let i=index" id="listequestion">
                 <p>Question: {{question.label}}</p>
-                <div *ngFor="let answer of resSelected.answers; let i=index"> 
+                <div *ngFor="let answer of question.answers; let i=index"> 
                     <td>Reponse: {{answer.value}} <i *ngIf="answer.isCorrect" class="far fa-check-square"></i><i *ngIf="!(answer.isCorrect)" class="fas fa-times"></i></td>
                 </div>
-                <p> Aide utilisé ? {{question.aideUtilise}} </p>
+                <p> Aide utilisé <span *ngIf="question.aideUtilise === true;else NON">Oui</span><span #NON>Non</span> </p>
             </div>
         </div>
     </div>

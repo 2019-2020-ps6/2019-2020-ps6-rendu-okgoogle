@@ -36,7 +36,7 @@ export class UserStatComponent implements OnInit {
 
           for(var i = 0; i < this.result.length; i++){
             for(var j =0; j < this.quizzes.length; j++){
-              if(this.result[i].quizId.toString() === this.quizzes[j].id.toString()){
+              if(this.result[i].quiz.id.toString() === this.quizzes[j].id.toString()){
                 this.quizList.push(this.quizzes[j])
                 this.quizzes.splice(this.quizzes.indexOf(this.quizzes[j]),1);
               }

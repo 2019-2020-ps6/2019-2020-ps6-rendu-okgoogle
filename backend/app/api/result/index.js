@@ -33,7 +33,13 @@ router.get('/:userid/details/:resultid', (req, res) => {
 router.post('/', (req, res) => {
 
   try {
-    const answers = req.body.answers
+    const quiz = req.body.quiz;
+    const answers = [];
+    
+    for(var i = 0; i < quiz.questions.length; i++)
+      for(var j = 0; j < quiz.questions[i].answers.length; j++)
+        answers.push(quiz.questions[i].answers[j]);
+
     var nbBonneReponses = 0
     var reponseTotal = 0
     answers.forEach((answer) => {

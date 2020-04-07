@@ -47,6 +47,7 @@ import {Location} from '@angular/common';
     selectAnswer(answer: Answer){
       var zoomElement = document.querySelector("#zoom")
       zoomElement.setAttribute("value", "20");
+
       var divIndice = document.querySelector("#indice")
       if(divIndice.textContent != "")
         divIndice.innerHTML="";
@@ -95,11 +96,17 @@ import {Location} from '@angular/common';
     changeFont(event){
       console.log(event.target.value)
       var pInSpan = document.querySelectorAll(".reponse")
-      console.log(pInSpan)
 
       for (var i in pInSpan) {
         pInSpan[i].setAttribute("style", "font-size:"+event.target.value+"px;");
       }
+
+      var questionEtIndice = document.querySelectorAll(".enteteQuiz")
+
+      for(var i in questionEtIndice){
+        questionEtIndice[i].setAttribute("style", "font-size:"+event.target.value+"px;");
+      }
+
 
     }
 
