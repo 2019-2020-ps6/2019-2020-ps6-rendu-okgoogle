@@ -28,8 +28,8 @@
             <div *ngIf="resSelected" id="nb_aides">
                 <p class="texte">nombres d'aides <br> {{resSelected.nbAide}}</p>
             </div>
-            <div *ngIf="resSelected" id="theme_fav">
-                <p  class="texte">theme favoris <br> sport de combat</p>
+            <div *ngIf="themeFavori" id="theme_fav">
+                <p  class="texte">theme favoris <br>{{themeFavori.name}}</p>
             </div>
         </div>
         <div *ngIf="resSelected" id="nb_Q">
@@ -41,9 +41,9 @@
         <div id="contenu">
             <h6 class="texte">Liste des quizs réalisés</h6>
             <div id="listeQ"></div>
-            <div *ngIf="quizList">
-                <div class="item" (click)="SelectedQuiz(quiz,i)" *ngFor="let res of result; let i=index">
-                    Quiz n°{{i+1}}: {{res.quiz.name}} {{res.dateJeu}}
+            <div>
+                <div class="item" (click)="SelectedQuiz(i)" *ngFor="let res of result; let i=index">
+                    Quiz n°{{i+1}}: {{res.quiz.name}} {{res.dateJeu | date:'short'}}
                 </div>
             </div>
         </div>

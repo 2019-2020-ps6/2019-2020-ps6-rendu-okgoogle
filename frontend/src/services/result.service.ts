@@ -79,7 +79,6 @@ export class ResultService implements OnInit {
         this.ptrQuestion = 0;
         this.questionSelected = this.quizSelected.questions[this.ptrQuestion];
         this.questionSelected$.next(this.questionSelected)
-        console.log(this.timer)
         this.addResult(this.timer)
       }else{
         this.quizFinal.questions.push({...this.questionSelected})

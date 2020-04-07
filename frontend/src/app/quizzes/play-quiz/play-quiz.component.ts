@@ -52,7 +52,7 @@ import {Location} from '@angular/common';
       if(divIndice.textContent != "")
         divIndice.innerHTML="";
 
-      if( this.questionSelected != this.quiz.questions[this.quiz.questions.length-1] && answer.isCorrect === true){
+      if( this.questionSelected.id != this.quiz.questions[this.quiz.questions.length-1].id && answer.isCorrect === true){
         document.body.querySelector('#modal-container').removeAttribute('class')
         document.body.querySelector('.modal').firstElementChild.setAttribute('src', "https://i.pinimg.com/originals/a8/6e/f4/a86ef49a467502013d0521c55deebe85.png")
         document.body.querySelector('#modal-container').classList.add('modalF')
@@ -62,7 +62,7 @@ import {Location} from '@angular/common';
           document.body.classList.remove('modal-active')
         },1000)
       }
-      else if(this.questionSelected == this.quiz.questions[this.quiz.questions.length-1] && answer.isCorrect === true){
+      else if(this.questionSelected.id === this.quiz.questions[this.quiz.questions.length-1].id && answer.isCorrect === true){
         document.body.querySelector('#modal-container').removeAttribute('class')
         document.body.querySelector('.modal').firstElementChild.removeAttribute('src')
         document.body.querySelector('.modal').firstElementChild.setAttribute('src', "https://thumbs.dreamstime.com/b/banni%C3%A8re-de-bravo-91022451.jpg")
