@@ -1,17 +1,12 @@
-import {Answer} from './answer.model';
-import { Question } from './question.model';
+import { Quiz } from './quiz.model';
 
 export interface Result {
   id: string;
   userId: string;
-  quizId: string;
-  nameQuiz: string;
-  dateQuiz: string;
+  quiz: Quiz;
   nbErreur: number; 
   nbCorrect: number
-  nbAide: number; 
-  questions: Question[],
-  answers: Answer[],
+  nbAide: number;
   dateJeu: string;
   dureeJeu: number;
 }
