@@ -21,7 +21,6 @@ export class ResultService implements OnInit {
   private answersRes: Answer[] = [];
   private questionsRes: Question[] = [];
   private TabAnswersQuestions: Answer[][] = [];
-  private answersError: Answer[]=[];
   private nbAide: number = 0;
   private ptrQuestion:number=0;
   public timer: number = 0;
@@ -84,7 +83,6 @@ export class ResultService implements OnInit {
       this.questionsRes.push(this.questionSelected)
       for(var i in this.questionSelected.answers){
         if(answer.id.toString() === this.questionSelected.answers[i].id.toString()){
-          this.answersError.push(answer)
           this.questionSelected.answers.splice(this.questionSelected.answers.indexOf(this.questionSelected.answers[i]),1)
           break;
         }
@@ -93,13 +91,6 @@ export class ResultService implements OnInit {
   }
 
   GiveClues(){
-    var p = document.querySelector("#indice")
-    p.innerHTML=this.questionSelected.indice;
-
-    var parentNode = document.querySelector("#quiz")
-
-    parentNode.appendChild(p)
-
     this.nbAide+=1;
     this.questionsRes[this.ptrQuestion].aideUtilise = true;
   }
@@ -125,7 +116,10 @@ export class ResultService implements OnInit {
     this.resultFinal.nbAide = this.nbAide;
     this.resultFinal.dureeJeu = dureeJeu;
     this.resultFinal.dateJeu = new Date().toString();
-    this.http.post(this.lien +'result/', this.resultFinal).subscribe(()=> console.log("OUIUIUUI"));
+    this.http.post(this.lien +'result/', this.resultFinal).subscribe();
     dureeJeu = 0;
+    this.questionsRes = [];
+    this.answersRes = [];
+    this.TabAnswersQuestions = [];
   }
 }

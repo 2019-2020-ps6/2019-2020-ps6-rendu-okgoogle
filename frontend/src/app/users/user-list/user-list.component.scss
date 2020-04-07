@@ -10,10 +10,12 @@
 
 @media screen and (max-width: 1200px) {
   .user{
-    width: 25%;
+    width: 50%;
   }
+}
 
-  .user-list{
-    
+@media screen and (max-width: 768px) {
+  .user{
+    width: 100%;
   }
 }

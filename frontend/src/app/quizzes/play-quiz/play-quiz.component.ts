@@ -19,8 +19,6 @@ import {Location} from '@angular/common';
     public quiz: Quiz;
     public curTheme: Theme;
     public questionSelected: Question;
-    private curStatus: string;
-    display = 'none';
 
     constructor(private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
       const themeid = this.route.snapshot.paramMap.get('themeid');
@@ -31,9 +29,7 @@ import {Location} from '@angular/common';
       this.resService.quizSelected$.subscribe((quiz) => {
         this.quiz = quiz
         this.resService.questionSelected$.subscribe((question) => this.questionSelected = question)
-      });
-
-      
+      });      
     }
   
     ngOnInit() {    
@@ -49,15 +45,11 @@ import {Location} from '@angular/common';
     }
 
     selectAnswer(answer: Answer){
-      console.log("La taille de question dans le quiz"+ this.quiz.questions.length);
-      console.log("La question actuelle dans le quiz"+ this.questionSelected);
-      console.log("La derniere question dans le quiz"+ this.quiz.questions[this.quiz.questions.length-1]);
-
       var zoomElement = document.querySelector("#zoom")
       zoomElement.setAttribute("value", "20");
-      var p = document.querySelector("#indice")
-      if(p.textContent != "")
-        p.innerHTML="";
+      var divIndice = document.querySelector("#indice")
+      if(divIndice.textContent != "")
+        divIndice.innerHTML="";
 
       if( this.questionSelected != this.quiz.questions[this.quiz.questions.length-1] && answer.isCorrect === true){
         document.body.querySelector('#modal-container').removeAttribute('class')
@@ -81,12 +73,18 @@ import {Location} from '@angular/common';
           document.body.classList.remove('modal-active')
           this.goBack();
         },3000)
-        
       }
       this.resService.setSelectedAnswer(this.questionSelected.id.toString(),answer.id.toString())
     }
 
     aide(){
+      var divIndice = document.querySelector("#indice")
+      divIndice.innerHTML=this.questionSelected.indice;
+  
+      var parentNode = document.querySelector("#quiz")
+  
+      parentNode.insertBefore(divIndice, parentNode.firstElementChild.nextElementSibling.nextElementSibling)
+  
       this.resService.GiveClues()
     }
 
@@ -115,14 +113,6 @@ import {Location} from '@angular/common';
       var mainContent = document.querySelector("html")
       mainContent.classList.add("contrast-white");
       mainContent.classList.remove("contrast-black");
-    }
-
-    onCloseHandled(){
-      this.display = 'none';
-    }
-
-    openModal(){
-      this.display = 'block';
     }
 
     goBack(){

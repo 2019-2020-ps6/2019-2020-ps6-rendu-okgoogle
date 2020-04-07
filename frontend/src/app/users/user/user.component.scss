@@ -41,3 +41,17 @@ article{
     font-size: 0.7em;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .cards{
+    display: block;
+  }
+
+  .card{
+    display: block;
+  }
+
+  h2{
+    font-size: 0.7em;
+  }
+}

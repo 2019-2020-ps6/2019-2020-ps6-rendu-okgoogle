@@ -14,7 +14,14 @@ body {
 
 #indice{
   text-align: center;
-  position: relative;
+  //a voir si on rajoute un border
+  //border: solid 1px aqua;
+  background-color: skyblue;
+  border-radius: 10px;
+  width: 65%;
+  display: inherit;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .aide{
