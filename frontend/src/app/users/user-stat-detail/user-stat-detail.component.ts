@@ -12,7 +12,7 @@ import { Quiz } from 'src/models/quiz.model';
 })
 export class UserStatDetailComponent implements OnInit {
     public user: User;
-    public resSelected: Result = null;
+    public resSelected: Result;
 
     constructor(private route: ActivatedRoute,private statService: StatService) {
         const userid = this.route.snapshot.paramMap.get("userid");
@@ -20,7 +20,6 @@ export class UserStatDetailComponent implements OnInit {
         this.statService.setSelectedUser(userid)
         this.statService.userSelected$.subscribe((user)=>{
             this.user = user;
-            console.log(this.user)
             this.statService.setSelectedResultById(userid,resultid)
             this.statService.resSelected$.subscribe(res => {
                 this.resSelected = res
