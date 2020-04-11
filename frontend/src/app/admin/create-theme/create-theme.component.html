@@ -1,15 +1,21 @@
-<div class="card">
-    <h2>Create a new Theme</h2>
-    <form class="theme-form" [formGroup]="ThemeForm">
-      <label for="title">
-        Title <br>
-        <input class="input-custom" type="text" id="name" [formControlName]="'name'">
-      </label>
-      <br>
-      <button type="submit" class="button-card" (click)="addTheme()">Create</button>
-    </form>
+<div id="partie_creation_theme">
+  <div id="conteneur">
+    <div id="contenu">
+      <div id="verification"></div>
+      <h2 class="titre">Créer un nouveau thème</h2>
+      <form class="theme-form" [formGroup]="ThemeForm">
+        <input class="input-custom" type="text" id="name" [formControlName]="'name'" placeholder="Nom du thème">
+        <br>
+        <a class="button red" (click)="addTheme()">
+          Créer
+        </a>
+      </form>
+    </div>
   </div>
   <!-- Uncomment below to see your form structure and how it changes-->
-  <br><br>{{ThemeForm.getRawValue() | json}}
+  <!-- <br><br>{{ThemeForm.getRawValue() | json}} -->
+</div>
 
+<div id="partie_liste_theme">
   <app-theme-list></app-theme-list>
+</div>

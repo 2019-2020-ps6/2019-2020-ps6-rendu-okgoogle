@@ -64,6 +64,17 @@ export class QuizFormComponent implements OnInit {
 
     // Now, add your quiz in the list!
     this.quizService.addQuiz(quizToCreate.themeId.toString(),quizToCreate);
+
+    //confirmation création de thème
+    let divVerif = document.getElementById('verification');
+    let textElement = document.createElement("p");
+    var text = document.createTextNode("Le quiz a bien été crée !");
+
+    textElement.appendChild(text);
+    divVerif.appendChild(textElement);
+
+    //application de style css
+    divVerif.className = "verif";
   }
 
 }
