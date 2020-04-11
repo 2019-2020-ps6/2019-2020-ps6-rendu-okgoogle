@@ -19,12 +19,11 @@ export class ResultService implements OnInit {
   private quizFinal: Quiz;
   private quizSelected: Quiz;
   private questionSelected: Question;
-  private answersRes: Answer[] = [];
-  private questionsRes: Question[] = [];
   private TabAnswersQuestions: Answer[][] = [];
   private nbAide: number = 0;
   private ptrQuestion:number=0;
   public timer: number = 0;
+  public onPrevious: Boolean = false;
 
   public resultFinal$: Subject<Result> = new Subject();
   public quizSelected$: Subject<Quiz> = new Subject();
@@ -49,40 +48,36 @@ export class ResultService implements OnInit {
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
       this.quizSelected = quiz;
       this.quizSelected$.next(quiz);
-      this.quizFinal = this.clone(this.quizSelected)
-      this.quizFinal.questions = [];
       this.questionSelected = this.quizSelected.questions[this.ptrQuestion];
       this.questionSelected$.next(this.questionSelected);
-      this.quizFinal.questions[this.ptrQuestion] = {...this.questionSelected};
-      this.quizFinal.questions[this.ptrQuestion].answers = [];
       if(this.TabAnswersQuestions.length == 0){
         for(var i = 0; i<this.quizSelected.questions.length; i++){
-          this.TabAnswersQuestions.push(this.quizSelected.questions[i].answers);
+          this.TabAnswersQuestions.push( this.clone(this.quizSelected.questions[i].answers));
         }
       }
-
+      this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
+        this.quizFinal = quiz
+        for(var i =0; i< this.quizFinal.questions.length; i++){
+          this.quizFinal.questions[i].answers = [];
+        }
+        console.log(this.quizFinal)
+      });
     });
+
   }
   VerifyAnswer(answer: Answer){
     if(answer.isCorrect){
-
-      this.quizFinal.questions[this.ptrQuestion].answers.push(answer)
-      this.ptrQuestion++;
-      this.questionSelected = {...this.quizSelected.questions[this.ptrQuestion]};
-
-
-      this.questionSelected$.next(this.questionSelected)
-      console.log(this.ptrQuestion)
-      console.log(this.quizSelected.questions.length)
-      
-      if(this.ptrQuestion === this.quizSelected.questions.length){
-        this.ptrQuestion = 0;
-        this.questionSelected = this.quizSelected.questions[this.ptrQuestion];
-        this.questionSelected$.next(this.questionSelected)
+      if(this.ptrQuestion === this.quizSelected.questions.length-1){
+        this.quizFinal.questions[this.ptrQuestion].answers.push(answer)
         this.addResult(this.timer)
       }else{
-        this.quizFinal.questions.push({...this.questionSelected})
-        this.quizFinal.questions[this.ptrQuestion].answers = [];
+        console.log(this.quizFinal)
+        this.quizFinal.questions[this.ptrQuestion].answers.push(answer)
+        this.ptrQuestion++;
+        this.questionSelected = {...this.quizSelected.questions[this.ptrQuestion]};
+        this.questionSelected$.next(this.questionSelected)
+        console.log(this.quizFinal)
+        console.log(this.ptrQuestion)
       }
     }else{
       this.quizFinal.questions[this.ptrQuestion].answers.push(answer)
@@ -101,27 +96,34 @@ export class ResultService implements OnInit {
   }
 
   previousQuestion(){
+    this.onPrevious = true;
     if(this.ptrQuestion > 0){
       this.ptrQuestion--;
-      var arrAnswer = [...this.TabAnswersQuestions[this.ptrQuestion]];
+      var arrAnswer = this.clone(this.TabAnswersQuestions[this.ptrQuestion]);
       this.questionSelected = this.quizSelected.questions[this.ptrQuestion];
       this.questionSelected.answers = arrAnswer;
       this.questionSelected$.next(this.questionSelected)
     }
   }
 
-
   addResult(dureeJeu: number){
     this.resultFinal.userId = sessionStorage.getItem("user_id");
-    this.resultFinal.quiz = this.quizFinal
+    this.resultFinal.quiz = this.clone(this.quizFinal)
     this.resultFinal.nbAide = this.nbAide;
     this.resultFinal.dureeJeu = dureeJeu;
     this.resultFinal.dateJeu = new Date().toString();
+    console.log(this.quizFinal)
+
     this.http.post(this.lien +'result/', this.resultFinal).subscribe();
     dureeJeu = 0;
+    this.ptrQuestion = 0;
+    this.questionSelected = this.quizSelected.questions[this.ptrQuestion];
+    this.questionSelected$.next(this.questionSelected)
     this.quizFinal.questions = [];
     this.TabAnswersQuestions = [];
   }
+
+
   clone(obj) {
     if (null == obj || "object" != typeof obj) return obj;
     var copy = obj.constructor();
@@ -129,5 +131,6 @@ export class ResultService implements OnInit {
         if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
     }
     return copy;
-}
+  }
+
 }
