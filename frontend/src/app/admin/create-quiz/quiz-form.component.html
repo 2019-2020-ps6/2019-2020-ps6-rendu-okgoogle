@@ -1,20 +1,24 @@
-<div class="card">
-  <h2>Create a new Quiz</h2>
-  <form class="quiz-form" [formGroup]="quizForm">
-    <label for="title">
-      Title <br>
-      <input class="input-custom" type="text" id="name" [formControlName]="'name'">
-    </label>
-    <!-- <label for="theme">
+<div id="partie_creation_quiz">
+  <div id="conteneur">
+    <div id="contenu">
+      <div id="verification"></div>
+      <h2 class="titre">Créer un nouveau quiz</h2>
+      <form class="quiz-form" [formGroup]="quizForm">
+          <input class="input-custom" type="text" id="name" [formControlName]="'name'">
+        <!-- <label for="theme">
       <br> Theme: <br>
       <select [formControlName]="'themeId'">
         <option *ngFor="let theme of lesThemes"  [value]="theme.id">{{theme.name}}</option>
       </select>
     </label> -->
-    <br>
-    <button type="submit" class="button-card" (click)="addQuiz()">Create</button>
-  </form>
+        <br>
+        <a class="button red" (click)="addQuiz()">
+          Créer
+        </a>
+      </form>
+    </div>
+  </div>
 </div>
-<!-- Uncomment below to see your form structure and how it changes-->
-<br><br>{{quizForm.getRawValue() | json}}
 
+<!-- Uncomment below to see your form structure and how it changes-->
+<!-- <br><br>{{quizForm.getRawValue() | json}} -->
