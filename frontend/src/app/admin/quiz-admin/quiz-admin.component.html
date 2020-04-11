@@ -5,7 +5,11 @@
 
         <p *ngIf="quiz.creationDate != null"> Date: {{quiz.creationDate | date:'mediumDate'}} </p>
     </h2>
-    <button class="button-card" (click)="editQuiz()">Edit</button>
-    <button class="button-card" (click)="deleteQuiz(quiz)">Delete</button>
-    <button class="button-card" (click)="selectQuiz(quiz)">Select</button>
+
+    <div id="boutons">
+        <a class="button red" (click)="editQuiz()">Edit</a>
+        <a class="button red" (click)="deleteQuiz(quiz)">Delete</a>
+        <a class="button red" (click)="selectQuiz(quiz)">Select</a>
+    </div>
+
 </div>
