@@ -1,39 +1,46 @@
-<div class="card">
-    <form class="question-form" [formGroup]="questionForm">
-        <h2>Create a new Question</h2>
-        <label for="title">
-            Title
-            <input type="text" [formControlName]="'label'">
-        </label>
-        <br>
-        <label for="indice">
-            Indice
-            <input type="text" [formControlName]="'indice'">
-        </label>
-        <br>
-        
+<div id="partie_creation_question">
+    <div id="conteneur">
+        <div id="contenu">
+            <form class="question-form" [formGroup]="questionForm">
+                <h2>Créer une question</h2>
+                <label for="title">
+                    Titre
+                    <input type="text" [formControlName]="'label'">
+                </label>
+                <br>
+                <label for="indice">
+                    Indice
+                    <input type="text" [formControlName]="'indice'">
+                </label>
+                <br>
 
-        <!--Answer Part-->
-        <button id="AnswerPart" class="button-card" (click) ="addAnswer()">Add answers</button>
 
-        <div class="answer" formArrayName="answers">
-            <!-- On recupere le getter answers de (get answers()) et avec controls on parcours avec un index -->
-            <div *ngFor="let answer of answers.controls; let i = index">
-                <div style="padding: 20px;" class="answer-form" [formGroupName]="i">
-                    Reponse {{i+1}}: <br> <input placeholder="La réponse" placeholder="Réponse" type="text" [formControlName]="'value'">
-                    <br>
-                    Lien vers l'image: 
-                    <input type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'" (change)="verifyUrl(i)" >
-                    Correct
-                    <input type="checkbox" [formControlName]="'isCorrect'">
+                <!--Answer Part-->
+                <a class="button red" id="AnswerPart" (click)="addAnswer()">Ajout de réponses</a>
+
+                <div class="answer" formArrayName="answers">
+                    <!-- On recupere le getter answers de (get answers()) et avec controls on parcours avec un index -->
+                    <div *ngFor="let answer of answers.controls; let i = index">
+                        <div style="padding: 20px;" class="answer-form" [formGroupName]="i">
+                            Reponse {{i+1}}: <br> <input placeholder="La réponse" placeholder="Réponse" type="text"
+                                [formControlName]="'value'">
+                            <br>
+                            Lien vers l'image:
+                            <input type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'"
+                                (change)="verifyUrl(i)">
+                            <label id="label">Correct</label> 
+                            <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="isChecked()">
+                        </div>
+                    </div>
                 </div>
-            </div>
+                <!--Answer Part-->
+
+
+                <a class="button red" (click)="addQuestion()">Créer</a>
+            </form>
+            <div id="ImageUpload"></div>
+
         </div>
-        <!--Answer Part-->
-
-
-        <button class="button-card" (click)="addQuestion()">Create</button>
-    </form>
-    <div id="ImageUpload"></div>
+    </div>
 </div>
 <br><br>{{questionForm.getRawValue() | json}}

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
 import { Question } from 'src/models/question.model';
 import { HttpClient } from '@angular/common/http';
+import { TestBed } from '@angular/core/testing';
 
 @Component({
   selector: 'app-question-form',
@@ -58,6 +59,36 @@ export class QuestionFormComponent implements OnInit{
 
   addAnswer() {
     this.answers.push(this.createAnswer());
+    this.notChecked();
+  }
+
+  isChecked(){
+    //changeement de background pour la bonne réponse
+    //var element = <HTMLInputElement> document.getElementById("correctOrNot");
+    var element = <HTMLInputElement> document.querySelector('.correctOrNot');
+
+
+    if(element.checked){
+      var parent = element.parentElement;
+      parent.style.backgroundColor = "LightGreen";
+    }else{
+      var parent = element.parentElement;
+      parent.removeChild(element);
+      var parentText = document.getElementById("label").parentElement;
+      parentText.removeChild(document.getElementById("label"));
+      // var newText = document.createElement("label");
+      // newText.innerText = "incorrect";
+      // parentText.appendChild(newText);
+      //parent.style.backgroundColor = "#aaa";
+    }
+  }
+
+  notChecked(){
+    var element = <HTMLInputElement> document.querySelector('.correctOrNot');
+    var parent = element.parentElement;
+    parent.removeChild(element);
+    var parentText = document.getElementById("label").parentElement;
+    parentText.removeChild(document.getElementById("label"));
   }
 
   addQuestion(i:number) {
