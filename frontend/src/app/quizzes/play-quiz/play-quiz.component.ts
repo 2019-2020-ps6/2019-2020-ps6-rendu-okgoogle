@@ -19,17 +19,10 @@ import {Location} from '@angular/common';
     public quiz: Quiz;
     public curTheme: Theme;
     public questionSelected: Question;
+    public ptrQuestion: number = 0;
 
     constructor(private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
-      const themeid = this.route.snapshot.paramMap.get('themeid');
-      const quizid = this.route.snapshot.paramMap.get('quizid');
-      //this.themeService.setSelectedTheme(themeid.toString())
-      this.themeService.themeSelected$.subscribe((theme)=>this.curTheme = theme)
-      this.resService.setSelectedQuiz(quizid.toString(),themeid.toString());
-      this.resService.quizSelected$.subscribe((quiz) => {
-        this.quiz = quiz
-        this.resService.questionSelected$.subscribe((question) => this.questionSelected = question)
-      });      
+
     }
   
     ngOnInit() {    
@@ -42,15 +35,25 @@ import {Location} from '@angular/common';
         this.quiz = quiz
         this.resService.questionSelected$.subscribe((question) => this.questionSelected = question)
       });
+      
     }
 
     selectAnswer(answer: Answer){
+
       var zoomElement = document.querySelector("#zoom")
       zoomElement.setAttribute("value", "20");
 
       var divIndice = document.querySelector("#indice")
       if(divIndice.textContent != "")
         divIndice.innerHTML="";
+
+        
+      
+        if(answer.isCorrect && this.ptrQuestion != this.quiz.questions.length-1){
+          document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("completed")
+          this.ptrQuestion++;
+          document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("active")
+        }
 
       if( this.questionSelected.id != this.quiz.questions[this.quiz.questions.length-1].id && answer.isCorrect === true){
         document.body.querySelector('#modal-container').removeAttribute('class')
@@ -75,6 +78,7 @@ import {Location} from '@angular/common';
           this.goBack();
         },3000)
       }
+      
       this.resService.setSelectedAnswer(this.questionSelected.id.toString(),answer.id.toString())
     }
 
@@ -95,7 +99,7 @@ import {Location} from '@angular/common';
 
     changeFont(event){
       console.log(event.target.value)
-      var pInSpan = document.querySelectorAll(".reponse")
+      var pInSpan = document.querySelectorAll(".zommable")
 
       for (var i in pInSpan) {
         pInSpan[i].setAttribute("style", "font-size:"+event.target.value+"px;");

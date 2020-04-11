@@ -13,26 +13,34 @@ import { ThemeService } from 'src/services/theme.service';
 })
 export class UserStatComponent implements OnInit {
   public user: User;
-    public result: Result[] = [];
-    public themeFavori: Theme;
-    public resSelected: Result = null;
+  public result: Result[] = [];
+  public themeFavori: Theme;
+  public resSelected: Result = null;
 
   constructor(private route: ActivatedRoute,private router: Router,private statService: StatService,private themeService: ThemeService) {
     const id = this.route.snapshot.paramMap.get("userid");
     this.statService.setSelectedUser(id)
     this.statService.userSelected$.subscribe((user)=>{
       this.user = user;
-      console.log(this.user)
       this.statService.setSelectedResultByUserId(id)
       this.statService.resultsSelected$.subscribe(res => {
         this.result = res
         this.getThemeFavori()
-        console.log(res)
       })
     })
   }
 
   ngOnInit() {  
+    const id = this.route.snapshot.paramMap.get("userid");
+    this.statService.setSelectedUser(id)
+    this.statService.userSelected$.subscribe((user)=>{
+      this.user = user;
+      this.statService.setSelectedResultByUserId(id)
+      this.statService.resultsSelected$.subscribe(res => {
+        this.result = res
+        this.getThemeFavori()
+      })
+    })
   }
 
   SelectedQuiz(i:number){
