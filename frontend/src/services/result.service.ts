@@ -67,17 +67,13 @@ export class ResultService implements OnInit {
   }
   VerifyAnswer(answer: Answer){
     if(answer.isCorrect){
+      this.quizFinal.questions[this.ptrQuestion].answers.push(answer)
       if(this.ptrQuestion === this.quizSelected.questions.length-1){
-        this.quizFinal.questions[this.ptrQuestion].answers.push(answer)
         this.addResult(this.timer)
       }else{
-        console.log(this.quizFinal)
-        this.quizFinal.questions[this.ptrQuestion].answers.push(answer)
         this.ptrQuestion++;
         this.questionSelected = {...this.quizSelected.questions[this.ptrQuestion]};
         this.questionSelected$.next(this.questionSelected)
-        console.log(this.quizFinal)
-        console.log(this.ptrQuestion)
       }
     }else{
       this.quizFinal.questions[this.ptrQuestion].answers.push(answer)

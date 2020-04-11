@@ -94,7 +94,13 @@ import {Location} from '@angular/common';
     }
 
     questionPrecedente(){
-      this.resService.previousQuestion()
+      if(this.ptrQuestion > 0){
+        this.resService.previousQuestion()
+        this.ptrQuestion--;
+        document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("active")
+        document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.remove("completed")
+        document.querySelector(".progressbar-steps").children[this.ptrQuestion+1].classList.remove("active")
+      }
     }
 
     changeFont(event){
