@@ -1,17 +1,23 @@
-<div class="card">
-    <h2>
-        <i class="fab fa-leanpub"></i>
-        {{question.label}}
-    </h2>
-    <p>Indice: {{question.indice}}</p>
-    <div class="answer" *ngFor="let answer of question.answers">
-        <span>
-            <i class="fab fa-leanpub"></i>
-            {{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i class="far fa-check-square"></i></ng-container> <br>
-        </span>
+<div id="partie_question">
+    <div id="conteneur">
+        <div id="contenu">
+            <h2 class="titre">
+                <i class="fab fa-leanpub"></i>
+                {{question.label}}
+            </h2>
+            <p class="indice">Indice: {{question.indice}}</p>
+            <div class="answer" *ngFor="let answer of question.answers">
+                <li>
+                    {{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i
+                            class="far fa-check-square" style="color: lime;"></i></ng-container> <br>
+                    </li>
+            </div>
+
+            <div id="boutons">
+                <a class="button red" *ngIf="curStatus === 'admin'" (click)="editQuestion()">Edit</a>
+                <a class="button red" *ngIf="curStatus === 'admin'" (click)="deleteQuestion()">Delete</a>
+            </div>
+        </div>  
     </div>
-    
-    <button *ngIf="curStatus === 'admin'" class="button-card" (click)="editQuestion()">Edit</button>
-    <button *ngIf="curStatus === 'admin'" class="button-card" (click)="deleteQuestion()">Delete</button>
 
 </div>
