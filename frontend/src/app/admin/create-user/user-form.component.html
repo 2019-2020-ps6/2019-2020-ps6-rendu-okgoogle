@@ -1,23 +1,29 @@
 <body>
-  <h1>Créer un nouvel accueilli</h1>
-  <form class="cf" [formGroup]="userForm">
-    <div class="half left cf">
-      <input type="text" id="name" [formControlName]="'name'" placeholder="Nom">
-      <input type="number" id="age" [formControlName]="'age'" placeholder="Age">
-      Sexe :
-      <input  type="radio" id="F" name="sexe" value="F" [formControlName]="'sexe'" class="rad"/> <label for="F">
-        Feminin</label>
-      <input  type="radio" id="M" name="sexe" value="M" [formControlName]="'sexe'" class="rad"/> <label for="M">
-        Masculin</label>
+  <div id="all">
+    <div id="partie_creation_accueilli">
+      <div id="contenu">
+        <h1>Créer un nouvel accueilli</h1>
+        <form class="cf" [formGroup]="userForm">
+          <div class="half left cf">
+            <input type="text" id="name" [formControlName]="'name'" placeholder="Nom">
+            <input type="number" id="age" [formControlName]="'age'" placeholder="Age">
+            Sexe :
+            <input  type="radio" id="F" name="sexe" value="F" [formControlName]="'sexe'" class="rad"/> <label for="F">
+              Feminin</label>
+            <input  type="radio" id="M" name="sexe" value="M" [formControlName]="'sexe'" class="rad"/> <label for="M">
+              Masculin</label>
+          </div>
+          <div class="half right cf">
+            <input type="text" required id="surname" [formControlName]="'surname'" placeholder="Prénom">
+          </div>
+          <textarea type="text" id="description" name="description" placeholder="Description"
+            [formControlName]="'description'"></textarea>
+          <input *ngIf="goal === 'edit'" type="submit" value="Modifier" id="input-submit" (click)="editUser()">
+          <input *ngIf="goal === 'create'" type="submit" value="Créer" id="input-submit" (click)="addUser()">
+        </form>
+      </div>
     </div>
-    <div class="half right cf">
-      <input type="text" required id="surname" [formControlName]="'surname'" placeholder="Prénom">
-    </div>
-    <textarea type="text" id="description" name="description" placeholder="Description"
-      [formControlName]="'description'"></textarea>
-    <input *ngIf="goal === 'edit'" type="submit" value="Modifier" id="input-submit" (click)="editUser()">
-    <input *ngIf="goal === 'create'" type="submit" value="Créer" id="input-submit" (click)="addUser()">
-  </form>
+  </div>
 </body>
 
 

@@ -38,13 +38,14 @@ article{
   }
 
   h2{
-    font-size: 0.7em;
+    font-size: 1.5em;
   }
 }
 
 @media screen and (max-width: 800px) {
   .cards{
     display: block;
+    width: 100%;
   }
 
   .card{
@@ -52,6 +53,6 @@ article{
   }
 
   h2{
-    font-size: 0.7em;
+    font-size: 1.5em;
   }
 }

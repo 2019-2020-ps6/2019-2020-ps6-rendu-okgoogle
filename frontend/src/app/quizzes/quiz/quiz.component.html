@@ -7,8 +7,7 @@
     </h2>
     <button class="button-card" (click)="selectQuiz()">Select</button>
 </div> -->
-
-<label (click)="selectQuiz()">
+<div style="width: 100%; height: 100%;" (click)="selectQuiz()">
     <label style="color: #3551C2;">{{quiz.name}}</label>
     <label *ngIf="quiz.creationDate != null"> Date: {{quiz.creationDate | date:'mediumDate'}} </label>
-</label>
+</div>

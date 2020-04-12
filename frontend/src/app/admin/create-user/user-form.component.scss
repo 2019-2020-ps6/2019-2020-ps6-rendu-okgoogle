@@ -12,8 +12,20 @@ body {
   background: #111;
   font-weight: 500;
   font-size: 1.05em;
-  font-family: 'Raleway', Arial, sans-serif;
 }
+
+#partie_creation_accueilli{
+  background-color: steelblue;
+  padding: 1em;
+  margin: 1em;
+  border-radius: 1em;
+}
+
+#partie_creation_accueilli label{
+  color: #000;
+}
+
+
 
 #container {
   position: absolute;
@@ -168,20 +180,18 @@ textarea {
 
 html, body {
   background: #f1f1f1;
-  font-family: 'Merriweather', sans-serif;
   padding: 1em;
 }
 
 label{
-  font-family: 'Merriweather', sans-serif;
   color: #a8a8a8;
   font-size: 15px;
 }
 
 h1 {
   text-align: center;
-  color: #a8a8a8;
-  text-shadow: 1px 1px 0 white;
+  color: #000;
+  //text-shadow: 1px 1px 0 white;
 }
 
 form {
@@ -199,7 +209,6 @@ form input, form textarea {
   display: block;
   width: 100%;
   margin-top: 1em;
-  font-family: 'Merriweather', sans-serif;
   -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
@@ -213,6 +222,7 @@ form input:focus, form textarea:focus {
 form #input-submit {
   color: white;
   background: #e74c3c;
+  font-family: "Baloo Thambi 2", cursive;
   cursor: pointer;
 }
 form #input-submit:hover {

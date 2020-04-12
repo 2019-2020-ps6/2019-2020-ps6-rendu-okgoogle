@@ -21,6 +21,16 @@
 }
 
 
+#partie_top{
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#partie_top h1{
+    text-align: center;
+    margin: 0;
+}
 
 .card-circle{
     text-align:center;
@@ -138,11 +148,14 @@
         width:100%;
         margin-left: auto;
         margin-right: auto;
+        
     }
 
     .card-circle{
         width:150px;
         height:150px;
+        margin-top: 2em;
+        margin-bottom: auto;
    }
 
    .card-circle .card-title{

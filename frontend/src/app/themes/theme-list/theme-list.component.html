@@ -1,18 +1,22 @@
-<div id="all">
-    <h1 class="titreTheme">
-        Liste des Thèmes
-    </h1>
-    <div>
-        <div style="display: flex; justify-content: center;">
-            <input class="form-control" type="text" name="search" [(ngModel)]="searchTheme" autocomplete="off" placeholder="&#61442; Recherche de theme">
-        </div>
-    </div>
-    <div class="theme-list">
-        <div class="theme" *ngFor="let theme of themesList | filter:searchTheme">
-            <!--Inputs & Output allow communication between parent & child components.-->
-            <!--More information: https://angular.io/guide/component-interaction-->
-            <app-theme [theme]="theme" (themeSelected)="themeSelected($event)" (themeDeleted)="themeDeleted($event)">
-            </app-theme>
+<div id="partie_liste_theme">
+    <div id="conteneur">
+        <div id="contenu">
+            <h1 class="titreTheme">
+                Liste des Thèmes
+            </h1>
+            <div>
+                <div style="display: flex; justify-content: center;">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchTheme" autocomplete="off" placeholder="&#61442; Recherche de theme">
+                </div>
+            </div>
+            <div class="theme-list">
+                <div class="theme" *ngFor="let theme of themesList | filter:searchTheme">
+                    <!--Inputs & Output allow communication between parent & child components.-->
+                    <!--More information: https://angular.io/guide/component-interaction-->
+                    <app-theme [theme]="theme" (themeSelected)="themeSelected($event)" (themeDeleted)="themeDeleted($event)">
+                    </app-theme>
+                </div>
+            </div>
         </div>
     </div>
 </div>
