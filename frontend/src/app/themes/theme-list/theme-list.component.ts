@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class ThemeListComponent implements OnInit {
 
   public themesList: Theme[] = [];
+  public searchTheme: string;
 
   constructor(private route: ActivatedRoute,private router:Router, public themeService: ThemeService) {  
     this.themeService.setThemesFromUrl()

@@ -11,6 +11,8 @@ import { Quiz } from 'src/models/quiz.model';
 })
 export class QuestionListComponent implements OnInit {
 
+  public searchQuestion: string;
+
   @Input()
   quiz:Quiz
 

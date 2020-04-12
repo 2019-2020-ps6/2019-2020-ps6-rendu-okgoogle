@@ -38,6 +38,10 @@ import { AnswerFormComponent } from './answers/answer-form/answer-form.component
 
 import { AppRoutingModule } from './app.routing.module';
 
+import { FormsModule } from '@angular/forms';
+
+// search module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,7 +78,9 @@ import { AppRoutingModule } from './app.routing.module';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

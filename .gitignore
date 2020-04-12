@@ -46,3 +46,7 @@ testem.log
 Thumbs.db
 
 frontend/node_modules/
+
+frontend/src/app/admin/edit-quiz/QuatreImgUnequestion.jpg
+
+frontend/src/app/admin/edit-quiz/UneImgQuatreReponse.jpg

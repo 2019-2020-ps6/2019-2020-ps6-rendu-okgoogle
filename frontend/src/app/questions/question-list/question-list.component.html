@@ -1,5 +1,10 @@
 <div class="question-list">
-    <div class="question" *ngFor="let question of quiz.questions">
+    <div>
+        <div style="display: flex; justify-content: center;">
+            <input class="form-control" type="text" name="search" [(ngModel)]="searchQuestion" autocomplete="off" placeholder="&#61442; Recherche de question">
+        </div>
+    </div>
+    <div class="question" *ngFor="let question of quiz.questions | filter:searchQuestion">
         <!--Inputs & Output allow communication between parent & child components.-->
         <!--More information: https://angular.io/guide/component-interaction-->
         <app-question (questionDeleted)="questionDeletion($event)" (questionEdited)="questionEdition($event)" [question]="question"></app-question>
