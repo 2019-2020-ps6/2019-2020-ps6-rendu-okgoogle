@@ -722,3 +722,15 @@ a:hover
   
   
   
+  .rejouer{
+    display: none;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .quitter{
+    display: none;
+    position: absolute;
+    margin-left: 210px;
+    z-index: 1;
+  }

@@ -35,7 +35,6 @@ import {Location} from '@angular/common';
         this.quiz = quiz
         this.resService.questionSelected$.subscribe((question) => this.questionSelected = question)
       });
-      
     }
 
     selectAnswer(answer: Answer){
@@ -70,13 +69,15 @@ import {Location} from '@angular/common';
         document.body.querySelector('.modal').firstElementChild.removeAttribute('src')
         document.body.querySelector('.modal').firstElementChild.setAttribute('src', "https://thumbs.dreamstime.com/b/banni%C3%A8re-de-bravo-91022451.jpg")
         document.body.querySelector('.modal').firstElementChild.setAttribute('width', "300")
+        document.body.querySelector('.rejouer').setAttribute('style', "display:block;")
+        document.body.querySelector('.quitter').setAttribute('style', "display:block;")
         document.body.querySelector('#modal-container').classList.add('modalF')
         document.body.classList.add('modal-active')
         setTimeout(()=>{
           document.body.querySelector('#modal-container').classList.add('out');
           document.body.classList.remove('modal-active')
-          this.goBack();
-        },3000)
+          this.goBack()
+        },100000)
       }
       
       this.resService.setSelectedAnswer(this.questionSelected.id.toString(),answer.id.toString())
@@ -130,6 +131,10 @@ import {Location} from '@angular/common';
       var mainContent = document.querySelector("html")
       mainContent.classList.add("contrast-white");
       mainContent.classList.remove("contrast-black");
+    }
+
+    reloadPage(){
+      document.location.reload(true)
     }
 
     goBack(){
