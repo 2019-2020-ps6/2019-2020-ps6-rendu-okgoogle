@@ -14,22 +14,25 @@ export class QuestionFormComponent implements OnInit{
 
 
   public questionForm: FormGroup;
-  public urlImage: string ;
+  private mode: string = "Image question et text pour question";
 
   constructor(private renderer: Renderer2,private http: HttpClient,public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
     this.initializeQuestionForm();
+
   }
 
   private initializeQuestionForm() {
     this.questionForm = this.formBuilder.group({
       label: ['', Validators.required],
+      imgUrl: '',
       indice: ['', Validators.required],
       answers: this.formBuilder.array([])
     });
   }
 
   ngOnInit() {
+
   }
 
   get answers() {
@@ -48,13 +51,33 @@ export class QuestionFormComponent implements OnInit{
     divAnswer.appendChild(img)
     ParentNode.appendChild(divAnswer)
   }
+
+  verifyUrlQuestion(){
+    var ParentNode = document.querySelector("#ImageUpload")
+    var divAnswer = document.createElement("div")
+    divAnswer.className="ImageUp"
+    divAnswer.innerHTML="Question image uploadé: "
+    var img = document.createElement("img")
+    img.className="imageQuestion"
+    img.setAttribute("src", this.questionForm.get(['imgUrl']).value);
+    img.setAttribute("style", "max-width:100px")
+    divAnswer.appendChild(img)
+    ParentNode.appendChild(divAnswer)
+  }
   
   private createAnswer() {
-    return this.formBuilder.group({
-      value: '',
-      imageUrl: '',
-      isCorrect: false,
-    });
+    if(this.mode === "Image question et text pour question"){
+      return this.formBuilder.group({
+        value: '',
+        isCorrect: false,
+      });
+    }else{
+      return this.formBuilder.group({
+        value: '',
+        imageUrl: '',
+        isCorrect: false,
+      });
+    }
   }
 
   addAnswer() {
@@ -98,10 +121,23 @@ export class QuestionFormComponent implements OnInit{
         ParentNode.removeChild(child); 
         child = ParentNode.lastElementChild; 
     } 
+
     if(this.questionForm.valid) {
       const question = this.questionForm.getRawValue() as Question;
       this.quizService.addQuestion(question);
       this.initializeQuestionForm();
+    }
+  }
+
+  UneImageQuatreText(){
+    if( this.mode === "Text question et image pour reponse"){
+      this.mode = "Image question et text pour question";
+    }
+  }
+
+  QuatreImageUneQuestionText(){
+    if( this.mode === "Image question et text pour question"){
+      this.mode = "Text question et image pour reponse";
     }
   }
 }

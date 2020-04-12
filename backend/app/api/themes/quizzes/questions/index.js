@@ -4,18 +4,6 @@ const { Answer, Quiz, Question } = require('../../../../models')
 const manageAllErrors = require('../../../../utils/routes/error-management')
 const AnswersRouter = require('./answers')
 const { filterQuestionsFromQuizz, getQuestionFromQuiz } = require('./manager')
-const multer = require('multer')
-var storage = multer.diskStorage({
-  destination: function(req, file,cb){
-    cb(null, '../../../../img/')
-  },
-  filename: function(req, file,cd){
-    cb(null, Date.now()+file.originalname);
-  }
-
-})
-
-const upload = multer({storage : storage})
 
 const router = new Router({ mergeParams: true })
 
@@ -40,11 +28,12 @@ router.get('/:questionId', (req, res) => {
 
 router.post('/',(req, res) => {
   try {
-    // Check if quizId exists, if not it will throw a NotFoundError
+
     Quiz.getById(req.params.quizId)
     const quizId = parseInt(req.params.quizId, 10)
-    let question = Question.create({ label: req.body.label, indice: req.body.indice, quizId })
-    // If answers have been provided in the request, we create the answer and update the response to send.
+
+    let question = Question.create({label: req.body.label, imgUrl: req.body.imgUrl,  indice: req.body.indice,quizId})
+
     if (req.body.answers && req.body.answers.length > 0) {
       const answers = req.body.answers.map((answer) => Answer.create({ ...answer, questionId: question.id }))
       question = {...question, answers}
@@ -54,16 +43,6 @@ router.post('/',(req, res) => {
     manageAllErrors(res, err)
   }
 })
-
-// router.post('/images', upload.array('files'),(req, res) => {
-//   try {
-//     if(req.files)
-//       res.status(201).json("OK")
-    
-//   } catch (err) {
-//     manageAllErrors(res, err)
-//   }
-// })
 
 router.put('/:questionId', (req, res) => {
   try {

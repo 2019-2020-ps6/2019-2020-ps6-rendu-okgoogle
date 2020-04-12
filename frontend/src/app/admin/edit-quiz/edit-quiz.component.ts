@@ -14,6 +14,8 @@ export class editQuizComponent implements OnInit {
 
   public quiz: Quiz;
   public curTheme: Theme
+  public QuatreImg1question = "./QuatreImgUnequestion.jpg";
+  public UneImg4question = "./UneImgQuatreReponse.jpg";
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private themeService: ThemeService) { 
     const quizid = this.route.snapshot.paramMap.get('quizid');

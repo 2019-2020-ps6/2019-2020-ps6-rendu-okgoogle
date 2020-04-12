@@ -3,9 +3,28 @@
         <div id="contenu">
             <form class="question-form" [formGroup]="questionForm">
                 <h2>Créer une question</h2>
+                <div>
+                    <p style="text-align: center;">Modeles de quiz (Cliquez sur le mode)</p>
+                    <div style="display: flex; flex-flow: row wrap;justify-content: center;" >
+                        <div (click)="QuatreImageUneQuestionText()" >
+                            <img style="max-width: 200px;" src="https://zupimages.net/up/20/15/rcca.jpg" alt="">
+                        </div>
+                        &nbsp;
+                        &nbsp;
+                        &nbsp;
+                        <div (click)="UneImageQuatreText()" >
+                            <img style="max-width: 200px;" src="https://zupimages.net/up/20/15/em0f.jpg" alt="">
+                        </div>
+                    </div> 
+                    <p style="text-align: center;font-weight: bold;">Mode: {{mode}}</p>
+                </div>
                 <label for="title">
                     Titre
                     <input type="text" [formControlName]="'label'">
+                </label>
+                <label for="imageUrlQuestion">
+                    <input *ngIf="mode === 'Image question et text pour question'" class="imgQuestion" type="text" placeholder="Lien vers l'image" [formControlName]="'imgUrl'"
+                    (change)="verifyUrlQuestion()">
                 </label>
                 <br>
                 <label for="indice">
@@ -25,8 +44,7 @@
                             Reponse {{i+1}}: <br> <input placeholder="La réponse" placeholder="Réponse" type="text"
                                 [formControlName]="'value'">
                             <br>
-                            Lien vers l'image:
-                            <input type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'"
+                            <input *ngIf="mode === 'Text question et image pour reponse'" class="imgReponse" type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'"
                                 (change)="verifyUrl(i)">
                             <label id="label">Correct</label> 
                             <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="isChecked()">
