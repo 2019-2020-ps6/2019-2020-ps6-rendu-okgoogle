@@ -18,9 +18,7 @@
             <ol>
                 <div class="quiz" *ngFor="let quiz of quizList | filter:searchQuiz">
                     <li>
-                        <a>
                             <app-quiz [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizEdited($event)" (quizDeleted)="quizDeleted($event)"></app-quiz>
-                        </a>
                     </li>
                 </div>
             </ol>

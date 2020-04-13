@@ -21,6 +21,7 @@ import {Location} from '@angular/common';
     public questionSelected: Question;
     public ptrQuestion: number = 0;
     public quizFini = false;
+    public timerPopup = 3;
     
     constructor(private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
 
@@ -58,11 +59,20 @@ import {Location} from '@angular/common';
       if( this.questionSelected.id != this.quiz.questions[this.quiz.questions.length-1].id && answer.isCorrect === true){
         document.body.querySelector('#modal-container').removeAttribute('class')
         document.body.querySelector('#modal-container').classList.add('modalF')
+        var interval = setInterval(()=> {
+            this.timerPopup--;
+            if (this.timerPopup == 0){
+              clearInterval(interval);
+              return;
+            } 
+        }, 1000);
         document.body.classList.add('modal-active')
         setTimeout(()=>{
           document.body.querySelector('#modal-container').classList.add('out');
           document.body.classList.remove('modal-active')
-        },1000)
+          
+        },3000)
+        this.timerPopup = 3;
       }
       else if(this.questionSelected.id === this.quiz.questions[this.quiz.questions.length-1].id && answer.isCorrect === true){
         document.body.querySelector('#modal-container').removeAttribute('class')

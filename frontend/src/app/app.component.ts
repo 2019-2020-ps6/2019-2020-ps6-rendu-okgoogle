@@ -27,5 +27,4 @@ export class AppComponent {
     mainContent.classList.add("contrast-white");
     mainContent.classList.remove("contrast-black");
   }
-
 }

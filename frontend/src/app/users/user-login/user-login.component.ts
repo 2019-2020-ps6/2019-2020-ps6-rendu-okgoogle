@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { Router } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent implements OnInit {
+
 
   constructor(private route:Router, public userService: UserService) {
 
@@ -20,9 +21,12 @@ export class UserLoginComponent implements OnInit {
     sessionStorage.setItem("status", "admin");
     this.route.navigate(['main-admin'])
   }
+  
   setStdUser(): void{
     sessionStorage.setItem("status", "user");
     this.route.navigate(['user-list'])
   }
+
+
 
 }
