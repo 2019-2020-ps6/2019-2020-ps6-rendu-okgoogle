@@ -17,7 +17,6 @@ export class editQuestionComponent implements OnInit {
   public question:Question
   public questionForm: FormGroup;
 
-
   constructor(private _location: Location,private route: ActivatedRoute, private quizService: QuizService,private themeService: ThemeService, private formBuilder: FormBuilder) { 
       const themeid = this.route.snapshot.paramMap.get('themeid');
       const quizid = this.route.snapshot.paramMap.get('quizid');
@@ -32,7 +31,7 @@ export class editQuestionComponent implements OnInit {
   private initializeQuestionForm() {
     this.questionForm = this.formBuilder.group({
       label: this.question.label,
-      answers: this.question.answers
+      indice: this.question.indice,
     });
   }
   
@@ -41,12 +40,12 @@ export class editQuestionComponent implements OnInit {
   }
 
   editQuestion(){
-    
     if(this.questionForm.valid) {
       const themeid = this.route.snapshot.paramMap.get('themeid');
       const quizid = this.route.snapshot.paramMap.get('quizid');
       const questionid = this.route.snapshot.paramMap.get('questionid');
       const question = this.questionForm.getRawValue() as Question;
+      question.quizId = parseInt(quizid);
       this.quizService.editQuestion(themeid,quizid,questionid,this.question)
       this.back_click()
     }

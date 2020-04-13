@@ -12,7 +12,6 @@ import {CreateThemeComponent} from './admin/create-theme/create-theme.component'
 import {MainAdminComponent} from './admin/main-admin/main-admin.component';
 import {PlayQuizComponent} from  './quizzes/play-quiz/play-quiz.component';
 import { editQuestionComponent } from './admin/edit-question/edit-question.component'
-import { editAnswerComponent } from './admin/edit-answer/edit-answer.component'
 import { UserStatComponent } from './users/user-stat/user-stat.component'
 import { UserStatDetailComponent } from './users/user-stat-detail/user-stat-detail.component'
 
@@ -21,7 +20,6 @@ const routes: Routes = [
     {path: 'theme-list/:themeid', component: QuizListComponent, data:{animation:'QuizList'}},
     {path: 'theme-edit/:themeid/edit-quiz/:quizid', component: editQuizComponent, data:{animation:'EditQuiz'}},
     {path: 'theme-edit/:themeid/edit-quiz/:quizid/edit-question/:questionid', component: editQuestionComponent, data:{animation:'EditQuestion'}},
-    {path: 'theme-edit/:themeid/edit-quiz/:quizid/edit-question/:questionid/edit-answer/:answerid', component: editAnswerComponent, data:{animation:'EditAnswer'}},
     {path: 'user-list', component: UserListComponent, data:{animation:'UserList'}},
     {path: 'user-login', component: UserLoginComponent, data:{animation:'Login'}},
     {path: 'create-user', component: UserFormComponent, data:{animation:'CreateUser'}},

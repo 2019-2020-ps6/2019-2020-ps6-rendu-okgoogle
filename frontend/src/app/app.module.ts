@@ -32,9 +32,7 @@ import { CreateThemeComponent } from './admin/create-theme/create-theme.componen
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
 import { AnswerComponent } from './answers/answer/answer.component';
 import { AnswerListComponent } from './answers/answer-list/answer-list.component';
-import { editAnswerComponent } from './admin/edit-answer/edit-answer.component';
 import { editQuestionComponent } from './admin/edit-question/edit-question.component';
-import { AnswerFormComponent } from './answers/answer-form/answer-form.component';
 
 import { AppRoutingModule } from './app.routing.module';
 
@@ -67,8 +65,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     PlayQuizComponent,
     AnswerComponent,
     AnswerListComponent,
-    AnswerFormComponent,
-    editAnswerComponent,
     editQuestionComponent,
     UserStatComponent,
     UserStatDetailComponent

@@ -4,6 +4,7 @@ import { QuizService } from '../../../services/quiz.service';
 import { Question } from 'src/models/question.model';
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-question-form',
@@ -16,7 +17,7 @@ export class QuestionFormComponent implements OnInit{
   public questionForm: FormGroup;
   private mode: string = "Image question et text pour question";
 
-  constructor(private renderer: Renderer2,private http: HttpClient,public formBuilder: FormBuilder, private quizService: QuizService) {
+  constructor(private route:ActivatedRoute,public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
     this.initializeQuestionForm();
 
@@ -123,8 +124,10 @@ export class QuestionFormComponent implements OnInit{
     } 
 
     if(this.questionForm.valid) {
+      const themeid = this.route.snapshot.paramMap.get('themeid');
+      const quizid = this.route.snapshot.paramMap.get('quizid');
       const question = this.questionForm.getRawValue() as Question;
-      this.quizService.addQuestion(question);
+      this.quizService.addQuestion(themeid,quizid,question);
       this.initializeQuestionForm();
     }
   }
