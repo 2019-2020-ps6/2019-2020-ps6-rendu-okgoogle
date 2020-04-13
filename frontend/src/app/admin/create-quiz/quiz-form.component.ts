@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from "@angular/router";
 
 import { QuizService } from '../../../services/quiz.service';
@@ -18,11 +18,13 @@ export class QuizFormComponent implements OnInit {
   public curTheme: Theme;
   public quizForm: FormGroup;
   quizCreer: boolean;
+  
 
   constructor(private route: ActivatedRoute,private themeService: ThemeService,public formBuilder: FormBuilder, public quizService: QuizService) {
     this.quizForm = this.formBuilder.group({
-      name: [''],
-      imageUrl:''
+      name: ['', Validators.required],
+      imageUrl:['', Validators.required],
+      imageDefault: false
     });
   }
 
@@ -36,20 +38,25 @@ export class QuizFormComponent implements OnInit {
   }
 
   addQuiz() {
+    if(this.quizForm.valid){
+      const id = +this.route.snapshot.paramMap.get('themeid');
+      const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
+      
+      quizToCreate.themeId = id.toString();
+  
+      quizToCreate.questions = [];
+      quizToCreate.creationDate = new Date();
 
-    const id = +this.route.snapshot.paramMap.get('themeid');
-    const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
-    
-    quizToCreate.themeId = id.toString();
+      if(this.quizForm.get("imageDefault").value == true)
+      quizToCreate.imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWXDFTonXk2JDFeUHA4nqPrDr1slhbB-NH21xuc0jb_r5LzFG_&usqp=CAU";
 
-    quizToCreate.questions = [];
-    quizToCreate.creationDate = new Date();
 
-    this.quizService.addQuiz(quizToCreate.themeId.toString(),quizToCreate);
-
-    console.log(quizToCreate)
-
-    this.quizCreer = true;
+      this.quizService.addQuiz(quizToCreate.themeId.toString(),quizToCreate);
+  
+      console.log(quizToCreate)
+  
+      this.quizCreer = true;
+    }
   }
 
 }

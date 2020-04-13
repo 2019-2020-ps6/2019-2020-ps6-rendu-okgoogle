@@ -51,6 +51,9 @@
 
     <div id="quiz">
       <h3 class="zommable" id="quiz-name">{{questionSelected.label}}</h3>
+      <div style="display: flex; justify-content: center;">
+        <img style="max-width: 300px;" *ngIf="questionSelected.imgUrl" [src]="questionSelected.imgUrl" alt="">
+      </div>
       <span class="zommable" id="indice"></span>
 
       <div class="fit-test__question-container">

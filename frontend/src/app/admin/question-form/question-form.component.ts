@@ -69,14 +69,14 @@ export class QuestionFormComponent implements OnInit{
   private createAnswer() {
     if(this.mode === "Image question et text pour question"){
       return this.formBuilder.group({
-        value: '',
-        isCorrect: false,
+        value: ['', Validators.required],
+        isCorrect: [false, Validators.required],
       });
     }else{
       return this.formBuilder.group({
-        value: '',
-        imageUrl: '',
-        isCorrect: false,
+        value:['', Validators.required],
+        imageUrl: ['', Validators.required],
+        isCorrect: [false, Validators.required],
       });
     }
   }

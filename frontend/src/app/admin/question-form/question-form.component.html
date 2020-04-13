@@ -35,7 +35,7 @@
 
 
                 <!--Answer Part-->
-                <a class="button red" id="AnswerPart" (click)="addAnswer()">Ajout de réponses</a>
+                <a class="button red" id="AnswerPart"  (click)="addAnswer()">Ajout de réponses</a>
 
                 <div class="answer" formArrayName="answers">
                     <!-- On recupere le getter answers de (get answers()) et avec controls on parcours avec un index -->
@@ -54,7 +54,19 @@
                 <!--Answer Part-->
 
 
-                <a class="button red" (click)="addQuestion()">Créer</a>
+                <a class="button red" [disabled]="questionForm.invalid" (click)="addQuestion()">Créer</a>
+
+
+                <div *ngIf="questionForm.controls.label.invalid && (questionForm.controls.label.dirty || questionForm.controls.label.touched)"class="alert alert-danger">
+                    <div *ngIf="questionForm.controls.label.errors.required">
+                    Le nom de la question est requis.
+                    </div>
+                </div>
+                <div *ngIf="questionForm.controls.imgUrl.invalid && (questionForm.controls.imgUrl.dirty || questionForm.controls.imgUrl.touched)"class="alert alert-danger">
+                    <div *ngIf="questionForm.controls.imgUrl.errors.required">
+                    L'Url de l'image est requis.
+                    </div>
+                </div>
             </form>
             <div id="ImageUpload"></div>
 

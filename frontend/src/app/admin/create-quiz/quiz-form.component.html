@@ -10,8 +10,19 @@
           <br>
           <input placeholder="Image associé au quiz" class="input-custom" type="text" id="name" [formControlName]="'imageUrl'">
           <br>
-          <a class="button blue" (click)="addQuiz()">Créer</a>
+          <button class="button blue" [disabled]="quizForm.invalid" (click)="addQuiz()">Créer</button>
+          <div *ngIf="quizForm.controls.name.invalid && (quizForm.controls.name.dirty || quizForm.controls.name.touched)"class="alert alert-danger">
+            <div *ngIf="quizForm.controls.name.errors.required">
+              Le nom du quiz est requis.
+            </div>
+          </div>
+          <div *ngIf="quizForm.controls.imageUrl.invalid && (quizForm.controls.imageUrl.dirty || quizForm.controls.imageUrl.touched)"class="alert alert-danger">
+            <div *ngIf="quizForm.controls.imageUrl.errors.required">
+              L'Url de l'image est requise.
+            </div>
+          </div>
       </form>
+      
     </div>
   </div>
 </div>
