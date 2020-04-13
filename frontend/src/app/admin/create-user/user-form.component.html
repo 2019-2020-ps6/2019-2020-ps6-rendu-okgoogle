@@ -1,8 +1,8 @@
-<body>
   <div id="all">
     <div id="partie_creation_accueilli">
       <div id="contenu">
-        <h1>Créer un nouvel accueilli</h1>
+        <h1 *ngIf="goal === 'create'">Créer un nouvel accueilli</h1>
+        <h1 *ngIf="goal === 'edit'">Modification de : {{user.name}}</h1>
         <form class="cf" [formGroup]="userForm">
           <div class="half left cf">
             <input type="text" id="name" [formControlName]="'name'" placeholder="Nom">
@@ -18,14 +18,10 @@
           </div>
           <textarea type="text" id="description" name="description" placeholder="Description"
             [formControlName]="'description'"></textarea>
-          <input *ngIf="goal === 'edit'" type="submit" value="Modifier" id="input-submit" (click)="editUser()">
-          <input *ngIf="goal === 'create'" type="submit" value="Créer" id="input-submit" (click)="addUser()">
+            <br>
+          <button *ngIf="goal === 'edit'" class="button red" (click)="editUser()">Modifier</button>
+          <button *ngIf="goal === 'create'" class="button blue" (click)="addUser()">Créer</button>
         </form>
       </div>
     </div>
   </div>
-</body>
-
-
-<!-- Uncomment below to see your form structure and how it changes-->
-<br><br>{{userForm.getRawValue() | json}}

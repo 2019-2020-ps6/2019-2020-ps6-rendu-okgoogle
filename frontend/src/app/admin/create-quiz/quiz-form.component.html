@@ -1,24 +1,17 @@
 <div id="partie_creation_quiz">
   <div id="conteneur">
     <div id="contenu">
-      <div id="verification"></div>
+      <div *ngIf="quizCreer" class="verif">
+        <p>Le quiz a bien été crée !</p>
+      </div>
       <h2 class="titre">Créer un nouveau quiz</h2>
       <form class="quiz-form" [formGroup]="quizForm">
-          <input class="input-custom" type="text" id="name" [formControlName]="'name'">
-        <!-- <label for="theme">
-      <br> Theme: <br>
-      <select [formControlName]="'themeId'">
-        <option *ngFor="let theme of lesThemes"  [value]="theme.id">{{theme.name}}</option>
-      </select>
-    </label> -->
-        <br>
-        <a class="button red" (click)="addQuiz()">
-          Créer
-        </a>
+          <input placeholder="Nom du quiz" class="input-custom" type="text" id="name" [formControlName]="'name'">
+          <br>
+          <input placeholder="Image associé au quiz" class="input-custom" type="text" id="name" [formControlName]="'imageUrl'">
+          <br>
+          <a class="button blue" (click)="addQuiz()">Créer</a>
       </form>
     </div>
   </div>
 </div>
-
-<!-- Uncomment below to see your form structure and how it changes-->
-<!-- <br><br>{{quizForm.getRawValue() | json}} -->

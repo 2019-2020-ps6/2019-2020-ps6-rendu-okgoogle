@@ -1,5 +1,4 @@
 
 <ng-container *ngIf="user">
-    <h2>{{user.name}}</h2>
     <app-user-form (userEdited)="editUser($event)" [user]="user"></app-user-form>
 </ng-container>

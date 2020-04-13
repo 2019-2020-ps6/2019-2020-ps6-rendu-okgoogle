@@ -1,13 +1,13 @@
-<!-- <div class="card">
-    <h2>
-        <i class="fab fa-leanpub"></i>
-        {{quiz.name}}
+<div style="width: 100%; height: 100%;">
+    <label (click)="selectQuiz()" style="color: #3551C2;">{{quiz.name}}</label>
+    <div *ngIf="quiz.imageUrl">
+        <img (click)="selectQuiz()" [src]="quiz.imageUrl" style="max-width: 200px;" alt="image du quiz">
+    </div>
+    <label (click)="selectQuiz()" *ngIf="quiz.creationDate != null"> Date: {{quiz.creationDate | date:'mediumDate'}} </label>
 
-        <p *ngIf="quiz.creationDate != null"> Date: {{quiz.creationDate | date:'mediumDate'}} </p>
-    </h2>
-    <button class="button-card" (click)="selectQuiz()">Select</button>
-</div> -->
-<div style="width: 100%; height: 100%;" (click)="selectQuiz()">
-    <label style="color: #3551C2;">{{quiz.name}}</label>
-    <label *ngIf="quiz.creationDate != null"> Date: {{quiz.creationDate | date:'mediumDate'}} </label>
+    <div id="boutons">
+        <a *ngIf="curStatus === 'admin'" class="button blue" (click)="editQuiz()">Edit</a>
+        <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteQuiz(quiz)">Delete</a>
+        <a class="button white" (click)="selectQuiz(quiz)">Select</a>
+    </div>
 </div>

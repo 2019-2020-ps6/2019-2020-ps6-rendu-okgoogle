@@ -10,7 +10,8 @@
                 </div>
             </div>
             <div class="theme-list">
-                <div class="theme" *ngFor="let theme of themesList | filter:searchTheme">
+                <div class="theme" *ngFor="let theme of themesList | filter:searchTheme; let c=count">
+                    <!-- <p *ngIf="c === 0">Aucun theme trouvé</p> N'entre pas puisqu'il y a pas d'élément -->
                     <!--Inputs & Output allow communication between parent & child components.-->
                     <!--More information: https://angular.io/guide/component-interaction-->
                     <app-theme [theme]="theme" (themeSelected)="themeSelected($event)" (themeDeleted)="themeDeleted($event)">

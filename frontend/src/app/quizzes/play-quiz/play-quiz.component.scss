@@ -718,19 +718,102 @@ a:hover
     }
   }
   
-  
-  
-  
-  
-  .rejouer{
-    display: none;
-    position: absolute;
-    z-index: 1;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
-  .quitter{
-    display: none;
-    position: absolute;
-    margin-left: 210px;
-    z-index: 1;
-  }
+$primary-blue: #0080FF;
+$red:#FF3149;
+
+.btn,
+a.btn {
+  display: inline-block;
+  text-transform: none;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1em;
+  transition: all .35s cubic-bezier(.1, 0, 0, 1);
+  border-radius: 6px;
+  padding: 15px 20px;
+  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0), 0 0 0 rgba(0, 0, 0, 0);
+  margin: 8px;
+  font-weight: bold;
+  font-family: 'Fredoka One', cursive;
+  letter-spacing: .1em;
+  /*border: 1px solid rgba(0, 0, 0, 0);*/
+  text-shadow: 0 0 rgba(0, 0, 0, 0);
+}
+
+.btn,
+a.btn:hover {
+  border-radius: 8px;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, .1), 0 4px 8px rgba(0, 0, 0, .2);
+  /*border: 1px solid rgba(0, 0, 0, .1);*/
+  transform: scale(1.06);
+  text-shadow: 0 -1px rgba(0, 0, 0, .1);
+}
+
+.btn,
+a.btn:active {
+  transform: scale(0.98);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .2), 0 1px 3px rgba(0, 0, 0, .3);
+  /*border: 1px solid rgba(0, 0, 0, .1);*/
+}
+
+.btn,
+a.btn:visited {
+  transform: scale(1);
+}
+
+.blue,
+a.blue {
+  color: white;
+  font-weight: 600;
+  background: $primary-blue;
+  //rejouer
+  z-index: 1;
+}
+
+.blue,
+a.blue:hover {
+  background: lighten($primary-blue, 4%);
+}
+
+.blue,
+a.blue:active {
+  background: darken($primary-blue, 5%);
+}
+
+.cancel,
+a.cancel {
+  color: white;
+  background: $red;
+  //quitter
+  z-index: 1;
+}
+
+.cancel,
+a.cancel:hover {
+  color: #fff;
+  background: lighten($red, 1%);
+}
+
+.cancel,
+a.cancel:active {
+  background: darken($red, 10%);
+}
+
+i {
+  height: 24px;
+  width: 24px;
+  display: inline-block;
+  border-radius: 100px;
+  margin: 8px;
+  border: 1px solid rgba(0, 0, 0, .1) !important;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+  transition: all 1s cubic-bezier(.1, 0, 0, 1);
+}
+
+i:hover {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .2);
+  border: 1px solid rgba(0, 0, 0, 0) !important;
+  transform: scale(1.2);
+}

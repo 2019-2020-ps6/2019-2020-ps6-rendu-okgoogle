@@ -8,7 +8,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
-import { QuizAdminComponent } from './admin/quiz-admin/quiz-admin.component';
 import { QuizComponent } from './quizzes/quiz/quiz.component';
 import { HeaderComponent } from './header/header.component';
 import { QuizFormComponent } from './admin/create-quiz/quiz-form.component';
@@ -46,7 +45,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     QuizListComponent,
     editQuizComponent,
     QuizComponent,
-    QuizAdminComponent,
     HeaderComponent,
     QuizFormComponent,
     QuestionListComponent,

@@ -13,31 +13,15 @@
 
     <h3 *ngIf="quizList.length == 0">Il n'y a aucun quiz </h3>
 
-    <!-- <app-quiz-form *ngIf="curStatus === 'admin'"></app-quiz-form>
-    <div class="quiz-list">
-        <div class="quiz" *ngFor="let quiz of quizList">
-            <app-quiz-admin *ngIf="curStatus === 'admin'" [quiz]="quiz" (quizSelected)="quizSelected($event)"
-                (quizEdited)="quizEdited($event)" (quizDeleted)="quizDeleted($event)"></app-quiz-admin>
-            <app-quiz *ngIf="curStatus === 'user'" [quiz]="quiz" (quizSelected)="quizSelected($event)"></app-quiz>
-        </div>
-    </div> -->
-
     <div id="containerListe">
         <div class="list-type2">
             <ol>
                 <div class="quiz" *ngFor="let quiz of quizList | filter:searchQuiz">
                     <li>
                         <a>
-                            <app-quiz-admin *ngIf="curStatus === 'admin'" [quiz]="quiz"
-                                (quizSelected)="quizSelected($event)" (quizEdited)="quizEdited($event)"
-                                (quizDeleted)="quizDeleted($event)"></app-quiz-admin>
-                            <app-quiz *ngIf="curStatus === 'user'" [quiz]="quiz" (quizSelected)="quizSelected($event)">
-                            </app-quiz>
-
+                            <app-quiz [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizEdited($event)" (quizDeleted)="quizDeleted($event)"></app-quiz>
                         </a>
-                        <div class="end"> </div>
                     </li>
-
                 </div>
             </ol>
         </div>
