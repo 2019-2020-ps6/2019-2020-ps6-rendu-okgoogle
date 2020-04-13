@@ -35,7 +35,7 @@
 
 
                 <!--Answer Part-->
-                <a class="button red" id="AnswerPart"  (click)="addAnswer()">Ajout de réponses</a>
+                <a class="button red" id="AnswerPart" (click)="addAnswer()">Ajout de réponses</a>
 
                 <div class="answer" formArrayName="answers">
                     <!-- On recupere le getter answers de (get answers()) et avec controls on parcours avec un index -->
@@ -54,7 +54,7 @@
                 <!--Answer Part-->
 
 
-                <a class="button red" [disabled]="questionForm.invalid" (click)="addQuestion()">Créer</a>
+                <button class="button red" [disabled]="questionForm.invalid" (click)="addQuestion()">Créer</button>
 
 
                 <div *ngIf="questionForm.controls.label.invalid && (questionForm.controls.label.dirty || questionForm.controls.label.touched)"class="alert alert-danger">
