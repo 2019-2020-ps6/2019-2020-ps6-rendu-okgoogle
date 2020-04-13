@@ -89,3 +89,16 @@ label{
       display: flex;
       justify-content: flex-end;
   }
+  .quiz-container{
+    width: 48%;
+    height: 100%;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    background-color:#ee8080;
+    border-radius: 5%;
+  }
+
+  .quiz-container img{
+    width: 250px;
+  }
