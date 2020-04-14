@@ -1,33 +1,59 @@
 div{
-    border: 1px solid black;
-    padding: 15px;
-}
-body{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-}
-#all{
-    display: flex;
-    
-}
-
-#partiedroite{
-    width: 100%;
-    
+    //border: 1px solid black;
+    //padding: 15px;
 }
 #Bleu{
 	background: violet;
-	font-family: "Arial Black";
+}
+
+body{
+	
+}
+
+#all{
+	font-size: 22px;
 }
 
 #detail{
 	text-transform: uppercase;
-	font-family: "Arial Black";
+	text-align: center;
 }
 
 #listequestion{
-	background: yellowgreen;
-	text-transform: uppercase;
-	font-family: "Arial Black";
+	background: #9FD8BD;
 	text-transform: bold;
+	margin-top: 1.5em;
+	border-radius: 0.7em;
+	margin: 2em;
+}
+.name{
+	color: orangered;
+	
+}
 
+.rep{
+	color: blue;
+	text-transform: uppercase;
+}
+
+#contenu_header{
+	background-color:#FFA07A;
+	text-align: center;
+	border-radius: 0.7em;
+	margin-right: auto;
+	margin-left: auto;
+	width: 93%;
+}
+
+#header_question{
+	background-color: #00203FFF;
+	border-top-left-radius: 0.7rem;
+	border-top-right-radius: 0.7rem;
+	padding: 0.2em;
+	text-align: center;
+	color: white;
+}
+	
+#conteneur{
+	padding: 8px;
 }

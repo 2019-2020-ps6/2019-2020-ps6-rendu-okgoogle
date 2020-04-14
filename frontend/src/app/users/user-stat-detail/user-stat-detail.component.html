@@ -3,21 +3,38 @@
 <head>
     <title>Statistiques Details</title>
 </head>
+
+
 <div id="all">
-    <div id="partiedroite">
-        <h6 id=detail>Details</h6>
-        <div id="listeQ"></div>
-        <div *ngIf="resSelected" >
-            <div id="Bleu">
-                Nom Utilisateur: {{user.name}} {{user.surname}}
-                Quiz: {{resSelected.quiz.name}}
+    <h1 id=detail>Details</h1>
+    <div id="partie_header">
+        <div *ngIf="resSelected">
+            <div id="contenu_header">
+                <p>Nom Utilisateur: <strong class="name">{{user.name}} {{user.surname}}</strong></p>
+                <p>Quiz : <strong class="name">{{resSelected.quiz.name}}</strong></p>
             </div>
+        </div>
+    </div>
+    <div id="partie_question">
+        <div *ngIf="resSelected">
             <div *ngFor="let question of resSelected.quiz.questions; let i=index" id="listequestion">
-                <p>Question: {{question.label}}</p>
-                <div *ngFor="let answer of question.answers; let i=index"> 
-                    <td>Reponse: {{answer.value}} <i *ngIf="answer.isCorrect" class="far fa-check-square"></i><i *ngIf="!(answer.isCorrect)" class="fas fa-times"></i></td>
+
+                <div id="header_question">
+                    <p>Question:
+                        <strong class="name"> {{question.label}}</strong>
+                    </p>
                 </div>
-                <p> Aide utilisé <span *ngIf="question.aideUtilise; else NON">Oui</span><ng-template #NON>Non</ng-template> </p>
+                <div id="conteneur">
+                    <div *ngFor="let answer of question.answers; let i=index">
+                        <td><strong class="rep">Reponse : </strong>{{answer.value}} <i *ngIf="answer.isCorrect"
+                                style="color: green;" class="far fa-check-square"></i><i *ngIf="!(answer.isCorrect)"
+                                style="color: red;" class="fas fa-times"></i></td>
+                    </div>
+                    <p> Aide utilisé <span *ngIf="question.aideUtilise; else NON"><strong
+                                class="name">Oui</strong></span>
+                        <ng-template #NON><strong class="name">Non</strong></ng-template>
+                    </p>
+                </div>
             </div>
         </div>
     </div>
