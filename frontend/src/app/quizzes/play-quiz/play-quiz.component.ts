@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { ActivatedRoute } from '@angular/router';
@@ -16,12 +16,15 @@ import {Location} from '@angular/common';
   })
 
   export class PlayQuizComponent implements OnInit {
+
     public quiz: Quiz;
     public curTheme: Theme;
     public questionSelected: Question;
     public ptrQuestion: number = 0;
     public quizFini = false;
     public timerPopup = 5;
+    public sonUrlQuestionActuelle = "";
+    playSong : boolean = false;
     
     constructor(private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
 
@@ -35,7 +38,10 @@ import {Location} from '@angular/common';
       this.resService.setSelectedQuiz(quizid.toString(),themeid.toString());
       this.resService.quizSelected$.subscribe((quiz) => {
         this.quiz = quiz
-        this.resService.questionSelected$.subscribe((question) => this.questionSelected = question)
+        this.resService.questionSelected$.subscribe((question) =>{
+          this.questionSelected = question
+          this.sonUrlQuestionActuelle = "src/assets/sons/"+this.questionSelected.sonUrl
+        })
       });
       setTimeout(()=>{
         this.ptrQuestion = this.resService.ptrQuestion
@@ -50,6 +56,7 @@ import {Location} from '@angular/common';
 
     }
 
+    
     selectAnswer(answer: Answer){
 
       var zoomElement = document.querySelector("#zoom")
@@ -58,12 +65,18 @@ import {Location} from '@angular/common';
       var divIndice = document.querySelector("#indice")
       if(divIndice.textContent != "")
         divIndice.innerHTML="";
+      
+      if(answer.isCorrect === false){
+        this.playSong = true;
+      }
 
       
       if(answer.isCorrect && this.ptrQuestion != this.quiz.questions.length-1){
         document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("completed")
         this.ptrQuestion++;
         document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("active")
+        this.playSong = false;
+        this.sonUrlQuestionActuelle = "src/assets/sons/"+this.questionSelected.sonUrl;
       }
 
       //quiz pas fini

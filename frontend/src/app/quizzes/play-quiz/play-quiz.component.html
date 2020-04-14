@@ -2,6 +2,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
 </head>
 
+<audio hidden *ngIf="questionSelected.sonUrl != '' && playSong" autoplay="true" controls>
+  <source [src]="sonUrlQuestionActuelle" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio> 
+
 <div id="modal-container">
   <div class="modal-background">
     <div class="modal">
