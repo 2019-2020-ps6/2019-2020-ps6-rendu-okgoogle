@@ -65,10 +65,6 @@ import {Location} from '@angular/common';
       var divIndice = document.querySelector("#indice")
       if(divIndice.textContent != "")
         divIndice.innerHTML="";
-      
-      if(answer.isCorrect === false){
-        this.playSong = true;
-      }
 
       
       if(answer.isCorrect && this.ptrQuestion != this.quiz.questions.length-1){
@@ -114,12 +110,22 @@ import {Location} from '@angular/common';
     }
 
     aide(){
-      var divIndice = document.querySelector("#indice")
-      divIndice.innerHTML=this.questionSelected.indice;
-  
-      var parentNode = document.querySelector("#quiz")
-  
-      parentNode.insertBefore(divIndice, parentNode.firstElementChild.nextElementSibling.nextElementSibling)
+      if(this.questionSelected.indice != ""){
+        var divIndice = document.querySelector("#indice")
+        divIndice.innerHTML=this.questionSelected.indice;
+    
+        var parentNode = document.querySelector("#quiz")
+    
+        parentNode.insertBefore(divIndice, parentNode.firstElementChild.nextElementSibling.nextElementSibling)
+      }else{
+          var divIndice = document.querySelector("#indice")
+          divIndice.innerHTML="Écoutez l'indice <i class='fas fa-headphones'></i>"
+      
+          var parentNode = document.querySelector("#quiz")
+      
+          parentNode.insertBefore(divIndice, parentNode.firstElementChild.nextElementSibling.nextElementSibling)
+          this.playSong = true;
+      }
   
       this.resService.GiveClues()
     }

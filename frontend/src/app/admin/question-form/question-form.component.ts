@@ -17,7 +17,7 @@ export class QuestionFormComponent implements OnInit{
 
   public questionForm: FormGroup;
   private mode: string = "Image question et text pour question";
-  private modeAide : number = 0 //0 = indice text 1=Indice par son
+  private modeAide : number = 0 //0 = indice text ; 1=Indice par son
   fichierName: string = "";
   questionToCreate:Question;
   
@@ -33,7 +33,7 @@ export class QuestionFormComponent implements OnInit{
       label: ['', Validators.required],
       imgUrl: '',
       sonUrl: [''],
-      indice: ['', Validators.required],
+      indice: [''],
       answers: this.formBuilder.array([])
     });
   }
@@ -47,10 +47,10 @@ export class QuestionFormComponent implements OnInit{
 
   switchModeAide(){
     if(this.modeAide == 0){
-      this.questionForm.get("indice").clearValidators()
+      this.questionForm.get("indice").setValue("")
       this.modeAide = 1;
     }else{
-      this.questionForm.get("indice").setValidators(Validators.required)
+      this.reset()
       this.modeAide = 0
     }
   }
