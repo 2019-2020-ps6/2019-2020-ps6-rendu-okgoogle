@@ -39,21 +39,32 @@ router.get('/:questionId', (req, res) => {
   }
 })
 
-router.post('/', upload.single('sonUrl'), (req, res) => {
+router.post('/', (req, res) => {
   try {
     
-    console.log(req.files.sonUrl.originalname)
+    console.log(req.body)
+
 
     Quiz.getById(req.params.quizId)
     const quizId = parseInt(req.params.quizId, 10)
 
-    let question = Question.create({label: req.body.label, imgUrl: req.body.imgUrl,sonUrl: "app/api/uploads/sons/" + req.files.sonUrl.originalname, indice: req.body.indice,quizId})
+    let question = Question.create({label: req.body.label, imgUrl: req.body.imgUrl,sonUrl: req.body.sonUrl, indice: req.body.indice,quizId})
 
     if (req.body.answers && req.body.answers.length > 0) {
       const answers = req.body.answers.map((answer) => Answer.create({ ...answer, questionId: question.id }))
       question = {...question, answers}
     }
     res.status(201).json(question)
+  } catch (err) {
+    manageAllErrors(res, err)
+  }
+})
+
+
+router.post('/fileUpload', upload.single('son'), (req, res) => {
+  try {
+    
+    res.status(201).json("oui")
   } catch (err) {
     manageAllErrors(res, err)
   }

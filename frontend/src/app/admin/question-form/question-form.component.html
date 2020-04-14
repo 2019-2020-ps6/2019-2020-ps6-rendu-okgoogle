@@ -20,17 +20,28 @@
                 </div>
                 <label for="title">
                     Titre
-                    <input type="text" [formControlName]="'label'">
+                    <input type="text" placeholder="Nom de la question" [formControlName]="'label'">
                 </label>
                 <label for="imageUrlQuestion">
                     <input *ngIf="mode === 'Image question et text pour question'" class="imgQuestion" type="text" placeholder="Lien vers l'image" [formControlName]="'imgUrl'"
                     (change)="verifyUrlQuestion()">
                 </label>
                 <br>
-                <label for="indice">
-                    Indice
-                    <input type="text" [formControlName]="'indice'">
-                </label>
+                <div *ngIf="modeAide === 0">
+                    <label for="indice">
+                        Indice par texte
+                        <input type="text" [formControlName]="'indice'">
+                    </label>
+                </div>
+                <div *ngIf="modeAide === 1">
+                    <label for="indice">
+                        Indice par son
+                        <input #myInput type="file" id="fichier" (change)="envoiFichier($event.target.files)"/>
+                    </label>
+                </div>
+                <div>
+                    <button (click)="switchModeAide()"><p *ngIf="modeAide === 0">Indice par son</p> <p *ngIf="modeAide === 1"> Indice par texte </p></button>
+                </div>
                 <br>
 
 

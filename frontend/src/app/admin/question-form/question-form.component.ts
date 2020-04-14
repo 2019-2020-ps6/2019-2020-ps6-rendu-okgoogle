@@ -1,10 +1,11 @@
-import { Component, OnInit, ElementRef,Renderer2, Renderer } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef,Renderer2, Renderer } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
 import { Question } from 'src/models/question.model';
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-question-form',
@@ -16,8 +17,12 @@ export class QuestionFormComponent implements OnInit{
 
   public questionForm: FormGroup;
   private mode: string = "Image question et text pour question";
+  private modeAide : number = 0 //0 = indice text 1=Indice par son
+  fichierName: string = "";
+  questionToCreate:Question;
+  
 
-  constructor(private route:ActivatedRoute,public formBuilder: FormBuilder, private quizService: QuizService) {
+  constructor(private renderer:Renderer2,private route:ActivatedRoute,public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
     this.initializeQuestionForm();
 
@@ -27,9 +32,27 @@ export class QuestionFormComponent implements OnInit{
     this.questionForm = this.formBuilder.group({
       label: ['', Validators.required],
       imgUrl: '',
+      sonUrl: [''],
       indice: ['', Validators.required],
       answers: this.formBuilder.array([])
     });
+  }
+
+  @ViewChild('myInput',{ static: true }) 
+  song: ElementRef;
+
+  reset() {
+      this.song.nativeElement.value = '';
+  }
+
+  switchModeAide(){
+    if(this.modeAide == 0){
+      this.questionForm.get("indice").clearValidators()
+      this.modeAide = 1;
+    }else{
+      this.questionForm.get("indice").setValidators(Validators.required)
+      this.modeAide = 0
+    }
   }
 
   ngOnInit() {
@@ -81,6 +104,8 @@ export class QuestionFormComponent implements OnInit{
     }
   }
 
+
+
   addAnswer() {
     this.answers.push(this.createAnswer());
     this.notChecked();
@@ -126,10 +151,26 @@ export class QuestionFormComponent implements OnInit{
     if(this.questionForm.valid) {
       const themeid = this.route.snapshot.paramMap.get('themeid');
       const quizid = this.route.snapshot.paramMap.get('quizid');
-      const question = this.questionForm.getRawValue() as Question;
-      this.quizService.addQuestion(themeid,quizid,question);
+
+      this.questionToCreate = this.questionForm.getRawValue() as Question;
+
+      console.log(this.questionToCreate.label)
+
+      this.questionToCreate.sonUrl = this.fichierName
+
+      this.quizService.addQuestion(themeid,quizid,this.questionToCreate);
       this.initializeQuestionForm();
+      this.reset()
     }
+  }
+
+  envoiFichier(fichiers:FileList){
+    const themeid = this.route.snapshot.paramMap.get('themeid');
+    const quizid = this.route.snapshot.paramMap.get('quizid');
+    console.log(fichiers.item(0).name)
+    const songName = fichiers.item(0).name.split(".")[0] + Date.now() +"."+fichiers.item(0).name.split(".")[1]
+    this.fichierName = songName;
+    this.quizService.addASong(themeid,quizid,fichiers.item(0), songName);
   }
 
   UneImageQuatreText(){

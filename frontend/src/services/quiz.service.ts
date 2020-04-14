@@ -109,7 +109,13 @@ export class QuizService {
 
   addQuestion(themeid:string,quizid:string,question: Question){
     console.log(question)
-    this.http.post<Question>(this.lien+ this.themeService.themeSelected.id +"/quizzes/"+this.quizSelected.id+"/questions/",question).subscribe((question)=> this.setSelectedQuiz(quizid,themeid))
+    this.http.post<Question>(this.lien+ themeid +"/quizzes/"+quizid+"/questions/",question).subscribe((question)=> this.setSelectedQuiz(quizid,themeid))
+  }
+
+  addASong(themeid:string,quizid:string,song:File,songName:string){
+    const formData = new FormData()
+    formData.append('son',song,songName)
+    this.http.post<String>(this.lien+ themeid +"/quizzes/"+quizid+"/questions/fileUpload",formData).subscribe((res)=> console.log(res))
   }
 
   addAnswer(themeid:string,quizid:string,questionid:string,answer: Answer){
