@@ -21,7 +21,7 @@ export class ResultService implements OnInit {
   private questionSelected: Question;
   private TabAnswersQuestions: Answer[][] = [];
   private nbAide: number = 0;
-  private ptrQuestion:number=0;
+  public ptrQuestion:number=0;
   public timer: number = 0;
   public onPrevious: Boolean = false;
 

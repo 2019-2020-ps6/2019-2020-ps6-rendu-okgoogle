@@ -7,7 +7,7 @@
     <div class="modal">
       <img *ngIf="quizFini" src="https://thumbs.dreamstime.com/b/banni%C3%A8re-de-bravo-91022451.jpg" width="300" alt=""><br>
       <img *ngIf="quizFini === false" src="https://i.pinimg.com/originals/a8/6e/f4/a86ef49a467502013d0521c55deebe85.png" width="300" alt=""><br>
-      <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizFini === false"> Prochaine question dans {{timerPopup}}</p>
+      <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizFini === false"> Prochaine question dans {{timerPopup}} secondes</p>
       <a *ngIf="quizFini" (click)="reloadPage()" class="btn blue">Rejouer</a>
       <a *ngIf="quizFini" (click)="goBack()" class="btn cancel">Quitter</a>
       <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">

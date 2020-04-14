@@ -37,6 +37,17 @@ import {Location} from '@angular/common';
         this.quiz = quiz
         this.resService.questionSelected$.subscribe((question) => this.questionSelected = question)
       });
+      setTimeout(()=>{
+        this.ptrQuestion = this.resService.ptrQuestion
+        if(this.ptrQuestion != 0){
+          for(var i = 0; i< this.ptrQuestion; i++){
+            document.querySelector(".progressbar-steps").children[i].classList.add("completed")
+            document.querySelector(".progressbar-steps").children[i].classList.add("active")
+          }
+          document.querySelector(".progressbar-steps").children[i].classList.add("active")
+        }
+      },500)
+
     }
 
     selectAnswer(answer: Answer){
@@ -48,14 +59,14 @@ import {Location} from '@angular/common';
       if(divIndice.textContent != "")
         divIndice.innerHTML="";
 
-        
       
-        if(answer.isCorrect && this.ptrQuestion != this.quiz.questions.length-1){
-          document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("completed")
-          this.ptrQuestion++;
-          document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("active")
-        }
+      if(answer.isCorrect && this.ptrQuestion != this.quiz.questions.length-1){
+        document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("completed")
+        this.ptrQuestion++;
+        document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("active")
+      }
 
+      //quiz pas fini
       if( this.questionSelected.id != this.quiz.questions[this.quiz.questions.length-1].id && answer.isCorrect === true){
         document.body.querySelector('#modal-container').removeAttribute('class')
         document.body.querySelector('#modal-container').classList.add('modalF')
@@ -70,10 +81,10 @@ import {Location} from '@angular/common';
         setTimeout(()=>{
           document.body.querySelector('#modal-container').classList.add('out');
           document.body.classList.remove('modal-active')
-          
         },3000)
         this.timerPopup = 3;
       }
+      //quiz fini
       else if(this.questionSelected.id === this.quiz.questions[this.quiz.questions.length-1].id && answer.isCorrect === true){
         document.body.querySelector('#modal-container').removeAttribute('class')
         this.quizFini = true;
