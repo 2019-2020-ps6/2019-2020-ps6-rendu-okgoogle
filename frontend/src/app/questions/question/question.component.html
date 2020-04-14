@@ -10,15 +10,16 @@
                     <button *ngIf="edit_question" (click)="annulerQuestion()" >Annuler</button>
                 </h2>
 
-                <div *ngIf="question.imgUrl">
-                    <img [src]="question.imgUrl" width="200" alt="">
-                    <input *ngIf="edit_question" type="text" [formControlName]="'imgUrl'" >
+                <div style="display: flex; justify-content: center; align-content: center;" *ngIf="question.imgUrl">
+                    <img [src]="question.imgUrl" width="200" alt=""><br>
+                    <input *ngIf="edit_question" style="height: 20px;" type="text" [formControlName]="'imgUrl'" >
                 </div>
                 
                 <div style="display: inline;">
                     <p class="indice">Indice: {{question.indice}} <input *ngIf="edit_question" type="text" [formControlName]="'indice'" > </p> 
                     
                 </div>
+
                 <div class="answer" *ngFor="let answer of question.answers; let i=index" >
                     <li>
                         {{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i class="far fa-check-square" style="color: lime;"></i></ng-container>
@@ -27,19 +28,15 @@
                        
                         <form *ngIf="editanswer_i == i" style="display: inline;" [formGroup]="answerForm">
                             <input placeholder="Reponse" type="text" [formControlName]="'value'">
-                            <div *ngIf="answer.imageUrl">
                                 <input placeholder="Url de l'image" type="text" [formControlName]="'imageUrl'">
-                            </div>
                             Correct: 
                             <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="isChecked()">
                             <button (click)="validateAnswer(answer)">Valider</button>
                             <button (click)="annulerAnswer()">Annuler</button>
                         </form>
-                        
-                        <button (click)="validateAnswer(answer)" *ngIf="editanswer_i == i">Valider</button>
-                        <button (click)="annulerAnswer()" *ngIf="editanswer_i == i">Annuler</button>
                     </li>
                 </div>
+
                 <form *ngIf="_addAnswer" style="display: inline;" [formGroup]="answerForm">
                     <input placeholder="Intitulé de la réponse" type="text" [formControlName]="'value'">
                     <input placeholder="Url de l'image" type="text" [formControlName]="'imageUrl'">

@@ -1,9 +1,22 @@
 const { Router } = require('express')
-
+var uploadDos = '/son'
 const { Answer, Quiz, Question } = require('../../../../models')
 const manageAllErrors = require('../../../../utils/routes/error-management')
 const AnswersRouter = require('./answers')
 const { filterQuestionsFromQuizz, getQuestionFromQuiz } = require('./manager')
+
+var multer = require('multer');
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      // cb(null,__dirname+"../../../../uploads/sons")
+      cb(null,"app/api/uploads/sons")
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname)
+    }
+});
+
+var upload = multer({storage: storage});
 
 const router = new Router({ mergeParams: true })
 
@@ -26,13 +39,15 @@ router.get('/:questionId', (req, res) => {
   }
 })
 
-router.post('/',(req, res) => {
+router.post('/', upload.single('sonUrl'), (req, res) => {
   try {
+    
+    console.log(req.files.sonUrl.originalname)
 
     Quiz.getById(req.params.quizId)
     const quizId = parseInt(req.params.quizId, 10)
 
-    let question = Question.create({label: req.body.label, imgUrl: req.body.imgUrl,  indice: req.body.indice,quizId})
+    let question = Question.create({label: req.body.label, imgUrl: req.body.imgUrl,sonUrl: "app/api/uploads/sons/" + req.files.sonUrl.originalname, indice: req.body.indice,quizId})
 
     if (req.body.answers && req.body.answers.length > 0) {
       const answers = req.body.answers.map((answer) => Answer.create({ ...answer, questionId: question.id }))

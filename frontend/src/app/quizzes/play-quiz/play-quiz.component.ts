@@ -21,7 +21,7 @@ import {Location} from '@angular/common';
     public questionSelected: Question;
     public ptrQuestion: number = 0;
     public quizFini = false;
-    public timerPopup = 3;
+    public timerPopup = 5;
     
     constructor(private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
 
@@ -81,8 +81,8 @@ import {Location} from '@angular/common';
         setTimeout(()=>{
           document.body.querySelector('#modal-container').classList.add('out');
           document.body.classList.remove('modal-active')
-        },3000)
-        this.timerPopup = 3;
+        },5000)
+        this.timerPopup = 5;
       }
       //quiz fini
       else if(this.questionSelected.id === this.quiz.questions[this.quiz.questions.length-1].id && answer.isCorrect === true){

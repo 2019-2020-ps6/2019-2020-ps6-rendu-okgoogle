@@ -5,6 +5,7 @@ module.exports = new BaseModel('Question', {
     id:Joi.string(),
     label: Joi.string().required(),
     imgUrl: Joi.string().allow(''),
+    sonUrl: Joi.string().allow(''),
     indice: Joi.string(),
     aideUtilise: Joi.boolean(),
     answers: Joi.array(),
