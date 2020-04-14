@@ -58,18 +58,20 @@
         </div>
       </div>
 
-      <button class="aide zoomable" (click)="aide()" id="aide"><i class="far fa-question-circle"></i> &nbsp; Aide</button>
-      <button class="precedent" (click)="questionPrecedente()" id="aide"><i class="fas fa-chevron-circle-left"></i>
-        &nbsp;Question précédente</button>
+      <div id=Cbouton>
+        <button class="precedent" (click)="questionPrecedente()" id="aide"><i class="fas fa-chevron-circle-left"></i>
+          &nbsp;Question précédente</button>
+        <button class="aide" (click)="aide()" id="aide"><i class="far fa-question-circle"></i> &nbsp; Aide</button>
+      </div>
 
       <div style="text-align: center;" class="container">
         <ul class="progressbar-steps">
           <li *ngFor="let question of quiz.questions; let i = index" >
             <span  class="step-content">Question {{i+1}}</span>
-          </li> 
+          </li>
         </ul>
       </div>
-      
+
     </div>
   </ng-container>
 
