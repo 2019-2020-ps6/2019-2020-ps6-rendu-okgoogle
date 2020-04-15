@@ -25,6 +25,7 @@
                         {{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i class="far fa-check-square" style="color: lime;"></i></ng-container>
                         &nbsp; <i (click)="editAnswer(answer,i)" class="fas fa-edit"></i>
                         <img *ngIf="answer.imageUrl" [src]="answer.imageUrl" width="100" alt="">
+                        {{answer.id}}
                        
                         <form *ngIf="editanswer_i == i" style="display: inline;" [formGroup]="answerForm">
                             <input placeholder="Reponse" type="text" [formControlName]="'value'">

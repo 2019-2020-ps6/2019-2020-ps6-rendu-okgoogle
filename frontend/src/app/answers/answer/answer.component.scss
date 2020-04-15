@@ -1,9 +1,16 @@
 img{
-    width: 50%;
-    height: 80%;
+    max-width: 200px;
 }
 
-#imageGestion{
+#imageGestion1{
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#imageGestion2{
     box-sizing: border-box;
     width: 100%;
 }

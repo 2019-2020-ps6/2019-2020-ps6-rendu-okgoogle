@@ -6,7 +6,7 @@ module.exports = new BaseModel('Question', {
     label: Joi.string(),
     imgUrl: Joi.string().allow(''),
     sonUrl: Joi.string().allow(''),
-    indice: Joi.string(),
+    indice: Joi.string().allow(''),
     aideUtilise: Joi.boolean(),
     answers: Joi.array(),
     quizId: Joi.number()

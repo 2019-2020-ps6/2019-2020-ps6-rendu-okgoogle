@@ -57,7 +57,7 @@ module.exports = class BaseModel {
   }
 
   create(obj = {}) {
-    const item = { ...obj, id: Date.now()+Math.ceil(Math.random() * 10) } // ajout de Math.ceil car qqfois, il ya des duplication
+    const item = { ...obj, id: Date.now()+Math.ceil(Math.random() * 10)+Math.ceil(Math.random() * 10) } // ajout de Math.ceil car qqfois, il ya des duplication
     const { error } = Joi.validate(item, this.schema)
     if (error) throw new ValidationError(`Create Error : Object ${JSON.stringify(obj)} does not match schema of model ${this.name}`, error)
     this.items.push(item)

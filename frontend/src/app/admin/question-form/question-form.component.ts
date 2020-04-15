@@ -50,7 +50,6 @@ export class QuestionFormComponent implements OnInit{
       this.questionForm.get("indice").setValue("")
       this.modeAide = 1;
     }else{
-      this.reset()
       this.modeAide = 0
     }
   }

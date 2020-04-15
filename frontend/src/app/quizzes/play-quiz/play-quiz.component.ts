@@ -24,7 +24,9 @@ import {Location} from '@angular/common';
     public quizFini = false;
     public timerPopup = 5;
     public sonUrlQuestionActuelle = "";
-    playSong : boolean = false;
+    public playSong : boolean = false;
+    public afficheIndice : boolean = false;
+
     
     constructor(private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
 
@@ -41,6 +43,9 @@ import {Location} from '@angular/common';
         this.resService.questionSelected$.subscribe((question) =>{
           this.questionSelected = question
           this.sonUrlQuestionActuelle = "src/assets/sons/"+this.questionSelected.sonUrl
+          if(this.questionSelected.sonUrl!= ''){
+            this.playSong = true;
+          }
         })
       });
       setTimeout(()=>{
@@ -66,17 +71,16 @@ import {Location} from '@angular/common';
       if(divIndice.textContent != "")
         divIndice.innerHTML="";
 
-      
-      if(answer.isCorrect && this.ptrQuestion != this.quiz.questions.length-1){
+      //quiz pas fini
+      if( answer.isCorrect && this.ptrQuestion != this.quiz.questions.length-1){
+
         document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("completed")
         this.ptrQuestion++;
         document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("active")
+        this.afficheIndice = false;
         this.playSong = false;
         this.sonUrlQuestionActuelle = "src/assets/sons/"+this.questionSelected.sonUrl;
-      }
 
-      //quiz pas fini
-      if( this.questionSelected.id != this.quiz.questions[this.quiz.questions.length-1].id && answer.isCorrect === true){
         document.body.querySelector('#modal-container').removeAttribute('class')
         document.body.querySelector('#modal-container').classList.add('modalF')
         var interval = setInterval(()=> {
@@ -92,6 +96,7 @@ import {Location} from '@angular/common';
           document.body.classList.remove('modal-active')
         },5000)
         this.timerPopup = 5;
+
       }
       //quiz fini
       else if(this.questionSelected.id === this.quiz.questions[this.quiz.questions.length-1].id && answer.isCorrect === true){
@@ -111,19 +116,8 @@ import {Location} from '@angular/common';
 
     aide(){
       if(this.questionSelected.indice != ""){
-        var divIndice = document.querySelector("#indice")
-        divIndice.innerHTML=this.questionSelected.indice;
-    
-        var parentNode = document.querySelector("#quiz")
-    
-        parentNode.insertBefore(divIndice, parentNode.firstElementChild.nextElementSibling.nextElementSibling)
+        this.afficheIndice = true
       }else{
-          var divIndice = document.querySelector("#indice")
-          divIndice.innerHTML="Écoutez l'indice <i class='fas fa-headphones'></i>"
-      
-          var parentNode = document.querySelector("#quiz")
-      
-          parentNode.insertBefore(divIndice, parentNode.firstElementChild.nextElementSibling.nextElementSibling)
           this.playSong = true;
       }
   

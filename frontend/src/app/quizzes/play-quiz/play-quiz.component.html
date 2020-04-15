@@ -42,32 +42,41 @@
 <div style="width: 100%;margin-left: auto;margin-right: auto;">
   <ng-container *ngIf="questionSelected">
 
-    <h1 class="titreQuiz">{{curTheme.name}} - {{quiz.name}} </h1>
+    <h3 class="titreQuiz">{{curTheme.name}} - {{quiz.name}} </h3>
 
 
     <p *ngIf="questionSelected === undefined">Aucune question pour ce quiz :(</p>
 
     <div id="quiz">
-      <h3 class="zommable" id="quiz-name">{{questionSelected.label}}</h3>
-      <div style="display: flex; justify-content: center;">
-        <img style="max-width: 300px;" *ngIf="questionSelected.imgUrl" [src]="questionSelected.imgUrl" alt="">
-      </div>
+      <h3 *ngIf="questionSelected.imgUrl === ''" class="zommable" id="question">{{questionSelected.label}}</h3>
       <span class="zommable" id="indice"></span>
+      
+      <div *ngIf="questionSelected.imgUrl">
+        <div style="display: flex; justify-content: center;">
+          <img style="max-width: 300px;" [src]="questionSelected.imgUrl" alt="">
+        </div>
+        <h3 class="zommable" id="question">{{questionSelected.label}}</h3>
+        <span *ngIf=" questionSelected.indice != '' || questionSelected.sonUrl!= ''" class="zommable" id="indice"> <p *ngIf="afficheIndice">{{questionSelected.indice}}</p> <p *ngIf="playSong"> Écoutez l'indice <i class='fas fa-headphones'></i></p></span>
+       
+      </div>
 
-      <div class="fit-test__question-container">
-        <div class="fit-test__answer-container">
-          <div (click)="selectAnswer(answer)" class="fit-test__answer-option" *ngFor="let answer of questionSelected.answers">
-            <div *ngIf="answer"></div>
-            <app-answer [answer]="answer"></app-answer>
+
+      <div style="display: flex; justify-content: center;flex-flow: row wrap;">
+        <div style="width: 70%; display: flex; flex-flow: row wrap;justify-content: space-around;">
+          <div style="width: 40%;border: 1px solid; border-radius: 3px; margin-bottom: 30px;" (click)="selectAnswer(answer)" *ngFor="let answer of questionSelected.answers">
+            <app-answer style="text-align: center;" [answer]="answer"></app-answer>
           </div>
         </div>
       </div>
 
-      <div id=Cbouton>
-        <button class="precedent" (click)="questionPrecedente()" id="aide"><i class="fas fa-chevron-circle-left"></i>
-          &nbsp;Question précédente</button>
-        <button class="aide" (click)="aide()" id="aide"><i class="far fa-question-circle"></i> &nbsp; Aide</button>
+      <div id="struct_bouton">
+        <div id=Cbouton>
+          <button class="precedent" (click)="questionPrecedente()" id="aide"><i class="fas fa-chevron-circle-left"></i>
+            &nbsp;Question précédente</button>
+          <button class="aide zoomable" (click)="aide()" id="aide"><i class="far fa-question-circle"></i> &nbsp; Aide</button>
+        </div>
       </div>
+
 
       <div style="text-align: center;" class="container">
         <ul class="progressbar-steps">
