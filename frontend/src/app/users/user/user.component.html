@@ -1,4 +1,4 @@
-<section (click)="selectUser(user)" class="cards">
+<section class="cards">
     <article class="card">
         <!-- <picture *ngIf="user.img != ''" class="thumbnail">
              <img class="category__02" src="{{user.img}}" alt="" />
@@ -29,7 +29,7 @@
 
             </div>
             <div *ngIf="curStatus === 'user'">
-                <picture *ngIf="user.img != ''" class="thumbnail">
+                <picture (click)="selectUser(user)" *ngIf="user.img != ''" class="thumbnail">
                     <img class="category__02" src="{{user.img}}" alt="" />
                 </picture>
                 <h2 style="text-align: center;">{{user.name}} {{user.surname}}</h2>
