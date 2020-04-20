@@ -43,21 +43,19 @@ import {Location} from '@angular/common';
         this.resService.questionSelected$.subscribe((question) =>{
           this.questionSelected = question
           this.sonUrlQuestionActuelle = "src/assets/sons/"+this.questionSelected.sonUrl
-          if(this.questionSelected.sonUrl!= ''){
-            this.playSong = true;
-          }
+          setTimeout(()=>{
+            this.ptrQuestion = this.resService.ptrQuestion
+            if(this.ptrQuestion != 0){
+              for(var i = 0; i< this.ptrQuestion; i++){
+                document.querySelector(".progressbar-steps").children[i].classList.add("completed")
+                document.querySelector(".progressbar-steps").children[i].classList.add("active")
+              }
+              document.querySelector(".progressbar-steps").children[i].classList.add("active")
+            }
+          },500)
         })
       });
-      setTimeout(()=>{
-        this.ptrQuestion = this.resService.ptrQuestion
-        if(this.ptrQuestion != 0){
-          for(var i = 0; i< this.ptrQuestion; i++){
-            document.querySelector(".progressbar-steps").children[i].classList.add("completed")
-            document.querySelector(".progressbar-steps").children[i].classList.add("active")
-          }
-          document.querySelector(".progressbar-steps").children[i].classList.add("active")
-        }
-      },500)
+
 
     }
 
@@ -117,8 +115,11 @@ import {Location} from '@angular/common';
     aide(){
       if(this.questionSelected.indice != ""){
         this.afficheIndice = true
+        console.log("indice")
       }else{
-          this.playSong = true;
+        console.log("SOng")
+        this.playSong = true;
+        console.log(this.playSong)
       }
   
       this.resService.GiveClues()
