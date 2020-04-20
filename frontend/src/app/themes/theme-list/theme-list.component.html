@@ -6,18 +6,17 @@
             </h1>
             <div>
                 <div style="display: flex; justify-content: center;">
-                    <input class="form-control" type="text" name="search" [(ngModel)]="searchTheme" autocomplete="off" placeholder="&#61442; Recherche de theme">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchTheme" autocomplete="on" placeholder="Recherche de theme">
                 </div>
             </div>
-            <div class="theme-list">
-                <div class="theme" *ngFor="let theme of themesList | filter:searchTheme; let c=count">
-                    <!-- <p *ngIf="c === 0">Aucun theme trouvé</p> N'entre pas puisqu'il y a pas d'élément -->
-                    <!--Inputs & Output allow communication between parent & child components.-->
-                    <!--More information: https://angular.io/guide/component-interaction-->
-                    <app-theme [theme]="theme" (themeSelected)="themeSelected($event)" (themeDeleted)="themeDeleted($event)">
-                    </app-theme>
-                </div>
-            </div>
+            <ul class="theme-list">
+                <li class="theme" *ngFor="let theme of themesList | filter:searchTheme">
+                    <app-theme [theme]="theme" (themeSelected)="themeSelected($event)" (themeDeleted)="themeDeleted($event)"></app-theme>
+                </li>
+                <li class="no-theme" *ngIf="(themesList | filter:searchTheme).length === 0">
+                    <h3>Aucun thème correspond à vos recherche</h3>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

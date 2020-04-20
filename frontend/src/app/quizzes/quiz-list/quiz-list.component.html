@@ -6,7 +6,7 @@
     <div>
         <div style="display: flex; justify-content: center;">
             <input class="form-control" type="text" name="search" [(ngModel)]="searchQuiz" autocomplete="off"
-                placeholder="&#61442; Recherche de quiz">
+                placeholder="Recherche de quiz">
         </div>
     </div>
 
@@ -15,13 +15,14 @@
 
     <div id="containerListe">
         <div class="list-type2">
-            <ol>
-                <div class="quiz" *ngFor="let quiz of quizList | filter:searchQuiz">
-                    <li>
-                            <app-quiz [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizEdited($event)" (quizDeleted)="quizDeleted($event)"></app-quiz>
-                    </li>
-                </div>
-            </ol>
+            <ul class="quiz-list">
+                <li class="quiz" *ngFor="let quiz of quizList | filter:searchQuiz">
+                    <app-quiz [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizEdited($event)" (quizDeleted)="quizDeleted($event)"></app-quiz>
+                </li>
+                <li class="no-quiz" *ngIf="(quizList | filter:searchQuiz).length === 0">
+                    <p>Aucun quiz correspond à vos recherche</p>
+                </li>
+            </ul>
         </div>
     </div>
 </ng-container>

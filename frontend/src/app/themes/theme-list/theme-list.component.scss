@@ -1,11 +1,10 @@
 .theme-list {
+  padding: 0px;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-}
+  list-style: none;
 
-h1{
-  
 }
 
 #partie_liste_theme{
@@ -22,3 +21,7 @@ h1{
   text-align: center;
 }
   
+.no-theme{
+  color: white;
+  font-family: "Baloo Thambi 2", cursive;
+}

@@ -1,13 +1,11 @@
-<div class="quiz-container">
-    <label (click)="selectQuiz()" style="color: #3551C2;">{{quiz.name}}</label>
-    <div *ngIf="quiz.imageUrl">
-        <img (click)="selectQuiz()" [src]="quiz.imageUrl" style="max-width: inherit;" alt="image du quiz">
-    </div>
-    <label (click)="selectQuiz()" *ngIf="quiz.creationDate != null"> Date: {{quiz.creationDate | date:'mediumDate'}} </label>
-
-    <div id="boutons">
-        <a *ngIf="curStatus === 'admin'" class="button blue" (click)="editQuiz()">Edit</a>
-        <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteQuiz(quiz)">Delete</a>
-        <a class="button white" (click)="selectQuiz(quiz)">Select</a>
-    </div>
+<div class="container">
+    <div class="card">
+        <img *ngIf="quiz.imageUrl" (click)="selectQuiz()" [src]="quiz.imageUrl" class="card__image" alt="image du quiz">
+        <h4 class="card__title">{{quiz.name}}</h4>
+        <div id="boutons">
+            <a *ngIf="curStatus === 'admin'" class="button blue" (click)="editQuiz()">Edit</a>
+            <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteQuiz(quiz)">Delete</a>
+            <a class="button white" (click)="selectQuiz(quiz)">Jouer !</a>
+        </div>
+    </div>    
 </div>
