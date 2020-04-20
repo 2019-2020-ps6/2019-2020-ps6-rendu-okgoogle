@@ -1,12 +1,22 @@
 .user-list {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: wrap;
   justify-content: space-around;
-  width: 80%;
+  
   margin-left: auto;
   margin-right: auto;
 }
 
+
+#partie_user{
+  flex: 1 1 48%;
+}
+
+
+@media screen and (min-width: 800px){
+  
+
+}
 
 @media screen and (max-width: 1200px) {
   .user{
@@ -15,7 +25,11 @@
 }
 
 @media screen and (max-width: 768px) {
-  .user{
-    width: 100%;
+  // .user{
+  //   width: 100%;
+  // }
+
+  .user-list{
+    width: 80%;
   }
 }

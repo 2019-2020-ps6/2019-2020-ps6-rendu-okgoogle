@@ -1,5 +1,6 @@
 <div class="user-list">
     <div class="user" *ngFor="let user of userList">
-        <app-user [user]="user" (userDeleted)="userDeleted($event)" (userStatistic)="userStatistic($event)" (userEdited)="userEdited($event)" (userSelected)="userSelected($event)"></app-user>
+        <app-user id="element" [user]="user" (userDeleted)="userDeleted($event)" (userStatistic)="userStatistic($event)"
+            (userEdited)="userEdited($event)" (userSelected)="userSelected($event)"></app-user>
     </div>
 </div>

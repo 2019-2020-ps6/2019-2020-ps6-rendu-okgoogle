@@ -1,10 +1,10 @@
-.card {
+.carte {
   /*height: 200px;*/
   /*background: red;*/
   border-radius: 4px;
   padding: .5rem;
   color: #5d5e5e;
-  width: 50%;
+  width: 48%;
   margin-right: 0em;
 } /* li item */
 
@@ -26,13 +26,61 @@ article{
   justify-content: center;
 }
 
+#partie_user_admin{
+  background-color : silver;
+  border-radius: 1.2em;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin: 5px;
+  text-align: center;
+}
+
+#buttons{
+  margin-top: 2em;
+  padding-bottom: 2em;
+}
+
+.button{
+  padding: 8px;
+  border: 0;
+  text-decoration: none;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.button:first-child{
+  background-color: steelblue;
+}
+
+.button:nth-child(2){
+  background-color: tomato;
+}
+
+.button:nth-child(3){
+  background-color: gold;
+}
+
+@media screen and (min-width: 800px){
+  #partie_user_admin{
+    width: 50%;
+    justify-content: center;
+  }
+
+  #conteneur{
+    display: flex;
+    justify-content: center;
+  }
+
+}
+
+
 
 @media screen and (max-width: 1200px) {
   .cards{
     display: block;
   }
 
-  .card{
+  .carte{
     display: block;
   
   }
@@ -42,13 +90,29 @@ article{
   }
 }
 
+// mode tablette 
+
 @media screen and (max-width: 800px) {
   .cards{
     display: block;
     width: 100%;
   }
 
-  .card{
+  img{
+    height: 150px;
+    width: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+  }
+
+  #partie_user_admin{
+    height: 100%;
+    margin: 1em;  
+  }
+
+
+  .carte{
     display: block;
   }
 
