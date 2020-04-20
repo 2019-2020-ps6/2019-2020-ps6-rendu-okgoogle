@@ -127,19 +127,19 @@ export class QuizService {
     const url = this.lien + themeid + "/quizzes/" +quiz.id+"/questions/"+question.id.toString(); 
     const header = this.prepareHeader();
     this.quizzes$.next(this.quizzes);
-    this.http.delete(url,header).subscribe(()=> console.log("suppr"))
+    this.http.delete(url,header).subscribe(()=> this.setSelectedQuiz(quiz.id, themeid))
     this.quizzes$.next(this.quizzes);
   }
 
-  deleteAnswer(question: Question, answer: Answer){
-    const url = this.lien + this.themeSelected.id + "/quizzes/" +this.quizSelected.id.toString()+"/questions/"+question.id.toString() +"/answers/"+answer.id.toString(); // DELETE api/heroes/42
+  deleteAnswer(themeid:string,quizid:string,questionid:string,answerid:string){
+    const url = this.lien + themeid + "/quizzes/" +quizid+"/questions/"+questionid +"/answers/"+answerid; 
     const header = this.prepareHeader();
     this.quizzes$.next(this.quizzes);
-    this.http.delete(url,header).subscribe(()=> console.log("suppr"))
+    this.http.delete(url,header).subscribe(()=> this.setSelectedQuiz(quizid, themeid))
   }
 
   editQuestion(themeid:string,quizid:string,oldQuestionId:string,question: Question){
-    const url = this.lien + themeid + "/quizzes/" +quizid+"/questions/"+oldQuestionId; // DELETE api/heroes/42
+    const url = this.lien + themeid + "/quizzes/" +quizid+"/questions/"+oldQuestionId; 
     this.quizzes$.next(this.quizzes);
     this.http.put<Question>(url, question).subscribe((question)=>{
       this.setSelectedQuiz(quizid, themeid)
@@ -147,7 +147,7 @@ export class QuizService {
   }
 
   editAnswer(themeid:string,quizid:string,questionid:string,answerid:string,answer: Answer){
-    const url = this.lien + themeid + "/quizzes/" +quizid+"/questions/"+questionid +"/answers/"+answerid; // DELETE api/heroes/42
+    const url = this.lien + themeid + "/quizzes/" +quizid+"/questions/"+questionid +"/answers/"+answerid; 
     // this.quizzes$.next(this.quizzes);
     this.http.put<Answer>(url, answer).subscribe((answer)=> {
       this.setSelectedQuiz(quizid, themeid)

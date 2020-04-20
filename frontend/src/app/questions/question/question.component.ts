@@ -85,6 +85,12 @@ export class questionComponent implements OnInit{
         this.answerForm.get('isCorrect').setValue(answer.isCorrect)
     }
 
+    supprAnswer(answer:Answer){
+        const themeid = this.route.snapshot.paramMap.get('themeid');
+        const quizid = this.route.snapshot.paramMap.get('quizid');
+        this.quizService.deleteAnswer(themeid,quizid,this.question.id.toString(), answer.id);
+    }
+
     validateAnswer(answerAModifier:Answer){
         this.editanswer_i = -1;
         const themeid = this.route.snapshot.paramMap.get('themeid');

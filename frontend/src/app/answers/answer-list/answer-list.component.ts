@@ -22,13 +22,4 @@ export class AnswerListComponent implements OnInit {
 
   }
 
-  answerDeletion(answer: Answer) {
-    this.quizService.deleteAnswer(this.question, answer);
-    this.question.answers.splice(this.question.answers.indexOf(answer),1)
-  }
-
-  answerEdition(selected: Question){
-    this.quizService.setSelectedAnswer(selected.id.toString());
-    this.router.navigate(["/edit-answer/",selected.id.toString()])
-  }
 }
