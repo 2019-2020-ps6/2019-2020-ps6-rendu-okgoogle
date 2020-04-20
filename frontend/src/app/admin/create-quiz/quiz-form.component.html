@@ -6,10 +6,19 @@
       </div>
       <h2 class="titre">Créer un nouveau quiz</h2>
       <form class="quiz-form" [formGroup]="quizForm">
-          <input placeholder="Nom du quiz" class="input-custom" type="text" id="name" [formControlName]="'name'">
+          <input placeholder="Nom du quiz" class="input-custom" type="text" [formControlName]="'name'">
           <br>
-          <input placeholder="Image associé au quiz" class="input-custom" type="text" id="name" [formControlName]="'imageUrl'">
+          <span class="toggle__label">Sans image</span>
+          <label class="toggle">
+            <ng-template *ngIf="WithImage; then activate else desactivate" ></ng-template>
+            <ng-template #activate ><input (click)="switch_mode()" class="toggle__checkbox" type="checkbox" checked style="display: none;"></ng-template>
+            <ng-template #desactivate ><input (click)="switch_mode()" class="toggle__checkbox" type="checkbox" style="display: none;"></ng-template>
+            <span class="toggle__switcher"></span>
+          </label>
+          <span class="toggle__label">Avec image</span>
           <br>
+          <input *ngIf="WithImage" placeholder="Image associé au quiz" class="input-custom" type="text" [formControlName]="'imageUrl'">
+          <br><br>
           <button class="button blue" [disabled]="quizForm.invalid" (click)="addQuiz()">Créer</button>
           <div *ngIf="quizForm.controls.name.invalid && (quizForm.controls.name.dirty || quizForm.controls.name.touched)"class="alert alert-danger">
             <div *ngIf="quizForm.controls.name.errors.required">

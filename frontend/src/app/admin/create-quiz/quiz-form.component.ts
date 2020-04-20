@@ -17,6 +17,7 @@ export class QuizFormComponent implements OnInit {
   public themes: Theme[] = [];
   public curTheme: Theme;
   public quizForm: FormGroup;
+  public WithImage: boolean =true;
   quizCreer: boolean;
   
 
@@ -24,7 +25,6 @@ export class QuizFormComponent implements OnInit {
     this.quizForm = this.formBuilder.group({
       name: ['', Validators.required],
       imageUrl:['', Validators.required],
-      imageDefault: false
     });
   }
 
@@ -37,6 +37,18 @@ export class QuizFormComponent implements OnInit {
     this.themeService.themes$.subscribe((theme) => this.themes = theme);
   }
 
+  switch_mode(){
+    if(this.WithImage == true){
+      this.WithImage = false;
+      this.quizForm.controls["imageUrl"].clearValidators()
+      this.quizForm.controls["imageUrl"].updateValueAndValidity()
+    }else{
+      this.WithImage = true;
+      this.quizForm.controls["imageUrl"].setValidators(Validators.required)
+      this.quizForm.controls["imageUrl"].updateValueAndValidity()
+    }
+  }
+
   addQuiz() {
     if(this.quizForm.valid){
       const id = +this.route.snapshot.paramMap.get('themeid');
@@ -46,9 +58,8 @@ export class QuizFormComponent implements OnInit {
   
       quizToCreate.questions = [];
       quizToCreate.creationDate = new Date();
-
-      if(this.quizForm.get("imageDefault").value == true)
-      quizToCreate.imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWXDFTonXk2JDFeUHA4nqPrDr1slhbB-NH21xuc0jb_r5LzFG_&usqp=CAU";
+      if(this.WithImage == false)
+          quizToCreate.imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWXDFTonXk2JDFeUHA4nqPrDr1slhbB-NH21xuc0jb_r5LzFG_&usqp=CAU";
 
 
       this.quizService.addQuiz(quizToCreate.themeId.toString(),quizToCreate);
