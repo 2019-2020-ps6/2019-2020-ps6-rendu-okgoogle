@@ -15,6 +15,10 @@ export class UserStatDetailComponent implements OnInit {
     public resSelected: Result;
 
     constructor(private route: ActivatedRoute,private statService: StatService) {
+
+    }
+
+    ngOnInit(): void{
         const userid = this.route.snapshot.paramMap.get("userid");
         const resultid = this.route.snapshot.paramMap.get("resultid");
         this.statService.setSelectedUser(userid)
@@ -25,10 +29,6 @@ export class UserStatDetailComponent implements OnInit {
                 this.resSelected = res
             })
         })
-    }
-
-    ngOnInit(): void{
-
     }
 
 }
