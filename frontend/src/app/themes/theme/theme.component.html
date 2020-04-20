@@ -1,13 +1,12 @@
 <ng-container *ngIf="theme">
-    <div id="struct_circle" >
-        <img (click)="selectTheme()" *ngIf="theme.imageUrl" [src]="theme.imageUrl" alt="image du theme">
-        <div (click)="selectTheme()" class="titreTheme">
-            {{theme.name}}
-        </div>
-    
-        <div class="buttons">
-            <button (click)="selectTheme()"> Voir les quiz</button>
-            <button *ngIf="curStatus === 'admin'" (click)="deleteTheme()">Delete</button>
-        </div>
+    <div class="container">
+        <div class="card">
+            <img (click)="selectTheme()" *ngIf="theme.imageUrl" [src]="theme.imageUrl" alt="image du theme">
+            <h4 class="card__title">{{theme.name}}</h4>
+            <div id="boutons">
+                <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteTheme()">Delete</a>
+                <a *ngIf="curStatus === 'user'" class="button white" (click)="selectTheme()">Voir les quiz</a>
+            </div>
+        </div>    
     </div>
 </ng-container>

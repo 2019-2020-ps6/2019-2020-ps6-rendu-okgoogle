@@ -1,160 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-#struct_circle{
-    //display: inline-block;
-    //flex-wrap: wrap;
-    //flex: 25% 1 25%;
+.button {
+    cursor: pointer;
+    margin: 0.3em;
+    padding: 0.8em 3em;
+    overflow: hidden;
+    position: relative;
+    text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 3px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -ms-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    border: none; 
+    font-size: 15px;
+}
+  
+.button:hover {
+    box-shadow: 1px 6px 15px rgba(0,0,0,0.5);
+}
+  
+.red {
+    background-color: #e74c3c;
+    color: white;
+}
 
-    width: 200px;
-    margin: 50px;
-    // height: 300px;
-    //background-color: rgb(189, 207, 224)  ;
+.blue {
+    background-color:#0080FF;
+    color: white;
+}  
 
-    //background-color: #34eb9e;
-    //border : inset slategrey ;
-    border: solid 2px black;
-    // margin-bottom: 40px;
-    cursor: pointer; 
+.white {
+    background-color: #F3F6F9;
+    color: #333;
+    font-weight: bold;
+}
+  
+.ripple {
+    position: absolute;
+    background: rgba(0,0,0,.25);
+    border-radius: 100%;
+    transform: scale(0.2);
+    opacity:0;
+    pointer-events: none;
+    -webkit-animation: ripple .75s ease-out;
+    -moz-animation: ripple .75s ease-out;
+    animation: ripple .75s ease-out;
+}
+  
+  @-webkit-keyframes ripple {
+    from {
+      opacity:1;
+    }
+    to {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  @-moz-keyframes ripple {
+    from {
+      opacity:1;
+    }
+    to {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes ripple {
+    from {
+      opacity:1;
+    }
+    to {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+
+  #boutons{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    padding: 20px;
+  }
+
+
+*{margin: 0;padding: 0;box-sizing: border-box;}
+.container{
+  width: 300px;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  grid-gap: 1em;
+  padding: 1em;
+  font-family: arial;
+  
+  .card{
+    background: linear-gradient(to top left,#7C4DFF,#6129FF);
+    border-radius: 8px;
     text-align: center;
-    background: rgb(0, 26, 255);
-}
-
-img{
-    width: 100%; 
+    color: #212121;
+    box-shadow: 0 2px 5px 0 rgba(#000,.2);
+    transition: all .2s;
+    overflow: hidden;
     
-    //a regler selon
-    height: 50%; 
-
-    //a mettre si cela ne fonctionne pas
-    //object-fit: contain;
-}
-
-
-
-/*
-  https://developer.mozilla.org/en/docs/Web/CSS/box-shadow
-  box-shadow: [inset?] [top] [left] [blur] [size] [color];
-
-  Tips:
-    - We're setting all the blurs to 0 since we want a solid fill.
-    - Add the inset keyword so the box-shadow is on the inside of the element
-    - Animating the inset shadow on hover looks like the element is filling in from whatever side you specify ([top] and [left] accept negative values to become [bottom] and [right])
-    - Multiple shadows can be stacked
-    - If you're animating multiple shadows, be sure to keep the same number of shadows so the animation is smooth. Otherwise, you'll get something choppy.
-*/
-
-// Animate the size, inside
-.fill:hover,
-.fill:focus {
-  box-shadow: inset 0 0 0 2em var(--hover);
-}
-
-// Animate the size, outside
-.pulse:hover, 
-.pulse:focus {
-  animation: pulse 1s;
-  box-shadow: 0 0 0 2em rgba(#fff,0);
-}
-
-@keyframes pulse {
-  0% { box-shadow: 0 0 0 0 var(--hover); }
-}
-
-// Stack multiple shadows, one from the left, the other from the right
-.close:hover,
-.close:focus {
-  box-shadow: 
-    inset -3.5em 0 0 0 var(--hover),
-    inset 3.5em 0 0 0 var(--hover);  
-}
-
-// Size can also be negative; see how it's smaller than the element
-.raise:hover,
-.raise:focus {
-  box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
-  transform: translateY(-0.25em);
-}
-
-// Animating from the bottom
-.up:hover,
-.up:focus {
-  box-shadow: inset 0 -3.25em 0 0 var(--hover);
-}
-
-// And from the left
-.slide:hover,
-.slide:focus {
-  box-shadow: inset 6.5em 0 0 0 var(--hover);
-}
-
-
-
-//=== Set button colors
-// If you wonder why use Sass vars or CSS custom properties...
-  // Make a map with the class names and matching colors
-$colors: (
-  fill: #19bc8b,
-  pulse: #fff, 
-  close: #ff7f82, 
-  raise: #ffa260, 
-  up: #e4cb58, 
-  slide: #8fc866, 
-  offset: #19bc8b
-);
-
-// Sass variables compile to a static string; CSS variables are dynamic and inherited
-  // Loop through the map and set CSS custom properties using Sass variables
-@each $button, $color in $colors {
-  .#{$button} {
-    --color: #{$color};
-    --hover: #{adjust-hue($color, 45deg)};
+    &:hover{
+      //transform: translateY(-.5em);
+      //box-shadow: 0 10px 5px 0 rgba(#000,.2);
+    }
+    img{
+      width: 110%;
+      height: 200px;
+      display: block;
+      object-fit: cover;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+    }
+    
+    &__title{
+      margin-bottom: .5em;
+      font-size: 1.4em;
+      color:white;
+    }
+    &__description{
+      padding: .5em;
+      line-height: 1.3;
+    }
+    &__btn{
+      background: darken(#7C4DFF,5%);
+      line-height: 2;
+      padding: 0 1.5em;
+      border-radius: 1em;
+      color: #000;
+      display: inline-block;
+      text-decoration: none;
+      margin: 1em;
+      transition: all .2s;
+      &:hover{
+        background: darken(#7C4DFF,8%);
+      }
+    }
   }
 }
-
-// Now every button will have different colors as set above. We get to use the same structure, only changing the custom properties.
-button {  
-  color: var(--color);
-  transition: 0.25s;
-  
-  &:hover,
-  &:focus { 
-    border-color: var(--hover);
-    color: rgb(212, 0, 71);
-  }
-}
-
-//=== Pen styling, ignore
-body {
-  color: #fff;
-  background: hsl(227, 10%, 10%);
-  font: 300 1em 'Fira Sans', sans-serif;
-  
-  // Center everything ever
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 100vh;
-  display: flex;
-}
-
-// Basic button styles
-button {
-  background: none;
-  border: 2px solid;
-  font: inherit;
-  line-height: 1;
-
- // margin-top: 1em;
-  padding: 0.5em 0.5em;
-  margin : 5px;
-}
-
-h1 { font-weight: 400; }
-
-code { 
-  color: #e4cb58;
-  font: 300 1em 'Fira Sans', sans-serif;
-}
-
-
-

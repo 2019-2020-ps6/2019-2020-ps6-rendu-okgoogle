@@ -1,4 +1,4 @@
-<ng-container *ngIf="curTheme">
+<div id="partie_liste_quiz" *ngIf="curTheme">
 
     <app-quiz-form *ngIf="curStatus === 'admin'"></app-quiz-form>
 
@@ -19,10 +19,10 @@
                 <li class="quiz" *ngFor="let quiz of quizList | filter:searchQuiz">
                     <app-quiz [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizEdited($event)" (quizDeleted)="quizDeleted($event)"></app-quiz>
                 </li>
-                <li class="no-quiz" *ngIf="(quizList | filter:searchQuiz).length === 0">
+                <li class="no-quiz" *ngIf=" searchQuiz && (quizList | filter:searchQuiz).length === 0">
                     <p>Aucun quiz correspond à vos recherche</p>
                 </li>
             </ul>
         </div>
     </div>
-</ng-container>
+</div>

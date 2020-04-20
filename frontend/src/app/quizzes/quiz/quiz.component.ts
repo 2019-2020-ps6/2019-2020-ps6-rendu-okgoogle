@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Quiz } from '../../../models/quiz.model';
-import localeFr from '@angular/common/locales/fr';
+
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
