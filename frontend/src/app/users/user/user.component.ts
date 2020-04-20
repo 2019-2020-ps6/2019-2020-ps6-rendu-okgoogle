@@ -8,6 +8,8 @@ import { User } from '../../../models/user.model';
 })
 export class UserComponent implements OnInit {
 
+  private curStatus: string;
+
   @Input()
   user: User;
 
@@ -15,20 +17,35 @@ export class UserComponent implements OnInit {
   userDeleted: EventEmitter<User> = new EventEmitter<User>();
 
   @Output()
-  userSelected: EventEmitter<User> = new EventEmitter<User>();
+  userSelected: EventEmitter<User> = new EventEmitter<User>();  
+  
+  @Output()
+  userEdited: EventEmitter<User> = new EventEmitter<User>();
+    
+  @Output()
+  userStatistic: EventEmitter<User> = new EventEmitter<User>();
 
   constructor() {
 
   }
 
   ngOnInit() {  
+    this.curStatus = sessionStorage.getItem('status');
   }
 
   selectUser(user: User) {
     this.userSelected.emit(user);
   }
 
+  editUser(user:User){
+    this.userEdited.emit(user);
+  }
+
   deleteUser(user: User) {
     this.userDeleted.emit(user);
+  }
+  
+  statistic(user: User){
+    this.userStatistic.emit(user);
   }
 }

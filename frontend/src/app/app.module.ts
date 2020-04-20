@@ -17,7 +17,6 @@ import { questionComponent } from './questions/question/question.component';
 import { QuestionListComponent } from './questions/question-list/question-list.component';
 import { QuestionFormComponent } from './admin/question-form/question-form.component';
 import { UserFormComponent } from './admin/create-user/user-form.component';
-import { UserAdminComponent } from './admin/user-admin/user-admin.component';
 import { UserComponent } from './users/user/user.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { UserStatComponent } from './users/user-stat/user-stat.component';
@@ -52,7 +51,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     questionComponent,
     UserFormComponent,
     UserComponent,
-    UserAdminComponent,
     UserListComponent,
     UserLoginComponent,
     editUserComponent,

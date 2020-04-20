@@ -1,10 +1,21 @@
 <section (click)="selectUser(user)" class="cards">
     <article class="card">
         <picture *ngIf="user.img != ''" class="thumbnail">
-             <img  class="category__02" src="{{user.img}}" alt="" />
+             <img class="category__02" src="{{user.img}}" alt="" />
         </picture>
         <div class="card-content">
-            <h2 style="text-align: center;">{{user.name}} {{user.surname}}</h2>
-        </div><!-- .card-content -->
-    </article>
+            <div *ngIf="curStatus === 'admin'">
+                <span style="word-wrap: break-word;">Identité: {{user.name}} {{user.surname}}</span>
+                <span style="word-wrap: break-word;">Sexe: {{user.sexe}}</span>
+                <span style="word-wrap: break-word;">Age: {{user.age}}</span>
+                <span style="word-wrap: break-word;">Infos description: {{user.description}}</span>
+                <button class="button-card" (click)="editUser(user)">Editer</button>
+                <button class="button-card" (click)="deleteUser(user)">Delete</button>
+                <button class="button-card" (click)="statistic(user)">Statistique</button>
+            </div>
+            <div *ngIf="curStatus === 'user'">
+                <h2 style="text-align: center;">{{user.name}} {{user.surname}}</h2>
+            </div>
+       </div>
+      </article>
 </section>
