@@ -7,12 +7,17 @@
       <h2 class="titre">Créer un nouveau thème</h2>
       <form class="theme-form" [formGroup]="ThemeForm">
         <input class="input-custom" type="text" [formControlName]="'name'" placeholder="Nom du thème">
-
         <br>
-        <input placeholder="Image associé au thème" class="input-custom" type="text" id="name" [formControlName]="'imageUrl'">
-        <div style="display: inline;">
-          Aucune image: <input type="checkbox" [formControlName]="'imageDefault'">
-        </div>
+        <span class="toggle__label">Sans image</span>
+        <label class="toggle">
+          <ng-template *ngIf="WithImage; then activate else desactivate" ></ng-template>
+          <ng-template #activate ><input (click)="switch_mode()" class="toggle__checkbox" type="checkbox" checked style="display: none;"></ng-template>
+          <ng-template #desactivate ><input (click)="switch_mode()" class="toggle__checkbox" type="checkbox" style="display: none;"></ng-template>
+          <span class="toggle__switcher"></span>
+        </label>
+        <span class="toggle__label">Avec image</span>
+        <br>
+        <input *ngIf="WithImage" placeholder="Image associé au quiz" class="input-custom" type="text" [formControlName]="'imageUrl'">
         <br>
         <button class="button blue" [disabled]="ThemeForm.invalid" (click)="addTheme()">Créer</button>
         <div *ngIf="ThemeForm.controls.name.invalid && (ThemeForm.controls.name.dirty || ThemeForm.controls.name.touched)"class="alert alert-danger">

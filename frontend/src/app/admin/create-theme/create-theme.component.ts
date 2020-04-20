@@ -15,6 +15,7 @@ export class CreateThemeComponent implements OnInit {
   
   public ThemeForm: FormGroup;
   public themeCreer: boolean;
+  public WithImage: boolean =true;
 
   constructor(private route: ActivatedRoute,private themeService: ThemeService,public formBuilder: FormBuilder, public quizService: QuizService) {
     this.initialiseForm();
@@ -27,16 +28,26 @@ export class CreateThemeComponent implements OnInit {
     this.ThemeForm = this.formBuilder.group({
       name: ['', Validators.required],
       imageUrl: ['', Validators.required],
-      imageDefault: false
     });
   }
 
+  switch_mode(){
+    if(this.WithImage == true){
+      this.WithImage = false;
+      this.ThemeForm.controls["imageUrl"].clearValidators()
+      this.ThemeForm.controls["imageUrl"].updateValueAndValidity()
+    }else{
+      this.WithImage = true;
+      this.ThemeForm.controls["imageUrl"].setValidators(Validators.required)
+      this.ThemeForm.controls["imageUrl"].updateValueAndValidity()
+    }
+  }
 
   addTheme() {
     if(this.ThemeForm.valid){
       const themeToCreate: Theme = this.ThemeForm.getRawValue() as Theme;
     
-      if(this.ThemeForm.get("imageDefault").value == true)
+      if(this.WithImage == false)
         themeToCreate.imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWXDFTonXk2JDFeUHA4nqPrDr1slhbB-NH21xuc0jb_r5LzFG_&usqp=CAU";
   
       this.themeService.addTheme(themeToCreate);

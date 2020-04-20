@@ -171,3 +171,73 @@ button[disabled]{
   background-color: #cccccc;
   color: #666666;
 }
+
+// vars
+$white: #fff;
+$blue: #436eb1;
+$green: #36ab97;
+$purple: #b25bab;
+$blue-green-gradient: linear-gradient(45deg, $blue, $green);
+$purple-blue-gradient: linear-gradient(to right, $purple, $blue);
+
+
+%dib-vam {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.toggle {
+  @extend %dib-vam;
+  position: relative;
+  top: calc(50% - 15px);
+  width: 75px;
+  height: 30px;
+  margin: 0 15px;
+  
+  &__checkbox {
+    display: none;
+    
+    &:checked + .toggle__switcher {
+      background: $purple-blue-gradient;
+      opacity: 1;
+      
+      &::before {
+        transform: translateX(44px);
+      }
+    }
+  }
+  
+  &__switcher {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 34px;
+    background: $purple-blue-gradient;
+    opacity: .65;
+    cursor: pointer;
+    transition: .4s;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      width: 23px;
+      height: 23px;
+      left: 4px;
+      bottom: 4px;
+      border-radius: 50%;
+      background: $white;
+      transition: .4s;
+    }
+  }
+  
+  &__label {
+    @extend %dib-vam;
+    position: relative;
+    top: calc(50% - 14px);
+    color: #333;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+}
