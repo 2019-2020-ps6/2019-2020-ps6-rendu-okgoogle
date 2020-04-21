@@ -13,10 +13,13 @@ export class ThemeListComponent implements OnInit {
 
   public themesList: Theme[] = [];
   public searchTheme: string;
+  public reversed:boolean;
 
   constructor(private route: ActivatedRoute,private router:Router, public themeService: ThemeService) {  
     this.themeService.setThemesFromUrl()
-    this.themeService.themes$.subscribe((theme) => this.themesList = theme);
+    this.themeService.themes$.subscribe((theme) =>{
+      this.themesList = theme
+    });
   }
 
   ngOnInit() {

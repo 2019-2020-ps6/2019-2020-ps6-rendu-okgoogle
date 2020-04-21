@@ -49,6 +49,7 @@ export class UserService implements OnInit {
   getUsers() : void {
     this.http.get<User[]>(this.lien).subscribe((userss) =>{
       this.users=userss;
+      this.users.reverse()
       this.users$.next(this.users);
     })
   }

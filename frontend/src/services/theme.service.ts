@@ -59,9 +59,9 @@ export class ThemeService {
   setThemesFromUrl(){
     this.http.get<Theme[]>(this.lien).subscribe((themes) => {
       this.themes = themes;
+      this.themes.reverse()
       this.themes$.next(this.themes);
     });
-    console.log("Les theme: " + this.themes)
   }
 
 

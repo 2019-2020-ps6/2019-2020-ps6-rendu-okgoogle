@@ -4,8 +4,8 @@
             <img (click)="selectTheme()" *ngIf="theme.imageUrl" [src]="theme.imageUrl" alt="image du theme">
             <h4 class="card__title">{{theme.name}}</h4>
             <div id="boutons">
-                <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteTheme()">Delete</a>
                 <a class="button white" (click)="selectTheme()">Voir les quiz</a>
+                <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteTheme()">Delete</a>
             </div>
         </div>    
     </div>

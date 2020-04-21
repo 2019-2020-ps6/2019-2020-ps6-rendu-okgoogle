@@ -51,6 +51,7 @@ export class QuizService {
   getQuizzesByThemeId(themeid: string){
     this.http.get<Quiz[]>(this.lien + themeid + "/quizzes/").subscribe((quizzess) => {
       this.quizzes = quizzess;  
+      quizzess.reverse()
       this.quizzes$.next(this.quizzes);
     });
   }

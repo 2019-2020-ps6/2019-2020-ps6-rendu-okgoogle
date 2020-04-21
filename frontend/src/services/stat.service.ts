@@ -55,6 +55,7 @@ export class StatService implements OnInit {
     const urlWithId = this.lien+'result/'+userid
     this.http.get<Result[]>(urlWithId).subscribe((res)=>{
       this.resultsSelected = res;
+      this.resultsSelected.reverse()
       this.resultsSelected$.next(this.resultsSelected);
     }); 
   }

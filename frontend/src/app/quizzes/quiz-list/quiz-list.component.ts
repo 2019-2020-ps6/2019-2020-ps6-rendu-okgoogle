@@ -18,13 +18,16 @@ export class QuizListComponent implements OnInit {
   public searchQuiz: string;
   public quizNb : number = -1;
   private curStatus: string;
+  reversed: boolean;
 
   constructor(private router: Router, private route: ActivatedRoute , private resService: QuizService, private quizService: QuizService, private themeService: ThemeService) {
     this.id = this.route.snapshot.paramMap.get('themeid');
     this.themeService.setSelectedTheme(this.id.toString());
     this.themeService.themeSelected$.subscribe((theme)=>this.curTheme = theme)
     this.quizService.getQuizzesByThemeId(this.id.toString());
-    this.quizService.quizzes$.subscribe((quizzes) => this.quizList = quizzes);
+    this.quizService.quizzes$.subscribe((quizzes) => {
+      this.quizList = quizzes
+    });
     
   }
 

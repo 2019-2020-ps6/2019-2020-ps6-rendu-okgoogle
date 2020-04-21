@@ -19,6 +19,7 @@ export class QuizFormComponent implements OnInit {
   public quizForm: FormGroup;
   public WithImage: boolean =true;
   quizCreer: boolean;
+  public imageUrl: string = ""
   
 
   constructor(private route: ActivatedRoute,private themeService: ThemeService,public formBuilder: FormBuilder, public quizService: QuizService) {
@@ -26,10 +27,6 @@ export class QuizFormComponent implements OnInit {
       name: ['', Validators.required],
       imageUrl:['', Validators.required],
     });
-  }
-
-  get lesThemes(): Theme[]{
-    return this.themes;
   }
 
   ngOnInit() {
@@ -47,6 +44,9 @@ export class QuizFormComponent implements OnInit {
       this.quizForm.controls["imageUrl"].setValidators(Validators.required)
       this.quizForm.controls["imageUrl"].updateValueAndValidity()
     }
+  }
+  displayImage(){
+    this.imageUrl= this.quizForm.get("imageUrl").value
   }
 
   addQuiz() {

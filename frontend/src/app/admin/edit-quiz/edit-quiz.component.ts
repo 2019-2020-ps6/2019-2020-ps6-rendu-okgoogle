@@ -18,14 +18,6 @@ export class editQuizComponent implements OnInit {
   public UneImg4question = "./UneImgQuatreReponse.jpg";
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private themeService: ThemeService) { 
-    const quizid = this.route.snapshot.paramMap.get('quizid');
-    const themeid = this.route.snapshot.paramMap.get('themeid');
-    this.themeService.setSelectedTheme(themeid.toString())
-    this.themeService.themeSelected$.subscribe((theme)=> {
-      this.curTheme = theme
-      this.quizService.setSelectedQuiz(quizid.toString(),themeid.toString());
-      this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
-    })
   }
   
   ngOnInit() {

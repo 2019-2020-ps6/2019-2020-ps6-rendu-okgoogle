@@ -16,6 +16,7 @@ export class CreateThemeComponent implements OnInit {
   public ThemeForm: FormGroup;
   public themeCreer: boolean;
   public WithImage: boolean =true;
+  imageUrl: any;
 
   constructor(private route: ActivatedRoute,private themeService: ThemeService,public formBuilder: FormBuilder, public quizService: QuizService) {
     this.initialiseForm();
@@ -41,6 +42,10 @@ export class CreateThemeComponent implements OnInit {
       this.ThemeForm.controls["imageUrl"].setValidators(Validators.required)
       this.ThemeForm.controls["imageUrl"].updateValueAndValidity()
     }
+  }
+
+  displayImage(){
+    this.imageUrl= this.ThemeForm.get("imageUrl").value
   }
 
   addTheme() {

@@ -1,9 +1,7 @@
-import { Component, OnInit,ViewChild, ElementRef,Renderer2, Renderer } from '@angular/core';
+import { Component, OnInit,ViewChild, ElementRef,Renderer2 } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
 import { Question } from 'src/models/question.model';
-import { HttpClient } from '@angular/common/http';
-import { TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -22,7 +20,7 @@ export class QuestionFormComponent implements OnInit{
   questionToCreate:Question;
   
 
-  constructor(private renderer:Renderer2,private route:ActivatedRoute,public formBuilder: FormBuilder, private quizService: QuizService) {
+  constructor(private route:ActivatedRoute,public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
     this.initializeQuestionForm();
 
@@ -61,32 +59,6 @@ export class QuestionFormComponent implements OnInit{
   get answers() {
     return this.questionForm.get('answers') as FormArray;
   }
-
-  verifyUrl(i: number){
-    var ParentNode = document.querySelector("#ImageUpload")
-    var divAnswer = document.createElement("div")
-    divAnswer.className="ImageUp"
-    divAnswer.innerHTML="Image "+(i+1)+" uploadé: "
-    var img = document.createElement("img")
-    img.className="image"+i+1
-    img.setAttribute("src", this.questionForm.get(['answers',i,'imageUrl']).value);
-    img.setAttribute("style", "max-width:100px")
-    divAnswer.appendChild(img)
-    ParentNode.appendChild(divAnswer)
-  }
-
-  verifyUrlQuestion(){
-    var ParentNode = document.querySelector("#ImageUpload")
-    var divAnswer = document.createElement("div")
-    divAnswer.className="ImageUp"
-    divAnswer.innerHTML="Question image uploadé: "
-    var img = document.createElement("img")
-    img.className="imageQuestion"
-    img.setAttribute("src", this.questionForm.get(['imgUrl']).value);
-    img.setAttribute("style", "max-width:100px")
-    divAnswer.appendChild(img)
-    ParentNode.appendChild(divAnswer)
-  }
   
   private createAnswer() {
     if(this.mode === "Image question et text pour question"){
@@ -111,11 +83,8 @@ export class QuestionFormComponent implements OnInit{
   }
 
   isChecked(){
-    //changeement de background pour la bonne réponse
-    //var element = <HTMLInputElement> document.getElementById("correctOrNot");
+    //changement de background pour la bonne réponse
     var element = <HTMLInputElement> document.querySelector('.correctOrNot');
-
-
     if(element.checked){
       var parent = element.parentElement;
       parent.style.backgroundColor = "LightGreen";
@@ -124,10 +93,6 @@ export class QuestionFormComponent implements OnInit{
       parent.removeChild(element);
       var parentText = document.getElementById("label").parentElement;
       parentText.removeChild(document.getElementById("label"));
-      // var newText = document.createElement("label");
-      // newText.innerText = "incorrect";
-      // parentText.appendChild(newText);
-      //parent.style.backgroundColor = "#aaa";
     }
   }
 

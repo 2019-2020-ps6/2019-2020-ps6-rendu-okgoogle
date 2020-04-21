@@ -17,7 +17,7 @@
         </label>
         <span class="toggle__label">Avec image</span>
         <br>
-        <input *ngIf="WithImage" placeholder="Image associé au quiz" class="input-custom" type="text" [formControlName]="'imageUrl'">
+        <input *ngIf="WithImage" placeholder="Image associé au quiz" class="input-custom" type="text" (change)="displayImage()" [formControlName]="'imageUrl'">
         <br>
         <button class="button blue" [disabled]="ThemeForm.invalid" (click)="addTheme()">Créer</button>
         <div *ngIf="ThemeForm.controls.name.invalid && (ThemeForm.controls.name.dirty || ThemeForm.controls.name.touched)"class="alert alert-danger">
@@ -30,7 +30,11 @@
           L'Url de l'image est requise.
         </div>
       </div>
+      <div *ngIf="imageUrl && WithImage">
+        <span style="color: #333; font-size: 20px;">Image uploadé:</span>  <br> <img width="100" [src]="imageUrl" alt="Ue">
+      </div>
       </form>
+
 
     </div>
   </div>
