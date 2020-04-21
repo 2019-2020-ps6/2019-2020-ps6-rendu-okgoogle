@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {Location} from '@angular/common';
-import { Router } from '@angular/router';
+import { Router} from '@angular/router';
 
-import {RouterOutlet} from '@angular/router';
 import { slideInAnimation } from './route-animation'
+import { RouterHistoryService } from 'src/services/router-history.service';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +13,20 @@ import { slideInAnimation } from './route-animation'
     slideInAnimation
   ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
+  previousPages: string[]= [];
+  lastPage: string = "";
 
   title = 'Quizle';
 
-  constructor(private location: Location,private router: Router){
-    
+  constructor(private location: Location,private router: Router, private routerService:RouterHistoryService){
+      this.routerService.navigation$.subscribe((page)=> {
+        this.previousPages = page;
+        this.lastPage = page[page.length-1]
+      })
+  }
+  ngOnInit(): void {
   }
 
   back_click(){

@@ -26,7 +26,7 @@ export class ThemeListComponent implements OnInit {
   themeSelected(selected: Theme) {
     console.log("Le selected"+selected.name)
     this.themeService.themeSelected = selected;
-    this.router.navigate(['theme-list', selected.id.toString()]);
+    this.router.navigate(['quiz-list', selected.id.toString()]);
   }
   
   themeDeleted(selected: Theme) {

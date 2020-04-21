@@ -17,7 +17,7 @@ import { UserStatDetailComponent } from './users/user-stat-detail/user-stat-deta
 
 const routes: Routes = [
     {path: 'theme-list', component: ThemeListComponent, data:{animation:'ThemeList'} },
-    {path: 'theme-list/:themeid', component: QuizListComponent, data:{animation:'QuizList'}},
+    {path: 'quiz-list/:themeid', component: QuizListComponent, data:{animation:'QuizList'}},
     {path: 'theme-edit/:themeid/edit-quiz/:quizid', component: editQuizComponent, data:{animation:'EditQuiz'}},
     {path: 'theme-edit/:themeid/edit-quiz/:quizid/edit-question/:questionid', component: editQuestionComponent, data:{animation:'EditQuestion'}},
     {path: 'user-list', component: UserListComponent, data:{animation:'UserList'}},
