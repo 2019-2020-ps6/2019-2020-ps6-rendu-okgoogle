@@ -13,8 +13,9 @@
                     <button (click)="deleteQuiz(quiz,false)" class="btn btn__cancel">non</button>
                 </div>
                 <p id="response"></p>
-                <a *ngIf="curStatus === 'user'" class="button white" (click)="selectQuiz(quiz)">Jouer !</a>
+                
             </div>
+            <a *ngIf="curStatus === 'user'" class="button white" (click)="selectQuiz(quiz)">Jouer !</a>
         </div>
     </div>
 </div>
