@@ -6,7 +6,7 @@
 .personnel {
     background-image: url('https://f1.pngfuel.com/png/673/501/92/circle-icon-health-care-medicine-clinic-hospital-physician-symbol-patient-png-clip-art.png');
     background-size: cover ;
-    background-repeat: no-repeat;  
+    background-repeat: no-repeat;
 }
   
   .accueilli {
@@ -38,9 +38,11 @@
   // ###############################
 
   #adminPanel{
+    margin-right: 30%;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    
   }
  
   a{
@@ -53,24 +55,44 @@
 
 .card-circle{
     text-align:center;
-     margin-top:50px;
      background:#27496D;    
      border:10px solid transparent;
      color:#fff;
      Font-family: Montserrat;
-     padding:50px;
+     padding:40px;
      border-radius:50%;
 }
- .card-circle .card-title{
-    font-weight:600;
-     font-size:26px;
+.card-circle-accueilli{
+  margin-top: 120%; 
+  width:500px;
+  height:500px;
+  text-align:center;
+     background:#27496D;    
+     border:10px solid transparent;
+     color:#fff;
+     Font-family: Montserrat;
+     border-radius:50%;
 }
- .card-circle .card-text{
+
+.card-title{
+    font-weight:600;
+    font-size:26px;
+}
+.card-title-accueilli{
+  font-weight:600;
+  font-size:66px;
+}
+.card-text{
     font-weight:400;
 }
- .card-circle .card-icon i{
+.card-icon i{
      font-size:60px;
      display:block;
+}
+
+.card-icon-accueilli i{
+  font-size:120px;
+  display:block;
 }
  .card-circle:nth-child(2){
     background:#142850;
@@ -85,6 +107,9 @@
 }
 .card-circle .btn,.card-circle .card-icon i,.card-circle{
    transition: all ease-in-out 0.2s;
+}
+.card-circle-accueilli .btn,.card-circle-accueilli .card-icon i,.card-circle{
+  transition: all ease-in-out 0.2s;
 }
  .card-circle:hover .btn{
     background:#00A8CC;
@@ -101,24 +126,92 @@
    text-shadow: 0px -1px 10px #00A8CC;
     transform:scale(1.2)rotate(20deg);
 }
+
+.card-circle-accueilli .btn{
+  background:#00A8CC;
+   color:#fff;
+ border: 1px solid transparent;
+}
+.card-circle-accueilli .btn:hover{
+  transform: scale(1.1);
+}
+.card-circle-accueilli:hover{
+  border:10px solid #00A8CC;
+}
+.card-circle-accueilli:hover i {
+ text-shadow: 0px -1px 10px #00A8CC;
+  transform:scale(1.2)rotate(10deg);
+}
  @media only screen and (min-width: 1200px) {
      .card-circle:nth-child(3){
          margin-left:-40px;
          z-index:0;
     }
-     .card-circle{
-         width:250px;
-         height:250px;
-    }
+    .card-circle-accueilli:nth-child(3){
+      margin-left:-40px;
+      z-index:0;
+ }
+    
+    .card-title{
+      margin-top: -5%;
+      font-weight:600;
+      font-size:26px;
+  }
+  .card-title-accueilli{
+    margin-top: 15%;
+    font-weight:600;
+    font-size:66px;
+  }
+
+  .card-icon-accueilli i{
+    margin-top: -10%;
+    font-size:120px;
+    display:block;
+  }
+
+    .card-circle{
+      margin-top: 150%;
+      width:150px;
+      height:150px;
+      text-align:center;
+       background:#27496D;    
+       border:10px solid transparent;
+       color:#fff;
+       Font-family: Montserrat;
+       padding:40px;
+       border-radius:50%;
+  }
+  .card-circle-accueilli{
+    
+    margin-left: 10%;
+    margin-top: 150%; 
+    width:400px;
+    height:400px;
+    text-align:center;
+       background:#27496D;    
+       border:10px solid transparent;
+       color:#fff;
+       Font-family: Montserrat;
+       border-radius:50%;
+  }
      .card-circle:nth-child(2){
          margin-left:-20px;
          box-shadow: 1px 2px 20px 8px rgba(241, 235, 235, 0.12);
          transform: scale(1.2);
          z-index:1;
     }
-   .card-circle .card-icon i{
+   .card-circle-accueilli .card-icon i{
       margin-top: 20px;
      }
+     .card-circle-accueilli:nth-child(2){
+      margin-left:-20px;
+      box-shadow: 1px 2px 20px 8px rgba(241, 235, 235, 0.12);
+      transform: scale(1.2);
+      z-index:1;
+ }
+.card-circle-accueilli .card-icon i{
+   margin-top: 20px;
+  }
 }
 @media only screen and (min-width: 991px) and (max-width: 1200px) {
     //  .card-circle{
@@ -168,8 +261,38 @@
 
 @media only screen and (max-width: 991px) {
   .card-circle{
-    width:200px;
-    height:200px;
+    width:150px;
+    height:150px;
+
+  }
+
+  .card-icon i{
+    font-size:50px;
+    display:block;
+}
+  .card-title{
+    margin-top: -5%;
+      font-weight:600;
+      font-size:22px;
+  }
+  .card-title-accueilli{
+    font-weight:600;
+    font-size:46px;
+  }
+  .card-circle-accueilli{
+    margin-top: 120%; 
+    width:350px;
+    height:350px;
+    text-align:center;
+       background:#27496D;    
+       border:10px solid transparent;
+       color:#fff;
+       Font-family: Montserrat;
+       border-radius:50%;
+  }
+  .card-icon-accueilli i{
+    font-size:80px;
+    display:block;
   }
 }
 
@@ -183,7 +306,28 @@
     margin-top: 20px;
     border: 0;
   }
+  .card-circle-accueilli{
+    text-align: center;
+    width:175px;
+    height:175px;
+    margin: 0 auto;
+    margin-top: 20px;
+    border: 0;
+}
+  .card-title-accueilli{
+    font-weight:600;
+    font-size:26px;
+    padding-top: 20%;
+  }
 
+  .card-icon-accueilli i{
+    font-size:60px;
+    display:block;
+  }
+.card-circle-accueilli{
+      width:250px;
+      height:250px;
+ }
   #adminPanel{
     display: inline;
   }

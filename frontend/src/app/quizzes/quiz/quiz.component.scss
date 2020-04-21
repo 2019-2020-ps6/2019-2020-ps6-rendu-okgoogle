@@ -239,22 +239,15 @@ confirm-button {
   text-align: center;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: $white-yellow;
-}
-
 .push {
   margin-top: 50px;
 }
 
-button {
+/*button {
   background: none;
   border: none;
   color: $blue;
-}
+}*/
 
 * {
   font-family: 'Roboto', sans-serif;
