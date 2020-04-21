@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, Query} from '@angular/core';
 import { Quiz } from '../../../models/quiz.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { Quiz } from '../../../models/quiz.model';
 export class QuizComponent implements OnInit {
 
   private curStatus: string;
+  private confirmationDelete: boolean = false;
 
   @Input()
   quiz: Quiz;
@@ -38,7 +39,16 @@ export class QuizComponent implements OnInit {
     this.quizEdited.emit(this.quiz);
   }
 
-  deleteQuiz(quiz: Quiz) {
-    this.quizDeleted.emit(quiz);
+  deleteQuiz(quiz: Quiz, confirmation: boolean) {
+    if(confirmation){
+      this.quizDeleted.emit(quiz);
+      this.confirmationDelete = false;
+    }else{
+      this.confirmationDelete = false;
+    }
+  }
+  deleteConfirmation(){
+      this.confirmationDelete = true;
   }
 }
+

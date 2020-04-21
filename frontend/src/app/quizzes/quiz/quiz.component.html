@@ -4,7 +4,13 @@
         <h4 class="card__title">{{quiz.name}}</h4>
         <div id="boutons">
             <a *ngIf="curStatus === 'admin'" class="button blue" (click)="editQuiz()">Edit</a>
-            <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteQuiz(quiz)">Delete</a>
+            <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteConfirmation()">Delete</a>
+            <div *ngIf="confirmationDelete === true" class="confirm">
+                <div class="confirmBox">
+                  <p>Are you Sure?</p>
+                  <button (click)="deleteQuiz(quiz,true)" class="btn btn__confirm">ok</button>
+                  <button (click)="deleteQuiz(quiz,false)" class="btn btn__cancel">cancel</button>
+                </div>
             <a *ngIf="curStatus === 'user'" class="button white" (click)="selectQuiz(quiz)">Jouer !</a>
         </div>
     </div>    
