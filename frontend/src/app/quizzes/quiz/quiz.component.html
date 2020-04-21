@@ -6,14 +6,15 @@
             <a *ngIf="curStatus === 'admin'" class="button blue" (click)="editQuiz()">Edit</a>
             <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteConfirmation()">Delete</a>
             <div *ngIf="confirmationDelete" class='confirm--active'>
-                
+
                 <div class="confirmBox">
-                  <p>Voulez-vous vraiment supprimer ce Quiz ?</p>
-                  <button (click)="deleteQuiz(quiz,true)" class="btn btn__confirm">oui</button>
-                  <button (click)="deleteQuiz(quiz,false)" class="btn btn__cancel">non</button>
+                    <p>Voulez-vous vraiment supprimer ce Quiz ?</p>
+                    <button (click)="deleteQuiz(quiz,true)" class="btn btn__confirm">oui</button>
+                    <button (click)="deleteQuiz(quiz,false)" class="btn btn__cancel">non</button>
                 </div>
                 <p id="response"></p>
-            <a *ngIf="curStatus === 'user'" class="button white" (click)="selectQuiz(quiz)">Jouer !</a>
+                <a *ngIf="curStatus === 'user'" class="button white" (click)="selectQuiz(quiz)">Jouer !</a>
+            </div>
         </div>
-    </div>    
+    </div>
 </div>
