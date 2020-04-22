@@ -5,35 +5,45 @@
                 <h2 class="titre">
                     <i class="fab fa-leanpub"></i>
                     {{question.label}} &nbsp; <i (click)="editQuestion()" class="fas fa-edit"></i>
-                    <input  *ngIf="edit_question" type="text" name="" [formControlName]="'label'" id="">
-                    <button *ngIf="edit_question" (click)="validateQuestion()" >Valider</button>
-                    <button *ngIf="edit_question" (click)="annulerQuestion()" >Annuler</button>
+                    <input *ngIf="edit_question" type="text" name="" [formControlName]="'label'" id="">
+                    <button *ngIf="edit_question" (click)="validateQuestion()">Valider</button>
+                    <button *ngIf="edit_question" (click)="annulerQuestion()">Annuler</button>
                 </h2>
 
-                <div style="display: flex; justify-content: center; align-content: center;" *ngIf="question.imgUrl">
+                <div class="question" *ngIf="question.imgUrl">
                     <img [src]="question.imgUrl" width="200" alt=""><br>
-                    <input *ngIf="edit_question" style="height: 20px;" type="text" [formControlName]="'imgUrl'" >
+                    <input *ngIf="edit_question" class="input" type="text" [formControlName]="'imgUrl'">
                 </div>
-                
-                <div style="display: inline;">
-                    <p *ngIf="question.indice" class="indice">Indice par text:  {{question.indice}} <input *ngIf="edit_question" type="text" [formControlName]="'indice'" > </p> 
-                    <p *ngIf="question.sonUrl" class="indice">Indice par son:  {{question.sonUrl}} <input *ngIf="edit_question" type="text" [formControlName]="'sonUrl'" > </p> 
+
+                <div class="answer">
+                    <p *ngIf="question.indice" class="indice">Indice par texte : {{question.indice}} <input
+                            *ngIf="edit_question" type="text" [formControlName]="'indice'"> </p>
+                    <p *ngIf="question.sonUrl" class="indice">Indice par son: {{question.sonUrl}} <input
+                            *ngIf="edit_question" type="text" [formControlName]="'sonUrl'"> </p>
                 </div>
-                <div style="display: flex;justify-content: center;flex-flow: row wrap;justify-content: space-around;">
-                    <ul class="answer" *ngFor="let answer of question.answers; let i=index" style="width: 150px;list-style: none;">
+                <div class="answers container">
+                    <ul class="answer card" *ngFor="let answer of question.answers; let i=index">
                         <li>
-                            <p>Question {{i+1}}</p> 
+                            <p>Question {{i+1}}</p>
                             <img *ngIf="answer.imageUrl" [src]="answer.imageUrl" width="100" alt="">
                         </li>
                         <li>
-                            <p style="word-wrap:break-word;">
-                                {{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i class="far fa-check-square" style="color: lime;"></i></ng-container>
-                                &nbsp; <i (click)="editAnswer(answer,i)" class="fas fa-edit"></i> <i (click)="supprAnswer(answer,i)" class="fas fa-trash-alt"></i>                     
+                            <p class="txt">
+                                {{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i
+                                        class="far fa-check-square" style="color: lime;"></i>
+
+                                </ng-container>
+                                <br><br>
+                                <label (click)="editAnswer(answer,i)" class="modifier">Modifier</label> &nbsp;<i
+                                    (click)="editAnswer(answer,i)" class="fas fa-edit modifier"></i>
+                                <br>
+                                <label (click)="supprAnswer(answer,i)" class="supprimer">Supprimer</label>&nbsp;
+                                <i (click)="supprAnswer(answer,i)" class="fas fa-trash-alt supprimer"></i>
                             </p>
                         </li>
                         <li>
-                            <form style="width: inherit;display: flex; flex-direction: column;" *ngIf="editanswer_i == i" style="display: inline;" [formGroup]="answerForm">
-                                <ul style="padding: 0px;list-style: none;">
+                            <form class="formulaire" *ngIf="editanswer_i == i" [formGroup]="answerForm">
+                                <ul>
                                     <li>
                                         <input placeholder="Reponse" type="text" [formControlName]="'value'">
                                     </li>
@@ -41,8 +51,9 @@
                                         <input placeholder="Url de l'image" type="text" [formControlName]="'imageUrl'">
                                     </li>
                                     <li>
-                                        Correct: 
-                                        <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="isChecked()">
+                                        Correct:
+                                        <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'"
+                                            (click)="isChecked()">
                                     </li>
                                     <li>
                                         <button (click)="validateAnswer(answer)">Valider</button>
@@ -54,21 +65,21 @@
                     </ul>
                 </div>
 
-                <form *ngIf="_addAnswer" style="display: inline;" [formGroup]="answerForm">
+                <form *ngIf="_addAnswer" class="answer" [formGroup]="answerForm">
                     <input placeholder="Intitulé de la réponse" type="text" [formControlName]="'value'">
                     <input placeholder="Url de l'image" type="text" [formControlName]="'imageUrl'">
-                    Correct: 
+                   Correct
                     <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="isChecked()">
                     <button (click)="createAnswer(answer)">Valider</button>
                     <button (click)="annulerCreateAnswer()">Annuler</button>
-                </form>       
+                </form>
                 <br>
                 <div id="boutons">
                     <a class="button red" *ngIf="curStatus === 'admin'" (click)="addAnswer()">Ajout de réponses</a>
-                    <a class="button red" *ngIf="curStatus === 'admin'" (click)="deleteQuestion()">Delete</a>
+                    <a class="button red" *ngIf="curStatus === 'admin'" (click)="deleteQuestion()">Supprimer</a>
                 </div>
             </form>
-        </div>  
+        </div>
     </div>
 </div>
 

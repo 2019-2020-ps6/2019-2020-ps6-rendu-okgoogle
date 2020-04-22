@@ -27,12 +27,14 @@ article{
 }
 
 #partie_user_admin{
-  background-color : silver;
+  //background-color : silver;
+  background-image: linear-gradient(to bottom right, #0F2027, #203A43, #2C5364);
   border-radius: 1.2em;
   padding-left: 1em;
   padding-right: 1em;
   margin: 5px;
   text-align: center;
+  color: white;
 }
 
 #buttons{
