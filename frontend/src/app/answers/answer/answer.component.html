@@ -1,15 +1,43 @@
-
-    <span *ngIf="answer.imageUrl != ''"  id="imageGestion1">
+    <!-- <span *ngIf="answer.imageUrl != ''"  id="imageGestion1">
         <img src="{{answer.imageUrl}}" alt="">
         <p class="zommable">{{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i class="far fa-check-square"></i></ng-container></p>
     </span>
-    <span *ngIf="answer.imageUrl === ''" id="imageGestion2">
+    <span>
         <p class="zommable">{{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i class="far fa-check-square"></i></ng-container></p>
     </span>
     <button *ngIf="curStatus === 'admin'" class="button-card" (click)="editAnswer()">Edit</button>
-    <button *ngIf="curStatus === 'admin'" class="button-card" (click)="deleteAnswer()">Delete</button>
+    <button *ngIf="curStatus === 'admin'" class="button-card" (click)="deleteAnswer()">Delete</button> -->
 
 
-<!-- 
-<app-answer *ngIf="curStatus === 'user'" (click)="selectAnswer(answer)" [answer]="answer" ></app-answer>
-<app-answer *ngIf="curStatus === 'admin'" [answer]="answer" ></app-answer> -->
+    <div class="container">
+        <div class="card">
+            <div *ngIf="answer.imageUrl"  id="imageGestion1">
+                <img [src]="answer.imageUrl" alt="">  
+            </div>
+            <div style="padding: 30px; background-color: wheat; width: 100%;" class="zommable">
+                <div style="width: 90%;margin: auto;">
+                    <p style="font-family: cursive; font-weight: bold;">{{answer.value}}</p>
+                </div>
+                 <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'">
+                     <i class="far fa-check-square"></i>
+                </ng-container>
+            </div> 
+            <div *ngIf="answer.imageUrl === ''" id="imageGestion2">
+                <h4 class="card__title">{{quiz.name}}</h4>
+            </div>
+            <div id="boutons">
+                <a *ngIf="curStatus === 'admin'" class="button blue" (click)="editAnswer()">Edit</a>
+                <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteAnswer()">Delete</a>
+                <div *ngIf="confirmationDelete" class='confirm--active'>
+    
+                    <div class="confirmBox">
+                        <p>Voulez-vous vraiment supprimer ce Quiz ?</p>
+                        <button (click)="deleteQuiz(quiz,true)" class="btn btn__confirm">oui</button>
+                        <button (click)="deleteQuiz(quiz,false)" class="btn btn__cancel">non</button>
+                    </div>
+                    <p id="response"></p>
+                    
+                </div>
+            </div>
+        </div>
+    </div>

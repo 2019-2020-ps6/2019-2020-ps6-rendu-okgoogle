@@ -2,7 +2,7 @@
 
     <app-quiz-form *ngIf="curStatus === 'admin'"></app-quiz-form>
 
-    <h1 class="titreQuiz">Liste des Quiz : <label style="color: #e3aa0e ;">{{curTheme.name}}</label></h1>
+    <h1 class="titreQuiz">Liste des Quiz : <label style="color: white ;">{{curTheme.name}}</label></h1>
     <div>
         <div style="display: flex; justify-content: center;">
             <input class="form-control" type="text" name="search" [(ngModel)]="searchQuiz" autocomplete="off"

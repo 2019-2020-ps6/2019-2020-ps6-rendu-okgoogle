@@ -105,13 +105,6 @@ export class QuestionFormComponent implements OnInit{
   }
 
   addQuestion(i:number) {
-    var ParentNode = document.querySelector("#ImageUpload")
-    var child = ParentNode.lastElementChild;  
-    while (child) { 
-        ParentNode.removeChild(child); 
-        child = ParentNode.lastElementChild; 
-    } 
-
     if(this.questionForm.valid) {
       const themeid = this.route.snapshot.paramMap.get('themeid');
       const quizid = this.route.snapshot.paramMap.get('quizid');

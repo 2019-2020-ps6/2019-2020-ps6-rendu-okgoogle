@@ -3,10 +3,8 @@
 </head>
 
 <div *ngIf="questionSelected">
-  <audio hidden *ngIf="questionSelected.sonUrl != '' && playSong" autoplay="true" controls>
-    <source [src]="sonUrlQuestionActuelle" type="audio/mpeg">
-    Votre navigateur ne supporte pas les contenus audio.
-  </audio> 
+
+  <!-- Modal after good answer -->
 
 <div id="modal-container">
   <div class="modal-background">
@@ -22,6 +20,9 @@
     </div>
   </div>
 </div>
+
+<!-- Lateral Menu -->
+
 <nav role='navigation'>
   <div id="menuToggle">
 
@@ -43,8 +44,13 @@
 <div style="width: 100%;margin-left: auto;margin-right: auto;">
   <ng-container *ngIf="questionSelected">
 
-    <h3 class="titreQuiz">{{curTheme.name}} - {{quiz.name}} </h3>
+    <div style="width: 100%;">
+      <div style="width: 85%; margin: auto;"> 
+        <span class="titreQuiz">{{curTheme.name}} - <span style="color: chocolate;">{{quiz.name}}</span>  </span>
+      </div>
+    </div>
 
+    <!-- Display question -->
 
     <p *ngIf="questionSelected === undefined">Aucune question pour ce quiz :(</p>
 
@@ -52,6 +58,7 @@
       <h3 *ngIf="questionSelected.imgUrl === ''" class="zommable" id="question">{{questionSelected.label}}</h3>
       <span class="zommable" id="indice"></span>
       
+
       <div *ngIf="questionSelected.imgUrl">
         <div style="display: flex; justify-content: center;">
           <img style="max-width: 300px;" [src]="questionSelected.imgUrl" alt="">
@@ -59,16 +66,23 @@
         <h3 class="zommable" id="question">{{questionSelected.label}}</h3>      
       </div>
 
+      <!-- Indice -->
+
       <span *ngIf=" questionSelected.indice != '' || questionSelected.sonUrl != ''" class="zommable" id="indice"> <p *ngIf="afficheIndice">{{questionSelected.indice}}</p> <p *ngIf="playSong"> Écoutez l'indice <i class='fas fa-headphones'></i></p></span>
 
-
-      <div style="display: flex; justify-content: center;flex-flow: row wrap;">
-        <div style="width: 70%; display: flex; flex-flow: row wrap;justify-content: space-around;">
-          <div style="width: 40%;border: 1px solid; border-radius: 3px; margin-bottom: 30px;" (click)="selectAnswer(answer)" *ngFor="let answer of questionSelected.answers">
-            <app-answer style="text-align: center;" [answer]="answer"></app-answer>
-          </div>
+      <!-- Answers -->
+      
+      <div id="containerListe">
+        <div class="list-type2">
+          <ul class="quiz-list">
+            <li class="quiz" (click)="selectAnswer(answer)" *ngFor="let answer of questionSelected.answers">
+              <app-answer [answer]="answer"></app-answer>
+            </li>
+          </ul>
         </div>
       </div>
+
+      <!-- Cancel Button -->
 
       <div id="struct_bouton">
         <div id=Cbouton>
@@ -78,6 +92,7 @@
         </div>
       </div>
 
+      <!-- TimeLine -->
 
       <div style="text-align: center;" class="container">
         <ul class="progressbar-steps">
@@ -86,6 +101,12 @@
           </li>
         </ul>
       </div>
+
+      <!-- Audio indice -->
+      <audio hidden *ngIf="questionSelected.sonUrl != '' && playSong" autoplay="true" controls>
+        <source [src]="sonUrlQuestionActuelle" type="audio/mpeg">
+        Votre navigateur ne supporte pas les contenus audio.
+      </audio> 
 
     </div>
   </ng-container>

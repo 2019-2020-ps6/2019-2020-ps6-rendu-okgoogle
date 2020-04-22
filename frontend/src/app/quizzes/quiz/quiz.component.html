@@ -1,6 +1,7 @@
 <div class="container">
     <div class="card">
-        <img *ngIf="quiz.imageUrl" (click)="selectQuiz()" [src]="quiz.imageUrl" class="card__image" alt="image du quiz">
+        <img *ngIf="quiz.imageUrl && curStatus === 'admin'" [src]="quiz.imageUrl" class="card__image" alt="image du quiz">
+        <img *ngIf="quiz.imageUrl && curStatus != 'admin'" (click)="selectQuiz()" [src]="quiz.imageUrl" class="card__image" alt="image du quiz">
         <h4 class="card__title">{{quiz.name}}</h4>
         <div id="boutons">
             <a *ngIf="curStatus === 'admin'" class="button blue" (click)="editQuiz()">Edit</a>

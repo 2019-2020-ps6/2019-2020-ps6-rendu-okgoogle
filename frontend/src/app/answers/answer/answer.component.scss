@@ -8,9 +8,224 @@ img{
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 10px;
 }
 
 #imageGestion2{
     box-sizing: border-box;
     width: 100%;
+}
+
+
+*{margin: 0;padding: 0;box-sizing: border-box;}
+.container{
+  width: 300px;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  grid-gap: 1em;
+  padding: 1em;
+  font-family: arial;
+  
+  .card{
+    border-radius: 8px;
+    text-align: center;
+    color: #212121;
+    box-shadow: 0 2px 5px 0 rgba(#000,.2);
+    transition: all .2s;
+    overflow: hidden;
+    border: 1px solid;
+    
+    img{
+      width: 110%;
+      height: 200px;
+      display: block;
+    //   object-fit: cover;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    //   margin: 10px;
+    }
+    
+    &__title{
+      margin-bottom: .5em;
+      font-size: 1.4em;
+      color:white;
+    }
+    &__description{
+      padding: .5em;
+      line-height: 1.3;
+    }
+    &__btn{
+      background: darken(#7C4DFF,5%);
+      line-height: 2;
+      padding: 0 1.5em;
+      border-radius: 1em;
+      color: #000;
+      display: inline-block;
+      text-decoration: none;
+      margin: 1em;
+      transition: all .2s;
+      &:hover{
+        background: darken(#7C4DFF,8%);
+      }
+    }
+  }
+}
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+$red: #F44336;
+$blue: #3F51B5;
+$white: #FAFAFA;
+$white-yellow: #E8EAF6;
+
+.btn {
+  text-align: center;
+  width: 7rem;
+  padding: 0 6px;
+  margin: 6px 8px;
+  line-height: 2rem;
+  background-color: $white;
+  border-radius: 3px;
+  color: $blue;
+  cursor: pointer;
+}
+
+.btn__confirm {
+  text-align: center;
+  width: 7rem;
+  padding: 0 6px;
+  margin: 6px 8px;
+  line-height: 2rem;
+  background-color: $white;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  color: $white;
+  background-color: $blue;
+}
+
+.btn__red {
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  background-color: $red;
+  color: $white;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  transition: all 250ms ease-in;
+}
+
+.confirmBox {
+  display: inline-block;
+  text-align: center;
+  position: absolute;
+  width: 260px;
+  padding: 8px;
+  margin: 6px 8px;
+  margin-top: 0px;
+  margin-left: -200px;
+  line-height: 2rem;
+  background-color: $white;
+  border-radius: 2px;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+  opacity: 0;
+  z-index:1;
+}
+
+.confirm {
+  .confirmBox {
+   animation: closeDialog;
+   animation-duration: 300ms;
+  }
+  
+  > .btn {
+    animation: flipBack;
+    animation-duration: 300ms;
+  }
+}
+
+.confirm--active {
+
+  > .btn {
+    animation: flipFwd;
+    animation-duration: 300ms;
+    opacity: 0;
+    transition: opacity 0ms linear 300ms;
+    
+  }
+  
+ > .confirmBox {
+    animation: openDialog;
+    animation-duration: 300ms;
+    animation-delay: 175ms;
+    z-index: 3;
+    opacity: 1;
+    transition: opacity 0ms linear 300ms;
+  }
+}
+
+confirm-button {
+  width: 276px;
+  display: inline-block;
+  text-align: center;
+}
+
+.push {
+  margin-top: 50px;
+}
+
+/*button {
+  background: none;
+  border: none;
+  color: $blue;
+}*/
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+@keyframes flipFwd {
+  0% {
+    transform: none;
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes flipBack {
+   0% {
+   transform: rotateX(-90deg);
+   opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes openDialog {
+  0% {
+     transform: scale(0.5,0.5)  rotateX(-90deg);
+     transform-style: preserve-3d;
+     transform-origin: center center;
+     opacity: 0;
+  }
+  100% {
+    transform: scale(1,1) rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes closeDialog {
+  0% {
+    opacity: 1;
+    transform: scale(1,1) rotateX(0deg);
+  }
+  100% {
+     transform: scale(0.5,0.5)  rotateX(-180deg);
+     transform-style: preserve-3d;
+     transform-origin: center center;
+     opacity: 0;
+  }
+  
 }
