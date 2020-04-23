@@ -126,154 +126,67 @@ a:hover
   color: tomato;
 }
 
-#menuToggle
-{
-  display: block;
+.side-nav {
+  height: 100%;
+  width: 0;
   position: absolute;
-  top: 70px;
-  right: 50px;
-
   z-index: 1;
-
-  -webkit-user-select: none;
-  user-select: none;
+  top: 0;
+  left: 0;
+  background: #ededed;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
 }
-
-/*
- * Just a quick hamburger
- */
-#menuToggle span
-{
+.side-nav a {
+  padding: 10px 10px 10px 30px;
+  text-decoration: none;
+  font-size: 22px;
+  color: #ccc;
   display: block;
-  width: 33px;
-  height: 4px;
-  margin-bottom: 5px;
-  position: relative;
-
-  background: #000;
-  border-radius: 3px;
-
-  z-index: 1;
-
-  transform-origin: 4px 0px;
-
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-              opacity 0.55s ease;
+  transition: 0.3s;
 }
-
-#menuToggle span:first-child
-{
-  transform-origin: 0% 0%;
+.side-nav a:hover {
+  color: #fff;
 }
-
-#menuToggle span:nth-last-child(2)
-{
-  transform-origin: 0% 100%;
+.side-nav .btn-close {
+  position: absolute;
+  top: 0;
+  right: 22px;
+  font-size: 36px;
+  margin-left: 50px;
 }
-
-/*
- * Transform all the slices of hamburger
- * into a crossmark.
- */
-#menuToggle input:checked ~ span
-{
-  opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
-  background: #232323;
+#main {
+  transition: 0.5s;
+  padding: 20px;
+  overflow: hidden;
+  width: 100%;
+  margin-left: 250px;
 }
-
-/*
- * But let's hide the middle one.
- */
-#menuToggle input:checked ~ span:nth-last-child(3)
-{
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
+#side-menu{
+width: 250px;
 }
-
-/*
- * Ohyeah and the last one should go the other direction
- */
-#menuToggle input:checked ~ span:nth-last-child(2)
-{
-  opacity: 1;
-  transform: rotate(-45deg) translate(0, -1px);
+@media (max-width:568px) {
+  .navbar-nav a {
+      display: none;
+  }
 }
-
-//boutton croix:
-
-.fermeture{
-  display: block;
-  width: 40px;
-   height: 32px;
-   height: 32px;
-   position: absolute;
-   top: -7px;
-   left: -5px;
-   cursor: pointer;
-   opacity: 0;
-   z-index: 2;
-   -webkit-touch-callout: none;
-}
-
 
 /*
  * Make this absolute positioned
  * at the top left of the screen
  */
-#menu
-{
-  position: absolute;
-  width: 300px;
-  margin: -100px 0 0 0;
-  padding: 50px;
-  padding-top: 125px;
-  right: -100px;
+ #menu
+ {
+   list-style-type: none;
+ }
+ #menu li
+ {
+   padding: 10px 0;
+   font-size: 22px;
+ }
+ 
 
-  background: #ededed;
-  list-style-type: none;
-  -webkit-font-smoothing: antialiased;
-  /* to stop flickering of text in safari */
-
-  transform-origin: 0% 0%;
-  transform: translate(100%, 0);
-
-  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-  $display : initial;
-
-}
-
-#menu li
-{
-  padding: 10px 0;
-  font-size: 22px;
-}
-
-/*
- * And let's fade it in from the left
- */
-#menuToggle input:checked ~ ul
-{
-  transform: scale(1.0, 1.0);
-  opacity: 1;
-}
-
-.backdrop{
-
-  background-color:rgba(0,0,0,0.6);
-
-  position:fixed;
-
-  top:0;
-
-  left:0;
-
-  width:100%;
-
-  height:100vh;
-
-  }
 
   * {
     box-sizing:border-box;
@@ -286,6 +199,73 @@ a:hover
   }
 
   #modal-container {
+    position:fixed;
+    display:table;
+    height:100%;
+    width:100%;
+    top:0;
+    left:0;
+    transform:scale(0);
+    z-index:1;
+    &.modalF {
+      transform:scale(1);
+      .modal-background {
+        background:rgba(0,0,0,.0);
+        animation: fadeIn .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        .modal {
+          transform:translateX(-1500px);
+          animation: roadRunnerIn .3s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+        }
+      }
+      &.out {
+        animation: quickScaleDown 0s .5s linear forwards;
+        .modal-background {
+          animation: fadeOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+          .modal {
+            animation: roadRunnerOut .5s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
+          }
+        }
+      }
+    }
+    .modal-background {
+      display:table-cell;
+      background:rgba(0,0,0,.8);
+      text-align:center;
+      vertical-align:middle;
+      .modal {
+        background:white;
+        padding:50px;
+        display:inline-block;
+        border-radius:3px;
+        font-weight:300;
+        position:relative;
+        h2 {
+          font-size:25px;
+          line-height:25px;
+          margin-bottom:15px;
+        }
+        p {
+          font-size:18px;
+          line-height:22px;
+        }
+        .modal-svg {
+          position:absolute;
+          top:0;
+          left:0;
+          height:100%;
+          width:100%;
+          border-radius:3px;
+          rect {
+            stroke: #fff;
+            stroke-width: 2px;
+            stroke-dasharray: 778;
+            stroke-dashoffset: 778;
+          }
+        }
+      }
+    }
+  }
+  #modal-container2 {
     position:fixed;
     display:table;
     height:100%;
