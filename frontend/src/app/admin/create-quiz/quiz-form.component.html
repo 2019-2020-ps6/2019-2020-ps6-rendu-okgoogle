@@ -2,7 +2,7 @@
   <div id="conteneur">
     <div id="contenu">
       <div *ngIf="quizCreer" class="verif">
-        <p>Le quiz a bien été crée !</p>
+        <p>Le quiz a bien été créé !</p>
       </div>
       <h2 style="color: white;font-weight: bold;" class="titre">Créer un nouveau quiz</h2>
       <form class="quiz-form" [formGroup]="quizForm">
@@ -17,7 +17,7 @@
           </label>
           <span class="toggle__label">Avec image</span>
           <br>
-          <input *ngIf="WithImage" placeholder="Image associé au quiz" class="input-custom" type="text" (change)="displayImage()" [formControlName]="'imageUrl'">
+          <input *ngIf="WithImage" placeholder="Image associée au quiz" class="input-custom" type="text" (change)="displayImage()" [formControlName]="'imageUrl'">
           <br>
           <button class="button blue" [disabled]="quizForm.invalid" (click)="addQuiz()">Créer</button>
           <div *ngIf="quizForm.controls.name.invalid && (quizForm.controls.name.dirty || quizForm.controls.name.touched)"class="alert alert-danger">
@@ -31,7 +31,7 @@
             </div>
           </div>
           <div *ngIf="imageUrl && WithImage">
-          <span style="color: white; font-size: 20px;">Image uploadé:</span>  <br> <img width="100" [src]="imageUrl" alt="Ue">
+          <span style="color: white; font-size: 20px;">Image enregistrée:</span>  <br> <img width="100" [src]="imageUrl" alt="Ue">
           </div>
       </form>
       
