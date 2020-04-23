@@ -5,7 +5,17 @@
             <h4 class="card__title">{{theme.name}}</h4>
             <div id="boutons">
                 <a class="button white" (click)="selectTheme()">Voir les quiz</a>
-                <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteTheme()">Delete</a>
+                <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteConfirmation()">Delete</a>
+                <div *ngIf="confirmationDelete" class='confirm--active'>
+
+                    <div class="confirmBox">
+                        <p>Voulez-vous vraiment supprimer ce Theme ?</p>
+                        <button (click)="deleteTheme(theme,true)" class="btn btn__confirm">oui</button>
+                        <button (click)="deleteTheme(theme,false)" class="btn btn__cancel">non</button>
+                    </div>
+                    <p id="response"></p>
+                    
+                </div>
             </div>
         </div>    
     </div>

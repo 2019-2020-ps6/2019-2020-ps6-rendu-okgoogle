@@ -9,6 +9,7 @@ import { Theme } from 'src/models/theme.model';
 export class ThemeComponent implements OnInit {
 
   public curStatus:string;
+  private confirmationDelete: boolean = false;
 
   @Input()
   theme: Theme;
@@ -30,7 +31,15 @@ export class ThemeComponent implements OnInit {
     this.themeSelected.emit(this.theme);
   }
 
-  deleteTheme() {
-    this.themeDeleted.emit(this.theme);
+  deleteTheme(theme: Theme, confirmation: boolean) {
+    if(confirmation){
+      this.themeDeleted.emit(theme);
+      this.confirmationDelete = false;
+    }else{
+      this.confirmationDelete = false;
+    }
+  }
+  deleteConfirmation(){
+      this.confirmationDelete = true;
   }
 }
