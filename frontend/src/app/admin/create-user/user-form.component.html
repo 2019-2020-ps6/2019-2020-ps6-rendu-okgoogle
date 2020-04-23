@@ -16,7 +16,7 @@
           <div class="half right cf">
             <input type="text" required id="surname" [formControlName]="'surname'" placeholder="Prénom">
           </div>
-          <textarea type="text" id="description" name="description" placeholder="Description"
+          <textarea maxlength="50" type="text" id="description" name="description" placeholder="Description"
             [formControlName]="'description'"></textarea>
             <br>
           <button *ngIf="goal === 'edit'" [disabled]="userForm.invalid" class="button red" (click)="editUser()">Modifier</button>
