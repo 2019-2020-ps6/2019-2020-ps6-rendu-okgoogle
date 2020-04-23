@@ -7,7 +7,7 @@
     <div class="question" *ngFor="let question of quiz.questions | filter:searchQuestion">
         <app-question (questionDeleted)="questionDeletion($event)" (questionEdited)="questionEdition($event)" [question]="question"></app-question>
         <div class="no-question" *ngIf=" searchQuestion && (quiz.questions | filter:searchQuestion).length === 0">
-            <p>Aucune question correspond à vos recherche</p>
+            <p>Aucune question correspond à vos recherches</p>
         </div>
     </div>
 </div>

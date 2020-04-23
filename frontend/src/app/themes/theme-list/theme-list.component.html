@@ -14,7 +14,7 @@
                     <app-theme [theme]="theme" (themeSelected)="themeSelected($event)" (themeDeleted)="themeDeleted($event)"></app-theme>
                 </li>
                 <li class="no-theme" *ngIf="(themesList | filter:searchTheme).length === 0">
-                    <h3>Aucun thème correspond à vos recherche</h3>
+                    <h3>Aucun thème correspond à vos recherches</h3>
                 </li>
             </ul>
         </div>

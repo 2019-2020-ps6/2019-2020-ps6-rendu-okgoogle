@@ -20,7 +20,7 @@
                     <app-quiz [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizEdited($event)" (quizDeleted)="quizDeleted($event)"></app-quiz>
                 </li>
                 <li class="no-quiz" *ngIf=" searchQuiz && (quizList | filter:searchQuiz).length === 0">
-                    <p>Aucun quiz correspond à vos recherche</p>
+                    <p>Aucun quiz correspond à vos recherches</p>
                 </li>
             </ul>
         </div>
