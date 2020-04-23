@@ -79,7 +79,7 @@ export class QuestionFormComponent implements OnInit{
 
   addAnswer() {
     this.answers.push(this.createAnswer());
-    this.notChecked();
+    // this.notChecked();
   }
 
   isChecked(){

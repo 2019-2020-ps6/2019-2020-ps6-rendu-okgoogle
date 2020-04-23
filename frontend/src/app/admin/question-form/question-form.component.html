@@ -58,7 +58,7 @@
                             <input *ngIf="mode === 'Text question et image pour reponse'" class="imgReponse" type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'">
                             <img *ngIf="mode === 'Text question et image pour reponse'" style="width: 100px;" [src]="questionForm.controls.answers.controls[i].controls.imageUrl.value" alt=""><br>
                             <label id="label">Correct</label> 
-                            <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="isChecked()">
+                            <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'">
                         </div>
                     </div>
                 </div>
