@@ -24,7 +24,7 @@
                 <div class="answers container">
                     <ul class="answer card" *ngFor="let answer of question.answers; let i=index">
                         <li>
-                            <p>Question {{i+1}}</p>
+                            <p>Réponse {{i+1}}</p>
                             <img *ngIf="answer.imageUrl" [src]="answer.imageUrl" width="100" alt="">
                         </li>
                         <li>

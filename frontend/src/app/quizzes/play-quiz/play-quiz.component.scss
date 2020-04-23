@@ -29,10 +29,42 @@ body {
   margin-right: auto;
 }
 
+#quiz{
+  width: 60%;
+  margin: auto;
+}
+
+@media only screen 
+and (min-device-width : 768px)
+and (max-device-width : 900px) {
+  #quiz{
+    width: 100%;
+    margin: auto;
+  }
+}
+
+@media only screen 
+and (min-device-width : 900px)
+and (max-device-width : 1024px) {
+  #quiz{
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 667px) {
+  #quiz{
+    width: 100%;
+    margin: auto;
+  }
+}
 
 #question{
   text-align: center;
-  border: solid 1px aqua;
+  border: solid 1px;
+  font-style: italic;
   border-radius: 2px;
   width: 75%;
   display: inherit;
