@@ -25,6 +25,7 @@ import { editUserComponent } from './admin/edit-user/edit-user.component';
 import { UserLoginComponent } from './users/user-login/user-login.component';
 import { MainAdminComponent } from './admin/main-admin/main-admin.component';
 import { ThemeComponent } from './themes/theme/theme.component';
+import {editThemeComponent} from './admin/edit-theme/edit-theme.component';
 import { ThemeListComponent } from './themes/theme-list/theme-list.component';
 import { CreateThemeComponent } from './admin/create-theme/create-theme.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
@@ -63,7 +64,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AnswerListComponent,
     editQuestionComponent,
     UserStatComponent,
-    UserStatDetailComponent
+    UserStatDetailComponent,
+    editThemeComponent
   ],
   imports: [
     BrowserModule,

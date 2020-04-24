@@ -1,4 +1,4 @@
-<div id="partie_liste_theme">
+<div id="partie_liste_theme" *ngIf="themesList">
     <div id="conteneur">
         <div id="contenu">
             <h1 class="titreTheme">
@@ -13,10 +13,13 @@
                 <li class="theme" *ngFor="let theme of themesList | filter:searchTheme">
                     <app-theme [theme]="theme" (themeSelected)="themeSelected($event)" (themeDeleted)="themeDeleted($event)"></app-theme>
                 </li>
-                <li class="no-theme" *ngIf="(themesList | filter:searchTheme).length === 0">
+                <li class="no-theme" *ngIf="(themesList | filter:searchTheme).length === 0 && themesList.length != 0">
                     <h3>Aucun thème correspond à vos recherches</h3>
                 </li>
             </ul>
         </div>
     </div>
+</div>
+<div *ngIf="themesList.length === 0">
+    <h1 style="font-family: 'baloo thambi' cursive;text-align: center;">Aucun Thèmes pour l'instant</h1>
 </div>
