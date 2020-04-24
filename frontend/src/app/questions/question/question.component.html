@@ -28,7 +28,7 @@
                             <img *ngIf="answer.imageUrl" [src]="answer.imageUrl" width="100" alt="">
                         </li>
                         <li>
-                            <p class="txt">
+                            <div class="txt">
                                 {{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i
                                         class="far fa-check-square" style="color: lime;"></i>
 
@@ -37,9 +37,18 @@
                                 <label (click)="editAnswer(answer,i)" class="modifier">Modifier</label> &nbsp;<i
                                     (click)="editAnswer(answer,i)" class="fas fa-edit modifier"></i>
                                 <br>
-                                <label (click)="supprAnswer(answer,i)" class="supprimer">Supprimer</label>&nbsp;
-                                <i (click)="supprAnswer(answer,i)" class="fas fa-trash-alt supprimer"></i>
-                            </p>
+                                <label (click)="supprAnswerConfirmation(answer)" class="supprimer">Supprimer</label>&nbsp;
+                                <i (click)="supprAnswerConfirmation(answer)" class="fas fa-trash-alt supprimer"></i>
+                            </div>
+                            <div *ngIf ="answer === answerToDelete">
+                                <div *ngIf="confirmationDelete" class='confirm--active'>
+                                <div class="confirmBox">
+                                    <p>Voulez-vous vraiment supprimer cette réponse ?</p>
+                                    <button (click)="supprAnswerC(answerToDelete,true)" class="button red">oui</button>
+                                    <button (click)="supprAnswerC(answerToDelete,false)" class="button white">non</button>
+                                </div>
+                                </div>
+                            </div>
                         </li>
                         <li>
                             <form class="formulaire" *ngIf="editanswer_i == i" [formGroup]="answerForm">
@@ -82,5 +91,3 @@
         </div>
     </div>
 </div>
-
-<!-- <br><br>{{questionForm.getRawValue() | json}} - {{answerForm.getRawValue() | json}} -->

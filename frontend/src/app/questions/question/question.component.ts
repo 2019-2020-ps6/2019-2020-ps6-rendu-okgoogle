@@ -20,7 +20,8 @@ export class questionComponent implements OnInit{
     private edit_question = false;
     public questionForm: FormGroup;
     public answerForm: FormGroup;
-
+    public answerToDelete : Answer;
+    private confirmationDelete: boolean = false;
 
     @Input()
     question: Question;
@@ -85,11 +86,6 @@ export class questionComponent implements OnInit{
         this.answerForm.get('isCorrect').setValue(answer.isCorrect)
     }
 
-    supprAnswer(answer:Answer){
-        const themeid = this.route.snapshot.paramMap.get('themeid');
-        const quizid = this.route.snapshot.paramMap.get('quizid');
-        this.quizService.deleteAnswer(themeid,quizid,this.question.id.toString(), answer.id);
-    }
 
     validateAnswer(answerAModifier:Answer){
         this.editanswer_i = -1;
@@ -103,6 +99,25 @@ export class questionComponent implements OnInit{
     }
     annulerAnswer(){
         this.editanswer_i = -1;
+    }
+
+
+    supprAnswerC(answer: Answer,confirmationDelete: boolean){
+        if(confirmationDelete){
+            const themeid = this.route.snapshot.paramMap.get('themeid');
+            const quizid = this.route.snapshot.paramMap.get('quizid');
+            this.quizService.deleteAnswer(themeid,quizid,this.question.id.toString(), answer.id);
+            this.confirmationDelete = false;
+        }
+        else{
+            this.confirmationDelete = false;
+        }
+        
+        
+    }
+    supprAnswerConfirmation(answer : Answer){
+        this.confirmationDelete = true;
+        this.answerToDelete = answer;
     }
 
     addAnswer(){
