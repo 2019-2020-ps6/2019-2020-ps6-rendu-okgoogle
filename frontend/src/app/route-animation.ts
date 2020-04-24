@@ -47,8 +47,8 @@ trigger('routeAnimations', [
     transition('MainAdmin => ThemeList', slideto('right')),
     transition('ThemeList => MainAdmin', slideto('left')),
 
-    transition('QuizList => EditQuiz', slideto('right')),
-    transition('EditQuiz => QuizList', slideto('left')),
+    transition('CreateQuiz => EditQuiz', slideto('right')),
+    transition('EditQuiz => CreateQuiz', slideto('left')),
 
     transition('EditQuiz => EditQuestion', slideto('right')),
     transition('EditQuestion => EditQuiz', slideto('left')),

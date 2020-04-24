@@ -70,4 +70,12 @@ export class ThemeService {
       this.setThemesFromUrl()
     })
   }
+
+  editTheme(themeid:string, theme: Theme){
+    const url = this.lien + themeid; 
+    this.themes$.next(this.themes);
+    this.http.put<Theme>(url, theme).subscribe((theme)=>{
+      this.setSelectedTheme(themeid)
+    })
+  }
 }

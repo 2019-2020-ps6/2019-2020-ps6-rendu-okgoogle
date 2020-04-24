@@ -147,6 +147,14 @@ export class QuizService {
     })
   }
 
+  editQuiz(themeid:string,quizid:string,quiz: Quiz){
+    const url = this.lien + themeid + "/quizzes/" +quizid; 
+    this.quizzes$.next(this.quizzes);
+    this.http.put<Quiz>(url, quiz).subscribe((quiz)=>{
+      this.setSelectedQuiz(quizid, themeid)
+    })
+  }
+
   editAnswer(themeid:string,quizid:string,questionid:string,answerid:string,answer: Answer){
     const url = this.lien + themeid + "/quizzes/" +quizid+"/questions/"+questionid +"/answers/"+answerid; 
     // this.quizzes$.next(this.quizzes);

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Theme } from 'src/models/theme.model';
 import { ThemeService } from 'src/services/theme.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-theme',
@@ -12,8 +13,10 @@ import { ThemeService } from 'src/services/theme.service';
 export class editThemeComponent implements OnInit {
 
   public curTheme: Theme
+  public themesForm: FormGroup
+  public edit_theme: boolean;
 
-  constructor(private route: ActivatedRoute, private themeService: ThemeService) { 
+  constructor(private route: ActivatedRoute,private formBuilder: FormBuilder, private themeService: ThemeService) { 
   }
   
   ngOnInit() {
@@ -21,7 +24,32 @@ export class editThemeComponent implements OnInit {
     this.themeService.setSelectedTheme(themeid.toString())
     this.themeService.themeSelected$.subscribe((theme)=> {
       this.curTheme = theme
+      this.initializeQuestionForm()
     })
   }
+  
+  private initializeQuestionForm() {
+    this.themesForm = this.formBuilder.group({
+      name: this.curTheme.name,
+      imageUrl:this.curTheme.imageUrl
+    });
+  }
 
+  editTheme(){
+    this.edit_theme=true;
+    this.themesForm.get('name').setValue(this.curTheme.name)
+    if(this.curTheme.imageUrl != "")
+        this.themesForm.get('imgUrl').setValue(this.curTheme.imageUrl)
+  }
+
+  validateTheme(){
+    const themeid = this.route.snapshot.paramMap.get('themeid');
+    const theme = this.themesForm.getRawValue() as Theme;
+    this.themeService.editTheme(themeid,theme)
+    this.edit_theme = false;
+  }
+
+  annulerTheme(){
+      this.edit_theme = false;
+  }
 }

@@ -1,5 +1,27 @@
 <ng-container *ngIf="quiz">
-    <h2>Quiz : <strong style="color: orangered;">{{quiz.name}}</strong></h2>
+    <div>
+        <form action="" [formGroup]="quizForm">
+            <div style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+                <div>
+                    <span style="text-align: center;font-size: 35px;">Quiz : <strong style="color: orangered;">{{quiz.name}}</strong></span>
+                </div>
+                <div>
+                    <input *ngIf="edit_quiz" type="text" name="" [formControlName]="'name'" id="">
+                </div>
+                <div>
+                    <img [src]="quiz.imageUrl" alt="">
+                </div>
+                <div>
+                    <button (click)="editQuiz()" *ngIf="!edit_quiz">Modifier <i  class="fas fa-edit"></i></button>
+                    <input *ngIf="edit_quiz" type="text" name="" [formControlName]="'imageUrl'" id="">
+                    <br>
+                    <button *ngIf="edit_quiz" (click)="validateQuiz()">Valider</button>
+                    <button *ngIf="edit_quiz" (click)="annulerQuiz()">Annuler</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
     <app-question-form></app-question-form>
     <app-question-list (questionEdited)="questionEdition($event)" [quiz]="quiz"></app-question-list>
 </ng-container>
