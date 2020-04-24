@@ -1,4 +1,4 @@
-<div id="partie_liste_quiz" *ngIf="curTheme">
+<div id="partie_liste_quiz" *ngIf="curTheme && quizList.length != 0">
 
     <h1 class="titreQuiz">Liste des Quiz : <label style="color: white ;">{{curTheme.name}}</label></h1>
     <div>
@@ -22,7 +22,6 @@
     </div>
 </div>
 
-<div *ngIf="quizList.length === 0">
-    <h1 style="font-family: 'baloo thambi' cursive;text-align: center;">Aucun quiz pour l'instant</h1>
-    <button *ngIf="curStatus === 'admin'" routerLink='/theme-edit/{{curTheme.id}}'>Cliquez ici pour créer un quiz</button>
+<div style="width: 100%;" *ngIf="quizList.length === 0">
+    <h1 style="text-align: center;">Aucun quiz pour l'instant</h1>
 </div>

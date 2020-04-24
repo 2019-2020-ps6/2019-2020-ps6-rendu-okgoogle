@@ -23,6 +23,9 @@ trigger('routeAnimations', [
     transition('ThemeList => QuizList', slideto('right')),
     transition('QuizList => ThemeList', slideto('left')),
 
+    transition('ThemeList => CreateQuiz', slideto('right')),
+    transition('CreateQuiz => ThemeList', slideto('left')),
+
     transition('QuizList => PlayQuiz', slideto('right')),
     transition('PlayQuiz => QuizList', slideto('left')),
     
@@ -31,6 +34,9 @@ trigger('routeAnimations', [
 
     transition('MainAdmin => CreateTheme', slideto('right')),
     transition('CreateTheme => MainAdmin', slideto('left')),
+
+    transition('CreateTheme => CreateQuiz', slideto('right')),
+    transition('CreateQuiz => CreateTheme', slideto('left')),
 
     transition('MainAdmin => CreateUser', slideto('right')),
     transition('CreateUser => MainAdmin', slideto('left')),
@@ -52,6 +58,9 @@ trigger('routeAnimations', [
 
     transition('UserList => UserStat', slideto('right')),
     transition('UserStat => UserList', slideto('left')),
+
+    transition('UserList => EditUser', slideto('right')),
+    transition('EditUser => UserList', slideto('left')),
 
     transition('UserStat => UserStatDetails', slideto('right')),
     transition('UserStatDetails => UserStat', slideto('left')),

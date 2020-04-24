@@ -13,7 +13,6 @@ export class ThemeListComponent implements OnInit {
 
   public themesList: Theme[] = [];
   public searchTheme: string;
-  public reversed:boolean;
 
   constructor(private route: ActivatedRoute,private router:Router, public themeService: ThemeService) {  
     this.themeService.setThemesFromUrl()
