@@ -14,7 +14,7 @@
         <img *ngIf="quizDebut" src="https://lh3.googleusercontent.com/proxy/bzkC0Z_oEfRYOT2NkDJro7oovm-cNzq9zIwAxcuyIjJ2IdSm4nZjRRLcCEAGU09JxZDHlCb2I0wVWlEMsjVop4LrLR41wc6zfMrS1fysS1s1shbpJre3js9cP_M4FRg7ghMt0g4" style="height: 100px; object-fit: cover;" alt="">
         <img *ngIf="quizFini && !quizDebut" src="https://thumbs.dreamstime.com/b/banni%C3%A8re-de-bravo-91022451.jpg" width="300" alt=""><br>
         <img *ngIf="quizFini === false && !quizDebut" src="https://i.pinimg.com/originals/a8/6e/f4/a86ef49a467502013d0521c55deebe85.png" width="300" alt=""><br>
-        <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizDebut"> Le quiz recommence dans {{timerPopup}} secondes</p>
+        <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizDebut"> Le quiz commence dans {{timerPopup}} secondes</p>
         <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizFini === false && !quizDebut"> Prochaine question dans {{timerPopup}} secondes</p>
         <a *ngIf="quizFini && !quizDebut" (click)="rejouer()" class="btn blue">Rejouer</a>
         <a *ngIf="quizFini && !quizDebut" (click)="goBack()" class="btn cancel">Quitter</a>

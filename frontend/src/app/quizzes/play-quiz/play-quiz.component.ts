@@ -26,11 +26,10 @@ import { Location } from '@angular/common';
     public sonUrlQuestionActuelle = "";
     public playSong : boolean = false;
     public afficheIndice : boolean = false;
-    public quizDebut: boolean = true;
+    public quizDebut: boolean;
     public menu : boolean = false;
 
     constructor(private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
-
     }
   
     ngOnInit() {    
@@ -54,6 +53,22 @@ import { Location } from '@angular/common';
               }
               document.querySelector(".progressbar-steps").children[i].classList.add("active")
             }
+            this.quizDebut = true;
+            document.body.querySelector('#modal-container').removeAttribute('class')
+            document.body.querySelector('#modal-container').classList.add('modalF')
+            var interval = setInterval(()=> {
+              this.timerPopup--;
+              if (this.timerPopup == 0){
+                clearInterval(interval);
+                return;
+              } 
+            }, 1000);
+            document.body.classList.add('modal-active')
+            setTimeout(()=>{
+            document.body.querySelector('#modal-container').classList.add('out');
+            document.body.classList.remove('modal-active')
+            },5000)
+            this.timerPopup = 5;
           },500)
         })
       });
