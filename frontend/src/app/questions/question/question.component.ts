@@ -54,8 +54,15 @@ export class questionComponent implements OnInit{
         
     }
 
-    deleteQuestion(){
-        this.questionDeleted.emit(this.question);
+    supprQuestionC(decision: boolean){
+        if(decision)
+            this.questionDeleted.emit(this.question);
+        else
+            this.confirmationDelete = false;
+    }
+
+    supprQuestionConfirmation(){
+        this.confirmationDelete = true;
     }
 
     editQuestion(){

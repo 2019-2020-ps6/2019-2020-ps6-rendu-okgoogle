@@ -37,9 +37,6 @@ export class editThemeComponent implements OnInit {
 
   editTheme(){
     this.edit_theme=true;
-    this.themesForm.get('name').setValue(this.curTheme.name)
-    if(this.curTheme.imageUrl != "")
-        this.themesForm.get('imgUrl').setValue(this.curTheme.imageUrl)
   }
 
   validateTheme(){

@@ -28,12 +28,30 @@ import { Location } from '@angular/common';
     public afficheIndice : boolean = false;
     public quizDebut: boolean;
     public menu : boolean = false;
+  questionPrec: boolean;
 
     constructor(private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
+    setTimeout(()=>{
+      this.quizDebut = true;
+      document.body.querySelector('#modal-container').removeAttribute('class')
+      document.body.querySelector('#modal-container').classList.add('modalF')
+      var interval = setInterval(()=> {
+        this.timerPopup--;
+        if (this.timerPopup == 0){
+          clearInterval(interval);
+          return;
+        } 
+      }, 1000);
+      document.body.classList.add('modal-active')
+      setTimeout(()=>{
+      document.body.querySelector('#modal-container').classList.add('out');
+      document.body.classList.remove('modal-active')
+      },5000)
+      this.timerPopup = 5;
+    },500)
     }
-  
+    
     ngOnInit() {    
-      
       const themeid = this.route.snapshot.paramMap.get('themeid');
       const quizid = this.route.snapshot.paramMap.get('quizid');
       this.themeService.setSelectedTheme(themeid.toString())
@@ -53,27 +71,9 @@ import { Location } from '@angular/common';
               }
               document.querySelector(".progressbar-steps").children[i].classList.add("active")
             }
-            this.quizDebut = true;
-            document.body.querySelector('#modal-container').removeAttribute('class')
-            document.body.querySelector('#modal-container').classList.add('modalF')
-            var interval = setInterval(()=> {
-              this.timerPopup--;
-              if (this.timerPopup == 0){
-                clearInterval(interval);
-                return;
-              } 
-            }, 1000);
-            document.body.classList.add('modal-active')
-            setTimeout(()=>{
-            document.body.querySelector('#modal-container').classList.add('out');
-            document.body.classList.remove('modal-active')
-            },5000)
-            this.timerPopup = 5;
           },500)
         })
       });
-
-
     }
 
     
@@ -129,9 +129,7 @@ import { Location } from '@angular/common';
     aide(){
       if(this.questionSelected.indice != ""){
         this.afficheIndice = true
-        console.log("indice")
       }else{
-        console.log("SOng")
         this.playSong = true;
         console.log(this.playSong)
       }
@@ -197,6 +195,11 @@ import { Location } from '@angular/common';
       },5000)
       this.timerPopup = 5;
       this.ngOnInit()
+    }
+
+    quitter(){
+      document.body.querySelector('#modal-container').classList.add('out');
+      this.goBack()
     }
 
     switchMenu(){

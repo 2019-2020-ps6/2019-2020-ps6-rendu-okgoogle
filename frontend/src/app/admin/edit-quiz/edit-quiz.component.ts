@@ -57,10 +57,6 @@ export class editQuizComponent implements OnInit {
 
   editQuiz(){
     this.edit_quiz=true;
-    this.quizForm.get('label').setValue(this.quiz.name)
-    if(this.quiz.imageUrl != "")
-        this.quizForm.get('imgUrl').setValue(this.quiz.imageUrl)
-    console.log(this.quiz)
   }
 
   validateQuiz(){

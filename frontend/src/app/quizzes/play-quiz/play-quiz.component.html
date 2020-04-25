@@ -17,7 +17,7 @@
         <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizDebut"> Le quiz commence dans {{timerPopup}} secondes</p>
         <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizFini === false && !quizDebut"> Prochaine question dans {{timerPopup}} secondes</p>
         <a *ngIf="quizFini && !quizDebut" (click)="rejouer()" class="btn blue">Rejouer</a>
-        <a *ngIf="quizFini && !quizDebut" (click)="goBack()" class="btn cancel">Quitter</a>
+        <a *ngIf="quizFini && !quizDebut" (click)="quitter()" class="btn cancel">Quitter</a>
       </div>
     </div>
   </div>
