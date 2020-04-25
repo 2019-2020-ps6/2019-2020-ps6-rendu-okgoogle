@@ -59,7 +59,7 @@ export class QuizFormComponent implements OnInit {
       quizToCreate.questions = [];
       quizToCreate.creationDate = new Date();
       if(this.WithImage == false)
-          quizToCreate.imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRWXDFTonXk2JDFeUHA4nqPrDr1slhbB-NH21xuc0jb_r5LzFG_&usqp=CAU";
+          quizToCreate.imageUrl = "https://images-na.ssl-images-amazon.com/images/I/21K1%2BsQckhL._AC_SY355_.jpg";
 
 
       this.quizService.addQuiz(quizToCreate.themeId.toString(),quizToCreate);
