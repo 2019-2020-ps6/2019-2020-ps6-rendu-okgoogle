@@ -15,6 +15,21 @@
 
 @media screen and (min-width: 800px){
   
+ .user-list{
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background-color: #ddd;
+    border-radius: 2em;
+  }
+
+  .user-list{
+    width: 70%;
+  }
+
+  .user{
+    width: 30%;
+    padding: 1em;
+  }
 
 }
 
@@ -31,5 +46,9 @@
 
   .user-list{
     width: 80%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    background-color: #ddd;
+    border-radius: 2em;
   }
 }
