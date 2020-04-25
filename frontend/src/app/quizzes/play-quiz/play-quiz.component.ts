@@ -7,7 +7,7 @@ import { Question } from 'src/models/question.model';
 import { Theme } from 'src/models/theme.model';
 import { Answer } from 'src/models/answer.model';
 import { ThemeService } from 'src/services/theme.service';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-play-quiz',
@@ -26,12 +26,31 @@ import {Location} from '@angular/common';
     public sonUrlQuestionActuelle = "";
     public playSong : boolean = false;
     public afficheIndice : boolean = false;
+    public quizDebut: boolean;
+    public menu : boolean = false;
+  questionPrec: boolean;
 
-    
     constructor(private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
-
+    setTimeout(()=>{
+      this.quizDebut = true;
+      document.body.querySelector('#modal-container').removeAttribute('class')
+      document.body.querySelector('#modal-container').classList.add('modalF')
+      var interval = setInterval(()=> {
+        this.timerPopup--;
+        if (this.timerPopup == 0){
+          clearInterval(interval);
+          return;
+        } 
+      }, 1000);
+      document.body.classList.add('modal-active')
+      setTimeout(()=>{
+      document.body.querySelector('#modal-container').classList.add('out');
+      document.body.classList.remove('modal-active')
+      },5000)
+      this.timerPopup = 5;
+    },500)
     }
-  
+    
     ngOnInit() {    
       const themeid = this.route.snapshot.paramMap.get('themeid');
       const quizid = this.route.snapshot.paramMap.get('quizid');
@@ -55,15 +74,10 @@ import {Location} from '@angular/common';
           },500)
         })
       });
-
-
     }
 
     
     selectAnswer(answer: Answer){
-
-      var zoomElement = document.querySelector("#zoom")
-      zoomElement.setAttribute("value", "20");
 
       var divIndice = document.querySelector("#indice")
       if(divIndice.textContent != "")
@@ -71,7 +85,7 @@ import {Location} from '@angular/common';
 
       //quiz pas fini
       if( answer.isCorrect && this.ptrQuestion != this.quiz.questions.length-1){
-
+        this.quizDebut = false;
         document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("completed")
         this.ptrQuestion++;
         document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("active")
@@ -115,9 +129,7 @@ import {Location} from '@angular/common';
     aide(){
       if(this.questionSelected.indice != ""){
         this.afficheIndice = true
-        console.log("indice")
       }else{
-        console.log("SOng")
         this.playSong = true;
         console.log(this.playSong)
       }
@@ -164,8 +176,38 @@ import {Location} from '@angular/common';
       mainContent.classList.remove("contrast-black");
     }
 
-    reloadPage(){
-      document.location.reload(true)
+    rejouer(){
+      this.quizDebut = true;
+      this.quizFini = false;
+      document.body.querySelector('#modal-container').removeAttribute('class')
+      document.body.querySelector('#modal-container').classList.add('modalF')
+      var interval = setInterval(()=> {
+          this.timerPopup--;
+          if (this.timerPopup == 0){
+            clearInterval(interval);
+            return;
+          }
+      }, 1000);
+      document.body.classList.add('modal-active')
+      setTimeout(()=>{
+        document.body.querySelector('#modal-container').classList.add('out');
+        document.body.classList.remove('modal-active')
+      },5000)
+      this.timerPopup = 5;
+      this.ngOnInit()
+    }
+
+    quitter(){
+      document.body.querySelector('#modal-container').classList.add('out');
+      this.goBack()
+    }
+
+    switchMenu(){
+      if(this.menu == false){
+        this.menu = true;
+      }else{
+        this.menu = false;
+      }
     }
 
     goBack(){

@@ -14,7 +14,7 @@ export class QuestionFormComponent implements OnInit{
 
 
   public questionForm: FormGroup;
-  private mode: string = "Image question et text pour question";
+  private mode: string = "Image pour énoncé et text pour réponses";
   private modeAide : number = 0 //0 = indice text ; 1=Indice par son
   fichierName: string = "";
   questionToCreate:Question;
@@ -61,7 +61,7 @@ export class QuestionFormComponent implements OnInit{
   }
   
   private createAnswer() {
-    if(this.mode === "Image question et text pour question"){
+    if(this.mode === "Image pour énoncé et text pour réponses"){
       return this.formBuilder.group({
         value: ['', Validators.required],
         isCorrect: [false, Validators.required],
@@ -131,14 +131,14 @@ export class QuestionFormComponent implements OnInit{
   }
 
   UneImageQuatreText(){
-    if( this.mode === "Text question et image pour reponse"){
-      this.mode = "Image question et text pour question";
+    if( this.mode === "Text pour énoncé et image pour réponses"){
+      this.mode = "Image pour énoncé et text pour réponses";
     }
   }
 
   QuatreImageUneQuestionText(){
-    if( this.mode === "Image question et text pour question"){
-      this.mode = "Text question et image pour reponse";
+    if( this.mode === "Image pour énoncé et text pour réponses"){
+      this.mode = "Text pour énoncé et image pour réponses";
     }
   }
 }

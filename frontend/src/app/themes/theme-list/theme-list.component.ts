@@ -13,7 +13,6 @@ export class ThemeListComponent implements OnInit {
 
   public themesList: Theme[] = [];
   public searchTheme: string;
-  public reversed:boolean;
 
   constructor(private route: ActivatedRoute,private router:Router, public themeService: ThemeService) {  
     this.themeService.setThemesFromUrl()
@@ -27,9 +26,12 @@ export class ThemeListComponent implements OnInit {
   }
 
   themeSelected(selected: Theme) {
-    console.log("Le selected"+selected.name)
-    this.themeService.themeSelected = selected;
-    this.router.navigate(['quiz-list', selected.id.toString()]);
+    this.themeService.setSelectedTheme(selected.id.toString())
+    if(sessionStorage.getItem("status") == "admin"){
+      this.router.navigate(['theme-edit', selected.id.toString()]);
+    }else{
+      this.router.navigate(['quiz-list', selected.id.toString()]);
+    }
   }
   
   themeDeleted(selected: Theme) {

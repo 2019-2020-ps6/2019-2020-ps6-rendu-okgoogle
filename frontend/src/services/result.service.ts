@@ -17,7 +17,7 @@ export class ResultService implements OnInit {
 
   public resultFinal = new Object() as Result ;
   private quizFinal: Quiz;
-  private quizSelected: Quiz;
+  public quizSelected: Quiz;
   private questionSelected: Question;
   private TabAnswersQuestions: Answer[][] = [];
   private nbAide: number = 0;
@@ -43,8 +43,9 @@ export class ResultService implements OnInit {
       this.VerifyAnswer(answer)
     });
   }
-  setSelectedQuiz(lequiz: string, theme:string) {
-    const urlWithId = this.lien +"themes/" + theme + '/quizzes/' + lequiz.toString();
+  setSelectedQuiz(quizid: string, themeid:string) {
+    this.ptrQuestion = 0;
+    const urlWithId = this.lien +"themes/" + themeid + '/quizzes/' + quizid.toString();
     this.http.get<Quiz>(urlWithId).subscribe((quiz) => {
       this.quizSelected = quiz;
       this.quizSelected$.next(quiz);
@@ -117,6 +118,7 @@ export class ResultService implements OnInit {
     this.questionSelected$.next(this.questionSelected)
     this.quizFinal.questions = [];
     this.TabAnswersQuestions = [];
+    this.setSelectedQuiz(this.quizFinal.id.toString(), this.quizFinal.themeId.toString());
   }
 
 

@@ -1,8 +1,5 @@
-<div id="partie_liste_quiz" *ngIf="curTheme">
-
-    <app-quiz-form *ngIf="curStatus === 'admin'"></app-quiz-form>
-
-    <h1 class="titreQuiz">Liste des Quiz : <label style="color: white ;">{{curTheme.name}}</label></h1>
+<div id="partie_liste_quiz" *ngIf="curTheme && quizList.length != 0">
+        <h1 class="titreQuiz">Liste des Quiz :  <label style="color: white ;">{{curTheme.name}}</label></h1>
     <div>
         <div style="display: flex; justify-content: center;">
             <input class="form-control" type="text" name="search" [(ngModel)]="searchQuiz" autocomplete="off"
@@ -10,19 +7,20 @@
         </div>
     </div>
 
-
-    <h3 *ngIf="quizList.length == 0">Il n'y a aucun quiz </h3>
-
     <div id="containerListe">
         <div class="list-type2">
             <ul class="quiz-list">
                 <li class="quiz" *ngFor="let quiz of quizList | filter:searchQuiz">
                     <app-quiz [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizEdited($event)" (quizDeleted)="quizDeleted($event)"></app-quiz>
                 </li>
-                <li class="no-quiz" *ngIf=" searchQuiz && (quizList | filter:searchQuiz).length === 0">
-                    <p>Aucun quiz correspond à vos recherche</p>
+                <li class="no-quiz" *ngIf=" searchQuiz && (quizList | filter:searchQuiz).length === 0 && quizList.length != 0">
+                    <p>Aucun quiz correspond à vos recherches</p>
                 </li>
             </ul>
         </div>
     </div>
+</div>
+
+<div style="width: 100%;" *ngIf="quizList.length === 0">
+    <h1 style="text-align: center;">Aucun quiz pour l'instant</h1>
 </div>

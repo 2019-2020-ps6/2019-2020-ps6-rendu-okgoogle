@@ -9,41 +9,41 @@
 <div id="all">
     <div id="partiegauche">
         <div id="infos">
-            <h2 class="texte">Statistiques de l'utilisateur :</h2>
+            <h2 class="texte">Statistiques de l'accueilli :</h2>
             <label class="texte">
-                <p style="margin-bottom: 0;">Nom Utilisateur: {{user.surname}} {{user.name}}</p><br>
+                <p style="margin-bottom: 0;">Nom accueilli: {{user.surname}} {{user.name}}</p><br>
             </label>
-            <h4 *ngIf="resSelected" class="texte">Quizz: {{resSelected.quiz.name}}</h4>
+            <h4 *ngIf="resSelected" class="texte">Quiz: {{resSelected.quiz.name}}</h4>
 
         </div>
         <div id="parentErreurCorrect">
             <div *ngIf="resSelected" id="erreurs">
-                <p class="texte">erreurs <br> {{resSelected.nbErreur}}</p>
+                <p class="texte">erreurs <br><span style="font-weight: bold;">{{resSelected.nbErreur}}</span></p>
             </div>
             <div *ngIf="resSelected" id="corrects">
-                <p class="texte">correctes <br> {{resSelected.nbCorrect}}</p>
+                <p class="texte">correctes <br><span style="font-weight: bold;">{{resSelected.nbCorrect}}</span></p>
             </div>
         </div>
         <div id=parentaidesthemes>
             <div *ngIf="resSelected" id="nb_aides">
-                <p class="texte">nombres d'aides <br> {{resSelected.nbAide}}</p>
+                <p class="texte">nombre d'aides <br> <span style="font-weight: bold;">{{resSelected.nbAide}}</span></p>
             </div>
-            <div *ngIf="themeFavori" id="theme_fav">
-                <p  class="texte">theme favoris <br>{{themeFavori.name}}</p>
+            <div *ngIf="themeFavori && resSelected" id="theme_fav">
+                <p  class="texte">thème favori: <br> <span style="font-weight: bold;">{{themeFavori.name}}</span></p>
             </div>
         </div>
         <div *ngIf="resSelected" id="nb_Q">
-            <p class="texte">Nombre de questions<br>{{resSelected.quiz.questions.length}}</p>
+            <p class="texte">Nombre de questions<br> <span style="font-weight: bold;">{{resSelected.quiz.questions.length}}</span></p>
         </div>
-        <button *ngIf="resSelected" class="buttonDetail" (click)="showDetails()">Plus de details</button>
+        <button *ngIf="resSelected" class="buttonDetail" (click)="showDetails()">Plus de détails</button>
     </div>
     <div id="partiedroite">
         <div id="contenu">
             <h6 class="texte">Liste des quiz réalisés</h6>
             <div id="listeQ"></div>
             <div>
-                <div class="item" (click)="SelectedQuiz(i)" *ngFor="let res of result; let i=index">
-                    Quiz n°{{i+1}}: {{res.quiz.name}} {{res.dateJeu | date:'short'}}
+                <div class="item" (click)="SelectedQuiz(i)" *ngFor="let res of result; let i=index; let c=count">
+                    Quiz n°{{c-i}}: {{res.quiz.name}} {{res.dateJeu | date:'short'}}
                 </div>
             </div>
         </div>

@@ -1,0 +1,24 @@
+<div *ngIf="curTheme">
+    <form [formGroup]="themesForm">
+        <div style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+            <div>
+                <span style="text-align: center;font-size: 35px;">Édition theme : <strong style="color: orangered;">{{curTheme.name}}</strong></span>
+            </div>
+            <div>
+                <input *ngIf="edit_theme" type="text" name="" [formControlName]="'name'" id="">
+            </div>
+            <div>
+                <img [src]="curTheme.imageUrl" alt="">
+            </div>
+            <div>
+                <button (click)="editTheme()" *ngIf="!edit_theme">Modifier <i  class="fas fa-edit"></i></button>
+                <input *ngIf="edit_theme" type="text" name="" [formControlName]="'imageUrl'" id="">
+                <br>
+                <button *ngIf="edit_theme" (click)="validateTheme()">Valider</button>
+                <button *ngIf="edit_theme" (click)="annulerTheme()">Annuler</button>
+            </div>
+        </div>
+    </form>
+    <app-quiz-form></app-quiz-form>
+    <app-quiz-list></app-quiz-list>
+</div>

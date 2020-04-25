@@ -3,43 +3,43 @@
 </head>
 
 <div *ngIf="questionSelected">
-
   <!-- Modal after good answer -->
 
-<div id="modal-container">
-  <div class="modal-background">
-    <div class="modal">
-      <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
-        <rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
-      </svg>
-      <img *ngIf="quizFini" src="https://thumbs.dreamstime.com/b/banni%C3%A8re-de-bravo-91022451.jpg" width="300" alt=""><br>
-      <img *ngIf="quizFini === false" src="https://i.pinimg.com/originals/a8/6e/f4/a86ef49a467502013d0521c55deebe85.png" width="300" alt=""><br>
-      <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizFini === false"> Prochaine question dans {{timerPopup}} secondes</p>
-      <a *ngIf="quizFini" (click)="reloadPage()" class="btn blue">Rejouer</a>
-      <a *ngIf="quizFini" (click)="goBack()" class="btn cancel">Quitter</a>
+  <div id="modal-container">
+    <div class="modal-background">
+      <div class="modal">
+        <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
+          <rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
+        </svg>
+        <img *ngIf="quizDebut" src="https://lh3.googleusercontent.com/proxy/bzkC0Z_oEfRYOT2NkDJro7oovm-cNzq9zIwAxcuyIjJ2IdSm4nZjRRLcCEAGU09JxZDHlCb2I0wVWlEMsjVop4LrLR41wc6zfMrS1fysS1s1shbpJre3js9cP_M4FRg7ghMt0g4" style="height: 100px; object-fit: cover;" alt="">
+        <img *ngIf="quizFini && !quizDebut" src="https://thumbs.dreamstime.com/b/banni%C3%A8re-de-bravo-91022451.jpg" width="300" alt=""><br>
+        <img *ngIf="quizFini === false && !quizDebut" src="https://i.pinimg.com/originals/a8/6e/f4/a86ef49a467502013d0521c55deebe85.png" width="300" alt=""><br>
+        <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizDebut"> Le quiz commence dans {{timerPopup}} secondes</p>
+        <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizFini === false && !quizDebut"> Prochaine question dans {{timerPopup}} secondes</p>
+        <a *ngIf="quizFini && !quizDebut" (click)="rejouer()" class="btn blue">Rejouer</a>
+        <a *ngIf="quizFini && !quizDebut" (click)="quitter()" class="btn cancel">Quitter</a>
+      </div>
     </div>
   </div>
+
+
+
+      <a style="position: absolute; top: 65px; left: 30px;" *ngIf="!menu" (click)="switchMenu()">
+          <svg width="30" height="30">
+              <path d="M0,5 30,5" stroke="#333" stroke-width="5"/>
+              <path d="M0,14 30,14" stroke="#333" stroke-width="5"/>
+              <path d="M0,23 30,23" stroke="#333" stroke-width="5"/>
+          </svg>
+      </a>
+
+<div *ngIf="menu" id="side-menu" class="side-nav">
+  <a style="color: black;" class="btn-close" (click)="switchMenu()">&times;</a>
+  <ul id="menu">
+    <li> Zoom: <input (mouseup)="changeFont($event)" value="20" min="20" max="40" type="range" /> </li>
+    <button id="contrast-b" (click)="changeContrastToBlack()" title="Ecriture blanche/Fond noir">Contraste inverse</button>
+    <button id="contrast-w" (click)="changeContrastToWhite()" title="Ecriture noir/Fond blanc">Contraste normal</button>
+  </ul>
 </div>
-
-<!-- Lateral Menu -->
-
-<nav role='navigation'>
-  <div id="menuToggle">
-
-    <input class="fermeture" type="checkbox" />
-
-    <span></span>
-    <span></span>
-    <span></span>
-
-    <ul id="menu">
-      <li> Zoom: <input (mouseup)="changeFont($event)" id="zoom" value="20" min="20" max="40" type="range" /> </li>
-      <button id="contrast-b" (click)="changeContrastToBlack()" title="Ecriture blanche/Fond noir">Contraste
-        inverse</button>
-      <button id="contrast-w" (click)="changeContrastToWhite()" title="Ecriture noir/Fond blanc">Contraste normal</button>
-    </ul>
-  </div>
-</nav>
 
 <div style="width: 100%;margin-left: auto;margin-right: auto;">
   <ng-container *ngIf="questionSelected">
@@ -55,7 +55,7 @@
     <p *ngIf="questionSelected === undefined">Aucune question pour ce quiz :(</p>
 
     <div id="quiz">
-      <h3 *ngIf="questionSelected.imgUrl === ''" class="zommable" id="question">{{questionSelected.label}}</h3>
+      <h3 style="font-size: 25px;" *ngIf="questionSelected.imgUrl === ''" class="zommable" id="question">{{questionSelected.label}}</h3>
       <span class="zommable" id="indice"></span>
       
 
@@ -82,13 +82,12 @@
         </div>
       </div>
 
-      <!-- Cancel Button -->
+      <!-- Cancel and help Button -->
 
       <div id="struct_bouton">
         <div id=Cbouton>
-          <button class="precedent" (click)="questionPrecedente()" id="aide"><i class="fas fa-chevron-circle-left"></i>
-            &nbsp;Question précédente</button>
-          <button class="aide zoomable" (click)="aide()" id="aide"><i class="far fa-question-circle"></i> &nbsp; Aide</button>
+          <button style="font-size: 25px;" class="precedent" (click)="questionPrecedente()" id="aide">Question précédente</button>
+          <button style="font-size: 25px;" class="aide zoomable" (click)="aide()" id="aide"><i class="far fa-question-circle"></i> Aide</button>
         </div>
       </div>
 

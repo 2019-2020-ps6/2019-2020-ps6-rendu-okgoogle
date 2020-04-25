@@ -37,7 +37,6 @@ export class QuizListComponent implements OnInit {
 
   quizEdited(selected: Quiz) {
     this.id = +this.route.snapshot.paramMap.get('themeid');
-    this.quizService.setSelectedQuiz(selected.id.toString(), this.id.toString());
     this.router.navigate(["theme-edit",selected.themeId.toString(),"edit-quiz",selected.id.toString()])
   }
 
@@ -48,8 +47,6 @@ export class QuizListComponent implements OnInit {
 
   quizDeleted(selected: Quiz) {
     this.id = +this.route.snapshot.paramMap.get('themeid');
-    this.quizService.deleteQuiz(this.id.toString(), selected ).subscribe(() => {
-      this.quizList.splice(this.quizList.indexOf(selected), 1);
-    });
+    this.quizService.deleteQuiz(this.id.toString(), selected )
   }
 }

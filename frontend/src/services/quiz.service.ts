@@ -57,11 +57,11 @@ export class QuizService {
   }
 
   /** DELETE: delete the quiz from the server */
-  deleteQuiz (themeid:string,quiz: Quiz): Observable<{}> {
+  deleteQuiz (themeid:string,quiz: Quiz) {
     const url = this.lien+themeid+"/quizzes/"+quiz.id; // DELETE api/heroes/42
     const header = this.prepareHeader();
     this.quizzes$.next(this.quizzes)
-    return this.http.delete(url,header)
+    this.http.delete(url,header).subscribe(()=> this.getQuizzesByThemeId(themeid))
   }
 
   /** Header for deleting: allow deleting from the server */
@@ -143,6 +143,14 @@ export class QuizService {
     const url = this.lien + themeid + "/quizzes/" +quizid+"/questions/"+oldQuestionId; 
     this.quizzes$.next(this.quizzes);
     this.http.put<Question>(url, question).subscribe((question)=>{
+      this.setSelectedQuiz(quizid, themeid)
+    })
+  }
+
+  editQuiz(themeid:string,quizid:string,quiz: Quiz){
+    const url = this.lien + themeid + "/quizzes/" +quizid; 
+    this.quizzes$.next(this.quizzes);
+    this.http.put<Quiz>(url, quiz).subscribe((quiz)=>{
       this.setSelectedQuiz(quizid, themeid)
     })
   }

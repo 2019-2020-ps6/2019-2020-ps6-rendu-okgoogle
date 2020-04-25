@@ -4,7 +4,7 @@
             <form class="question-form" [formGroup]="questionForm">
                 <h2>Créer une question</h2>
                 <div>
-                    <p style="text-align: center;">Modeles de quiz (Cliquez sur le mode)</p>
+                    <p style="text-align: center;">Modèles de quiz (Cliquez sur le mode)</p>
                     <div style="display: flex; flex-flow: row wrap;justify-content: center;" >
                         <div (click)="QuatreImageUneQuestionText()" >
                             <img style="max-width: 200px;" src="https://zupimages.net/up/20/15/rcca.jpg" alt="">
@@ -23,8 +23,8 @@
                     <input type="text" placeholder="Nom de la question" [formControlName]="'label'">
                 </label>
                 <label for="imageUrlQuestion">
-                    <input *ngIf="mode === 'Image question et text pour question'" class="imgQuestion" type="text" placeholder="Lien vers l'image" [formControlName]="'imgUrl'">
-                    <img *ngIf="mode === 'Image question et text pour question'" style="width: 100px;" [src]="questionForm.controls.imgUrl.value" alt="">
+                    <input *ngIf="mode === 'Image pour énoncé et text pour réponses'" class="imgQuestion" type="text" placeholder="Lien vers l'image" [formControlName]="'imgUrl'">
+                    <img *ngIf="mode === 'Image pour énoncé et text pour réponses'" style="width: 100px;" [src]="questionForm.controls.imgUrl.value" alt="">
                 </label>
                 <br>
                 <div *ngIf="modeAide === 0">
@@ -55,8 +55,8 @@
                             Reponse {{i+1}}: <br> <input placeholder="La réponse" placeholder="Réponse" type="text"
                                 [formControlName]="'value'">
                             <br>
-                            <input *ngIf="mode === 'Text question et image pour reponse'" class="imgReponse" type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'">
-                            <img *ngIf="mode === 'Text question et image pour reponse'" style="width: 100px;" [src]="questionForm.controls.answers.controls[i].controls.imageUrl.value" alt=""><br>
+                            <input *ngIf="mode === 'Text pour énoncé et image pour réponses'" class="imgReponse" type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'">
+                            <img *ngIf="mode === 'Text pour énoncé et image pour réponses'" style="width: 100px;" [src]="questionForm.controls.answers.controls[i].controls.imageUrl.value" alt=""><br>
                             <label id="label">Correct</label> 
                             <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'">
                         </div>
