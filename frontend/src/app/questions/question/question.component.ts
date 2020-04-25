@@ -21,7 +21,8 @@ export class questionComponent implements OnInit{
     public questionForm: FormGroup;
     public answerForm: FormGroup;
     public answerToDelete : Answer;
-    private confirmationDelete: boolean = false;
+    private confirmationDeleteQuestion: boolean = false;
+    private confirmationDeleteAnswer: boolean = false;
 
     @Input()
     question: Question;
@@ -58,11 +59,11 @@ export class questionComponent implements OnInit{
         if(decision)
             this.questionDeleted.emit(this.question);
         else
-            this.confirmationDelete = false;
+            this.confirmationDeleteQuestion = false;
     }
 
     supprQuestionConfirmation(){
-        this.confirmationDelete = true;
+        this.confirmationDeleteQuestion = true;
     }
 
     editQuestion(){
@@ -114,16 +115,14 @@ export class questionComponent implements OnInit{
             const themeid = this.route.snapshot.paramMap.get('themeid');
             const quizid = this.route.snapshot.paramMap.get('quizid');
             this.quizService.deleteAnswer(themeid,quizid,this.question.id.toString(), answer.id);
-            this.confirmationDelete = false;
+            this.confirmationDeleteAnswer = false;
         }
         else{
-            this.confirmationDelete = false;
-        }
-        
-        
+            this.confirmationDeleteAnswer = false;
+        }        
     }
     supprAnswerConfirmation(answer : Answer){
-        this.confirmationDelete = true;
+        this.confirmationDeleteAnswer = true;
         this.answerToDelete = answer;
     }
 

@@ -41,7 +41,7 @@
                                 <i (click)="supprAnswerConfirmation(answer)" class="fas fa-trash-alt supprimer"></i>
                             </div>
                             <div *ngIf ="answer === answerToDelete">
-                                <div *ngIf="confirmationDelete" class='confirm--active'>
+                                <div *ngIf="confirmationDeleteAnswer" class='confirm--active'>
                                 <div class="confirmBox">
                                     <p>Voulez-vous vraiment supprimer cette réponse ?</p>
                                     <button (click)="supprAnswerC(answerToDelete,true)" class="button red">oui</button>
@@ -84,7 +84,7 @@
                 </form>
                 <br>
                 <div>
-                    <div *ngIf="confirmationDelete" class='confirm--active'>
+                    <div *ngIf="confirmationDeleteQuestion" class='confirm--active'>
                         <div style="display: flex; justify-content: center; flex-direction: column;align-items: center;" class="confirmBox">
                             <p style="color: black; font-size: 25px; text-align: center;" >Voulez-vous vraiment supprimer cette question ?</p>
                             <div>
