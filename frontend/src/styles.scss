@@ -21,10 +21,22 @@ body {
     margin: 0;
     background-color: #333 !important;
   }
+  .modal-svg p{
+    color: #333 !important;
+  }
+  .textModal{
+    color: #333 !important;
+  }
+  .side-nav a{
+    color: #333 !important;
+  }
+  .side-nav ul{
+    color: #333 !important;
+  }
 }
 .contrast-black h1,
 html body.contrast-black p{
-color: #fff !important;
+  color: #fff !important;
 }
 
 /* Constrast White */

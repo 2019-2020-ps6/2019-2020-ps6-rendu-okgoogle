@@ -28,7 +28,7 @@ import { Location } from '@angular/common';
     public afficheIndice : boolean = false;
     public quizDebut: boolean;
     public menu : boolean = false;
-  questionPrec: boolean;
+    questionPrec: boolean;
 
     constructor(private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
 
