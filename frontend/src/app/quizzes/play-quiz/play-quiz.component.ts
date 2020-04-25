@@ -95,15 +95,13 @@ import { Location } from '@angular/common';
       }
       //quiz fini
       else if(this.questionSelected.id === this.quiz.questions[this.quiz.questions.length-1].id && answer.isCorrect === true){
+        this.quizDebut = false;
+        this.afficheIndice = false;
+        this.playSong = false;
         document.body.querySelector('#modal-container').removeAttribute('class')
         this.quizFini = true;
         document.body.querySelector('#modal-container').classList.add('modalF')
         document.body.classList.add('modal-active')
-        setTimeout(()=>{
-          document.body.querySelector('#modal-container').classList.add('out');
-          document.body.classList.remove('modal-active')
-          this.goBack()
-        },100000)
       }
       
       this.resService.setSelectedAnswer(this.questionSelected.id.toString(),answer.id.toString())
