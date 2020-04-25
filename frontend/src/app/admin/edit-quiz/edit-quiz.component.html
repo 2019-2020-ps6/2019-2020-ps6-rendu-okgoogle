@@ -12,7 +12,7 @@
                     <img [src]="quiz.imageUrl" alt="">
                 </div>
                 <div>
-                    <button (click)="editQuiz()" *ngIf="!edit_quiz">Modifier <i  class="fas fa-edit"></i></button>
+                    <button class="edit_button" (click)="editQuiz()" *ngIf="!edit_quiz">Modifier <i  class="fas fa-edit"></i></button>
                     <input *ngIf="edit_quiz" type="text" name="" [formControlName]="'imageUrl'" id="">
                     <br>
                     <button *ngIf="edit_quiz" (click)="validateQuiz()">Valider</button>

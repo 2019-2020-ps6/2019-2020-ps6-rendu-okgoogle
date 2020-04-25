@@ -4,14 +4,27 @@
             <h1 class="titreTheme">
                 Liste des Thèmes
             </h1>
-            <div>
-                <div style="display: flex; justify-content: center;">
-                    <input class="form-control" type="text" name="search" [(ngModel)]="searchTheme" autocomplete="on" placeholder="Recherche de theme">
+
+
+            <div class="wrap">
+                <div class="search">
+                    <input class="searchTerm" type="text" name="search" [(ngModel)]="searchTheme" autocomplete="on" placeholder="Recherche de theme">
+                    <button type="submit" class="searchButton">
+                        <i class="fa fa-search"></i>
+                    </button>
                 </div>
             </div>
+
+            <!-- <div>
+                <div class="container_search">
+                    <input class="form-control" type="text" name="search" [(ngModel)]="searchTheme" autocomplete="on" placeholder="Recherche de theme">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div> -->
             <ul class="theme-list">
                 <li class="theme" *ngFor="let theme of themesList | filter:searchTheme">
-                    <app-theme [theme]="theme" (themeSelected)="themeSelected($event)" (themeDeleted)="themeDeleted($event)"></app-theme>
+                    <app-theme [theme]="theme" (themeSelected)="themeSelected($event)"
+                        (themeDeleted)="themeDeleted($event)"></app-theme>
                 </li>
                 <li class="no-theme" *ngIf="(themesList | filter:searchTheme).length === 0 && themesList.length != 0">
                     <h3>Aucun thème correspond à vos recherches</h3>
