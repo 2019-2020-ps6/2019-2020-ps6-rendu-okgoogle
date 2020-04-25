@@ -122,6 +122,8 @@ import { Location } from '@angular/common';
 
     questionPrecedente(){
       if(this.ptrQuestion > 0){
+        this.playSong = false;
+        this.afficheIndice = false;
         this.resService.previousQuestion()
         this.ptrQuestion--;
         document.querySelector(".progressbar-steps").children[this.ptrQuestion].classList.add("active")
