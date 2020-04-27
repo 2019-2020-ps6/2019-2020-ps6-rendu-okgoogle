@@ -39,9 +39,9 @@ img{
     
     img{
       width: 110%;
-      // height: 200px;
+      height: 200px;
       display: block;
-      object-fit: contain;
+      object-fit: cover;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px;
     //   margin: 10px;
