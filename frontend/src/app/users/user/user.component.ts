@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../../../models/user.model';
 
 @Component({
@@ -9,6 +9,8 @@ import { User } from '../../../models/user.model';
 export class UserComponent implements OnInit {
 
   private curStatus: string;
+  public confirmationDeleteUser: boolean = false;
+  public userToDelete: User;
 
   @Input()
   user: User;
@@ -17,11 +19,11 @@ export class UserComponent implements OnInit {
   userDeleted: EventEmitter<User> = new EventEmitter<User>();
 
   @Output()
-  userSelected: EventEmitter<User> = new EventEmitter<User>();  
-  
+  userSelected: EventEmitter<User> = new EventEmitter<User>();
+
   @Output()
   userEdited: EventEmitter<User> = new EventEmitter<User>();
-    
+
   @Output()
   userStatistic: EventEmitter<User> = new EventEmitter<User>();
 
@@ -29,7 +31,7 @@ export class UserComponent implements OnInit {
 
   }
 
-  ngOnInit() {  
+  ngOnInit() {
     this.curStatus = sessionStorage.getItem('status');
   }
 
@@ -37,15 +39,54 @@ export class UserComponent implements OnInit {
     this.userSelected.emit(user);
   }
 
-  editUser(user:User){
+  editUser(user: User) {
     this.userEdited.emit(user);
   }
 
   deleteUser(user: User) {
     this.userDeleted.emit(user);
   }
-  
-  statistic(user: User){
+
+  statistic(user: User) {
     this.userStatistic.emit(user);
   }
+
+  supprUserConfirmation(user: User) {
+    this.confirmationDeleteUser = true;
+    this.userToDelete = user;
+  }
+
+  supprUserConf(decision: boolean) {
+    if (decision)
+      this.userDeleted.emit(this.user);
+    else
+      this.confirmationDeleteUser = false;
+  }
+
+  supprUserC(user: User, confirmationDelete: boolean){
+    if(confirmationDelete){
+      this.deleteUser(user);
+      this.confirmationDeleteUser = false;
+    }else{
+      this.confirmationDeleteUser = false;
+    }
+  }
+
+
+
+  // supprAnswerC(answer: Answer, confirmationDelete: boolean) {
+  //   if (confirmationDelete) {
+  //     const themeid = this.route.snapshot.paramMap.get('themeid');
+  //     const quizid = this.route.snapshot.paramMap.get('quizid');
+  //     this.quizService.deleteAnswer(themeid, quizid, this.question.id.toString(), answer.id);
+  //     this.confirmationDeleteAnswer = false;
+  //   }
+  //   else {
+  //     this.confirmationDeleteAnswer = false;
+  //   }
+  // }
+  // supprAnswerConfirmation(answer: Answer) {
+  //   this.confirmationDeleteAnswer = true;
+  //   this.answerToDelete = answer;
+  // }
 }

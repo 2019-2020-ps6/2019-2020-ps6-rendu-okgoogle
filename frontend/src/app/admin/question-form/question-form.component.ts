@@ -82,6 +82,16 @@ export class QuestionFormComponent implements OnInit{
     // this.notChecked();
   }
 
+  changeColorOnChecked(){
+    var element = <HTMLInputElement> document.querySelector('.correctOrNot');
+    var parent = element.parentElement;
+    if(element.checked){
+      parent.style.backgroundColor = "LightGreen";
+    }else{
+      parent.style.backgroundColor = "initial";
+    }
+  }
+
   isChecked(){
     //changement de background pour la bonne réponse
     var element = <HTMLInputElement> document.querySelector('.correctOrNot');

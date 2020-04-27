@@ -21,8 +21,18 @@
 
                     <div id="buttons">
                         <button class="button" (click)="editUser(user)">Editer</button>
-                        <button class="button" (click)="deleteUser(user)">Delete</button>
+                        <button class="button" (click)="supprUserConfirmation(user)">Supprimer</button>
                         <button class="button" (click)="statistic(user)">Statistique</button>
+                    </div>
+
+                    <div *ngIf="user === userToDelete">
+                        <div *ngIf="confirmationDeleteUser" class='confirm--active'>
+                        <div class="confirmBox">
+                            <p>Voulez-vous vraiment supprimer cet accueilli ?</p>
+                            <button (click)="supprUserC(userToDelete,true)" class="button red">Oui</button>
+                            <button (click)="supprUserC(userToDelete,false)" class="button white">non</button>
+                        </div>
+                        </div>
                     </div>
 
                 </div>
