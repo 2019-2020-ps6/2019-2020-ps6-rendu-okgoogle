@@ -3,7 +3,7 @@ const BaseModel = require('../utils/base-model.js')
 
 module.exports = new BaseModel('User', {
     id:Joi.string(),
-    name: Joi.string().required(),
+    name: Joi.any(),
     surname: Joi.string(),
     age: Joi.number(),
     sexe: Joi.string(),

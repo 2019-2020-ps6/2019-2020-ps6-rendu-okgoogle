@@ -132,20 +132,28 @@ import { Location } from '@angular/common';
 
     changeFont(event){
       console.log(event.target.value)
-      var pInSpan = document.querySelectorAll(".zommable")
 
-      for (var i in pInSpan) {
-        pInSpan[i].setAttribute("style", "font-size:"+event.target.value+"px;");
+      var pInSpan = document.querySelectorAll(".zommableEnonce")
+
+      for (var i in pInSpan ) {
+          pInSpan[i].setAttribute("style", "font-size:"+event.target.value+"px;");
       }
-
-      var questionEtIndice = document.querySelectorAll(".enteteQuiz")
-
-      for(var i in questionEtIndice){
-        questionEtIndice[i].setAttribute("style", "font-size:"+event.target.value+"px;");
-      }
-
-
     }
+
+    // resetTaille(){
+    //   var pInSpan = document.querySelectorAll(".zommableEnonce")
+
+    //   for (var i in pInSpan) {
+    //     if(parseInt(i) >= 2)
+    //      pInSpan[i].setAttribute("style", "font-size: 16px;");
+    //     else
+    //       pInSpan[i].setAttribute("style", "font-size: 25px;");
+
+    //   }
+
+    //   var range = document.querySelector("#rangeTaille")
+    //   range.setAttribute("value", "20")
+    // }
 
     changeContrastToBlack(){
       var mainContent = document.querySelector("html")

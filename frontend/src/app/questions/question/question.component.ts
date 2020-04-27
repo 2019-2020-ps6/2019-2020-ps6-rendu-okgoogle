@@ -90,7 +90,8 @@ export class questionComponent implements OnInit{
     editAnswer(answer:Answer,i:number){
         this.editanswer_i = i;
         this.answerForm.get('value').setValue(answer.value)
-        this.answerForm.get('imageUrl').setValue(answer.imageUrl)
+        if(answer.imageUrl)
+            this.answerForm.get('imageUrl').setValue(answer.imageUrl)
         this.answerForm.get('isCorrect').setValue(answer.isCorrect)
     }
 

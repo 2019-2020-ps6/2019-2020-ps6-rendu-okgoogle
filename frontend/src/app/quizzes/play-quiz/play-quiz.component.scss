@@ -146,15 +146,14 @@ a:hover
   display: block;
   transition: 0.3s;
 }
-.side-nav a:hover {
-  color: #fff;
-}
+
 .side-nav .btn-close {
   position: absolute;
   top: 0;
   right: 22px;
   font-size: 36px;
   margin-left: 50px;
+  color: black;
 }
 #main {
   transition: 0.5s;

@@ -63,10 +63,11 @@ export class UserFormComponent implements OnInit {
       }
   
       for(var i in userToCreate){
-        if(userToCreate[i] === ""){
-          userToCreate[i] = "Non renseigné"
-        }
+        if(parseInt(i) > 2)
+          if(userToCreate[i] === "")
+            userToCreate[i] = "Non renseigné"
       }
+
   
       this.router.navigate(['/user-list']);
   

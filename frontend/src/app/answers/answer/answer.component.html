@@ -14,9 +14,9 @@
             <div *ngIf="answer.imageUrl"  id="imageGestion1">
                 <img [src]="answer.imageUrl" alt="">  
             </div>
-            <div style="padding: 30px; background-color: wheat; width: 100%;" class="zommable">
+            <div style="padding: 30px; background-color: wheat; width: 100%;">
                 <div style="width: 90%;margin: auto;">
-                    <p style="font-family: cursive; font-weight: bold;">{{answer.value}}</p>
+                    <p class="zommableEnonce answerValue">{{answer.value}}</p>
                 </div>
                  <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'">
                      <i class="far fa-check-square"></i>
