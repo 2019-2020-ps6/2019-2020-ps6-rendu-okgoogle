@@ -22,15 +22,47 @@
 
 
 #partie_top{
-    width: 85%;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: #ADD8E6;
+    position: fixed;
+    left: 0;
+    margin: 5px;
+    border-radius: 1em;
 }
 
-#partie_top h1{
-    text-align: center;
-    margin: 0;
+#contenu{
+    display: none;
 }
+
+
+#conteneur:focus{
+    #contenu{
+        display: inherit;
+    }
+}
+
+#conteneur:active{
+    #contenu{
+        display: inherit;
+    }
+}
+
+
+#conteneur:hover{
+    #contenu{
+        display: inherit;
+    }
+}
+
+#partie_top ul{
+    list-style: none;
+    padding: 0;
+}
+
+#partie_top p{
+    text-align: center;
+}
+
+
 
 .card-circle{
     text-align:center;
