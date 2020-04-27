@@ -2,41 +2,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
 </head>
 
-
-<div id="adminPanel" style="margin-top: -35%; margin-left: 35%;">
-    <div class="container">
-        <div class="row">
-            <!-- card1 -->
-            <a (click)="setAdminUser()">
-                <div class="card card-circle">
-                    <div class="card-body">
-                        <h5 class="card-title">Personnel Santé</h5>
+<div id="containerPanel">
+    <div id="adminPanel" style="margin-top: -35%; margin-left: 35%;">
+        <div class="container">
+            <div class="row">
+                <!-- card1 -->
+                <a (click)="setAdminUser()">
+                    <div class="card card-circle">
+                        <div class="card-body">
+                            <h5 class="card-title">Personnel Santé</h5>
+                        </div>
+                        <div class="card-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
                     </div>
-                    <div class="card-icon">
-                        <i class="fas fa-user-md"></i>
-                    </div>
-                </div>
-            </a>
+                </a>
+            </div>
         </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <!-- card2 -->
-            <a (click)="setStdUser()">
-                <div class="card-circle-accueilli">
-                    <div class = "row">
-
-                    
-                        <h5 class="card-title-accueilli">Accueilli</h5>
-                    
-                    <div class="card-icon-accueilli">
-                        <i class="fas fa-user"></i>
+    
+        <div class="container">
+            <div class="row">
+                <!-- card2 -->
+                <a (click)="setStdUser()">
+                    <div class="card-circle-accueilli">
+                        <div class = "row">
+    
+                        
+                            <h5 class="card-title-accueilli">Accueilli</h5>
+                        
+                        <div class="card-icon-accueilli">
+                            <i class="fas fa-user"></i>
+                        </div>
                     </div>
-                </div>
-                </div>
-            </a>
+                    </div>
+                </a>
+            </div>
         </div>
+    
     </div>
-
 </div>

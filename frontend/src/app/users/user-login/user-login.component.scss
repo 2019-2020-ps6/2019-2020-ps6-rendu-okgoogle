@@ -14,6 +14,11 @@
     background-size: cover;
     background-repeat: no-repeat;
   }
+  #containerPanel{
+    width: 100%;
+    position: absolute;
+    top: 15%;
+  }
 
   .circle {
     width: 150px;
