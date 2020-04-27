@@ -30,10 +30,9 @@
                                 style="color: green;" class="far fa-check-square"></i><i *ngIf="!(answer.isCorrect)"
                                 style="color: red;" class="fas fa-times"></i></td>
                     </div>
-                    <p> Aide utilisé <span *ngIf="question.aideUtilise; else NON"><strong
-                                class="name">Oui</strong></span>
-                        <ng-template #NON><strong class="name">Non</strong></ng-template>
-                    </p>
+                    <p> Aide utilisé <ng-template *ngIf="question.aideUtilise; then OUI else NON"></ng-template></p>
+                    <ng-template #OUI><strong class="name">Oui - <span *ngIf="question.sonUrl">Indice son</span> <span *ngIf="question.indice">Indice texte</span></strong></ng-template>
+                    <ng-template #NON><strong class="name">Non</strong></ng-template>
                 </div>
             </div>
         </div>
