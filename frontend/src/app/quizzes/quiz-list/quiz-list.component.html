@@ -1,9 +1,13 @@
 <div id="partie_liste_quiz" *ngIf="curTheme && quizList.length != 0">
         <h1 class="titreQuiz">Liste des Quiz :  <label style="color: white ;">{{curTheme.name}}</label></h1>
     <div>
-        <div style="display: flex; justify-content: center;">
-            <input class="form-control" type="text" name="search" [(ngModel)]="searchQuiz" autocomplete="off"
-                placeholder="Recherche de quiz">
+        <div class="wrap">
+            <div class="search">
+                <input class="searchTerm" type="text" name="search" [(ngModel)]="searchQuiz" autocomplete="on" placeholder="Recherche de quiz">
+                <button type="submit" class="searchButton">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
         </div>
     </div>
 

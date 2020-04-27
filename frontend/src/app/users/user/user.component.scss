@@ -26,6 +26,13 @@ article{
   justify-content: center;
 }
 
+.user_card{
+  border-radius: 8px;
+  border: solid 1px black;
+  padding: 5px;
+  margin: 0.7em;
+}
+
 #partie_user_admin{
   //background-color : silver;
   background-image: linear-gradient(to bottom right, #0F2027, #203A43, #2C5364);
@@ -64,7 +71,7 @@ article{
 
 @media screen and (min-width: 800px){
   #partie_user_admin{
-    width: 50%;
+    
     justify-content: center;
   }
 

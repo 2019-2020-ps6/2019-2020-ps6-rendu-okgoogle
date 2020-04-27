@@ -28,7 +28,7 @@
                 </div>
 
             </div>
-            <div *ngIf="curStatus === 'user'">
+            <div *ngIf="curStatus === 'user'" class="user_card" (click)="selectUser(user)">
                 <picture (click)="selectUser(user)" *ngIf="user.img != ''" class="thumbnail">
                     <img class="category__02" src="{{user.img}}" alt="" />
                 </picture>

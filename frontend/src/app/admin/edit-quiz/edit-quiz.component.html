@@ -3,25 +3,33 @@
         <form action="" [formGroup]="quizForm">
             <div style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
                 <div>
-                    <span style="text-align: center;font-size: 35px;">Édition quiz : <strong style="color: orangered;">{{quiz.name}}</strong></span>
-                </div>
-                <div>
-                    <input *ngIf="edit_quiz" type="text" name="" [formControlName]="'name'" id="">
+                    <span style="text-align: center;font-size: 35px;">Édition quiz : <strong
+                            style="color: orangered;">{{quiz.name}}</strong></span>
                 </div>
                 <div class="image_restriction">
                     <img [src]="quiz.imageUrl" alt="">
                 </div>
                 <div>
-                    <button class="edit_button" (click)="editQuiz()" *ngIf="!edit_quiz">Modifier <i  class="fas fa-edit"></i></button>
-                    <input *ngIf="edit_quiz" type="text" name="" [formControlName]="'imageUrl'" id="">
-                    <br>
-                    <button *ngIf="edit_quiz" (click)="validateQuiz()">Valider</button>
-                    <button *ngIf="edit_quiz" (click)="annulerQuiz()">Annuler</button>
+                    <button class="edit_button" (click)="editQuiz()" *ngIf="!edit_quiz">Modifier <i
+                            class="fas fa-edit"></i></button>
+
+                    <div *ngIf="edit_quiz" id="container_modifier">
+                        <p>Modification</p>
+                        Nom : 
+                        <input *ngIf="edit_quiz" type="text" name="" [formControlName]="'name'" id="">
+                        <br>
+                        Url image :
+                        <input *ngIf="edit_quiz" type="text" name="" [formControlName]="'imageUrl'" id="">
+                        <br>
+                        <button *ngIf="edit_quiz" style="background-color: lightgreen;" (click)="validateQuiz()">Valider</button>
+                        <button *ngIf="edit_quiz" style="background-color: lightcoral;" (click)="annulerQuiz()">Annuler</button>
+                    </div>
+
                 </div>
             </div>
         </form>
     </div>
-    
+
     <app-question-form></app-question-form>
     <app-question-list (questionEdited)="questionEdition($event)" [quiz]="quiz"></app-question-list>
 </ng-container>

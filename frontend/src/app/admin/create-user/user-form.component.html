@@ -5,7 +5,7 @@
         <h1 *ngIf="goal === 'edit'">Modification de : {{user.name}}</h1>
         <form class="cf" [formGroup]="userForm">
           <div class="half left cf">
-            <input type="text" id="name" [formControlName]="'name'" placeholder="Nom">
+            <input type="text" id="name" [formControlName]="'name'" placeholder="Nom (facultatif)">
             <input type="number" id="age" [formControlName]="'age'" placeholder="Age">
             Sexe :
             <input  type="radio" id="F" name="sexe" value="F" [formControlName]="'sexe'" class="rad"/> <label for="F">

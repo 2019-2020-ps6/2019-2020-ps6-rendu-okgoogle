@@ -3,7 +3,6 @@
         <div id="contenu">
             <form class="question-form" [formGroup]="questionForm">
                 <h2 class="titre">
-                    <i class="fab fa-leanpub"></i>
                     {{question.label}} &nbsp; <i (click)="editQuestion()" class="fas fa-edit"></i>
                     <input *ngIf="edit_question" type="text" name="" [formControlName]="'label'" id="">
                     <button *ngIf="edit_question" (click)="validateQuestion()">Valider</button>

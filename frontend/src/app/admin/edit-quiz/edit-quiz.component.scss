@@ -19,3 +19,26 @@
     width: 50%;
     text-align: center;
 }
+
+#container_modifier{
+    padding: 1em;
+    background-color: #ccc;
+    border-radius: 12px;
+    font-family: "Baloo Thambi 2", cursive;
+    text-align: center;
+}
+
+#container_modifier input{
+    padding: 0.7em;
+    margin-bottom: 1em;
+    border: none;
+    border-radius: 12px;
+}
+
+#container_modifier button{
+    padding: 0.5em 2em;
+    margin: 5px;
+    border-radius: 12px;
+    text-decoration: none;
+    border: none;
+}
