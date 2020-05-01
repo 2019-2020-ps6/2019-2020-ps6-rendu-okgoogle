@@ -3,7 +3,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
-        <app-header></app-header>
         <button class="back" *ngIf="router.url != '/'" (click)="back_click()"><i class="fas fa-chevron-left"></i> <span *ngIf="lastPage != ''">&nbsp; Retour {{lastPage}}</span></button>
         <br>
         <div [@routeAnimations]="o && o.activatedRouteData && o.activatedRouteData['animation']" class="main-content">
