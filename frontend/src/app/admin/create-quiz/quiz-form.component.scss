@@ -1,4 +1,7 @@
 
+
+
+
 #partie_creation_quiz{
     padding: 2em;
     width: 85%;
@@ -7,14 +10,6 @@
     padding-bottom: 0;
 }
 
-// #partie_liste_theme{
-//     padding: 2em;
-//     width: 85%;
-//     margin-left: auto;
-//     margin-right: auto;
-    
-    
-// }
 
 #conteneur{
     margin-right: auto;
@@ -33,7 +28,23 @@
 .titre{
     text-align: center;
     text-transform: uppercase;
+    color: white;
+    font-weight: bold;
 }
+
+.erreur_message{
+  color: white;
+  font-weight: bold;
+  border: 2px solid;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.texte_image{
+  color: white;
+  font-size: 20px;
+}
+
 
 form {
     max-width: 600px;

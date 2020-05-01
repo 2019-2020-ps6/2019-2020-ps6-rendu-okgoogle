@@ -19,7 +19,7 @@ export class QuizFormComponent implements OnInit {
   public quizForm: FormGroup;
   public WithImage: boolean =true;
   quizCreer: boolean;
-  public imageUrl: string = ""
+  public imageUrl: string = "";
   
 
   constructor(private route: ActivatedRoute,private themeService: ThemeService,public formBuilder: FormBuilder, public quizService: QuizService) {
@@ -36,17 +36,21 @@ export class QuizFormComponent implements OnInit {
 
   switch_mode(){
     if(this.WithImage == true){
+
       this.WithImage = false;
       this.quizForm.controls["imageUrl"].clearValidators()
       this.quizForm.controls["imageUrl"].updateValueAndValidity()
+
     }else{
+
       this.WithImage = true;
       this.quizForm.controls["imageUrl"].setValidators(Validators.required)
       this.quizForm.controls["imageUrl"].updateValueAndValidity()
+
     }
   }
   displayImage(){
-    this.imageUrl= this.quizForm.get("imageUrl").value
+    this.imageUrl = this.quizForm.get("imageUrl").value
   }
 
   addQuiz() {

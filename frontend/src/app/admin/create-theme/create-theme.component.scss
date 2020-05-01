@@ -241,3 +241,17 @@ $purple-blue-gradient: linear-gradient(to right, $purple, $blue);
     font-weight: 500;
   }
 }
+
+
+.requis{
+  color: red;
+  font-weight: bold;
+  border: 2px solid;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+.texte_image{
+  color: #333;
+  font-size: 20px;
+}

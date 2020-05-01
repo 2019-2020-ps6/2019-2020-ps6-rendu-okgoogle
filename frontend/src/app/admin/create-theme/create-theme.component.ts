@@ -15,7 +15,7 @@ export class CreateThemeComponent implements OnInit {
   
   public ThemeForm: FormGroup;
   public themeCreer: boolean;
-  public WithImage: boolean =true;
+  public WithImage: boolean = true;
   imageUrl: any;
 
   constructor(private route: ActivatedRoute,private themeService: ThemeService,public formBuilder: FormBuilder, public quizService: QuizService) {
@@ -34,13 +34,17 @@ export class CreateThemeComponent implements OnInit {
 
   switch_mode(){
     if(this.WithImage == true){
+
       this.WithImage = false;
       this.ThemeForm.controls["imageUrl"].clearValidators()
       this.ThemeForm.controls["imageUrl"].updateValueAndValidity()
+
     }else{
+
       this.WithImage = true;
       this.ThemeForm.controls["imageUrl"].setValidators(Validators.required)
       this.ThemeForm.controls["imageUrl"].updateValueAndValidity()
+
     }
   }
 
@@ -60,7 +64,7 @@ export class CreateThemeComponent implements OnInit {
       this.themeCreer = true;
       this.initialiseForm()
     }else{
-
+      //invalid theme do nothing
     }
   }
 }

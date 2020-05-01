@@ -1,38 +1,74 @@
 <div id="partie_creation_theme">
   <div id="conteneur">
     <div id="contenu">
+
       <div *ngIf="themeCreer" class="verif">
         <p>Le thème a bien été créé !</p>
       </div>
+
       <h2 class="titre">Créer un nouveau thème</h2>
+
       <form class="theme-form" [formGroup]="ThemeForm">
+
         <input class="input-custom" type="text" [formControlName]="'name'" placeholder="Nom du thème">
+        
         <br>
+        
         <span class="toggle__label">Sans image</span>
+        
         <label class="toggle">
-          <ng-template *ngIf="WithImage; then activate else desactivate" ></ng-template>
-          <ng-template #activate ><input (click)="switch_mode()" class="toggle__checkbox" type="checkbox" checked style="display: none;"></ng-template>
-          <ng-template #desactivate ><input (click)="switch_mode()" class="toggle__checkbox" type="checkbox" style="display: none;"></ng-template>
+
+          <ng-template *ngIf="WithImage; then activate else desactivate"></ng-template>
+          <ng-template #activate>
+            <input (click)="switch_mode()" class="toggle__checkbox" type="checkbox" checked style="display: none;">
+          </ng-template>
+
+          <ng-template #desactivate>
+            <input (click)="switch_mode()" class="toggle__checkbox" type="checkbox" style="display: none;">
+          </ng-template>
+
           <span class="toggle__switcher"></span>
+
         </label>
+
         <span class="toggle__label">Avec image</span>
+
         <br>
-        <input *ngIf="WithImage" placeholder="Image associée au quiz" class="input-custom" type="text" (change)="displayImage()" [formControlName]="'imageUrl'">
+
+        <input *ngIf="WithImage" placeholder="Image associée au quiz" class="input-custom" type="text"
+          (change)="displayImage()" [formControlName]="'imageUrl'">
+        
         <br>
+
         <button class="button blue" [disabled]="ThemeForm.invalid" (click)="addTheme()">Créer</button>
-        <div style="color: red;font-weight: bold;border: 2px solid; border-radius: 3px;margin-bottom: 10px;"  *ngIf="ThemeForm.controls.name.invalid && (ThemeForm.controls.name.dirty || ThemeForm.controls.name.touched)"class="alert alert-danger">
+        
+        <div
+          *ngIf="ThemeForm.controls.name.invalid && (ThemeForm.controls.name.dirty || ThemeForm.controls.name.touched)"
+          class="alert alert-danger requis">
+
           <div *ngIf="ThemeForm.controls.name.errors.required">
             Le nom du thème est requis.
           </div>
-      </div>
-      <div style="color: red;font-weight: bold;border: 2px solid; border-radius: 3px;margin-bottom: 10px;"  *ngIf="ThemeForm.controls.imageUrl.invalid && (ThemeForm.controls.imageUrl.dirty || ThemeForm.controls.imageUrl.touched)"class="alert alert-danger">
-        <div *ngIf="ThemeForm.controls.imageUrl.errors.required">
-          L'Url de l'image est requise.
+
         </div>
-      </div>
-      <div *ngIf="imageUrl && WithImage">
-        <span style="color: #333; font-size: 20px;">Image enregistrée:</span>  <br> <img width="100" [src]="imageUrl" alt="Ue">
-      </div>
+      
+        <div
+          *ngIf="ThemeForm.controls.imageUrl.invalid && (ThemeForm.controls.imageUrl.dirty || ThemeForm.controls.imageUrl.touched)"
+          class="alert alert-danger requis">
+
+          <div *ngIf="ThemeForm.controls.imageUrl.errors.required">
+            L'Url de l'image est requise.
+          </div>
+
+        </div>
+        <div *ngIf="imageUrl && WithImage">
+
+          <span class="texte_image">Image enregistrée:</span>
+          <br>
+          <img width="100" [src]="imageUrl" alt="Ue">
+
+        </div>
+
       </form>
 
 
