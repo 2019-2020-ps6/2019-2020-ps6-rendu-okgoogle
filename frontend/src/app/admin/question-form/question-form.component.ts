@@ -18,6 +18,7 @@ export class QuestionFormComponent implements OnInit{
   private modeAide : number = 0 //0 = indice text ; 1=Indice par son
   fichierName: string = "";
   questionToCreate:Question;
+  count: number = 0;
   
 
   constructor(private route:ActivatedRoute,public formBuilder: FormBuilder, private quizService: QuizService) {
@@ -78,6 +79,7 @@ export class QuestionFormComponent implements OnInit{
 
 
   addAnswer() {
+    this.limit();
     this.answers.push(this.createAnswer());
     // this.notChecked();
   }
@@ -149,6 +151,16 @@ export class QuestionFormComponent implements OnInit{
   QuatreImageUneQuestionText(){
     if( this.mode === "Image pour énoncé et text pour réponses"){
       this.mode = "Text pour énoncé et image pour réponses";
+    }
+  }
+
+  limit(){
+    this.count = this.count + 1;
+    //limits to 4 answers
+    console.log(this.count);
+    if(this.count == 4){
+        var boutonAjoutReponse = document.querySelector('#AnswerPart')
+        boutonAjoutReponse.remove();
     }
   }
 }
