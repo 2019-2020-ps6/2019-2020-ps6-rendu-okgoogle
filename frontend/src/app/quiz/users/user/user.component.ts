@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
   userSelected: EventEmitter<User> = new EventEmitter<User>();
 
   @Output()
-  userEdited: EventEmitter<User> = new EventEmitter<User>();
+  EditUser: EventEmitter<User> = new EventEmitter<User>();
 
   @Output()
   userStatistic: EventEmitter<User> = new EventEmitter<User>();
@@ -40,7 +40,7 @@ export class UserComponent implements OnInit {
   }
 
   editUser(user: User) {
-    this.userEdited.emit(user);
+    this.EditUser.emit(user);
   }
 
   deleteUser(user: User) {

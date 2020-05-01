@@ -1,17 +1,15 @@
-import {Location} from '@angular/common';
 import { Subject } from 'rxjs';
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Quiz } from 'src/models/quiz.model';
 import { User } from 'src/models/user.model';
 import { Result } from 'src/models/result.model';
-import { ThemeService } from './theme.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class StatService implements OnInit {
+export class StatService {
 
   private quizSelected: Quiz;
   private userSelected: User;
@@ -27,10 +25,7 @@ export class StatService implements OnInit {
 
   private lien = "http://localhost:9428/api/"
 
-  constructor(private _location: Location,private http: HttpClient, private themeService:ThemeService) {
-
-  }
-  ngOnInit(): void {
+  constructor(private http: HttpClient) {
 
   }
 
@@ -73,10 +68,6 @@ export class StatService implements OnInit {
         this.quizzes = quizzes
         this.quizzes$.next(this.quizzes)
     })
-  }
-
-  goBack(){
-    this._location.back();
   }
 
 }

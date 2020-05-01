@@ -8,15 +8,15 @@
             <input type="text" id="name" [formControlName]="'name'" placeholder="Nom (facultatif)">
             <input type="number" id="age" [formControlName]="'age'" placeholder="Age">
             Sexe :
-            <input  type="radio" id="F" name="sexe" value="F" [formControlName]="'sexe'" class="rad"/> <label for="F">
+            <input  type="radio" id="F" value="F" [formControlName]="'sexe'" class="rad"/> <label for="F">
               Feminin</label>
-            <input  type="radio" id="M" name="sexe" value="M" [formControlName]="'sexe'" class="rad"/> <label for="M">
+            <input  type="radio" id="M" value="M" [formControlName]="'sexe'" class="rad"/> <label for="M">
               Masculin</label>
           </div>
           <div class="half right cf">
             <input type="text" required id="surname" [formControlName]="'surname'" placeholder="Prénom">
           </div>
-          <textarea maxlength="50" type="text" id="description" name="description" placeholder="Description"
+          <textarea maxlength="50" type="text" id="description" placeholder="Description"
             [formControlName]="'description'"></textarea>
             <br>
           <button *ngIf="goal === 'edit'" [disabled]="userForm.invalid" class="button red" (click)="editUser()">Modifier</button>

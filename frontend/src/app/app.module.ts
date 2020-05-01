@@ -4,8 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
 import { AppComponent } from './app.component';
 import { QuizListComponent } from './quiz/quizzes/quiz-list/quiz-list.component';
 import { QuizComponent } from './quiz/quizzes/quiz/quiz.component';
@@ -24,7 +22,7 @@ import { editUserComponent } from './admin/edit-user/edit-user.component';
 import { UserLoginComponent } from './quiz/users/user-login/user-login.component';
 import { MainAdminComponent } from './admin/main-admin/main-admin.component';
 import { ThemeComponent } from './quiz/themes/theme/theme.component';
-import {editThemeComponent} from './admin/edit-theme/edit-theme.component';
+import { editThemeComponent } from './admin/edit-theme/edit-theme.component';
 import { ThemeListComponent } from './quiz/themes/theme-list/theme-list.component';
 import { CreateThemeComponent } from './admin/create-theme/create-theme.component';
 import { PlayQuizComponent } from './quiz/quizzes/play-quiz/play-quiz.component';

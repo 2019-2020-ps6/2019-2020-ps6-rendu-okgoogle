@@ -1,8 +1,7 @@
 import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
 import { Question } from '../../../../models/question.model';
-import { ResultService } from 'src/services/result.service';
 import { QuizService } from 'src/services/quiz.service';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { Answer } from 'src/models/answer.model';
 import { ActivatedRoute } from '@angular/router';
 

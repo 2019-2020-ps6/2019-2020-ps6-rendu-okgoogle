@@ -66,6 +66,5 @@ router.post('/', (req, res) => {
 })
 
 router.use("/:themeid/quizzes/",QuizRouter)
-router.use("/:themeid/quizzes/:quizid/questions",QuestionRouter)
-router.use("/:themeid/quizzes/:quizid/questions/:questionid/answers",AnswerRouter)
+
 module.exports = router

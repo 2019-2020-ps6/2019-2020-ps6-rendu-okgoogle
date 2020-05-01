@@ -37,7 +37,7 @@
     </div>
   </div>
 
-  <a style="position: absolute; top: 65px; left: 30px;" *ngIf="!menu" (click)="switchMenu()">
+  <a style="position: absolute; top: 25px; left: 30px;" *ngIf="!menu" (click)="switchMenu()">
       <svg width="30" height="30">
           <path d="M0,5 30,5" stroke="#333" stroke-width="5"/>
           <path d="M0,14 30,14" stroke="#333" stroke-width="5"/>
@@ -127,6 +127,6 @@
 </div>
 </div>
 
-<div style="width: 100%;" *ngIf="quiz.questions.length === 0">
+<div *ngIf="quiz.questions.length === 0">
     <h1 style="text-align: center;">Aucune question pour l'instant</h1>
 </div>

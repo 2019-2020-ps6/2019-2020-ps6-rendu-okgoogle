@@ -4,24 +4,15 @@ import { Quiz } from '../models/quiz.model';
 import { Theme } from '../models/theme.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of,Observer } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { Question } from '../models/question.model';
-import { ThemeService } from './theme.service';
 import { Answer } from 'src/models/answer.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuizService {
-  /**
-   * Services Documentation:
-   * https://angular.io/docs/ts/latest/tutorial/toh-pt4.html
-   */
 
-   /**
-    * The list of quiz.
-    * The list is retrieved from the mock.
-    */
   private quizzes: Quiz[] = [];
   public quizSelected: Quiz;
   public questionSelected: Question;
@@ -30,10 +21,6 @@ export class QuizService {
 
   private lien = "http://localhost:9428/api/themes/";
 
-  /**
-   * Observable which contains the list of the quiz.
-   * Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
-   */
   public quizzes$: BehaviorSubject<Quiz[]> = new BehaviorSubject(this.quizzes);
 
   public quizSelected$: Subject<Quiz> = new Subject();
@@ -41,11 +28,7 @@ export class QuizService {
   public answerSelected$: Subject<Answer> = new Subject();
   public themeSelected$: Subject<Theme> = new Subject();
 
-  constructor(private http: HttpClient, private themeService : ThemeService) {
-  }
-
-  ngOnInit(){
-
+  constructor(private http: HttpClient) {
   }
 
   getQuizzesByThemeId(themeid: string){
@@ -56,15 +39,13 @@ export class QuizService {
     });
   }
 
-  /** DELETE: delete the quiz from the server */
   deleteQuiz (themeid:string,quiz: Quiz) {
-    const url = this.lien+themeid+"/quizzes/"+quiz.id; // DELETE api/heroes/42
+    const url = this.lien+themeid+"/quizzes/"+quiz.id; 
     const header = this.prepareHeader();
     this.quizzes$.next(this.quizzes)
     this.http.delete(url,header).subscribe(()=> this.getQuizzesByThemeId(themeid))
   }
 
-  /** Header for deleting: allow deleting from the server */
   protected prepareHeader(): object {
     const headers = new HttpHeaders(
       {'Content-Type': 'application/json',
