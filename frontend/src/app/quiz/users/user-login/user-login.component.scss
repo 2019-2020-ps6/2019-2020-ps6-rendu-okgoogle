@@ -17,7 +17,6 @@
   #containerPanel{
     width: 100%;
     position: absolute;
-    top: 10%;
   }
 
   .circle {
@@ -63,7 +62,6 @@
      background:#27496D;    
      border:10px solid transparent;
      color:#fff;
-     Font-family: Montserrat;
      padding:40px;
      border-radius:50%;
 }
@@ -75,7 +73,6 @@
      background:#27496D;    
      border:10px solid transparent;
      color:#fff;
-     Font-family: Montserrat;
      border-radius:50%;
 }
 
@@ -108,7 +105,7 @@
      text-transform:uppercase;
      padding:5px 30px;    
      border-radius:0px;
-     Font-weight:600;
+     font-weight:600;
 }
 .card-circle .btn,.card-circle .card-icon i,.card-circle{
    transition: all ease-in-out 0.2s;
@@ -148,6 +145,13 @@
   transform:scale(1.2)rotate(10deg);
 }
  @media only screen and (min-width: 1200px) {
+
+  #containerPanel{
+    width: 100%;
+    position: absolute;
+    bottom: 20%;
+  }
+
      .card-circle:nth-child(3){
          margin-left:-40px;
          z-index:0;
@@ -182,7 +186,6 @@
        background:#27496D;    
        border:10px solid transparent;
        color:#fff;
-       Font-family: Montserrat;
        padding:40px;
        border-radius:50%;
   }
@@ -196,7 +199,6 @@
        background:#27496D;    
        border:10px solid transparent;
        color:#fff;
-       Font-family: Montserrat;
        border-radius:50%;
   }
      .card-circle:nth-child(2){
