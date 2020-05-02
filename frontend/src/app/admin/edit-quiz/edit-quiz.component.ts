@@ -29,7 +29,6 @@ export class editQuizComponent implements OnInit {
       this.quizService.setSelectedQuiz(quizid.toString(),themeid.toString());
       this.quizService.quizSelected$.subscribe((quiz) =>{
         this.quiz = quiz
-        console.log(quiz)
         this.initializeQuestionForm()
       });
     })

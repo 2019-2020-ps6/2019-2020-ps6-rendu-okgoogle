@@ -37,7 +37,7 @@ export class QuestionFormComponent implements OnInit {
     });
   }
 
-  @ViewChild('myInput', { static: true })
+  @ViewChild('sonUpload', { static: false })
   song: ElementRef;
 
   reset() {
@@ -118,7 +118,7 @@ export class QuestionFormComponent implements OnInit {
     parentText.removeChild(document.getElementById("label"));
   }
 
-  addQuestion(i: number) {
+  addQuestion() {
 
     if (this.questionForm.valid) {
       const themeid = this.route.snapshot.paramMap.get('themeid');
@@ -127,6 +127,13 @@ export class QuestionFormComponent implements OnInit {
       this.questionToCreate = this.questionForm.getRawValue() as Question;
 
       console.log(this.questionToCreate.label)
+      
+      if(this.song != undefined){
+        const file = this.song.nativeElement.files[0];
+        const songName = Date.now() +"."+file.name.split(".")[1]
+        this.fichierName = songName;
+        this.quizService.addASong(themeid,quizid,this.song.nativeElement.files[0], songName);
+      }
 
       this.questionToCreate.sonUrl = this.fichierName
 
@@ -135,15 +142,6 @@ export class QuestionFormComponent implements OnInit {
       this.reset()
       this.resetLimit()
     }
-  }
-
-  envoiFichier(fichiers: FileList) {
-    const themeid = this.route.snapshot.paramMap.get('themeid');
-    const quizid = this.route.snapshot.paramMap.get('quizid');
-    console.log(fichiers.item(0).name)
-    const songName = fichiers.item(0).name.split(".")[0] + Date.now() + "." + fichiers.item(0).name.split(".")[1]
-    this.fichierName = songName;
-    this.quizService.addASong(themeid, quizid, fichiers.item(0), songName);
   }
 
   UneImageQuatreText() {

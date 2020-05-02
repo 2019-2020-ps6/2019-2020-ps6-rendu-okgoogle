@@ -1,5 +1,4 @@
 const { Router } = require('express')
-var uploadDos = '/son'
 const { Answer, Quiz, Question } = require('../../../../models')
 const manageAllErrors = require('../../../../utils/routes/error-management')
 const AnswersRouter = require('./answers')
@@ -8,8 +7,7 @@ const { filterQuestionsFromQuizz, getQuestionFromQuiz } = require('./manager')
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      // cb(null,__dirname+"../../../../uploads/sons")
-      cb(null,"app/api/uploads/sons")
+      cb(null, __dirname+"../../../../../../../frontend/src/assets/sons")
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname)

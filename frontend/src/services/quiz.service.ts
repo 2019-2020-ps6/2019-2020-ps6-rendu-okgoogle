@@ -97,7 +97,7 @@ export class QuizService {
   addASong(themeid:string,quizid:string,song:File,songName:string){
     const formData = new FormData()
     formData.append('son',song,songName)
-    this.http.post<String>(this.lien+ themeid +"/quizzes/"+quizid+"/questions/fileUpload",formData).subscribe((res)=> console.log(res))
+    this.http.post<String>(this.lien+ themeid +"/quizzes/"+quizid+"/questions/fileUpload",formData).subscribe((res)=> this.setSelectedQuiz(quizid,themeid))
   }
 
   addAnswer(themeid:string,quizid:string,questionid:string,answer: Answer){
