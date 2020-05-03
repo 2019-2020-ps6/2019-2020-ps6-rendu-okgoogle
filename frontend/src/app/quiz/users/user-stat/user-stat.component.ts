@@ -23,14 +23,12 @@ export class UserStatComponent implements OnInit {
 
   ngOnInit() {  
     const id = this.route.snapshot.paramMap.get("userid");
-    this.statService.setSelectedUser(id)
-    this.statService.userSelected$.subscribe((user)=>{
-      this.user = user;
-      this.statService.setSelectedResultByUserId(id)
-      this.statService.resultsSelected$.subscribe(res => {
-        this.result = res
-        this.getThemeFavori()
-      })
+    this.statService.setSelectedUser(id.toString())
+    this.statService.userSelected$.subscribe((user)=>this.user = user)
+    this.statService.setSelectedResultByUserId(id)
+    this.statService.resultsSelected$.subscribe(res => {
+      this.result = res
+      this.getThemeFavori()
     })
   }
 

@@ -21,33 +21,23 @@ export class editQuizComponent implements OnInit {
   public edit_quiz: boolean = false;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private quizService: QuizService, private themeService: ThemeService) { 
-    const quizid = this.route.snapshot.paramMap.get('quizid');
-    const themeid = this.route.snapshot.paramMap.get('themeid');
-    this.themeService.setSelectedTheme(themeid.toString())
-    this.themeService.themeSelected$.subscribe((theme)=> {
-      this.curTheme = theme
-      this.quizService.setSelectedQuiz(quizid.toString(),themeid.toString());
-      this.quizService.quizSelected$.subscribe((quiz) =>{
-        this.quiz = quiz
-        this.initializeQuestionForm()
-      });
-    })
     
   }
   
   ngOnInit() {
-    const quizid = this.route.snapshot.paramMap.get('quizid');
     const themeid = this.route.snapshot.paramMap.get('themeid');
+    const quizid = this.route.snapshot.paramMap.get('quizid');
     this.themeService.setSelectedTheme(themeid.toString())
-    this.themeService.themeSelected$.subscribe((theme)=> {
-      this.curTheme = theme
-      this.quizService.setSelectedQuiz(quizid.toString(),themeid.toString());
-      this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
-    })
+    this.themeService.themeSelected$.subscribe((theme)=>this.curTheme = theme)
+    this.quizService.setSelectedQuiz(quizid.toString(),themeid.toString());
+    this.quizService.quizSelected$.subscribe((quiz) => {
+      this.quiz = quiz
+      this.initializeQuizForm()
+    });
   }
 
 
-  private initializeQuestionForm() {
+  private initializeQuizForm() {
     this.quizForm = this.formBuilder.group({
       name: this.quiz.name,
       imageUrl:this.quiz.imageUrl

@@ -24,11 +24,11 @@ export class editThemeComponent implements OnInit {
     this.themeService.setSelectedTheme(themeid.toString())
     this.themeService.themeSelected$.subscribe((theme)=> {
       this.curTheme = theme
-      this.initializeQuestionForm()
+      this.initializeThemeForm()
     })
   }
   
-  private initializeQuestionForm() {
+  private initializeThemeForm() {
     this.themesForm = this.formBuilder.group({
       name: this.curTheme.name,
       imageUrl:this.curTheme.imageUrl

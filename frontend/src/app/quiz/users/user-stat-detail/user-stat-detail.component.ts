@@ -24,10 +24,10 @@ export class UserStatDetailComponent implements OnInit {
         this.statService.setSelectedUser(userid)
         this.statService.userSelected$.subscribe((user)=>{
             this.user = user;
-            this.statService.setSelectedResultById(userid,resultid)
-            this.statService.resSelected$.subscribe(res => {
-                this.resSelected = res
-            })
+        })
+        this.statService.setSelectedResultById(userid,resultid)
+        this.statService.resSelected$.subscribe(res => {
+            this.resSelected = res
         })
     }
 
