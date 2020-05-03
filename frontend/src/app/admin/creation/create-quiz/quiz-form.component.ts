@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from "@angular/router";
 
-import { QuizService } from '../../../services/quiz.service';
-import { Quiz } from '../../../models/quiz.model';
+import { QuizService } from '../../../../services/quiz.service';
+import { Quiz } from '../../../../models/quiz.model';
 import { Theme } from 'src/models/theme.model';
 import { ThemeService } from 'src/services/theme.service';
 
