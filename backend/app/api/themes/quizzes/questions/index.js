@@ -39,9 +39,6 @@ router.get('/:questionId', (req, res) => {
 
 router.post('/', (req, res) => {
   try {
-    
-    console.log(req.body)
-
 
     Quiz.getById(req.params.quizId)
     const quizId = parseInt(req.params.quizId, 10)
@@ -62,7 +59,7 @@ router.post('/', (req, res) => {
 router.post('/fileUpload', upload.single('son'), (req, res) => {
   try {
     
-    res.status(201).json("oui")
+    res.status(201).json("Upload success !")
   } catch (err) {
     manageAllErrors(res, err)
   }

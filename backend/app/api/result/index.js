@@ -1,6 +1,5 @@
 const { Router } = require('express')
 const { Result } = require('../../models')
-const { isCorrectAnswerOrNot } = require('./manager')
 
 const router = new Router()
 
@@ -21,7 +20,7 @@ router.get('/:userid', (req, res) => {
   }
 })
 
-router.get('/:userid/details/:resultid', (req, res) => {
+router.get('/:userid/stat/:resultid', (req, res) => {
   try {
     const result = Result.getById(req.params.resultid) // Construit pour avoir une stat sur un quiz
     res.status(200).json(result)
@@ -43,7 +42,7 @@ router.post('/', (req, res) => {
     var nbBonneReponses = 0
     var reponseTotal = 0
     answers.forEach((answer) => {
-      if (isCorrectAnswerOrNot(answer.id)) {
+      if (answer.isCorrect) {
         nbBonneReponses += 1
       } 
       reponseTotal++;

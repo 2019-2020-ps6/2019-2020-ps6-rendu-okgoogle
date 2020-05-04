@@ -34,7 +34,6 @@ export class StatService {
     this.http.get<User>(urlWithId).subscribe((user) => {
       this.userSelected = user;
       this.userSelected$.next(this.userSelected);
-      console.log(user)
     });
   }
 
@@ -55,7 +54,7 @@ export class StatService {
     }); 
   }
   setSelectedResultById(userid: string, resultid: string){
-      const urlWithId = this.lien+'result/'+userid+"/details/"+resultid
+      const urlWithId = this.lien+'result/'+userid+"/stat/"+resultid
       this.http.get<Result>(urlWithId).subscribe((res)=>{
         this.resSelected = res;
         this.resSelected$.next(this.resSelected);

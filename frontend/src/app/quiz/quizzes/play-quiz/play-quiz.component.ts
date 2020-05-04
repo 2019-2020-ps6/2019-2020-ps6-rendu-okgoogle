@@ -2,7 +2,7 @@ import { Component, OnInit, Renderer2, AfterViewInit, ViewChild, ElementRef} fro
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { ActivatedRoute } from '@angular/router';
-import { ResultService } from 'src/services/result.service';
+import { GameService } from 'src/services/game.service';
 import { Question } from 'src/models/question.model';
 import { Theme } from 'src/models/theme.model';
 import { Answer } from 'src/models/answer.model';
@@ -35,7 +35,7 @@ import { Location } from '@angular/common';
 
     @ViewChild('progressBar', {read:ElementRef,static:false}) progressBar:ElementRef;
 
-    constructor(private renderer: Renderer2,private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private resService: ResultService) {      
+    constructor(private renderer: Renderer2,private _location: Location,private route: ActivatedRoute,public quizService: QuizService,public themeService: ThemeService,private gameService: GameService) {      
 
     }
     
@@ -44,12 +44,12 @@ import { Location } from '@angular/common';
       const quizid = this.route.snapshot.paramMap.get('quizid');
       this.themeService.setSelectedTheme(themeid.toString())
       this.themeService.themeSelected$.subscribe((theme)=>this.curTheme = theme)
-      this.resService.setSelectedQuiz(quizid.toString(),themeid.toString());
-      this.resService.quizSelected$.subscribe((quiz) => {
+      this.gameService.setSelectedQuiz(quizid.toString(),themeid.toString());
+      this.gameService.quizSelected$.subscribe((quiz) => {
         this.quiz = quiz
-        this.resService.questionSelected$.subscribe((question) =>{
+        this.gameService.questionSelected$.subscribe((question) =>{
           this.questionSelected = question
-          this.sonUrlQuestionActuelle = "src/assets/sons/"+this.questionSelected.sonUrl
+          this.sonUrlQuestionActuelle = "src/assets/sons/"+this.questionSelected.nomFichier
         })
       });
     }
@@ -71,7 +71,7 @@ import { Location } from '@angular/common';
         progressBar.children[this.ptrQuestion].classList.add("active")  
         this.afficheIndice = false;
         this.playSong = false;
-        this.sonUrlQuestionActuelle = "src/assets/sons/"+this.questionSelected.sonUrl;
+        this.sonUrlQuestionActuelle = "src/assets/sons/"+this.questionSelected.nomFichier;
         var interval = setInterval(()=> {
             this.timerPopup--;
             if (this.timerPopup == 0){
@@ -98,7 +98,7 @@ import { Location } from '@angular/common';
         document.body.classList.add('modal-active')
       }
       
-      this.resService.setSelectedAnswer(this.questionSelected.id.toString(),answer.id.toString())
+      this.gameService.setSelectedAnswer(this.questionSelected.id.toString(),answer.id.toString())
     }
 
     aide(){
@@ -108,14 +108,14 @@ import { Location } from '@angular/common';
         this.playSong = true;
         console.log(this.playSong)
       }
-      this.resService.GiveClues()
+      this.gameService.GiveClues()
     }
 
     questionPrecedente(){
       if(this.ptrQuestion > 0){
         this.playSong = false;
         this.afficheIndice = false;
-        this.resService.previousQuestion()
+        this.gameService.previousQuestion()
         this.ptrQuestion--;
         const progressBar = this.progressBar.nativeElement;
         progressBar.children[this.ptrQuestion].classList.add("active")
@@ -178,12 +178,12 @@ import { Location } from '@angular/common';
         const quizid = this.route.snapshot.paramMap.get('quizid');
         this.themeService.setSelectedTheme(themeid.toString())
         this.themeService.themeSelected$.subscribe((theme)=>this.curTheme = theme)
-        this.resService.setSelectedQuiz(quizid.toString(),themeid.toString());
-        this.resService.quizSelected$.subscribe((quiz) => {
+        this.gameService.setSelectedQuiz(quizid.toString(),themeid.toString());
+        this.gameService.quizSelected$.subscribe((quiz) => {
           this.quiz = quiz
-          this.resService.questionSelected$.subscribe((question) =>{
+          this.gameService.questionSelected$.subscribe((question) =>{
             this.questionSelected = question
-            this.sonUrlQuestionActuelle = "src/assets/sons/"+this.questionSelected.sonUrl
+            this.sonUrlQuestionActuelle = "src/assets/sons/"+this.questionSelected.nomFichier
           })
         });
         document.body.classList.remove('modal-active')

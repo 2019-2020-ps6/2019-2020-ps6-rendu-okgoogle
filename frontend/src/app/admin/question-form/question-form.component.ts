@@ -128,14 +128,14 @@ export class QuestionFormComponent implements OnInit {
 
       console.log(this.questionToCreate.label)
       
-      if(this.song != undefined){
+      if(this.song.nativeElement.value != undefined){
         const file = this.song.nativeElement.files[0];
         const songName = Date.now() +"."+file.name.split(".")[1]
         this.fichierName = songName;
         this.quizService.addASong(themeid,quizid,this.song.nativeElement.files[0], songName);
       }
 
-      this.questionToCreate.sonUrl = this.fichierName
+      this.questionToCreate.nomFichier = this.fichierName
 
       this.quizService.addQuestion(themeid, quizid, this.questionToCreate);
       this.initializeQuestionForm();
@@ -146,7 +146,7 @@ export class QuestionFormComponent implements OnInit {
 
   UneImageQuatreText() {
     if (this.mode === "Text pour énoncé et image pour réponses") {
-      this.mode = "Image pour énoncé et text pour réponses";
+      this.mode = "ImaUploadUploadge pour énoncé et text pour réponses";
     }
   }
 

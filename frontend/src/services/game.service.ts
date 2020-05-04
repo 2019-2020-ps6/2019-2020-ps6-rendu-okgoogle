@@ -13,7 +13,7 @@ import { Quiz } from 'src/models/quiz.model';
 @Injectable({
   providedIn: 'root'
 })
-export class ResultService implements OnInit {
+export class GameService implements OnInit {
 
   public resultFinal = new Object() as Result ;
   private quizFinal: Quiz;

@@ -3,8 +3,6 @@ const { Router } = require('express')
 const { Theme, Quiz } = require('../../models/')
 
 const QuizRouter = require('./quizzes')
-const QuestionRouter = require('./quizzes/questions')
-const AnswerRouter = require('./quizzes/questions/answers')
 
 const router = new Router()
 
