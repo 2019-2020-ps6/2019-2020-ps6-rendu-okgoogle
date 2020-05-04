@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { QuizService } from '../../../services/quiz.service';
+import { QuizService } from '../../../../services/quiz.service';
 import { Question } from 'src/models/question.model';
 import { ActivatedRoute } from '@angular/router';
 
