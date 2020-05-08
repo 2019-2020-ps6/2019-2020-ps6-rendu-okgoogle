@@ -104,14 +104,17 @@ export class GameService implements OnInit {
   }
 
   addResult(dureeJeu: number){
-    this.resultFinal.userId = sessionStorage.getItem("user_id");
-    this.resultFinal.quiz = this.clone(this.quizFinal)
-    this.resultFinal.nbAide = this.nbAide;
-    this.resultFinal.dureeJeu = dureeJeu;
-    this.resultFinal.dateJeu = new Date().toString();
-    console.log(this.quizFinal)
+    if(!this.userService.defaultUser){
+      this.resultFinal.userId = sessionStorage.getItem("user_id");
+      this.resultFinal.quiz = this.clone(this.quizFinal)
+      this.resultFinal.nbAide = this.nbAide;
+      this.resultFinal.dureeJeu = dureeJeu;
+      this.resultFinal.dateJeu = new Date().toString();
+      console.log(this.quizFinal)
+  
+      this.http.post(this.lien +'result/', this.resultFinal).subscribe();
+    }
 
-    this.http.post(this.lien +'result/', this.resultFinal).subscribe();
     dureeJeu = 0;
     this.ptrQuestion = 0;
     this.questionSelected = this.quizSelected.questions[this.ptrQuestion];

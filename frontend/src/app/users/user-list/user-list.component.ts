@@ -35,9 +35,15 @@ export class UserListComponent implements OnInit {
     this.route.navigate(['user-stat', user.id.toString()]);
   }
   
-  userSelected(selected: User) {
-    this.userService.setSelectedUser(selected.id.toString())
-    sessionStorage.setItem("user_id", selected.id.toString())
-    this.route.navigate(['theme-list']);
+  userSelected(selected) {
+    if(selected === "default"){
+      this.userService.setSelectedUser(selected)
+      sessionStorage.setItem("user_id", selected)
+      this.route.navigate(['theme-list']);
+    }else{
+      this.userService.setSelectedUser(selected.id.toString())
+      sessionStorage.setItem("user_id", selected.id.toString())
+      this.route.navigate(['theme-list']);
+    }
   }
 }

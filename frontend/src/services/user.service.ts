@@ -10,6 +10,7 @@ export class UserService {
 
   private users: User[] = [];
   public userSelected: User;
+  public defaultUser = false;
 
   private lien = "http://localhost:9428/api/users/";
 
@@ -21,11 +22,15 @@ export class UserService {
   }
   
   setSelectedUser(idUser: string) {
-    const urlWithId = this.lien + idUser.toString();
-    this.http.get<User>(urlWithId).subscribe((user) => {
-      this.userSelected = user;
-      this.userSelected$.next(user);
-    });
+    if(idUser === "default")
+      this.defaultUser = true;
+    else{
+      const urlWithId = this.lien + idUser.toString();
+      this.http.get<User>(urlWithId).subscribe((user) => {
+        this.userSelected = user;
+        this.userSelected$.next(user);
+      });
+    }
   }
 
   getUsers() : void {
