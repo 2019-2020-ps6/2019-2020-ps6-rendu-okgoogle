@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QuizService } from '../../../../services/quiz.service';
 import { Question } from 'src/models/question.model';
@@ -19,7 +19,7 @@ export class QuestionFormComponent implements OnInit {
   fichierName: string = "";
   questionToCreate: Question;
   count: number = 0;
-
+  withSong: boolean = false;
 
   constructor(private route: ActivatedRoute, public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
@@ -40,23 +40,24 @@ export class QuestionFormComponent implements OnInit {
   @ViewChild('sonUpload', { static: false })
   song: ElementRef;
 
-  reset() {
-    if (this.song) {
-      this.song.nativeElement.value = '';
-    }
-  }
-
   switchModeAide() {
     if (this.modeAide == 0) {
       this.questionForm.get("indice").setValue("")
       this.modeAide = 1;
+      this.withSong = true;
     } else {
       this.modeAide = 0
+      this.withSong = false;
     }
   }
 
   ngOnInit() {
 
+  }
+
+  reset(){
+    this.withSong = false;
+    this.fichierName = ""
   }
 
   get answers() {
@@ -128,14 +129,14 @@ export class QuestionFormComponent implements OnInit {
 
       console.log(this.questionToCreate.label)
       
-      if(this.song.nativeElement.value != undefined){
+      if(this.withSong){
         const file = this.song.nativeElement.files[0];
         const songName = Date.now() +"."+file.name.split(".")[1]
         this.fichierName = songName;
         this.quizService.addASong(themeid,quizid,this.song.nativeElement.files[0], songName);
       }
 
-      this.questionToCreate.nomFichier = this.fichierName
+      this.questionToCreate.sonUrl = this.fichierName
 
       this.quizService.addQuestion(themeid, quizid, this.questionToCreate);
       this.initializeQuestionForm();
@@ -146,7 +147,7 @@ export class QuestionFormComponent implements OnInit {
 
   UneImageQuatreText() {
     if (this.mode === "Text pour énoncé et image pour réponses") {
-      this.mode = "ImaUploadUploadge pour énoncé et text pour réponses";
+      this.mode = "Image pour énoncé et text pour réponses";
     }
   }
 

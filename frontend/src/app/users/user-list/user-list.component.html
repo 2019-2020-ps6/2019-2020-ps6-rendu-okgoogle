@@ -1,5 +1,5 @@
 <div class="user-list">
-    <section class="cards user">
+    <section *ngIf="curStatus === 'user'" class="cards user">
         <article class="card">
             <div *ngIf="curStatus === 'user'" class="user_card" (click)="selectUser(user)">
                 <picture (click)="userSelected('default')" class="thumbnail">

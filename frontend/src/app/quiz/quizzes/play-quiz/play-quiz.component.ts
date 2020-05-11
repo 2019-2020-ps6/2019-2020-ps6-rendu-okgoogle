@@ -8,6 +8,8 @@ import { Theme } from 'src/models/theme.model';
 import { Answer } from 'src/models/answer.model';
 import { ThemeService } from 'src/services/theme.service';
 import { Location } from '@angular/common';
+import { UserService } from 'src/services/user.service';
+import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'app-play-quiz',
@@ -32,11 +34,12 @@ export class PlayQuizComponent implements OnInit {
   public questionPrec: boolean;
   public modalIn: boolean = false;
   public modalOut: boolean = false;
+  public user : User;
 
   @ViewChild('progressBar', { read: ElementRef, static: false }) progressBar: ElementRef;
 
-  constructor(private renderer: Renderer2, private _location: Location, private route: ActivatedRoute, public quizService: QuizService, public themeService: ThemeService, private gameService: GameService) {
-
+  constructor(private renderer: Renderer2, private _location: Location, private route: ActivatedRoute, public quizService: QuizService, public themeService: ThemeService, private gameService: GameService, private userService:UserService) {
+    
   }
 
   ngOnInit() {
@@ -50,6 +53,11 @@ export class PlayQuizComponent implements OnInit {
       this.gameService.questionSelected$.subscribe((question) => {
         this.questionSelected = question
         this.sonUrlQuestionActuelle = "src/assets/sons/" + this.questionSelected.nomFichier
+      })
+      this.userService.setSelectedUser(sessionStorage.getItem("user_id"))
+      this.userService.userSelected$.subscribe((user)=>{
+        this.user = user;
+        console.log(user.surname);
       })
     });
   }

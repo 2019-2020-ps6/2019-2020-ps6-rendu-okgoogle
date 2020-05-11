@@ -28,7 +28,7 @@
             </svg>
             <img class="imageModal" *ngIf="quizDebut" src="https://zupimages.net/up/20/18/mx4u.jpg" style="width: 250px; object-fit: cover;" alt="">
             <img class="imageModal" *ngIf="quizFini && !quizDebut" src="https://thumbs.dreamstime.com/b/banni%C3%A8re-de-bravo-91022451.jpg" width="300" alt=""><br>
-            <img class="imageModal" *ngIf="quizFini === false && !quizDebut" src="https://i.pinimg.com/originals/a8/6e/f4/a86ef49a467502013d0521c55deebe85.png" width="300" alt=""><br>
+            <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizFini && !quizDebut"> Félicitation {{user.surname}} </p><br>
             <p class="textModal" style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizDebut"> Le quiz commence dans {{timerPopup}} secondes</p>
             <p class="textModal" style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizFini === false && !quizDebut"> Prochaine question dans {{timerPopup}} secondes</p>
             <a *ngIf="quizFini && !quizDebut" (click)="rejouer()" class="btn blue">Rejouer</a>
