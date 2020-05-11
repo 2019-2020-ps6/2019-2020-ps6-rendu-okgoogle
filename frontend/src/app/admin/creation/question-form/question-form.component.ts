@@ -19,12 +19,9 @@ export class QuestionFormComponent implements OnInit {
   fichierName: string = "";
   questionToCreate: Question;
   count: number = 0;
-<<<<<<< Updated upstream
   withSong: boolean = false;
-=======
   private colored: boolean;
 
->>>>>>> Stashed changes
 
   constructor(private route: ActivatedRoute, public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
