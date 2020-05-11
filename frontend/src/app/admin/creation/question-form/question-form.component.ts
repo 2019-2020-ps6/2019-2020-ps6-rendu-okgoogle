@@ -19,7 +19,12 @@ export class QuestionFormComponent implements OnInit {
   fichierName: string = "";
   questionToCreate: Question;
   count: number = 0;
+<<<<<<< Updated upstream
   withSong: boolean = false;
+=======
+  private colored: boolean;
+
+>>>>>>> Stashed changes
 
   constructor(private route: ActivatedRoute, public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
@@ -84,40 +89,23 @@ export class QuestionFormComponent implements OnInit {
   addAnswer() {
     this.limit();
     this.answers.push(this.createAnswer());
-    // this.notChecked();
   }
 
-  changeColorOnChecked() {
-    var element = <HTMLInputElement>document.querySelector('.correctOrNot');
+
+  changeColorOnChecked(i:any) {
+    var element = <HTMLInputElement>document.getElementsByClassName("correctOrNot")[i];
     var parent = element.parentElement;
+    
+    
     if (element.checked) {
       parent.style.backgroundColor = "LightGreen";
+      this.colored = true;
     } else {
-      parent.style.backgroundColor = "initial";
-    }
+      parent.style.backgroundColor = "#AAA";
+      this.colored = false;
+    }  
   }
 
-  isChecked() {
-    //changement de background pour la bonne réponse
-    var element = <HTMLInputElement>document.querySelector('.correctOrNot');
-    if (element.checked) {
-      var parent = element.parentElement;
-      parent.style.backgroundColor = "LightGreen";
-    } else {
-      var parent = element.parentElement;
-      parent.removeChild(element);
-      var parentText = document.getElementById("label").parentElement;
-      parentText.removeChild(document.getElementById("label"));
-    }
-  }
-
-  notChecked() {
-    var element = <HTMLInputElement>document.querySelector('.correctOrNot');
-    var parent = element.parentElement;
-    parent.removeChild(element);
-    var parentText = document.getElementById("label").parentElement;
-    parentText.removeChild(document.getElementById("label"));
-  }
 
   addQuestion() {
 
