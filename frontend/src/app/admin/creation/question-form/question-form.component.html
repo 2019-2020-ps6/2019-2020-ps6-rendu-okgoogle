@@ -44,7 +44,10 @@
                 </div>
                 <br>
 
-
+                <div *ngIf="count === 4" class="infos">
+                    <i class="fas fa-info-circle"></i> Question limitée à 4 réponses
+                </div>
+            
                 <!--Answer Part-->
                 <a id="ajout_reponse" class="button red" id="AnswerPart" (click)="addAnswer()">Ajout de réponses</a>
 
