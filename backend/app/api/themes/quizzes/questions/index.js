@@ -8,13 +8,18 @@ var path = require('path')
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      // cb(null, __dirname+"../../../../../../../frontend/src/assets/sons")
       cb(null,"app"+path.sep+"api"+path.sep+"uploads"+path.sep+"sons")
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname)
     }
 });
+
+if (!fs.existsSync("app"+path.sep+"api"+path.sep+"uploads"+path.sep+"sons"+path.sep)) {
+  fs.mkdir(path.resolve(__dirname, '..','..', '..')+ path.sep+"uploads"+path.sep+"sons"+path.sep, { recursive: true }, (err) => {
+      if (err) throw err;
+  });
+}
 
 var upload = multer({storage: storage});
 
