@@ -4,11 +4,12 @@ const manageAllErrors = require('../../../../utils/routes/error-management')
 const AnswersRouter = require('./answers')
 const { filterQuestionsFromQuizz, getQuestionFromQuiz } = require('./manager')
 var fs = require('fs')
+var path = require('path')
 var multer = require('multer');
 var storage = multer.diskStorage({
     destination: (req, file, cb) => {
       // cb(null, __dirname+"../../../../../../../frontend/src/assets/sons")
-      cb(null,"app/api/uploads/sons")
+      cb(null,"app"+path.sep+"api"+path.sep+"uploads"+path.sep+"sons")
     },
     filename: (req, file, cb) => {
       cb(null, file.originalname)
@@ -69,7 +70,8 @@ router.post('/fileUpload', upload.single('son'), (req, res) => {
 router.get('/getFileUpload/:questionid', function (req, res, next) {
   var fileName = req.params.questionid
   res.set('Content-Type', 'audio/mpeg');
-  res.status(200).send(fs.readFileSync(__dirname+"/../../../uploads/sons/"+fileName))
+  console.log(path.sep)
+  res.status(200).send(fs.readFileSync(path.resolve(__dirname, '..','..', '..')+ path.sep+"uploads"+path.sep+"sons"+path.sep+fileName))
 })
 
 router.put('/:questionId', (req, res) => {
