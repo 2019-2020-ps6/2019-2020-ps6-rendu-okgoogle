@@ -101,7 +101,7 @@
       <div id="struct_bouton">
         <div id=Cbouton>
           <button style="font-size: 25px;" class="precedent" (click)="questionPrecedente()" >Question précédente</button>
-          <button style="font-size: 25px;" class="aide" (click)="aide()"><i class="far fa-question-circle"></i> Aide</button>
+          <button style="font-size: 25px;" class="aide" *ngIf="!playSong" (click)="aide()"><i class="far fa-question-circle"></i> Aide</button>
         </div>
       </div>
 

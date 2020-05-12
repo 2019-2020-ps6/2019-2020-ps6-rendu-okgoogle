@@ -64,11 +64,6 @@ export class PlayQuizComponent implements OnInit {
   }
 
   selectAnswer(answer: Answer) {
-
-    var divIndice = document.querySelector("#indice")
-    if (divIndice.textContent != "")
-      divIndice.innerHTML = "";
-
     //quiz pas fini
     if (answer.isCorrect && this.ptrQuestion != this.quiz.questions.length - 1) {
       this.modalIn = true;
@@ -78,7 +73,8 @@ export class PlayQuizComponent implements OnInit {
       progressBar.children[this.ptrQuestion].classList.add("completed")
       this.ptrQuestion++;
       progressBar.children[this.ptrQuestion].classList.add("active") 
-      this.source.stop();
+      if(this.source != undefined)
+        this.source.stop();
       this.afficheIndice = false;
       this.playSong = false;
       var interval = setInterval(() => {
@@ -93,6 +89,7 @@ export class PlayQuizComponent implements OnInit {
       setTimeout(() => {
         this.modalOut = true;
         document.body.classList.remove('modal-active')
+        this.source.stop();
       }, 5000)
       this.timerPopup = 5;
     }
@@ -104,6 +101,7 @@ export class PlayQuizComponent implements OnInit {
       this.modalOut = false;
       this.quizFini = true;
       this.modalIn = true;
+      this.source.stop()
       document.body.classList.add('modal-active')
     }
 
@@ -124,7 +122,7 @@ export class PlayQuizComponent implements OnInit {
   aide() {
     if (this.questionSelected.indice != "") {
       this.afficheIndice = true
-    } else {
+    } else if(this.playSong != true) {
       this.playSong = true;
       const themeid = this.route.snapshot.paramMap.get('themeid');
       const quizid = this.route.snapshot.paramMap.get('quizid');
@@ -197,12 +195,14 @@ export class PlayQuizComponent implements OnInit {
         })
       });
       document.body.classList.remove('modal-active')
+      this.source.stop()
     }, 5000)
     this.timerPopup = 5;
   }
 
   quitter() {
     this.modalOut = true;
+    this.source.stop()
     this.goBack();
   }
 
