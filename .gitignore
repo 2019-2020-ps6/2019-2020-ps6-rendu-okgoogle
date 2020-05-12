@@ -51,9 +51,8 @@ frontend/src/app/admin/edit-quiz/QuatreImgUnequestion.jpg
 
 frontend/src/app/admin/edit-quiz/UneImgQuatreReponse.jpg
 
+backend/app/api/uploads/sons/
 
 frontend/src/assets/js/
 
 frontend/src/assets/sons/
-
-backend/app/api/uploads/sons/*.mp3
