@@ -36,7 +36,7 @@
                 <div *ngIf="modeAide === 1">
                     <label for="indice">
                         Indice par son
-                        <input #sonUpload type="file" id="fichier"/>
+                        <input (change)="chargeSon($event)" #sonUpload type="file" id="fichier"/>
                     </label>
                 </div>
                 <div>

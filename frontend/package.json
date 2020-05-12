@@ -9,8 +9,7 @@
     "lint": "ng lint"
   },
   "husky": {
-    "hooks": {
-    }
+    "hooks": {}
   },
   "private": true,
   "dependencies": {

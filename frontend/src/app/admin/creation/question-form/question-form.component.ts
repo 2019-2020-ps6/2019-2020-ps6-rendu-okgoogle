@@ -10,7 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './question-form.component.html',
   styleUrls: ['./question-form.component.scss']
 })
-export class QuestionFormComponent implements OnInit {
+export class QuestionFormComponent {
 
 
   public questionForm: FormGroup;
@@ -21,6 +21,7 @@ export class QuestionFormComponent implements OnInit {
   count: number = 0;
   withSong: boolean = false;
   private colored: boolean;
+  public file : File;
 
 
   constructor(private route: ActivatedRoute, public formBuilder: FormBuilder, private quizService: QuizService) {
@@ -39,9 +40,6 @@ export class QuestionFormComponent implements OnInit {
     });
   }
 
-  @ViewChild('sonUpload', { static: false })
-  song: ElementRef;
-
   switchModeAide() {
     if (this.modeAide == 0) {
       this.questionForm.get("indice").setValue("")
@@ -53,12 +51,7 @@ export class QuestionFormComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-
-  }
-
-  reset(){
-    this.withSong = false;
+  reset() {
     this.fichierName = ""
   }
 
@@ -89,18 +82,20 @@ export class QuestionFormComponent implements OnInit {
   }
 
 
-  changeColorOnChecked(i:any) {
+  changeColorOnChecked(i: any) {
     var element = <HTMLInputElement>document.getElementsByClassName("correctOrNot")[i];
     var parent = element.parentElement;
-    
-    
     if (element.checked) {
       parent.style.backgroundColor = "LightGreen";
       this.colored = true;
     } else {
       parent.style.backgroundColor = "#AAA";
       this.colored = false;
-    }  
+    }
+  }
+
+  chargeSon(event){
+    this.file = event.target.files[0];
   }
 
 
@@ -111,14 +106,14 @@ export class QuestionFormComponent implements OnInit {
       const quizid = this.route.snapshot.paramMap.get('quizid');
 
       this.questionToCreate = this.questionForm.getRawValue() as Question;
-
-      console.log(this.questionToCreate.label)
       
-      if(this.withSong){
-        const file = this.song.nativeElement.files[0];
-        const songName = Date.now() +"."+file.name.split(".")[1]
+      this.questionToCreate.id = Date.now().toString();
+
+      if (this.withSong && this.modeAide == 1) {
+        const file = this.file
+        const songName = this.questionToCreate.id + "." + file.name.split(".")[1]
         this.fichierName = songName;
-        this.quizService.addASong(themeid,quizid,this.song.nativeElement.files[0], songName);
+        this.quizService.addASong(themeid, quizid, this.file, songName);
       }
 
       this.questionToCreate.sonUrl = this.fichierName

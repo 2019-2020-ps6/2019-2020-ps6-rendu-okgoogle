@@ -81,9 +81,9 @@
       </div>
 
       <!-- Indice -->
-
-      <span style="font-size: 25px;" *ngIf=" questionSelected.indice != '' || questionSelected.sonUrl != ''" class="zommableEnonce" id="indice"> <p *ngIf="afficheIndice">{{questionSelected.indice}}</p> <p *ngIf="playSong"> Écoutez l'indice <i class='fas fa-headphones'></i></p></span>
-
+      <p style="font-size: 25px;" id="indice" *ngIf="afficheIndice">{{questionSelected.indice}}</p>
+      <p style="font-size: 25px;" id="indice" *ngIf="questionSelected.sonUrl && playSong"> Écoutez l'indice <i class='fas fa-headphones'></i></p>
+      
       <!-- Answers -->
       
       <div class="zommableAnswer" id="containerListe">
@@ -114,12 +114,6 @@
           </li>
         </ul>
       </div>
-
-      <!-- Audio indice -->
-      <audio hidden *ngIf="questionSelected.sonUrl != '' && playSong" autoplay="true" controls>
-        <source [src]="sonUrlQuestionActuelle" type="audio/mpeg">
-        Votre navigateur ne supporte pas les contenus audio.
-      </audio> 
 
     </div>
   </ng-container>

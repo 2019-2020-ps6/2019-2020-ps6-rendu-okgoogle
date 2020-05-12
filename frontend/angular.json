@@ -25,13 +25,7 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets",
-              {"glob": "*.mp3", "input": "./src/assets/sons/", "output": "./src/assets/sons/"},
-              {"glob": "*.wav", "input": "./src/assets/sons/", "output": "./src/assets/sons/"},
-              {"glob": "*.ogg", "input": "./src/assets/sons/", "output": "./src/assets/sons/"},
-              {"glob": "*.m4a", "input": "./src/assets/sons/", "output": "./src/assets/sons/"},
-              {"glob": "*.aac", "input": "./src/assets/sons/", "output": "./src/assets/sons/"},
-              {"glob": "*.wma", "input": "./src/assets/sons/", "output": "./src/assets/sons/"}
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"

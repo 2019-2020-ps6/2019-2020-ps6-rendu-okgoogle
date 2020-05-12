@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject , Subject} from 'rxjs';
+import { BehaviorSubject , Subject, from} from 'rxjs';
 import { Quiz } from '../models/quiz.model';
 import { Theme } from '../models/theme.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+
+import { tap } from 'rxjs/operators'  
 
 import { Observable, of } from 'rxjs';
 import { Question } from '../models/question.model';
@@ -18,6 +20,7 @@ export class QuizService {
   public questionSelected: Question;
   public answerSelected: Answer;
   public themeSelected: Theme;
+  public currentFileUpload : ArrayBuffer;
 
   private lien = "http://localhost:9428/api/themes/";
 
@@ -27,6 +30,7 @@ export class QuizService {
   public questionSelected$: Subject<Question> = new Subject();
   public answerSelected$: Subject<Answer> = new Subject();
   public themeSelected$: Subject<Theme> = new Subject();
+  public currentFileUpload$: Subject<ArrayBuffer> = new Subject();
 
   constructor(private http: HttpClient) {
   }
@@ -98,6 +102,15 @@ export class QuizService {
     const formData = new FormData()
     formData.append('son',song,songName)
     this.http.post<String>(this.lien+ themeid +"/quizzes/"+quizid+"/questions/fileUpload",formData).subscribe((res)=> this.setSelectedQuiz(quizid,themeid))
+  }
+
+  getSong(themeid:string,quizid:string,questionid: string){
+    this.http.get(this.lien+ themeid +"/quizzes/"+quizid+"/questions/getFileUpload/"+questionid,{responseType: 'arraybuffer'}).subscribe(data => {
+      console.log(data)
+      // this.currentFileUpload = new File([data], "song")
+      this.currentFileUpload = data
+      this.currentFileUpload$.next(this.currentFileUpload);
+    })
   }
 
   addAnswer(themeid:string,quizid:string,questionid:string,answer: Answer){

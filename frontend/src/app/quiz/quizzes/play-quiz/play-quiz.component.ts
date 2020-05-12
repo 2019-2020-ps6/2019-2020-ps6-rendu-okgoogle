@@ -35,10 +35,12 @@ export class PlayQuizComponent implements OnInit {
   public modalIn: boolean = false;
   public modalOut: boolean = false;
   public user : User;
+  public context : AudioContext;
+  public source: AudioBufferSourceNode;
 
   @ViewChild('progressBar', { read: ElementRef, static: false }) progressBar: ElementRef;
 
-  constructor(private renderer: Renderer2, private _location: Location, private route: ActivatedRoute, public quizService: QuizService, public themeService: ThemeService, private gameService: GameService, private userService:UserService) {
+  constructor(private _location: Location, private route: ActivatedRoute, public quizService: QuizService, public themeService: ThemeService, private gameService: GameService, private userService:UserService) {
     
   }
 
@@ -52,7 +54,6 @@ export class PlayQuizComponent implements OnInit {
       this.quiz = quiz
       this.gameService.questionSelected$.subscribe((question) => {
         this.questionSelected = question
-        this.sonUrlQuestionActuelle = "src/assets/sons/" + this.questionSelected.nomFichier
       })
       this.userService.setSelectedUser(sessionStorage.getItem("user_id"))
       this.userService.userSelected$.subscribe((user)=>{
@@ -76,10 +77,10 @@ export class PlayQuizComponent implements OnInit {
       const progressBar = this.progressBar.nativeElement;
       progressBar.children[this.ptrQuestion].classList.add("completed")
       this.ptrQuestion++;
-      progressBar.children[this.ptrQuestion].classList.add("active")
+      progressBar.children[this.ptrQuestion].classList.add("active") 
+      this.source.stop();
       this.afficheIndice = false;
       this.playSong = false;
-      this.sonUrlQuestionActuelle = "src/assets/sons/" + this.questionSelected.nomFichier;
       var interval = setInterval(() => {
         this.timerPopup--;
         if (this.timerPopup == 0) {
@@ -109,18 +110,35 @@ export class PlayQuizComponent implements OnInit {
     this.gameService.setSelectedAnswer(this.questionSelected.id.toString(), answer.id.toString())
   }
 
+
+  play(buffer) {
+    this.context = new AudioContext();
+    this.context.decodeAudioData(buffer, (data)=>{
+      this.source = this.context.createBufferSource();
+      this.source.buffer = data;
+      this.source.connect(this.context.destination);
+      this.source.start();
+    })
+  }
+
   aide() {
     if (this.questionSelected.indice != "") {
       this.afficheIndice = true
     } else {
       this.playSong = true;
-      console.log(this.playSong)
+      const themeid = this.route.snapshot.paramMap.get('themeid');
+      const quizid = this.route.snapshot.paramMap.get('quizid');
+      this.quizService.getSong(themeid, quizid,this.questionSelected.sonUrl) 
+      this.quizService.currentFileUpload$.subscribe((file)=>{
+        this.play(file);
+      })
     }
     this.gameService.GiveClues()
   }
 
   questionPrecedente() {
     if (this.ptrQuestion > 0) {
+      this.source.stop();
       this.playSong = false;
       this.afficheIndice = false;
       this.gameService.previousQuestion()
@@ -176,7 +194,6 @@ export class PlayQuizComponent implements OnInit {
         this.quiz = quiz
         this.gameService.questionSelected$.subscribe((question) => {
           this.questionSelected = question
-          this.sonUrlQuestionActuelle = "src/assets/sons/" + this.questionSelected.nomFichier
         })
       });
       document.body.classList.remove('modal-active')
