@@ -106,6 +106,7 @@ export class QuizService {
 
   getSong(themeid:string,quizid:string,questionid: string){
     this.http.get(this.lien+ themeid +"/quizzes/"+quizid+"/questions/getFileUpload/"+questionid,{responseType: 'arraybuffer'}).subscribe(data => {
+        console.log("OUI")
       this.currentFileUpload = data
       this.currentFileUpload$.next(this.currentFileUpload);
     })

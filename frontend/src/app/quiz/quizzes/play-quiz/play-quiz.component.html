@@ -121,6 +121,8 @@
 </div>
 </div>
 
-<div *ngIf="quiz.questions.length === 0">
-    <h1 style="text-align: center;">Aucune question pour l'instant</h1>
+<div *ngIf="quiz">
+  <div *ngIf="quiz.questions.length === 0">
+      <h1 style="text-align: center;">Aucune question pour l'instant</h1>
+  </div>
 </div>

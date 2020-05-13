@@ -61,7 +61,6 @@ export class GameService implements OnInit {
         for(var i =0; i< this.quizFinal.questions.length; i++){
           this.quizFinal.questions[i].answers = [];
         }
-        console.log(this.quizFinal)
       });
     });
 

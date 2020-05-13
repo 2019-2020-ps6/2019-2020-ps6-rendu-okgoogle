@@ -35,6 +35,7 @@ export class PlayQuizComponent implements OnInit {
   public modalIn: boolean = false;
   public modalOut: boolean = false;
   public user : User;
+  public buffAudio : ArrayBuffer;
   public context : AudioContext;
   public source: AudioBufferSourceNode;
 
@@ -54,11 +55,16 @@ export class PlayQuizComponent implements OnInit {
       this.quiz = quiz
       this.gameService.questionSelected$.subscribe((question) => {
         this.questionSelected = question
+        const themeid = this.route.snapshot.paramMap.get('themeid');
+        const quizid = this.route.snapshot.paramMap.get('quizid');
+        this.quizService.getSong(themeid, quizid,this.questionSelected.sonUrl)
+        this.quizService.currentFileUpload$.subscribe((arrBuf)=>{
+          this.buffAudio = arrBuf;
+        })
       })
       this.userService.setSelectedUser(sessionStorage.getItem("user_id"))
       this.userService.userSelected$.subscribe((user)=>{
         this.user = user;
-        console.log(user.surname);
       })
     });
   }
@@ -66,6 +72,7 @@ export class PlayQuizComponent implements OnInit {
   selectAnswer(answer: Answer) {
     //quiz pas fini
     if (answer.isCorrect && this.ptrQuestion != this.quiz.questions.length - 1) {
+      
       this.modalIn = true;
       this.modalOut = false;
       this.quizDebut = false;
@@ -109,13 +116,16 @@ export class PlayQuizComponent implements OnInit {
   }
 
 
-  play(buffer) {
+  play() {
     this.context = new AudioContext();
-    this.context.decodeAudioData(buffer, (data)=>{
+    
+    this.context.decodeAudioData(this.buffAudio, (data)=>{
+      console.log(data)
       this.source = this.context.createBufferSource();
       this.source.buffer = data;
       this.source.connect(this.context.destination);
-      this.source.start();
+      if(this.playSong)
+        this.source.start();
     })
   }
 
@@ -124,12 +134,7 @@ export class PlayQuizComponent implements OnInit {
       this.afficheIndice = true
     } else if(this.playSong != true) {
       this.playSong = true;
-      const themeid = this.route.snapshot.paramMap.get('themeid');
-      const quizid = this.route.snapshot.paramMap.get('quizid');
-      this.quizService.getSong(themeid, quizid,this.questionSelected.sonUrl) 
-      this.quizService.currentFileUpload$.subscribe((file)=>{
-        this.play(file);
-      })
+      this.play()
     }
     this.gameService.GiveClues()
   }
