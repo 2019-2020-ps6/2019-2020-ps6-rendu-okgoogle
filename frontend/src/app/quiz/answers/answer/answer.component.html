@@ -4,7 +4,7 @@
                 <img [src]="answer.imageUrl" alt="">  
             </div>
             <div style="padding: 30px; background-color: wheat; width: 100%;">
-                <div style="width: 90%;margin: auto;">
+                <div style="width: 90%;margin: auto; word-break: break-all;">
                     <p class="zommableEnonce answerValue">{{answer.value}}</p>
                 </div>
                  <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'">

@@ -21,28 +21,33 @@ export class PlayQuizComponent implements OnInit {
 
   public quiz: Quiz;
   public curTheme: Theme;
+  public user: User;
+
   public questionSelected: Question;
   public ptrQuestion: number = 0;
-  public quizFini = false;
+
   public timerPopup = 5;
+  public modalOut: boolean = false;
+  public modalIn: boolean = false;
+
   public sonUrlQuestionActuelle = "";
   public playSong: boolean = false;
   public afficheIndice: boolean = false;
-  public quizDebut: boolean;
+
   public menu: boolean = false;
+
+  public quizDebut: boolean;
   public replay: boolean = false;
+  public quizFini = false;
   public questionPrec: boolean;
-  public modalIn: boolean = false;
-  public modalOut: boolean = false;
-  public user : User;
-  public buffAudio : ArrayBuffer;
-  public context : AudioContext;
+
+  public buffAudio: ArrayBuffer;
   public source: AudioBufferSourceNode;
 
   @ViewChild('progressBar', { read: ElementRef, static: false }) progressBar: ElementRef;
 
-  constructor(private _location: Location, private route: ActivatedRoute, public quizService: QuizService, public themeService: ThemeService, private gameService: GameService, private userService:UserService) {
-    
+  constructor(private _location: Location, private elementRef : ElementRef , private route: ActivatedRoute, public quizService: QuizService, public themeService: ThemeService, private gameService: GameService, private userService: UserService) {
+
   }
 
   ngOnInit() {
@@ -57,13 +62,13 @@ export class PlayQuizComponent implements OnInit {
         this.questionSelected = question
         const themeid = this.route.snapshot.paramMap.get('themeid');
         const quizid = this.route.snapshot.paramMap.get('quizid');
-        this.quizService.getSong(themeid, quizid,this.questionSelected.sonUrl)
-        this.quizService.currentFileUpload$.subscribe((arrBuf)=>{
+        this.quizService.getSong(themeid, quizid, this.questionSelected.sonUrl)
+        this.quizService.currentFileUpload$.subscribe((arrBuf) => {
           this.buffAudio = arrBuf;
         })
       })
       this.userService.setSelectedUser(sessionStorage.getItem("user_id"))
-      this.userService.userSelected$.subscribe((user)=>{
+      this.userService.userSelected$.subscribe((user) => {
         this.user = user;
       })
     });
@@ -72,18 +77,23 @@ export class PlayQuizComponent implements OnInit {
   selectAnswer(answer: Answer) {
     //quiz pas fini
     if (answer.isCorrect && this.ptrQuestion != this.quiz.questions.length - 1) {
-      
+
       this.modalIn = true;
       this.modalOut = false;
       this.quizDebut = false;
+      this.afficheIndice = false;
+      this.playSong = false;
+
+      //Avancement de la timeline
       const progressBar = this.progressBar.nativeElement;
       progressBar.children[this.ptrQuestion].classList.add("completed")
       this.ptrQuestion++;
-      progressBar.children[this.ptrQuestion].classList.add("active") 
-      if(this.source != undefined)
+      progressBar.children[this.ptrQuestion].classList.add("active")
+
+      if (this.source != undefined)
         this.source.stop();
-      this.afficheIndice = false;
-      this.playSong = false;
+
+      //Timer
       var interval = setInterval(() => {
         this.timerPopup--;
         if (this.timerPopup == 0) {
@@ -117,14 +127,14 @@ export class PlayQuizComponent implements OnInit {
 
 
   play() {
-    this.context = new AudioContext();
-    
-    this.context.decodeAudioData(this.buffAudio, (data)=>{
+    var context = new AudioContext();
+
+    context.decodeAudioData(this.buffAudio, (data) => {
       console.log(data)
-      this.source = this.context.createBufferSource();
+      this.source = context.createBufferSource();
       this.source.buffer = data;
-      this.source.connect(this.context.destination);
-      if(this.playSong)
+      this.source.connect(context.destination);
+      if (this.playSong)
         this.source.start();
     })
   }
@@ -132,7 +142,7 @@ export class PlayQuizComponent implements OnInit {
   aide() {
     if (this.questionSelected.indice != "") {
       this.afficheIndice = true
-    } else if(this.playSong != true) {
+    } else if (this.playSong != true) {
       this.playSong = true;
       this.play()
     }
@@ -154,11 +164,18 @@ export class PlayQuizComponent implements OnInit {
   }
 
   changeFont(event) {
-    var pInSpan = document.querySelectorAll(".zommableEnonce")
+    this.elementRef.nativeElement.querySelectorAll(".answerValue").forEach(element => {
+      element.setAttribute("style", "font-size:" + (15+parseInt(event.target.value))+ "px;");
+    });
 
-    for (var i in pInSpan) {
-      pInSpan[i].setAttribute("style", "font-size:" + event.target.value + "px;");
-    }
+    console.log(this.elementRef.nativeElement.querySelectorAll(".zoommable"))
+
+    this.elementRef.nativeElement.querySelectorAll(".zoommable").forEach(element => {
+      element.setAttribute("style", "font-size:" + (25+parseInt(event.target.value))+ "px;");
+    });
+
+  
+
   }
 
   changeContrastToBlack() {

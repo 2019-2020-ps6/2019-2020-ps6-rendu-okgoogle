@@ -48,8 +48,7 @@
 <div *ngIf="menu" id="side-menu" class="side-nav">
   <a class="btn-close" (click)="switchMenu()">&times;</a>
   <ul id="menu">
-    <li> Zoom: <input (mouseup)="changeFont($event)" value="20" min="20" max="40" type="range" id="rangeTaille" /> </li>
-    <!-- <button (click)="resetTaille()">reset taille</button> -->
+    <li> Zoom: <input (mouseup)="changeFont($event)" min="0" value="0" max="40" type="range" id="rangeTaille" /> </li>
     <button id="contrast-b" (click)="changeContrastToBlack()" title="Ecriture blanche/Fond noir">Contraste inverse</button>
     <button id="contrast-w" (click)="changeContrastToWhite()" title="Ecriture noir/Fond blanc">Contraste normal</button>
   </ul>
@@ -69,7 +68,7 @@
     <p *ngIf="questionSelected === undefined">Aucune question pour ce quiz :(</p>
 
     <div id="quiz">
-      <h3 style="font-size: 25px;" *ngIf="questionSelected.imgUrl === ''" class="zommableEnonce" id="question">{{questionSelected.label}}</h3>
+      <h3 style="font-size: 25px;" *ngIf="questionSelected.imgUrl === ''" class="zoommable" id="question">{{questionSelected.label}}</h3>
       
       <!-- Cas ou on a image dans question -->
 
@@ -77,12 +76,12 @@
         <div style="display: flex; justify-content: center;">
           <img style="max-width: 300px;" [src]="questionSelected.imgUrl" alt="">
         </div>
-        <h3 style="font-size: 25px;" class="zommableEnonce" id="question">{{questionSelected.label}}</h3>      
+        <h3 style="font-size: 25px;" class="zoommable" id="question">{{questionSelected.label}}</h3>      
       </div>
 
       <!-- Indice -->
-      <p style="font-size: 25px;" id="indice" *ngIf="afficheIndice">{{questionSelected.indice}}</p>
-      <p style="font-size: 25px;" id="indice" *ngIf="questionSelected.sonUrl && playSong"> Écoutez l'indice <i class='fas fa-headphones'></i></p>
+      <p style="font-size: 25px;" class="zoommable" id="indice" *ngIf="afficheIndice">{{questionSelected.indice}}</p>
+      <p style="font-size: 25px;" class="zoommable" id="indice" *ngIf="questionSelected.sonUrl && playSong"> Écoutez l'indice <i class='fas fa-headphones'></i></p>
       
       <!-- Answers -->
       
@@ -100,8 +99,12 @@
 
       <div id="struct_bouton">
         <div id=Cbouton>
-          <button style="font-size: 25px;" class="precedent" (click)="questionPrecedente()" >Question précédente</button>
-          <button style="font-size: 25px;" class="aide" *ngIf="!playSong" (click)="aide()"><i class="far fa-question-circle"></i> Aide</button>
+          <div style="word-wrap: break-word;width: auto;">
+            <button style="font-size: 25px;" class="zoommable precedent" (click)="questionPrecedente()" >Question précédente</button>
+          </div>
+          <div style="word-wrap: break-word; width: auto;">
+            <button style="font-size: 25px;" class="zoommable aide" *ngIf="!playSong" (click)="aide()"><i class="far fa-question-circle"></i> Aide</button>
+          </div>
         </div>
       </div>
 
