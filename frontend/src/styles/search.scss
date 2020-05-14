@@ -1,0 +1,50 @@
+.wrap{
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .container {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .search-form {
+    height: 110px;
+    width: 30%;
+    margin: auto;
+  }
+  
+  .searchbox {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+    float: right;
+    border: 3px #ccc solid;
+    border-radius: 50%;
+    background: #fff;
+    /* LINK FOR SEARCH ICON
+     https://www.pinclipart.com/picdir/big/485-4851736_free-png-search-icon-search-icon-free-download.png */
+    background-image: url("https://www.pinclipart.com/picdir/big/485-4851736_free-png-search-icon-search-icon-free-download.png");
+    background-size: 35px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    transition: all 0.5s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  .searchbox:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px 0 #7f7f7f;
+  }
+  
+  .searchbox:focus {
+    cursor: text;
+    width: 100%;
+    border-radius: 25px 25px 25px 25px;
+    outline: none;
+    text-indent: 15px;
+    background-position-x: 97%;
+    box-shadow: 0 0 10px 0 #7f7f7f;
+  }

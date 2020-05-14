@@ -49,4 +49,16 @@ export class QuizListComponent implements OnInit {
     this.id = +this.route.snapshot.paramMap.get('themeid');
     this.quizService.deleteQuiz(this.id.toString(), selected )
   }
+
+  clickSearch(){
+    var searchbox = document.querySelector(".searchbox");
+    searchbox.setAttribute("placeholder", "Search...");
+  }
+  
+  noSearch(){
+    var searchbox = document.querySelector(".searchbox");
+    searchbox.nodeValue = null;
+    searchbox.removeAttribute("placeholder");
+  }
+  
 }

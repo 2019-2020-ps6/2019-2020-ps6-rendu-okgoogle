@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { QuizService } from '../../../../services/quiz.service';
 import { Question } from '../../../../models/question.model';
 //router
@@ -16,7 +16,7 @@ export class QuestionListComponent implements OnInit {
   @Input()
   quiz:Quiz
 
-  constructor(private route: ActivatedRoute, private router:Router, public quizService: QuizService) {
+  constructor(private elementRef: ElementRef, private router:Router, public quizService: QuizService) {
   }
 
   ngOnInit(){
@@ -30,5 +30,16 @@ export class QuestionListComponent implements OnInit {
 
   questionEdition(selected: Question){
     this.router.navigate(["theme-edit",this.quiz.themeId,"edit-quiz",this.quiz.id.toString(),"edit-question",selected.id.toString()]) 
+  }
+
+  clickSearch(){
+    var searchbox = document.querySelector(".searchbox");
+    searchbox.setAttribute("placeholder", "Search...");
+  }
+  
+  noSearch(){
+    var searchbox = document.querySelector(".searchbox");
+    searchbox.nodeValue = "";
+    searchbox.removeAttribute("placeholder");
   }
 }

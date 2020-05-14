@@ -8,10 +8,9 @@
 
             <div class="wrap">
                 <div class="search">
-                    <input class="searchTerm" type="text" name="search" [(ngModel)]="searchTheme" autocomplete="on" placeholder="Recherche de theme">
-                    <button type="submit" class="searchButton">
-                        <i class="fa fa-search"></i>
-                    </button>
+                    <form class="search-form" id="search-form">
+                        <input class="searchTerm" [(ngModel)]="searchTheme" name="search" autocomplete="on" (focusout)="noSearch()" (focus)="clickSearch()" type="text" class="searchbox" />
+                    </form>
                 </div>
             </div>
 

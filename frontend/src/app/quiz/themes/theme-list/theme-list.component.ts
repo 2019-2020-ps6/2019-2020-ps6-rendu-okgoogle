@@ -33,6 +33,17 @@ export class ThemeListComponent implements OnInit {
       this.router.navigate(['quiz-list', selected.id.toString()]);
     }
   }
+
+  clickSearch(){
+    var searchbox = document.querySelector(".searchbox");
+    searchbox.setAttribute("placeholder", "Search...");
+  }
+  
+  noSearch(){
+    var searchbox = document.querySelector(".searchbox");
+    searchbox.nodeValue = null;
+    searchbox.removeAttribute("placeholder");
+  }
   
   themeDeleted(selected: Theme) {
     this.themeService.deleteTheme(selected.id.toString());

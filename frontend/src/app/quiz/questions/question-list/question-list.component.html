@@ -1,13 +1,19 @@
 <div class="question-list">
+
     <div>
-        <div style="display: flex; justify-content: center;">
-            <input class="form-control" type="text" name="search" [(ngModel)]="searchQuestion" autocomplete="off" placeholder="Recherche de question">
+        <div class="wrap">
+            <div class="search">
+                <form class="search-form" id="search-form">
+                    <input class="searchTerm" [(ngModel)]="searchQuestion" name="search" autocomplete="on" (focusout)="noSearch()" (focus)="clickSearch()" type="text" class="searchbox" />
+                </form>
+            </div>
         </div>
     </div>
+
     <div class="question" *ngFor="let question of quiz.questions | filter:searchQuestion">
         <app-question (questionDeleted)="questionDeletion($event)" (questionEdited)="questionEdition($event)" [question]="question"></app-question>
-        <div class="no-question" *ngIf=" searchQuestion && (quiz.questions | filter:searchQuestion).length === 0 && quiz.questions.length != 0">
-            <p>Aucune question correspond à vos recherches</p>
-        </div>
+    </div>
+    <div class="no-question" *ngIf=" searchQuestion && (quiz.questions | filter:searchQuestion).length === 0 && quiz.questions.length != 0">
+        <p>Aucune question correspond à vos recherches</p>
     </div>
 </div>
