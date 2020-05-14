@@ -13,12 +13,14 @@ export class ThemeListComponent implements OnInit {
 
   public themesList: Theme[] = [];
   public searchTheme: string;
+  public page : string;
 
   constructor(private route: ActivatedRoute,private router:Router, public themeService: ThemeService) {  
     this.themeService.setThemesFromUrl()
     this.themeService.themes$.subscribe((theme) =>{
       this.themesList = theme
     });
+    this.page = this.router.url.split('/')[1]
   }
 
   ngOnInit() {
@@ -48,4 +50,10 @@ export class ThemeListComponent implements OnInit {
   themeDeleted(selected: Theme) {
     this.themeService.deleteTheme(selected.id.toString());
   }
+
+  goToCreateTheme(){
+    this.router.navigate(['create-theme']);
+  }
+
+
 }

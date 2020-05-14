@@ -32,6 +32,7 @@
         </div>
     </div>
 </div>
-<div *ngIf="themesList.length === 0">
-    <h1 style="font-family: 'baloo thambi' cursive;text-align: center;">Aucun thèmes pour l'instant</h1>
+<div class= "alignCenter" *ngIf="themesList.length === 0">
+    <h1>Aucun thème pour l'instant</h1>
+    <button class = "btn_goTheme" (click)="goToCreateTheme()" *ngIf="page === 'theme-list'"  >Créer un theme</button>
 </div>
