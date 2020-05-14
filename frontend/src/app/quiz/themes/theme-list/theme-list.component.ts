@@ -28,7 +28,7 @@ export class ThemeListComponent implements OnInit {
   }
   
   ngOnInit() {
-    
+    this.checkQuiz()
   }
 
   themeSelected(selected: Theme) {

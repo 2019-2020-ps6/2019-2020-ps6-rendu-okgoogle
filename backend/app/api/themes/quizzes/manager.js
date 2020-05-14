@@ -24,7 +24,9 @@ const buildQuizz = (quizId) => {
  */
 const filterQuizFromTheme = (themeId) => {
     const quizs = Quiz.get()
-    return quizs.filter((quiz) => quiz.themeId.toString() === themeId)
+    const quizzes = quizs.filter((quiz) => quiz.themeId.toString() === themeId) //quizs du themes concerné sans questions
+    const quizsBuild = quizzes.map((quiz)=> buildQuizz(quiz.id))// va modifier chaque quiz pour utiliser le retour de buildQUizz
+    return quizsBuild
 }
 
 /**

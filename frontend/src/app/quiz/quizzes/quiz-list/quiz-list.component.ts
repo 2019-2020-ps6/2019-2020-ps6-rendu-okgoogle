@@ -28,13 +28,14 @@ export class QuizListComponent implements OnInit {
     this.quizService.getQuizzesByThemeId(this.id.toString());
     this.quizService.quizzes$.subscribe((quizzes) => {
       this.quizList = quizzes
-      console.log(this.quizList)
+      this.curStatus = sessionStorage.getItem("status");   
       this.checkQuestions()
     });
   }
   
   ngOnInit() {
     this.curStatus = sessionStorage.getItem("status");   
+    this.checkQuestions()
   }
 
   quizEdited(selected: Quiz) {

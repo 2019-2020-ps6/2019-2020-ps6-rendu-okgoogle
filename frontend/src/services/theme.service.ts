@@ -26,7 +26,6 @@ export class ThemeService {
   getThemeById(themeid: string){
     const urlWithId = this.lien + themeid;
     this.http.get<Theme>(urlWithId).subscribe((theme) => {
-      console.log(theme)
       this.themeSelected = theme;
       this.themeSelected$.next(this.themeSelected);
     })

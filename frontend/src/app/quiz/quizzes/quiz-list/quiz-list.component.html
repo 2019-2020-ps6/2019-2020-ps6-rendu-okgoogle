@@ -22,7 +22,7 @@
         <div class="list-type2">
             <ul class="quiz-list">
                 <li class="quiz" *ngFor="let quiz of quizList | filter:searchQuiz">
-                    <app-quiz *ngIf="quiz.questions.length != 0 || curStatus === 'admin'" [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizEdited($event)" (quizDeleted)="quizDeleted($event)"></app-quiz>
+                    <app-quiz *ngIf="quiz.questions.length > 0 || curStatus === 'admin'" [quiz]="quiz" (quizSelected)="quizSelected($event)" (quizEdited)="quizEdited($event)" (quizDeleted)="quizDeleted($event)"></app-quiz>
                 </li>
                 <li class="no-quiz" *ngIf=" searchQuiz && (quizList | filter:searchQuiz).length === 0 && quizList.length != 0">
                     <p>Aucun quiz correspond à vos recherches</p>

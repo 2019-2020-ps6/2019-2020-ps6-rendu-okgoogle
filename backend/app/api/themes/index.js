@@ -37,7 +37,8 @@ router.delete('/:themeid', (req, res) => {
 
 router.get('/:themeid/quizzes/', (req, res) => {
   try {
-    res.status(200).json(Quiz.get().filter((quiz)=> quiz.themeId === req.params.themeid));
+    const theme = buildTheme(req.params.themeid);
+    res.status(200).json(theme.quiz);
   } catch (err) {
     console.log(err)
     res.status(500).json(err)
