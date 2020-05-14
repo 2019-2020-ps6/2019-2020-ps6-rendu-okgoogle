@@ -1,14 +1,7 @@
 <div id="partie_liste_quiz" *ngIf="curTheme && quizList.length != 0">
         <h1 class="titreQuiz">Liste des Quiz :  <label style="color: white ;">{{curTheme.name}}</label></h1>
-    <div>
-        <div class="wrap">
-            <div class="search">
-                <form class="search-form" id="search-form">
-                    <input class="searchTerm" [(ngModel)]="searchQuiz" name="search" autocomplete="on" (focusout)="noSearch()" (focus)="clickSearch()" type="text" class="searchbox" />
-                </form>
-            </div>
-        </div>
-    </div>
+       
+        <app-search-bar></app-search-bar>
 
     <div id="containerListe">
         <div class="list-type2">

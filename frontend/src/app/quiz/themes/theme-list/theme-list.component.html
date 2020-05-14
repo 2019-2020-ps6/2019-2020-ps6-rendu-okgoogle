@@ -5,14 +5,7 @@
                 Liste des Thèmes
             </h1>
 
-
-            <div class="wrap">
-                <div class="search">
-                    <form class="search-form" id="search-form">
-                        <input class="searchTerm" [(ngModel)]="searchTheme" name="search" autocomplete="on" (focusout)="noSearch()" (focus)="clickSearch()" type="text" class="searchbox" />
-                    </form>
-                </div>
-            </div>
+            <app-search-bar></app-search-bar>
 
             <!-- <div>
                 <div class="container_search">

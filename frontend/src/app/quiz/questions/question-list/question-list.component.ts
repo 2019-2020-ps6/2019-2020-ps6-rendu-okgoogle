@@ -31,15 +31,4 @@ export class QuestionListComponent implements OnInit {
   questionEdition(selected: Question){
     this.router.navigate(["theme-edit",this.quiz.themeId,"edit-quiz",this.quiz.id.toString(),"edit-question",selected.id.toString()]) 
   }
-
-  clickSearch(){
-    var searchbox = document.querySelector(".searchbox");
-    searchbox.setAttribute("placeholder", "Search...");
-  }
-  
-  noSearch(){
-    var searchbox = document.querySelector(".searchbox");
-    searchbox.nodeValue = "";
-    searchbox.removeAttribute("placeholder");
-  }
 }
