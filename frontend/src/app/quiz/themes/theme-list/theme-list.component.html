@@ -6,7 +6,7 @@
             </h1>
 
 
-            <div id="partie_search" >
+            <div *ngIf="hasThemeWithQuiz" id="partie_search" >
                 <form class="searchBar" >
                 
                     <p class="expandSearch">
@@ -25,7 +25,7 @@
 
             <ul class="theme-list">
                 <li class="theme" *ngFor="let theme of themesList | filter:searchTheme">
-                    <app-theme [theme]="theme" (themeSelected)="themeSelected($event)"
+                    <app-theme *ngIf="theme.quiz.length != 0 || curStatus === 'admin'" [theme]="theme" (themeSelected)="themeSelected($event)"
                         (themeDeleted)="themeDeleted($event)"></app-theme>
                 </li>
                 <li class="no-theme" *ngIf="(themesList | filter:searchTheme).length === 0 && themesList.length != 0">
@@ -35,7 +35,9 @@
         </div>
     </div>
 </div>
+<div *ngIf="themesList.length === 0 || (!hasThemeWithQuiz && curStatus === 'user')">
+    <h1 style="font-family: 'baloo thambi' cursive;text-align: center; padding: 20px;">Aucun thèmes pour l'instant</h1>
+</div>
 <div class= "alignCenter" *ngIf="themesList.length === 0">
-    <h1>Aucun thème pour l'instant</h1>
-    <button class = "btn_goTheme" (click)="goToCreateTheme()" *ngIf="page === 'theme-list'"  >Créer un theme</button>
+    <button class = "btn_goTheme" (click)="goToCreateTheme()" *ngIf="page === 'theme-list' && curStatus === 'admin'"  >Créer un theme</button>
 </div>

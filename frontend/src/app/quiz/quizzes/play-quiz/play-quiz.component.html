@@ -80,7 +80,7 @@
       </div>
 
       <!-- Indice -->
-      <p style="font-size: 25px;" class="zoommable" id="indice" *ngIf="afficheIndice">{{questionSelected.indice}}</p>
+      <p style="font-size: 25px;" class="zoommable" id="indice" *ngIf="questionSelected.indice && afficheIndice">{{questionSelected.indice}}</p>
       <p style="font-size: 25px;" class="zoommable" id="indice" *ngIf="questionSelected.sonUrl && playSong"> Écoutez l'indice <i class='fas fa-headphones'></i></p>
       
       <!-- Answers -->
@@ -103,7 +103,7 @@
             <button style="font-size: 25px;" class="zoommable precedent" *ngIf="ptrQuestion != 0" (click)="questionPrecedente()" >Question précédente</button>
           </div>
           <div style="word-wrap: break-word; width: auto;">
-            <button style="font-size: 25px;" class="zoommable aide" *ngIf="!playSong" (click)="aide()"><i class="far fa-question-circle"></i> Aide</button>
+            <button style="font-size: 25px;" class="zoommable aide" *ngIf="!playSong && !afficheIndice && (questionSelected.sonUrl || questionSelected.indice)" (click)="aide()"><i class="far fa-question-circle"></i> Aide</button>
           </div>
         </div>
       </div>

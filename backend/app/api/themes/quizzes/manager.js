@@ -18,6 +18,16 @@ const buildQuizz = (quizId) => {
 }
 
 /**
+ * filterQuizFromTheme.
+ * This function filters among the questions to return only the question linked with the given quizId.
+ * @param quizId 
+ */
+const filterQuizFromTheme = (themeId) => {
+    const quizs = Quiz.get()
+    return quizs.filter((quiz) => quiz.themeId.toString() === themeId)
+}
+
+/**
  * Function buildQuizzes.
  * This function aggregates the questions and answers from the database to build entire quizzes.
  */
@@ -28,5 +38,6 @@ const buildQuizzes = () => {
 
 module.exports = {
     buildQuizz,
+    filterQuizFromTheme,
     buildQuizzes
 }

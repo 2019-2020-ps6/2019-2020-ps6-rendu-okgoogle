@@ -62,10 +62,12 @@ export class PlayQuizComponent implements OnInit {
         this.questionSelected = question
         const themeid = this.route.snapshot.paramMap.get('themeid');
         const quizid = this.route.snapshot.paramMap.get('quizid');
-        this.quizService.getSong(themeid, quizid, this.questionSelected.sonUrl)
-        this.quizService.currentFileUpload$.subscribe((arrBuf) => {
-          this.buffAudio = arrBuf;
-        })
+        if(this.questionSelected.sonUrl){
+          this.quizService.getSong(themeid, quizid, this.questionSelected.sonUrl)
+          this.quizService.currentFileUpload$.subscribe((arrBuf) => {
+            this.buffAudio = arrBuf;
+          })
+        }
       })
       this.userService.setSelectedUser(sessionStorage.getItem("user_id"))
       this.userService.userSelected$.subscribe((user) => {

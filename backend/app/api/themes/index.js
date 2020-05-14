@@ -3,12 +3,14 @@ const { Router } = require('express')
 const { Theme, Quiz } = require('../../models/')
 
 const QuizRouter = require('./quizzes')
+const { buildTheme, buildThemes } = require('./manager')
 
 const router = new Router()
 
 router.get('/', (req, res) => {
   try {
-    res.status(200).json(Theme.get())
+    const themes = buildThemes()
+    res.status(200).json(themes)
   } catch (err) {
     res.status(500).json(err)
   }
@@ -16,7 +18,8 @@ router.get('/', (req, res) => {
 
 router.get('/:themeid', (req, res) => {
   try {
-    res.status(200).json(Theme.get().filter((theme) => theme.id === parseInt(req.params.themeid)));
+    const theme = buildTheme(req.params.themeid);
+    res.status(200).json(theme);
   } catch (err) {
     console.log(err)
     res.status(500).json(err)

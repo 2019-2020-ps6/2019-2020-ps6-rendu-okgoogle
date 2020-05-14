@@ -21,8 +21,9 @@ export class editThemeComponent implements OnInit {
   
   ngOnInit() {
     const themeid = this.route.snapshot.paramMap.get('themeid');
-    this.themeService.setSelectedTheme(themeid.toString())
+    this.themeService.setSelectedTheme(themeid)
     this.themeService.themeSelected$.subscribe((theme)=> {
+      console.log(theme)
       this.curTheme = theme
       this.initializeThemeForm()
     })

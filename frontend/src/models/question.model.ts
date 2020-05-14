@@ -5,7 +5,6 @@ export interface Question {
     label: string;
     imgUrl?: string;
     sonUrl: string;
-    nomFichier?:string;
     indice:string;
     aideUtilise?:boolean;
     answers: Answer[];

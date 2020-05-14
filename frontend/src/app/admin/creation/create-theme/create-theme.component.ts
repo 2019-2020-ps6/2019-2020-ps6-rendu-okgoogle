@@ -54,7 +54,7 @@ export class CreateThemeComponent implements OnInit {
   addTheme() {
     if(this.ThemeForm.valid){
       const themeToCreate: Theme = this.ThemeForm.getRawValue() as Theme;
-    
+      themeToCreate.quiz = [];
       if(this.WithImage == false)
         themeToCreate.imageUrl = "https://images-na.ssl-images-amazon.com/images/I/21K1%2BsQckhL._AC_SY355_.jpg";
   

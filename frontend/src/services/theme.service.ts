@@ -26,15 +26,16 @@ export class ThemeService {
   getThemeById(themeid: string){
     const urlWithId = this.lien + themeid;
     this.http.get<Theme>(urlWithId).subscribe((theme) => {
+      console.log(theme)
       this.themeSelected = theme;
       this.themeSelected$.next(this.themeSelected);
     })
   }
 
   setSelectedTheme(theme: string) {
-    const urlWithId = this.lien + theme.toString();
+    const urlWithId = this.lien + theme;
     this.http.get<Theme>(urlWithId).subscribe((theme) => {
-      this.themeSelected = theme[0];
+      this.themeSelected = theme;
       this.themeSelected$.next(this.themeSelected);
     });
   }

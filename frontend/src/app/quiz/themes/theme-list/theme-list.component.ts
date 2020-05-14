@@ -13,16 +13,20 @@ export class ThemeListComponent implements OnInit {
 
   public themesList: Theme[] = [];
   public searchTheme: string;
+  public curStatus: string
   public page : string;
+  public hasThemeWithQuiz: boolean = false;
 
   constructor(private elementRef: ElementRef,private route: ActivatedRoute,private router:Router, public themeService: ThemeService) {  
     this.themeService.setThemesFromUrl()
     this.themeService.themes$.subscribe((theme) =>{
       this.themesList = theme
+      this.checkQuiz()
     });
     this.page = this.router.url.split('/')[1]
+    this.curStatus = sessionStorage.getItem("status")
   }
-
+  
   ngOnInit() {
     
   }
@@ -51,6 +55,14 @@ export class ThemeListComponent implements OnInit {
     }else{
         _searchContainers.classList.remove("showSearch")
     }
-}   
+  }
+
+  checkQuiz(){
+    for(var i in this.themesList){
+      if(this.themesList[i].quiz.length != 0){
+        this.hasThemeWithQuiz = true;
+      }
+    }
+  }
 
 }

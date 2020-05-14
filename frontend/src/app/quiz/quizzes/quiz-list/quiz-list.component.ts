@@ -18,6 +18,7 @@ export class QuizListComponent implements OnInit {
   public searchQuiz: string;
   public quizNb : number = -1;
   private curStatus: string;
+  public hasQuizWithQuestion: boolean = false;
   reversed: boolean;
 
   constructor(private elementRef: ElementRef,private router: Router, private route: ActivatedRoute , private resService: QuizService, private quizService: QuizService, private themeService: ThemeService) {
@@ -27,10 +28,11 @@ export class QuizListComponent implements OnInit {
     this.quizService.getQuizzesByThemeId(this.id.toString());
     this.quizService.quizzes$.subscribe((quizzes) => {
       this.quizList = quizzes
+      console.log(this.quizList)
+      this.checkQuestions()
     });
-    
   }
-
+  
   ngOnInit() {
     this.curStatus = sessionStorage.getItem("status");   
   }
@@ -57,5 +59,13 @@ export class QuizListComponent implements OnInit {
     }else{
         _searchContainers.classList.remove("showSearch")
     }
-}   
+  }
+  
+  checkQuestions(){
+    for(var i in this.quizList){
+      if(this.quizList[i].questions.length != 0){
+        this.hasQuizWithQuestion = true;
+      }
+    }
+  }
 }
