@@ -42,6 +42,9 @@ and (max-device-width : 900px) {
     width: 100%;
     margin: auto;
   }
+  #Cbouton{
+    width: 70%;
+  }
 }
 
 @media only screen 
@@ -50,6 +53,9 @@ and (max-device-width : 1024px) {
   #quiz{
     width: 80%;
     margin: auto;
+  }
+  #Cbouton{
+    width: 100%;
   }
 }
 

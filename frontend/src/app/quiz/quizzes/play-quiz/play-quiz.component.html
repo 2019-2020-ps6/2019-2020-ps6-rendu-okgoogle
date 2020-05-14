@@ -100,7 +100,7 @@
       <div id="struct_bouton">
         <div id=Cbouton>
           <div style="word-wrap: break-word;width: auto;">
-            <button style="font-size: 25px;" class="zoommable precedent" (click)="questionPrecedente()" >Question précédente</button>
+            <button style="font-size: 25px;" class="zoommable precedent" *ngIf="ptrQuestion != 0" (click)="questionPrecedente()" >Question précédente</button>
           </div>
           <div style="word-wrap: break-word; width: auto;">
             <button style="font-size: 25px;" class="zoommable aide" *ngIf="!playSong" (click)="aide()"><i class="far fa-question-circle"></i> Aide</button>

@@ -14,7 +14,7 @@ import { User } from 'src/models/user.model';
 @Component({
   selector: 'app-play-quiz',
   templateUrl: './play-quiz.component.html',
-  styleUrls: ['./play-quiz.component.scss'],
+  styleUrls: ['./play-quiz.component.scss']
 })
 
 export class PlayQuizComponent implements OnInit {
@@ -78,6 +78,8 @@ export class PlayQuizComponent implements OnInit {
     //quiz pas fini
     if (answer.isCorrect && this.ptrQuestion != this.quiz.questions.length - 1) {
 
+      if (this.source != undefined && this.playSong)
+        this.source.stop();
       this.modalIn = true;
       this.modalOut = false;
       this.quizDebut = false;
@@ -90,8 +92,6 @@ export class PlayQuizComponent implements OnInit {
       this.ptrQuestion++;
       progressBar.children[this.ptrQuestion].classList.add("active")
 
-      if (this.source != undefined)
-        this.source.stop();
 
       //Timer
       var interval = setInterval(() => {
@@ -151,7 +151,8 @@ export class PlayQuizComponent implements OnInit {
 
   questionPrecedente() {
     if (this.ptrQuestion > 0) {
-      this.source.stop();
+      if(this.source != undefined && this.playSong)
+        this.source.stop();
       this.playSong = false;
       this.afficheIndice = false;
       this.gameService.previousQuestion()
