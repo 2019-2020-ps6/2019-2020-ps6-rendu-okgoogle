@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ElementRef } from '@angular/core';
 import { QuizService } from '../../../../services/quiz.service';
 import { ThemeService } from '../../../../services/theme.service';
 import { Quiz } from '../../../../models/quiz.model';
@@ -20,7 +20,7 @@ export class QuizListComponent implements OnInit {
   private curStatus: string;
   reversed: boolean;
 
-  constructor(private router: Router, private route: ActivatedRoute , private resService: QuizService, private quizService: QuizService, private themeService: ThemeService) {
+  constructor(private elementRef: ElementRef,private router: Router, private route: ActivatedRoute , private resService: QuizService, private quizService: QuizService, private themeService: ThemeService) {
     this.id = this.route.snapshot.paramMap.get('themeid');
     this.themeService.setSelectedTheme(this.id.toString());
     this.themeService.themeSelected$.subscribe((theme)=>this.curTheme = theme)
@@ -49,5 +49,13 @@ export class QuizListComponent implements OnInit {
     this.id = +this.route.snapshot.paramMap.get('themeid');
     this.quizService.deleteQuiz(this.id.toString(), selected )
   }
-
+  clickSearch(){
+    var _searchContainers = this.elementRef.nativeElement.querySelector('.expandSearch');
+    if(_searchContainers.className === "expandSearch"){
+        _searchContainers.classList.add("expandSearch");
+        _searchContainers.classList.add("showSearch")
+    }else{
+        _searchContainers.classList.remove("showSearch")
+    }
+}   
 }

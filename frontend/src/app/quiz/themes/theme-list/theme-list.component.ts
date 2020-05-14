@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ThemeService } from '../../../../services/theme.service';
 import {Theme} from '../../../../models/theme.model';
 import { ActivatedRoute, Router } from "@angular/router";
@@ -15,7 +15,7 @@ export class ThemeListComponent implements OnInit {
   public searchTheme: string;
   public page : string;
 
-  constructor(private route: ActivatedRoute,private router:Router, public themeService: ThemeService) {  
+  constructor(private elementRef: ElementRef,private route: ActivatedRoute,private router:Router, public themeService: ThemeService) {  
     this.themeService.setThemesFromUrl()
     this.themeService.themes$.subscribe((theme) =>{
       this.themesList = theme
@@ -43,6 +43,14 @@ export class ThemeListComponent implements OnInit {
   goToCreateTheme(){
     this.router.navigate(['create-theme']);
   }
-
+  clickSearch(){
+    var _searchContainers = this.elementRef.nativeElement.querySelector('.expandSearch');
+    if(_searchContainers.className === "expandSearch"){
+        _searchContainers.classList.add("expandSearch");
+        _searchContainers.classList.add("showSearch")
+    }else{
+        _searchContainers.classList.remove("showSearch")
+    }
+}   
 
 }

@@ -28,7 +28,6 @@ import { CreateThemeComponent } from './admin/creation/create-theme/create-theme
 import { PlayQuizComponent } from './quiz/quizzes/play-quiz/play-quiz.component';
 import { AnswerComponent } from './quiz/answers/answer/answer.component';
 import { AnswerListComponent } from './quiz/answers/answer-list/answer-list.component';
-import { SearchBarComponent } from './utils/searchBar/search-bar.component';
 
 import { AppRoutingModule } from './app.routing.module';
 
@@ -62,7 +61,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     UserStatComponent,
     UserStatDetailComponent,
     editThemeComponent,
-    SearchBarComponent
   ],
   imports: [
     BrowserModule,

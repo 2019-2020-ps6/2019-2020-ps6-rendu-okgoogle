@@ -5,14 +5,24 @@
                 Liste des Thèmes
             </h1>
 
-            <app-search-bar></app-search-bar>
 
-            <!-- <div>
-                <div class="container_search">
-                    <input class="form-control" type="text" name="search" [(ngModel)]="searchTheme" autocomplete="on" placeholder="Recherche de theme">
-                    <i class="fas fa-search"></i>
-                </div>
-            </div> -->
+            <div id="partie_search" >
+                <form class="searchBar" >
+                
+                    <p class="expandSearch">
+                        <input [(ngModel)]="searchTheme" name="search" autocomplete="on" type="text" placeholder="Search" />
+                        <a (click)="clickSearch()">
+                            <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="20px" height="20px" viewBox="375.045 607.885 30.959 30.33" enable-background="new 375.045 607.885 30.959 30.33" xml:space="preserve">
+                                <path fill="#494949" d="M405.047,633.805l-7.007-6.542c-0.129-0.121-0.267-0.226-0.408-0.319c1.277-1.939,2.025-4.258,2.025-6.753 c0-6.796-5.51-12.306-12.307-12.306s-12.306,5.51-12.306,12.306s5.509,12.306,12.306,12.306c2.565,0,4.945-0.786,6.916-2.128 c0.122,0.172,0.257,0.337,0.418,0.488l7.006,6.542c1.122,1.048,2.783,1.093,3.709,0.101 C406.327,636.507,406.169,634.853,405.047,633.805z M387.351,629.051c-4.893,0-8.86-3.967-8.86-8.86s3.967-8.86,8.86-8.86 s8.86,3.967,8.86,8.86S392.244,629.051,387.351,629.051z"/>
+                            </svg>
+                        </a>
+                    </p>
+                
+                    <div class="clearfix"></div>
+                
+                </form>
+            </div>
+
             <ul class="theme-list">
                 <li class="theme" *ngFor="let theme of themesList | filter:searchTheme">
                     <app-theme [theme]="theme" (themeSelected)="themeSelected($event)"
@@ -25,7 +35,6 @@
         </div>
     </div>
 </div>
-<div class= "alignCenter" *ngIf="themesList.length === 0">
-    <h1>Aucun thème pour l'instant</h1>
-    <button class = "btn_goTheme" (click)="goToCreateTheme()" *ngIf="page === 'theme-list'"  >Créer un theme</button>
+<div *ngIf="themesList.length === 0">
+    <h1 style="font-family: 'baloo thambi' cursive;text-align: center;">Aucun thèmes pour l'instant</h1>
 </div>

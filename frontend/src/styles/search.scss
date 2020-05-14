@@ -17,7 +17,7 @@ body{
 	clear: both;
 }
 
-input{
+.expandSearch input{
 	background-color: #ffffff;
 	border: none;
 	font-size: 16px;
@@ -36,6 +36,11 @@ input{
 
 .expandSearch{
 	border: solid 1px #eeeeee;
+}
+
+#partie_search{
+	width: 280px;
+	margin: auto;
 }
 
 .expandSearch input{
