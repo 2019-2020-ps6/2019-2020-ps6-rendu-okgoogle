@@ -1,0 +1,144 @@
+*, *:before, *:after { box-sizing: border-box; }
+body { background-color: #f0f0f0; }
+
+.container {
+  // background-color: #fff;
+  // border: 1px dashed black;
+  max-width: 600px;
+  margin: 30px auto;
+}
+
+@mixin breakpoint {
+  @media (min-width: 700px) {
+    @content;
+  }
+}
+
+.progressbar-steps {
+  $color-bar: #cacaca; //oops
+  $color-stepinactive: #eaeaea;
+  $color-stepactive: #1bab27;
+  $stepsbar-height-small: 4px;
+  $stepsbar-height-big: 8px;
+  $stepsnode-size-small: 16px;
+  $stepsnode-size-big: 26px;
+
+  display: flex;
+  margin-left: -$stepsnode-size-small;
+  min-height: $stepsnode-size-small;
+  padding: 0;
+  list-style: none;
+
+  @include breakpoint {
+    margin-left: 0;
+  }
+
+  li {
+    // background-color: rgba(0,0,0,0.05);
+    display: flex;
+    flex: 1;
+    position: relative;
+
+    &:before,
+    &:after {
+      content: "";
+      display: block;
+      position: absolute;
+      // z-index: 1;
+    }
+
+    // Creates background bar
+    &:before {
+      background-color: $color-bar;
+      margin-top: -($stepsbar-height-small/2);
+      top: ($stepsnode-size-small/2);
+      left: 2px;
+      height: $stepsbar-height-small;
+      width: 100%;
+
+      @include breakpoint {
+        margin-top: -($stepsbar-height-big/2);
+        top: ($stepsnode-size-big/2);
+        height: $stepsbar-height-big;
+      }
+    }
+
+    // Creates node circle
+    &:after {
+      background-color: $color-stepinactive;
+      border: 2px solid $color-bar;
+      border-radius: 50%;
+      width: $stepsnode-size-small;
+      height: $stepsnode-size-small;
+
+      @include breakpoint {
+        border-width: 3px;
+        width: $stepsnode-size-big;
+        height: $stepsnode-size-big;
+      }
+    }
+
+    // Remove width for last step in mobile
+    &:last-child {
+      flex: 0;
+      // @include breakpoint { flex: 1; }
+    }
+
+    // Remove bar for last step
+    &:last-child:before {
+      display: none;
+    }
+
+    // Font color changes for completed and active steps
+    &.completed .step-content,
+    &.active .step-content {
+      color: #4f4f4f;
+    }
+
+    &.active .step-content {
+      font-weight: bold;
+    }
+
+
+    // Background color for completed and active steps
+    &.completed:before,
+    &.completed:after,
+    &.active:after {
+      background-color: $color-stepactive;
+      border-color: #fff;
+    }
+
+    // Border size remains thin for completed steps
+    &.completed:after {
+      border-width: 2px;
+    }
+  }
+
+
+  i {
+    color: #fff;
+    font-size: 10px;
+    text-align: center;
+    line-height: $stepsnode-size-small;
+    position: absolute;
+    width: $stepsnode-size-small;
+    height: $stepsnode-size-small;
+
+  }
+
+  .step-content {
+    color: $color-bar;
+    font-size: 14px;
+    display: none;
+    padding-top: 20px;
+
+    @include breakpoint {
+      display: flex;
+      padding-top: 30px;
+      text-align: center;
+      width: 100px;
+      flex-flow: row wrap;
+      margin-left: -20px;
+    }
+  }
+}

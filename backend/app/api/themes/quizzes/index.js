@@ -11,7 +11,6 @@ const router = new Router({ mergeParams: true })
 router.get('/', (req, res) => {
   try {
     const quizzes = buildQuizzes()
-    console.log(quizzes)
     res.status(200).json(quizzes)
   } catch (err) {
     manageAllErrors(res, err)
@@ -21,7 +20,6 @@ router.get('/', (req, res) => {
 router.get('/:quizId', (req, res) => {
   try {
     const quizz = buildQuizz(req.params.quizId)
-    console.log(quizz)
     res.status(200).json(quizz)
   } catch (err) {
     manageAllErrors(res, err)

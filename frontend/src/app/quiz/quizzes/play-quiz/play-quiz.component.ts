@@ -80,8 +80,7 @@ export class PlayQuizComponent implements OnInit {
     //quiz pas fini
     if (answer.isCorrect && this.ptrQuestion != this.quiz.questions.length - 1) {
 
-      if (this.source != undefined && this.playSong)
-        this.source.stop();
+      this.stopSource()
       this.modalIn = true;
       this.modalOut = false;
       this.quizDebut = false;
@@ -108,7 +107,7 @@ export class PlayQuizComponent implements OnInit {
       setTimeout(() => {
         this.modalOut = true;
         document.body.classList.remove('modal-active')
-        this.source.stop();
+        this.stopSource()
       }, 5000)
       this.timerPopup = 5;
     }
@@ -120,7 +119,7 @@ export class PlayQuizComponent implements OnInit {
       this.modalOut = false;
       this.quizFini = true;
       this.modalIn = true;
-      this.source.stop()
+      this.stopSource()
       document.body.classList.add('modal-active')
     }
 
@@ -220,15 +219,20 @@ export class PlayQuizComponent implements OnInit {
         })
       });
       document.body.classList.remove('modal-active')
-      this.source.stop()
+      this.stopSource()
     }, 5000)
     this.timerPopup = 5;
   }
 
   quitter() {
     this.modalOut = true;
-    this.source.stop()
+    this.stopSource()
     this.goBack();
+  }
+
+  stopSource(){
+    if(this.source != undefined && this.playSong)
+      this.source.stop();
   }
 
   switchMenu() {

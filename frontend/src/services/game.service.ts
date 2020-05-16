@@ -22,7 +22,6 @@ export class GameService implements OnInit {
   private TabAnswersQuestions: Answer[][] = [];
   private nbAide: number = 0;
   public ptrQuestion:number=0;
-  public timer: number = 0;
   public onPrevious: Boolean = false;
 
   public resultFinal$: Subject<Result> = new Subject();
@@ -32,7 +31,7 @@ export class GameService implements OnInit {
   private lien = "http://localhost:9428/api/"
 
   constructor(private route: ActivatedRoute,private http: HttpClient, private quizService:QuizService, private userService: UserService) {
-    setInterval(()=> {this.timer+=1}, 1000)
+
   }
   ngOnInit(): void {
   }
@@ -69,7 +68,7 @@ export class GameService implements OnInit {
     if(answer.isCorrect){
       this.quizFinal.questions[this.ptrQuestion].answers.push(answer)
       if(this.ptrQuestion === this.quizSelected.questions.length-1){
-        this.addResult(this.timer)
+        this.addResult()
       }else{
         this.ptrQuestion++;
         this.questionSelected = {...this.quizSelected.questions[this.ptrQuestion]};
@@ -102,19 +101,17 @@ export class GameService implements OnInit {
     }
   }
 
-  addResult(dureeJeu: number){
+  addResult(){
     if(!this.userService.defaultUser){
       this.resultFinal.userId = sessionStorage.getItem("user_id");
       this.resultFinal.quiz = this.clone(this.quizFinal)
       this.resultFinal.nbAide = this.nbAide;
-      this.resultFinal.dureeJeu = dureeJeu;
       this.resultFinal.dateJeu = new Date().toString();
       console.log(this.quizFinal)
   
       this.http.post(this.lien +'result/', this.resultFinal).subscribe();
     }
 
-    dureeJeu = 0;
     this.ptrQuestion = 0;
     this.questionSelected = this.quizSelected.questions[this.ptrQuestion];
     this.questionSelected$.next(this.questionSelected)

@@ -36,7 +36,7 @@
     </div>
 </div>
 <div *ngIf="themesList.length === 0 || (!hasThemeWithQuiz && curStatus === 'user')">
-    <h1 style="font-family: 'baloo thambi' cursive;text-align: center; padding: 20px;">Aucun thèmes pour l'instant</h1>
+    <h1 class="aucun_elements">Aucun thèmes pour l'instant</h1>
 </div>
 <div class= "alignCenter" *ngIf="themesList.length === 0">
     <button class = "btn_goTheme" (click)="goToCreateTheme()" *ngIf="page === 'theme-list' && curStatus === 'admin'"  >Créer un theme</button>

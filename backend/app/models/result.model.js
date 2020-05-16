@@ -10,5 +10,4 @@ module.exports = new BaseModel('Result', {
     nbCorrect: Joi.number(),
     nbAide: Joi.number(),
     dateJeu: Joi.string(),
-    dureeJeu: Joi.number()
 })

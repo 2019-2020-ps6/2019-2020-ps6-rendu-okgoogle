@@ -8,5 +8,4 @@ export interface Result {
   nbCorrect: number
   nbAide: number;
   dateJeu: string;
-  dureeJeu: number;
 }
