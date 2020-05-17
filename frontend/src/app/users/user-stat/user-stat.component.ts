@@ -60,7 +60,7 @@ export class UserStatComponent implements OnInit {
     }
     
     this.themeService.getThemeById(maxEl);
-    this.themeService.themeSelected$.subscribe((theme)=> this.themeFavori = theme[0]);
+    this.themeService.themeSelected$.subscribe((theme)=>this.themeFavori = theme);
     
   }
 

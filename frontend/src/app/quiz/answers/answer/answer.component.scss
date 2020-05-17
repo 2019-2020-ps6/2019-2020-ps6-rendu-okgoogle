@@ -11,6 +11,8 @@ img{
     padding: 10px;
 }
 
+
+
 #imageGestion2{
     box-sizing: border-box;
     width: 100%;
@@ -233,4 +235,12 @@ confirm-button {
 .answerValue{
   font-family: cursive !important; 
   font-weight: bold !important;
+}
+
+.reponseContainer{
+  padding: 30px; background-color: wheat; width: 100%;
+}
+
+.reponseContainer div:first-child{
+  width: 90%;margin: auto; word-break: break-all;
 }

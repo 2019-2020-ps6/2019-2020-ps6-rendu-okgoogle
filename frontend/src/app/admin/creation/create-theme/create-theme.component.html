@@ -20,11 +20,11 @@
 
           <ng-template *ngIf="WithImage; then activate else desactivate"></ng-template>
           <ng-template #activate>
-            <input (click)="switch_mode()" class="toggle__checkbox" type="checkbox" checked style="display: none;">
+            <input (click)="switch_mode()" class="toggle__checkbox" type="checkbox" checked >
           </ng-template>
 
           <ng-template #desactivate>
-            <input (click)="switch_mode()" class="toggle__checkbox" type="checkbox" style="display: none;">
+            <input (click)="switch_mode()" class="toggle__checkbox" type="checkbox">
           </ng-template>
 
           <span class="toggle__switcher"></span>

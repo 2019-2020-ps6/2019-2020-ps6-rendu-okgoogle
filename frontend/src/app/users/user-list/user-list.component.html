@@ -6,7 +6,7 @@
                     <img class="category__02"
                         src="https://pbs.twimg.com/profile_images/799977947461517312/D0dSS5qF_400x400.jpg" alt="" />
                 </picture>
-                <h2 style="text-align: center;">Utilisateur anonyme</h2>
+                <h2 class="centerName">Utilisateur anonyme</h2>
             </div>
         </article>
     </section>
@@ -14,4 +14,8 @@
         <app-user id="element" [user]="user" (userDeleted)="userDeleted($event)" (userStatistic)="userStatistic($event)"
             (EditUser)="userEdited($event)" (userSelected)="userSelected($event)"></app-user>
     </div>
+</div>
+
+<div *ngIf="userList.length === 0 && curStatus === 'admin'">
+    <h1 class="aucun_elements">Aucun utilisateur pour l'instant</h1>
 </div>

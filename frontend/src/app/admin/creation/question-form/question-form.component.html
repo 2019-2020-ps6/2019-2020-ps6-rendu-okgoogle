@@ -8,23 +8,20 @@
                     <div style="display: flex; flex-flow: row wrap;justify-content: center;" >
                         <div (click)="QuatreImageUneQuestionText()" >
                             <img style="max-width: 200px;" src="https://zupimages.net/up/20/15/rcca.jpg" alt="">
-                        </div>
-                        &nbsp;
-                        &nbsp;
-                        &nbsp;
+                        </div>&nbsp;&nbsp;&nbsp;
                         <div (click)="UneImageQuatreText()" >
                             <img style="max-width: 200px;" src="https://zupimages.net/up/20/15/em0f.jpg" alt="">
                         </div>
                     </div> 
-                    <p style="text-align: center;font-weight: bold;">Mode: {{mode}}</p>
+                    <p class="mode">Mode: {{mode}}</p>
                 </div>
                 <label for="title">
-                    Titre
+                    Titre*
                     <input type="text" placeholder="Nom de la question" [formControlName]="'label'">
                 </label>
                 <label for="imageUrlQuestion">
                     <input *ngIf="mode === 'Image pour énoncé et text pour réponses'" class="imgQuestion" type="text" placeholder="Lien vers l'image" [formControlName]="'imgUrl'">
-                    <img *ngIf="mode === 'Image pour énoncé et text pour réponses'" style="width: 100px;" [src]="questionForm.controls.imgUrl.value" alt="">
+                    <img *ngIf="mode === 'Image pour énoncé et text pour réponses'" class="apercu" [src]="questionForm.controls.imgUrl.value" alt="">
                 </label>
                 <br>
                 <div *ngIf="modeAide === 0">
@@ -54,12 +51,12 @@
                 <div class="answer" formArrayName="answers">
                     <!-- On recupere le getter answers de (get answers()) et avec controls on parcours avec un index -->
                     <div *ngFor="let answer of answers.controls; let i = index">
-                        <div style="padding: 20px;" class="answer-form" [formGroupName]="i">
+                        <div class="answer-form" [formGroupName]="i">
                             Reponse {{i+1}}: <br> <input placeholder="La réponse" placeholder="Réponse" type="text"
                                 [formControlName]="'value'">
                             <br>
                             <input *ngIf="mode === 'Text pour énoncé et image pour réponses'" class="imgReponse" type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'">
-                            <img *ngIf="mode === 'Text pour énoncé et image pour réponses'" style="width: 100px;" [src]="questionForm.controls.answers.controls[i].controls.imageUrl.value" alt=""><br>
+                            <img *ngIf="mode === 'Text pour énoncé et image pour réponses'" class="apercu" [src]="questionForm.controls.answers.controls[i].controls.imageUrl.value" alt=""><br>
                             <label id="label">Correct</label> 
                             <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="changeColorOnChecked(i)">
                         </div>
@@ -71,12 +68,12 @@
                 <button class="button red" [disabled]="questionForm.invalid" (click)="addQuestion()">Créer</button>
 
 
-                <div *ngIf="questionForm.controls.label.invalid && (questionForm.controls.label.dirty || questionForm.controls.label.touched)"class="alert alert-danger">
-                    <div style="color: red;font-weight: bold;border: 2px solid; border-radius: 3px;margin-bottom: 10px;" *ngIf="questionForm.controls.label.errors.required">
+                <div *ngIf="questionForm.controls.label.invalid && (questionForm.controls.label.dirty || questionForm.controls.label.touched)" class="alert-dark">
+                    <div *ngIf="questionForm.controls.label.errors.required">
                     Le nom de la question est requis.
                     </div>
                 </div>
-                <div style="color: red;font-weight: bold;border: 2px solid; border-radius: 3px;margin-bottom: 10px;" *ngIf="questionForm.controls.imgUrl.invalid && (questionForm.controls.imgUrl.dirty || questionForm.controls.imgUrl.touched)"class="alert alert-danger">
+                <div *ngIf="questionForm.controls.imgUrl.invalid && (questionForm.controls.imgUrl.dirty || questionForm.controls.imgUrl.touched)" class="alert-dark">
                     <div *ngIf="questionForm.controls.imgUrl.errors.required">
                     L'Url de l'image est requis.
                     </div>

@@ -3,8 +3,8 @@
             <div *ngIf="answer.imageUrl"  id="imageGestion1">
                 <img [src]="answer.imageUrl" alt="">  
             </div>
-            <div style="padding: 30px; background-color: wheat; width: 100%;">
-                <div style="width: 90%;margin: auto; word-break: break-all;">
+            <div class="reponseContainer">
+                <div>
                     <p class="zommableEnonce answerValue">{{answer.value}}</p>
                 </div>
                  <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'">

@@ -1,6 +1,7 @@
 @import '../../../../styles/confetti.scss';
 @import '../../../../styles/modal.scss';
 @import '../../../../styles/timeline.scss';
+@import '../../../../styles/not_elements.scss';
 
 html {
   box-sizing: border-box;
@@ -14,6 +15,44 @@ html {
   font-size: 30px;
   padding: 20px;
 }
+
+.menuIconLat{
+  position: absolute; 
+  top: 25px; 
+  left: 30px;
+}
+
+#containerQuizName{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.structQuizName{
+  width: 100%; 
+  display: flex; 
+  justify-content: center;
+  flex-direction: column; 
+  align-items: center;
+}
+
+.quizName{
+  color: chocolate;
+}
+
+.label{
+  font-size: 25px;
+}
+
+.containerImgQuestion{
+  display: flex; 
+  justify-content: center;
+}
+
+.containerImgQuestion img{
+  max-width: 300px;
+}
+
 
 body {
   background-color: #c0c0c0;
@@ -95,6 +134,7 @@ and (max-device-width : 667px) {
   text-shadow: none;
   border: none;
   font-family: "Roboto Condensed", sans-serif;
+  font-size: 25px;
   padding: 10px 50px;
 }
 
@@ -106,6 +146,7 @@ and (max-device-width : 667px) {
   text-shadow: none;
   border: none;
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 25px;
   width : 60%;
 }
 
@@ -277,4 +318,9 @@ a.cancel:active {
   flex-wrap: wrap;
   justify-content: space-around;
   list-style: none;
+}
+
+.buttonContainer{
+  word-wrap: break-word;
+   width: auto;
 }

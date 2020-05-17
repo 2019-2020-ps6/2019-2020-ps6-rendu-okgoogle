@@ -1,48 +1,45 @@
 <section class="cards">
     <article class="card">
-        <!-- <picture *ngIf="user.img != ''" class="thumbnail">
-             <img class="category__02" src="{{user.img}}" alt="" />
-        </picture> -->
-            <div *ngIf="curStatus === 'admin'" id="conteneur">
-                <div id="partie_user_admin">
-                    <picture *ngIf="user.img != ''" class="thumbnail">
-                        <img class="category__02" src="{{user.img}}" alt="" />
-                    </picture>
-                    <br>
-                    <span style="word-wrap: break-word;"><strong>Identité :</strong> {{user.name}}
-                        {{user.surname}}</span>
-                    <br>
-                    <span style="word-wrap: break-word;"><strong>Sexe :</strong> {{user.sexe}}</span>
-                    <br>
-                    <span style="word-wrap: break-word;"><strong>Age :</strong> {{user.age}}</span>
-                    <br>
-                    <span style="word-wrap: break-word;"><strong>Description :</strong> {{user.description}}</span>
-                    <br>
+        <div *ngIf="curStatus === 'admin'" id="conteneur">
+            <div id="partie_user_admin">
+                <picture *ngIf="user.img != ''" class="thumbnail">
+                    <img class="category__02" src="{{user.img}}" alt="" />
+                </picture>
+                <br>
+                <span class="wrapWord"><strong>Identité :</strong> {{user.name}}
+                    {{user.surname}}</span>
+                <br>
+                <span class="wrapWord"><strong>Sexe :</strong> {{user.sexe}}</span>
+                <br>
+                <span class="wrapWord"><strong>Age :</strong> {{user.age}}</span>
+                <br>
+                <span class="wrapWord"><strong>Description :</strong> {{user.description}}</span>
+                <br>
 
-                    <div id="buttons">
-                        <button class="button" (click)="editUser(user)">Editer</button>
-                        <button class="button" (click)="supprUserConfirmation(user)">Supprimer</button>
-                        <button class="button" (click)="statistic(user)">Statistique</button>
+                <div id="buttons">
+                    <button class="button whiteText" (click)="editUser(user)">Editer</button>
+                    <button class="button" (click)="supprUserConfirmation(user)">Supprimer</button>
+                    <button class="button" (click)="statistic(user)">Statistique</button>
+                </div>
+
+                <div *ngIf="user === userToDelete">
+                    <div *ngIf="confirmationDeleteUser" class='confirm--active'>
+                    <div class="confirmBox">
+                        <p class="confirmSuppr">Voulez-vous vraiment supprimer cet accueilli ?</p>
+                        <button (click)="supprUserC(userToDelete,true)" class="button red">Oui</button>
+                        <button (click)="supprUserC(userToDelete,false)" class="button white">non</button>
                     </div>
-
-                    <div *ngIf="user === userToDelete">
-                        <div *ngIf="confirmationDeleteUser" class='confirm--active'>
-                        <div class="confirmBox">
-                            <p style="color: white">Voulez-vous vraiment supprimer cet accueilli ?</p>
-                            <button (click)="supprUserC(userToDelete,true)" class="button red">Oui</button>
-                            <button (click)="supprUserC(userToDelete,false)" class="button white">non</button>
-                        </div>
-                        </div>
                     </div>
-
                 </div>
 
             </div>
-            <div *ngIf="curStatus === 'user'" class="user_card" (click)="selectUser(user)">
-                <picture (click)="selectUser(user)" *ngIf="user.img != ''" class="thumbnail">
-                    <img class="category__02" src="{{user.img}}" alt="" />
-                </picture>
-                <h2 style="text-align: center;">{{user.name}} {{user.surname}}</h2>
-            </div>
+
+        </div>
+        <div *ngIf="curStatus === 'user'" class="user_card" (click)="selectUser(user)">
+            <picture (click)="selectUser(user)" *ngIf="user.img != ''" class="thumbnail">
+                <img class="category__02" src="{{user.img}}" alt="" />
+            </picture>
+            <h2 class="centerName">{{user.name}} {{user.surname}}</h2>
+        </div>
     </article>
 </section>

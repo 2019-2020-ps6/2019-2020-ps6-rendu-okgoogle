@@ -1,13 +1,12 @@
 <ng-container *ngIf="quiz">
     <div>
         <form action="" [formGroup]="quizForm">
-            <div style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+            <div class="modification">
                 <div>
-                    <span style="text-align: center;font-size: 35px;">Édition quiz : <strong
-                            style="color: orangered;">{{quiz.name}}</strong></span>
+                    <span class="titrePage">Édition quiz : <strong class="strongColor">{{quiz.name}}</strong></span>
                 </div>
                 <div class="image_restriction">
-                    <img style="width : 20%;" [src]="quiz.imageUrl" alt="">
+                    <img [src]="quiz.imageUrl" alt="">
                 </div>
                 <div>
                     <button class="edit_button" (click)="editQuiz()" *ngIf="!edit_quiz">Modifier <i
@@ -15,7 +14,7 @@
 
                     <div *ngIf="edit_quiz" id="container_modifier">
                         <p>Modification</p>
-                        Nom : 
+                        Nom* : 
                         <input *ngIf="edit_quiz" type="text" name="" [formControlName]="'name'" id="">
                         <br>
                         Url image :

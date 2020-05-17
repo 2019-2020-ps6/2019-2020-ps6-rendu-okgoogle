@@ -1,12 +1,11 @@
 <div *ngIf="curTheme">
     <form [formGroup]="themesForm">
-        <div style="display: flex;justify-content: center;flex-direction: column;align-items: center;">
+        <div class="containerForm">
             <div>
-                <span style="text-align: center;font-size: 35px;">Édition theme : <strong
-                        style="color: orangered;">{{curTheme.name}}</strong></span>
+                <span class="titrePage">Édition theme : <strong class="strongFont">{{curTheme.name}}</strong></span>
             </div>
             <div class="image_restriction">
-                <img style="width: 20%;" [src]="curTheme.imageUrl" alt="">
+                <img [src]="curTheme.imageUrl" alt="">
             </div>
             <div>
                 <button (click)="editTheme()" class="edit_button" *ngIf="!edit_theme">Modifier <i
@@ -19,8 +18,8 @@
                     Url image :
                     <input *ngIf="edit_theme" type="text" name="" [formControlName]="'imageUrl'" id="">
                     <br>
-                    <button *ngIf="edit_theme" style="background-color: lightgreen;" (click)="validateTheme()">Valider</button>
-                    <button *ngIf="edit_theme" style="background-color: lightcoral;" (click)="annulerTheme()">Annuler</button>
+                    <button *ngIf="edit_theme" class="validate" (click)="validateTheme()">Valider</button>
+                    <button *ngIf="edit_theme" class="cancel" (click)="annulerTheme()">Annuler</button>
                 </div>
             </div>
         </div>

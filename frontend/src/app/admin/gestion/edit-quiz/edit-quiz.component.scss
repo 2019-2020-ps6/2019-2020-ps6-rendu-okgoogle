@@ -6,6 +6,18 @@
     font-family: "Baloo Thambi 2", cursive;
 }
 
+.modification{
+    display: flex;justify-content: center;flex-direction: column;align-items: center;
+}
+
+.strongColor{
+    color: orangered;
+}
+
+.titrePage{
+    text-align: center;font-size: 35px;
+}
+
 .image_restriction{
     margin-left: auto;
     margin-right: auto;
@@ -17,7 +29,7 @@
 
 .image_restriction img{
     box-sizing: border-box;
-    width: 50%;
+    width: 20%;
     text-align: center;
 }
 

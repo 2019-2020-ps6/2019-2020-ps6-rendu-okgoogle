@@ -22,22 +22,22 @@
           <button *ngIf="goal === 'edit'" [disabled]="userForm.invalid" class="button red" (click)="editUser()">Modifier</button>
           <button *ngIf="goal === 'create'" [disabled]="userForm.invalid" class="button blue" (click)="addUser()">Créer</button>
 
-          <div style="color: white;font-weight: bold;border: 2px solid; border-radius: 3px;margin-bottom: 10px;"  *ngIf="userForm.controls.name.invalid && (userForm.controls.name.dirty || userForm.controls.name.touched)"class="alert alert-danger">
+          <div *ngIf="userForm.controls.name.invalid && (userForm.controls.name.dirty || userForm.controls.name.touched)" class="alert">
             <div *ngIf="userForm.controls.name.errors.required">
               Le nom de l'accueilli est requis.
             </div>
           </div>
-          <div style="color: white;font-weight: bold;border: 2px solid; border-radius: 3px;margin-bottom: 10px;"  *ngIf="userForm.controls.surname.invalid && (userForm.controls.surname.dirty || userForm.controls.surname.touched)"class="alert alert-danger">
+          <div *ngIf="userForm.controls.surname.invalid && (userForm.controls.surname.dirty || userForm.controls.surname.touched)" class="alert">
             <div *ngIf="userForm.controls.surname.errors.required">
               Le prénom de l'accueilli est requis.
             </div>
           </div>
-          <div style="color: white;font-weight: bold;border: 2px solid; border-radius: 3px;margin-bottom: 10px;"  *ngIf="userForm.controls.age.invalid && (userForm.controls.age.dirty || userForm.controls.age.touched)"class="alert alert-danger">
+          <div *ngIf="userForm.controls.age.invalid && (userForm.controls.age.dirty || userForm.controls.age.touched)" class="alert">
             <div *ngIf="userForm.controls.age.errors.required">
               L'âge de l'accueilli est requis.
             </div>
           </div>
-          <div style="color: white;font-weight: bold;border: 2px solid; border-radius: 3px;margin-bottom: 10px;"  *ngIf="userForm.controls.sexe.invalid && (userForm.controls.sexe.dirty || userForm.controls.sexe.touched)"class="alert alert-danger">
+          <div *ngIf="userForm.controls.sexe.invalid && (userForm.controls.sexe.dirty || userForm.controls.sexe.touched)" class="alert">
             <div *ngIf="userForm.controls.sexe.errors.required">
               Le sexe de l'accueilli est requis.
             </div>

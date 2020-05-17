@@ -1,4 +1,5 @@
 @import url("../user/user.component.scss");
+@import '../../../styles/not_elements.scss';
 
 .user-list {
   display: flex;
@@ -11,6 +12,10 @@
 
 #partie_user{
   flex: 1 1 48%;
+}
+
+.centerName{
+  text-align: center;
 }
 
 

@@ -49,9 +49,6 @@ export class UserFormComponent implements OnInit {
   }
 
 
-  //fonction modify user
-
-
   addUser() {
     if(this.userForm.valid){
       const userToCreate: User = this.userForm.getRawValue() as User;
@@ -62,14 +59,13 @@ export class UserFormComponent implements OnInit {
         userToCreate.img = "https://www.w3schools.com/howto/img_avatar.png";
       }
   
-      for(var i in userToCreate){
-        if(parseInt(i) > 2)
-          if(userToCreate[i] === "")
-            userToCreate[i] = "Non renseigné"
-      }
 
-  
-      this.router.navigate(['/user-list']);
+      if(userToCreate.description === "")
+        userToCreate.description = "Non renseigné"
+
+      
+
+      this.router.navigate(['user-list']);
   
       this.userService.addUser(userToCreate);
     }
@@ -77,6 +73,18 @@ export class UserFormComponent implements OnInit {
 
   editUser(){
     const userToCreate: User = this.userForm.getRawValue() as User;
+    
+    if(userToCreate.sexe == "F"){
+      userToCreate.img = "https://www.w3schools.com/howto/img_avatar2.png";
+    }else{
+      userToCreate.img = "https://www.w3schools.com/howto/img_avatar.png";
+    }
+
+
+    if(userToCreate.description === "")
+      userToCreate.description = "Non renseigné"
+
+    
     this.userEdited.emit(userToCreate);
   }
 

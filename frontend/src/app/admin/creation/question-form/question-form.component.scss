@@ -1,18 +1,24 @@
 @import '../../../../styles/button.scss';
+@import '../../../../styles/validator.scss';
 
 .dialogdemoBasicUsage #popupContainer {
-    position: relative; }
-  .dialogdemoBasicUsage .footer {
-    width: 100%;
-    text-align: center;
-    margin-left: 20px; }
-  .dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
-    font-size: 0.8em;
-    margin-top: 50px; }
+  position: relative; 
+}
+.dialogdemoBasicUsage .footer {
+  width: 100%;
+  text-align: center;
+  margin-left: 20px; 
+}
+.dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+  font-size: 0.8em;
+  margin-top: 50px; 
+}
   
-
+.mode{
+  text-align: center;
+  font-weight: bold;
+}
   
-    
 #partie_creation_question{
   padding: 2em;
   width: 85%;
@@ -43,6 +49,10 @@ input[type='checkbox']{
   width: 80%;
   margin-right: auto;
   margin-left: auto;
+}
+
+.apercu{
+  width: 100px;
 }
 
 .titre{
@@ -122,6 +132,7 @@ form input[type='text']:focus, form textarea:focus {
   margin-top: 0.8em;
   background-color: #aaa;
   border-radius: 1em;
+  padding: 20px;
 }
 
 .correct{

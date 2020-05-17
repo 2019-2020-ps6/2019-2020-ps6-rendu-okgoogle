@@ -29,7 +29,7 @@
                         <li>
                             <div class="txt">
                                 {{answer.value}} <ng-container *ngIf="answer.isCorrect && curStatus === 'admin'"><i
-                                        class="far fa-check-square" style="color: lime;"></i>
+                                        class="far fa-check-square limeColor"></i>
 
                                 </ng-container>
                                 <br>
@@ -84,8 +84,8 @@
                 <br>
                 <div>
                     <div *ngIf="confirmationDeleteQuestion" class='confirm--active'>
-                        <div style="display: flex; justify-content: center; flex-direction: column;align-items: center;" class="confirmBox">
-                            <p style="color: black; font-size: 25px; text-align: center;" >Voulez-vous vraiment supprimer cette question ?</p>
+                        <div class="confirmBox">
+                            <p>Voulez-vous vraiment supprimer cette question ?</p>
                             <div>
                                 <button (click)="supprQuestionC(true)" class="button red">oui</button>
                                 <button (click)="supprQuestionC(false)" class="button white">non</button>

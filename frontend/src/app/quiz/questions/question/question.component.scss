@@ -15,6 +15,10 @@
   
 }
 
+.limeColor{
+  color: lime;
+}
+
 ul{
 padding: 0;
 }
@@ -267,4 +271,17 @@ color: white;
       }
     }
   }
+}
+
+.confirmBox{
+  display: flex; 
+  justify-content: center; 
+  flex-direction: column;
+  align-items: center;
+}
+
+.confirmBox p {
+  color: black; 
+  font-size: 25px; 
+  text-align: center;
 }

@@ -1,7 +1,3 @@
-<head>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
-</head>
-
 <div *ngIf="questionSelected">
   <!-- Modal after good answer -->
 
@@ -26,18 +22,18 @@
             <svg class="modal-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" preserveAspectRatio="none">
               <rect x="0" y="0" fill="none" width="226" height="162" rx="3" ry="3"></rect>
             </svg>
-            <img class="imageModal" *ngIf="quizDebut" src="https://zupimages.net/up/20/18/mx4u.jpg" style="width: 250px; object-fit: cover;" alt="">
-            <img class="imageModal" *ngIf="quizFini && !quizDebut" src="https://thumbs.dreamstime.com/b/banni%C3%A8re-de-bravo-91022451.jpg" width="300" alt=""><br>
-            <p style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizFini && !quizDebut"> Félicitation {{user.surname}} </p><br>
-            <p class="textModal" style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizDebut"> Le quiz commence dans {{timerPopup}} secondes</p>
-            <p class="textModal" style="font-family: 'Fredoka One', cursive; font-size: 30px;" *ngIf="quizFini === false && !quizDebut"> Prochaine question dans {{timerPopup}} secondes</p>
+            <img *ngIf="quizDebut" src="https://zupimages.net/up/20/18/mx4u.jpg" alt="">
+            <img *ngIf="quizFini && !quizDebut" src="https://thumbs.dreamstime.com/b/banni%C3%A8re-de-bravo-91022451.jpg"  alt=""><br>
+            <p *ngIf="quizFini && !quizDebut"> Félicitation {{user.surname}} </p><br>
+            <p *ngIf="quizDebut"> Le quiz commence dans {{timerPopup}} secondes</p>
+            <p *ngIf="quizFini === false && !quizDebut"> Prochaine question dans {{timerPopup}} secondes</p>
             <a *ngIf="quizFini && !quizDebut" (click)="rejouer()" class="btn blue">Rejouer</a>
             <a *ngIf="quizFini && !quizDebut" (click)="quitter()" class="btn cancel">Quitter</a>
       </div>
     </div>
   </div>
 
-  <a style="position: absolute; top: 25px; left: 30px;" *ngIf="!menu" (click)="switchMenu()">
+  <a class="menuIconLat" *ngIf="!menu" (click)="switchMenu()">
       <svg width="30" height="30">
           <path d="M0,5 30,5" stroke="#333" stroke-width="5"/>
           <path d="M0,14 30,14" stroke="#333" stroke-width="5"/>
@@ -54,12 +50,12 @@
   </ul>
 </div>
 
-<div style="width: 100%;margin-left: auto;margin-right: auto;">
+<div id="containerQuizName">
   <ng-container *ngIf="questionSelected">
 
-    <div style="width: 100%;">
-      <div style="width: 100%; display: flex; justify-content: center;flex-direction: column; align-items: center;"> 
-        <span class="titreQuiz">{{curTheme.name}} - <span style="color: chocolate;">{{quiz.name}}</span>  </span>
+    <div>
+      <div class="structQuizName"> 
+        <span class="titreQuiz">{{curTheme.name}} - <span class="quizName">{{quiz.name}}</span>  </span>
       </div>
     </div>
 
@@ -68,20 +64,20 @@
     <p *ngIf="questionSelected === undefined">Aucune question pour ce quiz :(</p>
 
     <div id="quiz">
-      <h3 style="font-size: 25px;" *ngIf="questionSelected.imgUrl === ''" class="zoommable" id="question">{{questionSelected.label}}</h3>
+      <h3 class="label" *ngIf="questionSelected.imgUrl === ''" class="zoommable" id="question">{{questionSelected.label}}</h3>
       
       <!-- Cas ou on a image dans question -->
 
       <div *ngIf="questionSelected.imgUrl">
-        <div style="display: flex; justify-content: center;">
-          <img style="max-width: 300px;" [src]="questionSelected.imgUrl" alt="">
+        <div class="containerImgQuestion">
+          <img [src]="questionSelected.imgUrl" alt="">
         </div>
-        <h3 style="font-size: 25px;" class="zoommable" id="question">{{questionSelected.label}}</h3>      
+        <h3 class="zoommable label" id="question">{{questionSelected.label}}</h3>      
       </div>
 
       <!-- Indice -->
-      <p style="font-size: 25px;" class="zoommable" id="indice" *ngIf="questionSelected.indice && afficheIndice">{{questionSelected.indice}}</p>
-      <p style="font-size: 25px;" class="zoommable" id="indice" *ngIf="questionSelected.sonUrl && playSong"> Écoutez l'indice <i class='fas fa-headphones'></i></p>
+      <p class="zoommable label" id="indice" *ngIf="questionSelected.indice && afficheIndice">{{questionSelected.indice}}</p>
+      <p class="zoommable label" id="indice" *ngIf="questionSelected.sonUrl && playSong"> Écoutez l'indice <i class='fas fa-headphones'></i></p>
       
       <!-- Answers -->
       
@@ -99,18 +95,18 @@
 
       <div id="struct_bouton">
         <div id=Cbouton>
-          <div style="word-wrap: break-word;width: auto;">
-            <button style="font-size: 25px;" class="zoommable precedent" *ngIf="ptrQuestion != 0" (click)="questionPrecedente()" >Question précédente</button>
+          <div class="buttonContainer">
+            <button class="zoommable precedent" *ngIf="ptrQuestion != 0" (click)="questionPrecedente()" >Question précédente</button>
           </div>
-          <div style="word-wrap: break-word; width: auto;">
-            <button style="font-size: 25px;" class="zoommable aide" *ngIf="!playSong && !afficheIndice && (questionSelected.sonUrl || questionSelected.indice)" (click)="aide()"><i class="far fa-question-circle"></i> Aide</button>
+          <div class="buttonContainer">
+            <button class="zoommable aide" *ngIf="!playSong && !afficheIndice && (questionSelected.sonUrl || questionSelected.indice)" (click)="aide()"><i class="far fa-question-circle"></i> Aide</button>
           </div>
         </div>
       </div>
 
       <!-- TimeLine -->
 
-      <div style="text-align: center;" class="container">
+      <div class="containerTimeLine">
         <ul #progressBar class="progressbar-steps">
           <li *ngFor="let question of quiz.questions; let i = index" >
             <span  class="step-content">Question {{i+1}}</span>
@@ -126,6 +122,6 @@
 
 <div *ngIf="quiz">
   <div *ngIf="quiz.questions.length === 0">
-      <h1 style="text-align: center;">Aucune question pour l'instant</h1>
+      <h1 class="aucun_elements">Aucune question pour l'instant</h1>
   </div>
 </div>

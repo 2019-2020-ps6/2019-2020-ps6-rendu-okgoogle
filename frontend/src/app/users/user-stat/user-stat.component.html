@@ -1,39 +1,30 @@
-<!DOCTYPE html>
-
-<head>
-    <title>Statistiques</title>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@600&family=Do+Hyeon&display=swap"
-        rel="stylesheet">
-</head>
-
 <div id="all" *ngIf="user">
     <div id="partiegauche">
         <div id="infos">
             <h2 class="texte">Statistiques de l'accueilli :</h2>
             <label class="texte">
-                <p style="margin-bottom: 0;">Nom accueilli: {{user.surname}} {{user.name}}</p><br>
+                <p class="userName">{{user.surname}} {{user.name}}</p><br>
             </label>
             <h4 *ngIf="resSelected" class="texte">Quiz: {{resSelected.quiz.name}}</h4>
-
         </div>
         <div id="parentErreurCorrect">
             <div *ngIf="resSelected" id="erreurs">
-                <p class="texte">erreurs <br><span style="font-weight: bold;">{{resSelected.nbErreur}}</span></p>
+                <p class="texte">erreurs <br><span class="case">{{resSelected.nbErreur}}</span></p>
             </div>
             <div *ngIf="resSelected" id="corrects">
-                <p class="texte">correctes <br><span style="font-weight: bold;">{{resSelected.nbCorrect}}</span></p>
+                <p class="texte">correctes <br><span class="case">{{resSelected.nbCorrect}}</span></p>
             </div>
         </div>
         <div id=parentaidesthemes>
             <div *ngIf="resSelected" id="nb_aides">
-                <p class="texte">nombre d'aides <br> <span style="font-weight: bold;">{{resSelected.nbAide}}</span></p>
+                <p class="texte">nombre d'aides <br> <span class="case">{{resSelected.nbAide}}</span></p>
             </div>
             <div *ngIf="themeFavori && resSelected" id="theme_fav">
-                <p  class="texte">thème favori: <br> <span style="font-weight: bold;">{{themeFavori.name}}</span></p>
+                <p  class="texte">thème favori: <br> <span class="case">{{themeFavori.name}}</span></p>
             </div>
         </div>
         <div *ngIf="resSelected" id="nb_Q">
-            <p class="texte">Nombre de questions<br> <span style="font-weight: bold;">{{resSelected.quiz.questions.length}}</span></p>
+            <p class="texte">Nombre de questions<br> <span class="case">{{resSelected.quiz.questions.length}}</span></p>
         </div>
         <button *ngIf="resSelected" class="buttonDetail" (click)="showDetails()">Plus de détails</button>
     </div>
