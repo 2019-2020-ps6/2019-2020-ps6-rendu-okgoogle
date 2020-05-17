@@ -5,7 +5,13 @@
   display: flex;
   flex-flow: wrap;
   justify-content: space-around;
-  
+  position: relative;
+  z-index: 1;
+  background: lavenderblush;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
   margin-left: auto;
   margin-right: auto;
 }
@@ -46,15 +52,17 @@
 }
 
 @media screen and (max-width: 768px) {
-  // .user{
-  //   width: 100%;
-  // }
-
   .user-list{
     width: 80%;
     margin-top: 1em;
     margin-bottom: 1em;
-    background-color: #ddd;
+    position: relative;
+    z-index: 1;
+    background: lavenderblush;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     border-radius: 2em;
   }
 }
