@@ -125,13 +125,13 @@ export class QuestionFormComponent {
     }
   }
 
-  UneImageQuatreText() {
+  ImageInQuestion() {
     if (this.questionMode == 2) {
       this.questionMode = 1;
     }
   }
 
-  QuatreImageUneQuestionText() {
+  ImageInAnswers() {
     if (this.questionMode == 1) {
       this.questionMode = 2;
     }
