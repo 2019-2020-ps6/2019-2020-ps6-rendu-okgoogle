@@ -8,18 +8,18 @@
                 <img [src]="curTheme.imageUrl" alt="">
             </div>
             <div>
-                <button (click)="editTheme()" class="edit_button" *ngIf="!edit_theme">Modifier <i
+                <button (click)="editTheme()" class="edit_button" *ngIf="!themeEdit">Modifier <i
                         class="fas fa-edit"></i></button>
-                <div *ngIf="edit_theme" id="container_modifier">
+                <div *ngIf="themeEdit" id="container_modifier">
                     <p>Modification</p>
-                    Nom : 
-                    <input  type="text" name="" [formControlName]="'name'" id="">
+                    Nom :
+                    <input type="text" name="" [formControlName]="'name'" id="">
                     <br>
                     Url image :
-                    <input *ngIf="edit_theme" type="text" name="" [formControlName]="'imageUrl'" id="">
+                    <input *ngIf="themeEdit" type="text" name="" [formControlName]="'imageUrl'" id="">
                     <br>
-                    <button *ngIf="edit_theme" class="validate" (click)="validateTheme()">Valider</button>
-                    <button *ngIf="edit_theme" class="cancel" (click)="annulerTheme()">Annuler</button>
+                    <button *ngIf="themeEdit" class="validate" (click)="validateTheme()">Valider</button>
+                    <button *ngIf="themeEdit" class="cancel" (click)="cancelTheme()">Annuler</button>
                 </div>
             </div>
         </div>

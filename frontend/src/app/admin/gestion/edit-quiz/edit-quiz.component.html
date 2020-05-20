@@ -9,19 +9,21 @@
                     <img [src]="quiz.imageUrl" alt="">
                 </div>
                 <div>
-                    <button class="edit_button" (click)="editQuiz()" *ngIf="!edit_quiz">Modifier <i
+                    <button class="edit_button" (click)="editQuiz()" *ngIf="!quizEdit">Modifier <i
                             class="fas fa-edit"></i></button>
 
-                    <div *ngIf="edit_quiz" id="container_modifier">
+                    <div *ngIf="quizEdit" id="container_modifier">
                         <p>Modification</p>
-                        Nom* : 
-                        <input *ngIf="edit_quiz" type="text" name="" [formControlName]="'name'" id="">
+                        Nom* :
+                        <input *ngIf="quizEdit" type="text" name="" [formControlName]="'name'" id="">
                         <br>
                         Url image :
-                        <input *ngIf="edit_quiz" type="text" name="" [formControlName]="'imageUrl'" id="">
+                        <input *ngIf="quizEdit" type="text" name="" [formControlName]="'imageUrl'" id="">
                         <br>
-                        <button *ngIf="edit_quiz" style="background-color: lightgreen;" (click)="validateQuiz()">Valider</button>
-                        <button *ngIf="edit_quiz" style="background-color: lightcoral;" (click)="annulerQuiz()">Annuler</button>
+                        <button *ngIf="quizEdit" style="background-color: lightgreen;"
+                            (click)="validateQuiz()">Valider</button>
+                        <button *ngIf="quizEdit" style="background-color: lightcoral;"
+                            (click)="cancelQuiz()">Annuler</button>
                     </div>
 
                 </div>
