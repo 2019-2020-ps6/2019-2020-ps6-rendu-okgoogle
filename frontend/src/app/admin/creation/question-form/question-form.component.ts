@@ -28,11 +28,6 @@ export class QuestionFormComponent {
   public highlightedImage_1: number;
   public highlightedImage_2: number;
 
-
-
-  
-
-
   constructor(private route: ActivatedRoute, public formBuilder: FormBuilder, private quizService: QuizService) {
     // Form creation
     this.initializeQuestionForm();
@@ -51,12 +46,12 @@ export class QuestionFormComponent {
 
   switchHintMode() {
     if (this.hintMode == this.hintEnum.songHint) {
+      console.log("vers texte")
       this.questionForm.get("indice").setValue("")
       this.hintMode = this.hintEnum.textHint;
-      this.withSong = true;
     } else {
+      console.log("vers song")
       this.hintMode = this.hintEnum.songHint
-      this.withSong = false;
     }
   }
 
@@ -117,12 +112,16 @@ export class QuestionFormComponent {
       this.questionToCreate = this.questionForm.getRawValue() as Question;
       
       this.questionToCreate.id = Date.now().toString();
-
-      if (this.withSong && this.hintMode == this.hintEnum.songHint) {
+      
+      if (this.hintMode === this.hintEnum.songHint) {
+        console.log("sdvjnsdvsd")
         const file = this.file
         const songName = this.questionToCreate.id + "." + file.name.split(".")[1]
         this.fileName = songName;
+        console.log(file)
+        console.log(this.fileName)
         this.quizService.addASong(themeid, quizid, this.file, songName);
+        this.questionToCreate.indice =""
       }
 
       this.questionToCreate.sonUrl = this.fileName

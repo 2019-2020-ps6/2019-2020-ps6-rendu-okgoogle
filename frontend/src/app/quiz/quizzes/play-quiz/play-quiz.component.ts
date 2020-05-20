@@ -261,7 +261,7 @@ export class PlayQuizComponent implements OnInit {
    * Stop the song of the hint
    */
   stopSong(){
-    if(this.source != undefined && this.playSong)
+    if(this.source != undefined || this.playSong)
       this.source.stop();
   }
 
