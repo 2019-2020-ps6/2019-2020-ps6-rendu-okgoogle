@@ -121,6 +121,7 @@ export class GameService {
     }
 
     this.ptrQuestion = 0;
+    this.numberOfHelpUsed = 0;
     this.questionSelected = this.quizSelected.questions[this.ptrQuestion];
     this.questionSelected$.next(this.questionSelected)
     this.quizForResultGame.questions = [];
