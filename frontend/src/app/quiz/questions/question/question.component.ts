@@ -110,7 +110,7 @@ export class questionComponent implements OnInit{
     }
 
 
-    supprAnswerC(answer: Answer,confirmationDelete: boolean){
+    supprAnswer(answer: Answer,confirmationDelete: boolean){
         if(confirmationDelete){
             const themeid = this.route.snapshot.paramMap.get('themeid');
             const quizid = this.route.snapshot.paramMap.get('quizid');
