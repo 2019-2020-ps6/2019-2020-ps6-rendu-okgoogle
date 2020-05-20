@@ -5,7 +5,7 @@
             <h4 class="card__title">{{theme.name}}</h4>
             <div id="boutons">
                 <a class="button white" (click)="selectTheme()">Voir les quiz</a>
-                <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteConfirmation()">Delete</a>
+                <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteConfirmation()">Supprimer</a>
                 <div *ngIf="confirmationDelete" class='confirm--active'>
 
                     <div class="confirmBox">
