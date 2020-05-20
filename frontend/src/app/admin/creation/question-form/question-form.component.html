@@ -12,17 +12,21 @@
                         <div (click)="ImageInQuestion(1)" [ngClass]="{'imageSelected': highlightedImage_2 === 1}">
                             <img style="max-width: 200px;" src="https://zupimages.net/up/20/15/em0f.jpg" alt="">
                         </div>
-                    </div> 
-                    <p *ngIf="questionMode === modeEnum.imageInQuestionModel" class="mode">Mode: Énoncé avec une image et des textes en tant que réponses</p>
-                    <p *ngIf="questionMode === modeEnum.imageInAnswersModel" class="mode">Mode: Énoncé textuel et des images en tant que réponses</p>
+                    </div>
+                    <p *ngIf="questionMode === modeEnum.imageInQuestionModel" class="mode">Mode: Énoncé avec une image
+                        et des textes en tant que réponses</p>
+                    <p *ngIf="questionMode === modeEnum.imageInAnswersModel" class="mode">Mode: Énoncé textuel et des
+                        images en tant que réponses</p>
                 </div>
                 <label for="title">
                     Titre*
                     <input type="text" placeholder="Nom de la question" [formControlName]="'label'">
                 </label>
                 <label for="imageUrlQuestion">
-                    <input *ngIf="questionMode === modeEnum.imageInQuestionModel" class="imgQuestion" type="text" placeholder="Lien vers l'image" [formControlName]="'imgUrl'">
-                    <img *ngIf="questionMode === modeEnum.imageInQuestionModel" class="apercu" [src]="questionForm.controls.imgUrl.value" alt="">
+                    <input *ngIf="questionMode === modeEnum.imageInQuestionModel" class="imgQuestion" type="text"
+                        placeholder="Lien vers l'image" [formControlName]="'imgUrl'">
+                    <img *ngIf="questionMode === modeEnum.imageInQuestionModel" class="apercu"
+                        [src]="questionForm.controls.imgUrl.value" alt="">
                 </label>
                 <br>
                 <div *ngIf="hintMode === hintEnum.textHint">
@@ -34,18 +38,19 @@
                 <div *ngIf="hintMode === hintEnum.songHint">
                     <label for="indice">
                         Indice par son
-                        <input (change)="loadSong($event)" type="file" id="fichier"/>
+                        <input (change)="loadSong($event)" type="file" id="fichier" />
                     </label>
                 </div>
                 <div>
-                    <button class="button blue" (click)="switchHintMode()"><span *ngIf="hintMode === 1">Indice par son</span> <span *ngIf="hintMode === hintEnum.songHint"> Indice par texte </span></button>
+                    <button class="button blue" (click)="switchHintMode()"><span *ngIf="hintMode === 1">Indice par
+                            son</span> <span *ngIf="hintMode === hintEnum.songHint"> Indice par texte </span></button>
                 </div>
                 <br>
 
                 <div *ngIf="count === 4" class="infos">
                     <i class="fas fa-info-circle"></i> Question limitée à 4 réponses
                 </div>
-            
+
                 <!--Answer Part-->
                 <a id="ajout_reponse" class="button red" id="AnswerPart" (click)="addAnswer()">Ajout de réponses</a>
 
@@ -56,27 +61,34 @@
                             Reponse {{i+1}}: <br> <input placeholder="La réponse" placeholder="Réponse" type="text"
                                 [formControlName]="'value'">
                             <br>
-                            <input *ngIf="questionMode == modeEnum.imageInAnswersModel" class="imgReponse" type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'">
-                            <img *ngIf="questionMode == modeEnum.imageInAnswersModel" class="apercu" [src]="questionForm.controls.answers.controls[i].controls.imageUrl.value" alt=""><br>
-                            <label id="label">Correct</label> 
-                            <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="changeColorOnChecked(i)">
+                            <input *ngIf="questionMode == modeEnum.imageInAnswersModel" class="imgReponse" type="text"
+                                placeholder="Lien vers l'image" [formControlName]="'imageUrl'">
+                            <img *ngIf="questionMode == modeEnum.imageInAnswersModel" class="apercu"
+                                [src]="questionForm.controls.answers.controls[i].controls.imageUrl.value" alt=""><br>
+                            <label id="label">Correct</label>
+                            <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'"
+                                (click)="changeColorOnChecked(i)">
                         </div>
                     </div>
                 </div>
                 <!--Answer Part-->
 
-            
-                <button class="button red" [disabled]="questionForm.invalid || count < 2 || questionForm.controls.anwsers" (click)="addQuestion()">Créer</button>
+
+                <button class="button red"
+                    [disabled]="questionForm.invalid || count < 2 || questionForm.controls.anwsers"
+                    (click)="addQuestion()">Créer</button>
 
 
-                <div *ngIf="questionForm.controls.label.invalid && (questionForm.controls.label.dirty || questionForm.controls.label.touched)" class="alert-dark">
+                <div *ngIf="questionForm.controls.label.invalid && (questionForm.controls.label.dirty || questionForm.controls.label.touched)"
+                    class="alert-dark">
                     <div *ngIf="questionForm.controls.label.errors.required">
-                    Le nom de la question est requis.
+                        Le nom de la question est requis.
                     </div>
                 </div>
-                <div *ngIf="questionForm.controls.imgUrl.invalid && (questionForm.controls.imgUrl.dirty || questionForm.controls.imgUrl.touched)" class="alert-dark">
+                <div *ngIf="questionForm.controls.imgUrl.invalid && (questionForm.controls.imgUrl.dirty || questionForm.controls.imgUrl.touched)"
+                    class="alert-dark">
                     <div *ngIf="questionForm.controls.imgUrl.errors.required">
-                    L'Url de l'image est requis.
+                        L'Url de l'image est requis.
                     </div>
                 </div>
             </form>
