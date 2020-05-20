@@ -25,7 +25,7 @@
                 <div *ngIf="user === userToDelete">
                     <div *ngIf="confirmationDeleteUser" class='confirm--active'>
                     <div class="confirmBox">
-                        <p class="confirmSuppr">Voulez-vous vraiment supprimer cet accueilli ?</p>
+                        <p style="color: #fff;" class="confirmSuppr">Voulez-vous vraiment supprimer cet accueilli ?</p>
                         <button (click)="supprUserC(userToDelete,true)" class="button red">Oui</button>
                         <button (click)="supprUserC(userToDelete,false)" class="button white">non</button>
                     </div>
