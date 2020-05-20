@@ -14,40 +14,40 @@ export class editThemeComponent implements OnInit {
 
   public curTheme: Theme
   public themesForm: FormGroup
-  public edit_theme: boolean;
+  public themeEdit: boolean;
 
-  constructor(private route: ActivatedRoute,private formBuilder: FormBuilder, private themeService: ThemeService) { 
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private themeService: ThemeService) {
   }
-  
+
   ngOnInit() {
     const themeid = this.route.snapshot.paramMap.get('themeid');
     this.themeService.setSelectedTheme(themeid)
-    this.themeService.themeSelected$.subscribe((theme)=> {
+    this.themeService.themeSelected$.subscribe((theme) => {
       console.log(theme)
       this.curTheme = theme
       this.initializeThemeForm()
     })
   }
-  
+
   private initializeThemeForm() {
     this.themesForm = this.formBuilder.group({
       name: this.curTheme.name,
-      imageUrl:this.curTheme.imageUrl
+      imageUrl: this.curTheme.imageUrl
     });
   }
 
-  editTheme(){
-    this.edit_theme=true;
+  editTheme() {
+    this.themeEdit = true;
   }
 
-  validateTheme(){
+  validateTheme() {
     const themeid = this.route.snapshot.paramMap.get('themeid');
     const theme = this.themesForm.getRawValue() as Theme;
-    this.themeService.editTheme(themeid,theme)
-    this.edit_theme = false;
+    this.themeService.editTheme(themeid, theme)
+    this.themeEdit = false;
   }
 
-  annulerTheme(){
-      this.edit_theme = false;
+  cancelTheme() {
+    this.themeEdit = false;
   }
 }

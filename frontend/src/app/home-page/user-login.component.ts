@@ -1,4 +1,4 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 
@@ -10,19 +10,19 @@ import { Router } from '@angular/router';
 export class UserLoginComponent implements OnInit {
 
 
-  constructor(private route:Router, public userService: UserService) {
+  constructor(private route: Router, public userService: UserService) {
 
   }
 
   ngOnInit() {
   }
 
-  setAdminUser(): void{
+  setAdminUser(): void {
     sessionStorage.setItem("status", "admin");
     this.route.navigate(['main-admin'])
   }
-  
-  setStdUser(): void{
+
+  setStdUser(): void {
     sessionStorage.setItem("status", "user");
     this.route.navigate(['user-list'])
   }
