@@ -13,13 +13,9 @@ import { ActivatedRoute, Router } from "@angular/router";
     styleUrls: ['./edit-user.component.scss']
 })
 
-export class editUserComponent implements OnInit {
+export class editUserComponent {
 
     public user: User;
-
-    ngOnInit(): void {
-
-    }
 
     constructor(private router: Router, private route: ActivatedRoute, private userService: UserService) {
         const id = this.route.snapshot.paramMap.get('userid');

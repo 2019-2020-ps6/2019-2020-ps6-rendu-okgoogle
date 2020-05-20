@@ -6,7 +6,7 @@ import { Theme } from 'src/models/theme.model';
   templateUrl: './theme.component.html',
   styleUrls: ['./theme.component.scss']
 })
-export class ThemeComponent implements OnInit {
+export class ThemeComponent {
 
   public curStatus:string;
   private confirmationDelete: boolean = false;
@@ -22,9 +22,6 @@ export class ThemeComponent implements OnInit {
 
   constructor() {
     this.curStatus = sessionStorage.getItem("status")
-  }
-
-  ngOnInit() {  
   }
 
   selectTheme() {

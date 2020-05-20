@@ -5,13 +5,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './main-admin.component.html',
   styleUrls: ['./main-admin.component.scss']
 })
-export class MainAdminComponent implements OnInit {
+export class MainAdminComponent {
 
   constructor() {
     
-  }
-
-  ngOnInit() {
   }
 
 }

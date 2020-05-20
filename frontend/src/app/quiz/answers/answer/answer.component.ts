@@ -7,7 +7,7 @@ import { Answer } from '../../../../models/answer.model';
   styleUrls: ['./answer.component.scss']
 })
 
-export class AnswerComponent implements OnInit {
+export class AnswerComponent {
 
   private curStatus: string;
 
@@ -22,10 +22,6 @@ export class AnswerComponent implements OnInit {
 
   constructor() {
     this.curStatus = sessionStorage.getItem("status");
-  }
-
-  ngOnInit() {  
-
   }
 
   editAnswer(){

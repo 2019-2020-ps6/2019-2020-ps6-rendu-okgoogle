@@ -7,7 +7,7 @@ import { Question } from '../../../../models/question.model';
   templateUrl: './answer-list.component.html',
   styleUrls: ['./answer-list.component.scss']
 })
-export class AnswerListComponent implements OnInit {
+export class AnswerListComponent {
 
   @Input()
   question:Question

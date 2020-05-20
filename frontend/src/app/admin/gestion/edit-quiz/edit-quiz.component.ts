@@ -15,8 +15,8 @@ export class editQuizComponent implements OnInit {
 
   public quiz: Quiz;
   public curTheme: Theme
-  public modelImageInAnswers = "./QuatreImgUnequestion.jpg";
-  public modelImageInQuestion = "./UneImgQuatreReponse.jpg";
+  public modelImageInAnswers = "./img/QuatreImgUnequestion.jpg";
+  public modelImageInQuestion = "./img/UneImgQuatreReponse.jpg";
   public quizForm: FormGroup;
   public quizEdit: boolean = false;
 

@@ -9,7 +9,7 @@ import { Quiz } from 'src/models/quiz.model';
   templateUrl: './question-list.component.html',
   styleUrls: ['./question-list.component.scss']
 })
-export class QuestionListComponent implements OnInit {
+export class QuestionListComponent {
 
   public searchQuestion: string;
 
@@ -17,10 +17,6 @@ export class QuestionListComponent implements OnInit {
   quiz:Quiz
 
   constructor(private elementRef: ElementRef, private router:Router, public quizService: QuizService) {
-  }
-
-  ngOnInit(){
-
   }
 
   questionDeletion(question: Question) {

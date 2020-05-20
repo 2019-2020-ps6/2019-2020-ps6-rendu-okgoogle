@@ -7,14 +7,11 @@ import { Router } from '@angular/router';
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.scss']
 })
-export class UserLoginComponent implements OnInit {
+export class UserLoginComponent {
 
 
   constructor(private route: Router, public userService: UserService) {
 
-  }
-
-  ngOnInit() {
   }
 
   setAdminUser(): void {

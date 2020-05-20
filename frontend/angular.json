@@ -25,7 +25,9 @@
             "aot": false,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {"glob": "*.jpg", "input": "./src/assets/img/", "output": "./img/"}
+
             ],
             "styles": [
               "src/styles.scss"

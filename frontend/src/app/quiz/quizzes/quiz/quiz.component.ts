@@ -6,7 +6,7 @@ import { Quiz } from '../../../../models/quiz.model';
   templateUrl: './quiz.component.html',
   styleUrls: ['./quiz.component.scss']
 })
-export class QuizComponent implements OnInit {
+export class QuizComponent  {
 
   private curStatus: string;
   private confirmationDelete: boolean = false;
@@ -24,10 +24,6 @@ export class QuizComponent implements OnInit {
   quizDeleted: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
   constructor() {
-
-  }
-
-  ngOnInit() {
     this.curStatus = sessionStorage.getItem("status")
   }
 
