@@ -12,7 +12,7 @@
 #partie_liste_quiz{
   position: relative;
   z-index: 1;
-  background: cyan;
+  background: rgba(0, 255, 255, 0.699);
   max-width: 80%;
   margin: 0 auto 100px;
   padding: 45px;
@@ -22,8 +22,8 @@
   margin-top: 10px;
 }
 
-.whiteText{
-  color: white;
+.blackText{
+  color: black;
 }
 
 .titreQuiz{
