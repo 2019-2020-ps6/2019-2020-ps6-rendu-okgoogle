@@ -6,39 +6,39 @@
                 <div>
                     <p style="text-align: center;">Modèles de quiz (Cliquez sur le mode)</p>
                     <div class="contentQuestion">
-                        <div (click)="ImageInAnswers()" >
+                        <div (click)="ImageInAnswers(1)" [ngClass]="{'imageSelected': highlightedImage_1 === 1}">
                             <img style="max-width: 200px;" src="https://zupimages.net/up/20/15/rcca.jpg" alt="">
                         </div>&nbsp;&nbsp;&nbsp;
-                        <div (click)="ImageInQuestion()" >
+                        <div (click)="ImageInQuestion(1)" [ngClass]="{'imageSelected': highlightedImage_2 === 1}">
                             <img style="max-width: 200px;" src="https://zupimages.net/up/20/15/em0f.jpg" alt="">
                         </div>
                     </div> 
-                    <p *ngIf="questionMode === 1" class="mode">Mode: Énoncé avec une image et des textes en tant que réponses</p>
-                    <p *ngIf="questionMode === 2" class="mode">Mode: Énoncé textuel et des images en tant que réponses</p>
+                    <p *ngIf="questionMode === modeEnum.imageInQuestionModel" class="mode">Mode: Énoncé avec une image et des textes en tant que réponses</p>
+                    <p *ngIf="questionMode === modeEnum.imageInAnswersModel" class="mode">Mode: Énoncé textuel et des images en tant que réponses</p>
                 </div>
                 <label for="title">
                     Titre*
                     <input type="text" placeholder="Nom de la question" [formControlName]="'label'">
                 </label>
                 <label for="imageUrlQuestion">
-                    <input *ngIf="questionMode === 1" class="imgQuestion" type="text" placeholder="Lien vers l'image" [formControlName]="'imgUrl'">
-                    <img *ngIf="questionMode === 1" class="apercu" [src]="questionForm.controls.imgUrl.value" alt="">
+                    <input *ngIf="questionMode === modeEnum.imageInQuestionModel" class="imgQuestion" type="text" placeholder="Lien vers l'image" [formControlName]="'imgUrl'">
+                    <img *ngIf="questionMode === modeEnum.imageInQuestionModel" class="apercu" [src]="questionForm.controls.imgUrl.value" alt="">
                 </label>
                 <br>
-                <div *ngIf="hintMode === 1">
+                <div *ngIf="hintMode === hintEnum.textHint">
                     <label for="indice">
                         Indice par texte
                         <input type="text" placeholder="Indice pour la question" [formControlName]="'indice'">
                     </label>
                 </div>
-                <div *ngIf="hintMode === 2">
+                <div *ngIf="hintMode === hintEnum.songHint">
                     <label for="indice">
                         Indice par son
                         <input (change)="loadSong($event)" type="file" id="fichier"/>
                     </label>
                 </div>
                 <div>
-                    <button class="button blue" (click)="switchHintMode()"><span *ngIf="hintMode === 1">Indice par son</span> <span *ngIf="hintMode === 2"> Indice par texte </span></button>
+                    <button class="button blue" (click)="switchHintMode()"><span *ngIf="hintMode === 1">Indice par son</span> <span *ngIf="hintMode === hintEnum.songHint"> Indice par texte </span></button>
                 </div>
                 <br>
 
@@ -56,8 +56,8 @@
                             Reponse {{i+1}}: <br> <input placeholder="La réponse" placeholder="Réponse" type="text"
                                 [formControlName]="'value'">
                             <br>
-                            <input *ngIf="questionMode == 2" class="imgReponse" type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'">
-                            <img *ngIf="questionMode == 2" class="apercu" [src]="questionForm.controls.answers.controls[i].controls.imageUrl.value" alt=""><br>
+                            <input *ngIf="questionMode == modeEnum.imageInAnswersModel" class="imgReponse" type="text" placeholder="Lien vers l'image" [formControlName]="'imageUrl'">
+                            <img *ngIf="questionMode == modeEnum.imageInAnswersModel" class="apercu" [src]="questionForm.controls.answers.controls[i].controls.imageUrl.value" alt=""><br>
                             <label id="label">Correct</label> 
                             <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="changeColorOnChecked(i)">
                         </div>

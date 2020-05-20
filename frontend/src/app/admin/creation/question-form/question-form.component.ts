@@ -4,6 +4,8 @@ import { QuizService } from '../../../../services/quiz.service';
 import { Question } from 'src/models/question.model';
 import { ActivatedRoute } from '@angular/router';
 
+import { Mode } from "src/models/mode.enum";
+import { Hint } from "src/models/hint.enum";
 
 @Component({
   selector: 'app-question-form',
@@ -12,16 +14,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class QuestionFormComponent {
 
-
+  public modeEnum = Mode;
+  public hintEnum = Hint;
   public questionForm: FormGroup;
-  public questionMode: number = 1 // 1 = "Image pour énoncé et text pour réponses" ; 2 = "Text pour énoncé et image pour réponses";
-  public hintMode: number = 1 // 1= indice text ; 2=Indice par son
+  public questionMode: number = this.modeEnum.imageInQuestionModel; 
+  public hintMode: number = this.hintEnum.textHint;
   public fileName: string = "";
   public questionToCreate: Question;
   public count: number = 0;
   public withSong: boolean = false;
   public colored: boolean;
   public file : File;
+  public highlightedImage_1: number;
+  public highlightedImage_2: number;
+
+
+
+  
 
 
   constructor(private route: ActivatedRoute, public formBuilder: FormBuilder, private quizService: QuizService) {
@@ -41,12 +50,12 @@ export class QuestionFormComponent {
   }
 
   switchHintMode() {
-    if (this.hintMode == 2) {
+    if (this.hintMode == this.hintEnum.songHint) {
       this.questionForm.get("indice").setValue("")
-      this.hintMode = 1;
+      this.hintMode = this.hintEnum.textHint;
       this.withSong = true;
     } else {
-      this.hintMode = 2
+      this.hintMode = this.hintEnum.songHint
       this.withSong = false;
     }
   }
@@ -60,7 +69,7 @@ export class QuestionFormComponent {
   }
 
   private createAnswer() {
-    if (this.questionMode == 1) {
+    if (this.questionMode == this.modeEnum.imageInQuestionModel) {
       return this.formBuilder.group({
         value: ['', Validators.required],
         isCorrect: [false, Validators.required],
@@ -109,7 +118,7 @@ export class QuestionFormComponent {
       
       this.questionToCreate.id = Date.now().toString();
 
-      if (this.withSong && this.hintMode == 2) {
+      if (this.withSong && this.hintMode == this.hintEnum.songHint) {
         const file = this.file
         const songName = this.questionToCreate.id + "." + file.name.split(".")[1]
         this.fileName = songName;
@@ -125,16 +134,18 @@ export class QuestionFormComponent {
     }
   }
 
-  ImageInQuestion() {
-    if (this.questionMode == 2) {
-      this.questionMode = 1;
+  ImageInQuestion(newValue: number) {
+    if (this.questionMode == this.modeEnum.imageInAnswersModel) {
+      this.questionMode = this.modeEnum.imageInQuestionModel;
     }
+    this.toggleHighlight(newValue, true);
   }
 
-  ImageInAnswers() {
-    if (this.questionMode == 1) {
-      this.questionMode = 2;
+  ImageInAnswers(newValue: number) {
+    if (this.questionMode == this.modeEnum.imageInQuestionModel) {
+      this.questionMode = this.modeEnum.imageInAnswersModel;
     }
+    this.toggleHighlight(newValue, false);
   }
 
   limit() {
@@ -152,5 +163,29 @@ export class QuestionFormComponent {
     console.log(this.count);
     var boutonAjoutReponse = document.querySelector('#AnswerPart') as HTMLElement
     boutonAjoutReponse.style.visibility = "visible";
+  }
+
+  toggleHighlight(newValue: number, mode: boolean) {
+    if(mode){
+      if (this.highlightedImage_2 === newValue) {
+        this.highlightedImage_2 = 0;
+  
+      }
+      else {
+        this.highlightedImage_2 = newValue;
+        this.highlightedImage_1 = 0;
+      }
+    }
+    else{
+      if (this.highlightedImage_1 === newValue) {
+        this.highlightedImage_1 = 0;
+  
+      }
+      else {
+        this.highlightedImage_1 = newValue;
+        this.highlightedImage_2 = 0;
+      }
+    }
+    
   }
 }
