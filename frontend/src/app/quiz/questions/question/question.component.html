@@ -83,7 +83,7 @@
                                         <input placeholder="Reponse" type="text" [formControlName]="'value'">
                                     </li>
                                     <li>
-                                        <input *ngIf="answer.imgUrl" placeholder="Url de l'image" type="text"
+                                        <input *ngIf="!question.imgUrl" placeholder="Url de l'image" type="text"
                                             [formControlName]="'imageUrl'">
                                     </li>
                                     <li>
