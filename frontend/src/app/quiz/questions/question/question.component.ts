@@ -5,6 +5,9 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Answer } from 'src/models/answer.model';
 import { ActivatedRoute } from '@angular/router';
 
+import { Mode } from "src/models/mode.enum";
+import { Hint } from "src/models/hint.enum";
+
 @Component({
     selector: 'app-question',
     templateUrl: './question.component.html',
@@ -22,6 +25,9 @@ export class questionComponent implements OnInit{
     public answerToDelete : Answer;
     private confirmationDeleteQuestion: boolean = false;
     private confirmationDeleteAnswer: boolean = false;
+    public modeEnum = Mode;
+    public hintEnum = Hint; 
+    
 
     @Input()
     question: Question;

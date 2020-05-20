@@ -20,7 +20,7 @@
                     </div>
                 </div>
 
-                <div id="containerImageEdition">
+                <div id="containerImageEdition" *ngIf="question.imgUrl != '' ">
                     <div class="contenuImageEdition">
                         <h3 *ngIf="edit_question" class="newEdit">Nouvelle Url de l'image</h3>
                         <div class="question" *ngIf="question.imgUrl">
@@ -85,7 +85,8 @@
                                         <input placeholder="Reponse" type="text" [formControlName]="'value'">
                                     </li>
                                     <li>
-                                        <input placeholder="Url de l'image" type="text" [formControlName]="'imageUrl'">
+                                        <input *ngIf="answer.imgUrl" placeholder="Url de l'image" type="text"
+                                            [formControlName]="'imageUrl'">
                                     </li>
                                     <li>
                                         Correct:
@@ -103,12 +104,20 @@
                 </div>
 
                 <form *ngIf="_addAnswer" class="answer" [formGroup]="answerForm">
-                    <input placeholder="Intitulé de la réponse" type="text" [formControlName]="'value'">
-                    <input placeholder="Url de l'image" type="text" [formControlName]="'imageUrl'">
-                    Correct
-                    <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="isChecked()">
-                    <button (click)="createAnswer(answer)">Valider</button>
-                    <button (click)="cancelCreateAnswer()">Annuler</button>
+                    <div id="containerAddAnswer">
+                        <div class="contenuAddAnswer">
+                            <input class="inputEditAddAnswer" placeholder="Intitulé de la réponse" type="text" [formControlName]="'value'">
+                            <br>    
+                            <input class="inputEditAddAnswer" placeholder="Url de l'image" type="text" [formControlName]="'imageUrl'">
+                            <br>
+                            <label style="color: #000;">Correct</label>
+                            <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'"
+                                (click)="isChecked()">
+                            <br>
+                                <button class="buttonConfirmEdit" (click)="createAnswer(answer)">Valider</button>
+                            <button class="buttonCancelEdit" (click)="cancelCreateAnswer()">Annuler</button>
+                        </div>
+                    </div>
                 </form>
                 <br>
                 <div>
