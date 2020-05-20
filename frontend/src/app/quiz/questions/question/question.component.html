@@ -4,21 +4,47 @@
             <form class="question-form" [formGroup]="questionForm">
                 <h2 class="titre">
                     {{question.label}} &nbsp; <i (click)="editQuestion()" class="fas fa-edit"></i>
-                    <input *ngIf="edit_question" type="text" name="" [formControlName]="'label'" id="">
-                    <button *ngIf="edit_question" (click)="validateQuestion()">Valider</button>
-                    <button *ngIf="edit_question" (click)="cancelQuestion()">Annuler</button>
                 </h2>
+                <div id="containerEdition" *ngIf="edit_question">
+                    <div class="contenuEdition">
+                        <h3 class="newEdit">Nouveau intitulé question</h3>
+                        <input class="inputQuestionEdit" type="text" name="" [formControlName]="'label'" id="">
+                        <br>
 
-                <div class="question" *ngIf="question.imgUrl">
-                    <img [src]="question.imgUrl" width="200" alt=""><br>
-                    <input *ngIf="edit_question" class="input" type="text" [formControlName]="'imgUrl'">
+                        <div class="buttonEnvelop">
+                            <button class="buttonConfirmEdit" *ngIf="edit_question"
+                                (click)="validateQuestion()">Valider</button>
+                            <button class="buttonCancelEdit" *ngIf="edit_question"
+                                (click)="cancelQuestion()">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="containerImageEdition">
+                    <div class="contenuImageEdition">
+                        <h3 *ngIf="edit_question" class="newEdit">Nouvelle Url de l'image</h3>
+                        <div class="question" *ngIf="question.imgUrl">
+                            <img [src]="question.imgUrl" width="200" alt="">
+                            <br>
+                            <input class="inputQuestionEdit" *ngIf="edit_question" type="text"
+                                [formControlName]="'imgUrl'">
+
+                            <div class="buttonEnvelop">
+                                <button class="buttonConfirmEdit" *ngIf="edit_question"
+                                    (click)="validateQuestion()">Valider</button>
+                                <button class="buttonCancelEdit" *ngIf="edit_question"
+                                    (click)="cancelQuestion()">Annuler</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="answer">
+                    <br>
                     <p *ngIf="question.indice" class="indice">Indice par texte : {{question.indice}} <input
-                            *ngIf="edit_question" type="text" [formControlName]="'indice'"> </p>
+                            class="inputHintEdit" *ngIf="edit_question" type="text" [formControlName]="'indice'"> </p>
                     <p *ngIf="question.sonUrl" class="indice">Indice par son: {{question.sonUrl}} <input
-                            *ngIf="edit_question" type="text" [formControlName]="'sonUrl'"> </p>
+                            class="inputHintEdit" *ngIf="edit_question" type="text" [formControlName]="'sonUrl'"> </p>
                 </div>
                 <div class="answers container">
                     <ul class="answer card" *ngFor="let answer of question.answers; let i=index">
@@ -36,16 +62,19 @@
                                 <label (click)="editAnswer(answer,i)" class="modifier">Modifier</label> &nbsp;<i
                                     (click)="editAnswer(answer,i)" class="fas fa-edit modifier"></i>
                                 <br>
-                                <label (click)="supprAnswerConfirmation(answer)" class="supprimer">Supprimer</label>&nbsp;
+                                <label (click)="supprAnswerConfirmation(answer)"
+                                    class="supprimer">Supprimer</label>&nbsp;
                                 <i (click)="supprAnswerConfirmation(answer)" class="fas fa-trash-alt supprimer"></i>
                             </div>
-                            <div *ngIf ="answer === answerToDelete">
+                            <div *ngIf="answer === answerToDelete">
                                 <div *ngIf="confirmationDeleteAnswer" class='confirm--active'>
-                                <div class="confirmBox">
-                                    <p>Voulez-vous vraiment supprimer cette réponse ?</p>
-                                    <button (click)="supprAnswer(answerToDelete,true)" class="button red">oui</button>
-                                    <button (click)="supprAnswer(answerToDelete,false)" class="button white">non</button>
-                                </div>
+                                    <div class="confirmBox">
+                                        <p>Voulez-vous vraiment supprimer cette réponse ?</p>
+                                        <button (click)="supprAnswer(answerToDelete,true)"
+                                            class="button red">oui</button>
+                                        <button (click)="supprAnswer(answerToDelete,false)"
+                                            class="button white">non</button>
+                                    </div>
                                 </div>
                             </div>
                         </li>
@@ -76,7 +105,7 @@
                 <form *ngIf="_addAnswer" class="answer" [formGroup]="answerForm">
                     <input placeholder="Intitulé de la réponse" type="text" [formControlName]="'value'">
                     <input placeholder="Url de l'image" type="text" [formControlName]="'imageUrl'">
-                   Correct
+                    Correct
                     <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="isChecked()">
                     <button (click)="createAnswer(answer)">Valider</button>
                     <button (click)="cancelCreateAnswer()">Annuler</button>
@@ -96,7 +125,8 @@
                 </div>
                 <div id="boutons">
                     <a class="button red" *ngIf="curStatus === 'admin'" (click)="addAnswer()">Ajout de réponses</a>
-                    <a class="button red" *ngIf="curStatus === 'admin'" (click)="supprQuestionConfirmation()">Supprimer</a>
+                    <a class="button red" *ngIf="curStatus === 'admin'"
+                        (click)="supprQuestionConfirmation()">Supprimer</a>
                 </div>
             </form>
         </div>
