@@ -14,13 +14,13 @@ export class QuestionFormComponent {
 
 
   public questionForm: FormGroup;
-  private mode: string = "Image pour énoncé et text pour réponses";
-  private modeAide: number = 0 //0 = indice text ; 1=Indice par son
-  fichierName: string = "";
-  questionToCreate: Question;
-  count: number = 0;
-  withSong: boolean = false;
-  private colored: boolean;
+  public questionMode: number = 1 // 1 = "Image pour énoncé et text pour réponses" ; 2 = "Text pour énoncé et image pour réponses";
+  public hintMode: number = 1 // 1= indice text ; 2=Indice par son
+  public fileName: string = "";
+  public questionToCreate: Question;
+  public count: number = 0;
+  public withSong: boolean = false;
+  public colored: boolean;
   public file : File;
 
 
@@ -40,19 +40,19 @@ export class QuestionFormComponent {
     });
   }
 
-  switchModeAide() {
-    if (this.modeAide == 0) {
+  switchHintMode() {
+    if (this.hintMode == 2) {
       this.questionForm.get("indice").setValue("")
-      this.modeAide = 1;
+      this.hintMode = 1;
       this.withSong = true;
     } else {
-      this.modeAide = 0
+      this.hintMode = 2
       this.withSong = false;
     }
   }
 
   reset() {
-    this.fichierName = ""
+    this.fileName = ""
   }
 
   get answers() {
@@ -60,7 +60,7 @@ export class QuestionFormComponent {
   }
 
   private createAnswer() {
-    if (this.mode === "Image pour énoncé et text pour réponses") {
+    if (this.questionMode == 1) {
       return this.formBuilder.group({
         value: ['', Validators.required],
         isCorrect: [false, Validators.required],
@@ -94,7 +94,7 @@ export class QuestionFormComponent {
     }
   }
 
-  chargeSon(event){
+  loadSong(event){
     this.file = event.target.files[0];
   }
 
@@ -109,14 +109,14 @@ export class QuestionFormComponent {
       
       this.questionToCreate.id = Date.now().toString();
 
-      if (this.withSong && this.modeAide == 1) {
+      if (this.withSong && this.hintMode == 2) {
         const file = this.file
         const songName = this.questionToCreate.id + "." + file.name.split(".")[1]
-        this.fichierName = songName;
+        this.fileName = songName;
         this.quizService.addASong(themeid, quizid, this.file, songName);
       }
 
-      this.questionToCreate.sonUrl = this.fichierName
+      this.questionToCreate.sonUrl = this.fileName
 
       this.quizService.addQuestion(themeid, quizid, this.questionToCreate);
       this.initializeQuestionForm();
@@ -126,14 +126,14 @@ export class QuestionFormComponent {
   }
 
   UneImageQuatreText() {
-    if (this.mode === "Text pour énoncé et image pour réponses") {
-      this.mode = "Image pour énoncé et text pour réponses";
+    if (this.questionMode == 2) {
+      this.questionMode = 1;
     }
   }
 
   QuatreImageUneQuestionText() {
-    if (this.mode === "Image pour énoncé et text pour réponses") {
-      this.mode = "Text pour énoncé et image pour réponses";
+    if (this.questionMode == 1) {
+      this.questionMode = 2;
     }
   }
 

@@ -18,7 +18,7 @@ export class QuizFormComponent implements OnInit {
   public curTheme: Theme;
   public quizForm: FormGroup;
   public WithImage: boolean =true;
-  quizCreer: boolean;
+  public quizCreated: boolean;
   public imageUrl: string = "";
   
 
@@ -65,12 +65,9 @@ export class QuizFormComponent implements OnInit {
       if(this.WithImage == false)
           quizToCreate.imageUrl = "https://images-na.ssl-images-amazon.com/images/I/21K1%2BsQckhL._AC_SY355_.jpg";
 
-
       this.quizService.addQuiz(quizToCreate.themeId.toString(),quizToCreate);
-  
-      console.log(quizToCreate)
-  
-      this.quizCreer = true;
+    
+      this.quizCreated = true;
     }
   }
 

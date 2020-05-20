@@ -1,7 +1,8 @@
 @import '../../../../styles/button.scss';
+@import '../../../../styles/validator.scss';
 
 
-#partie_creation_quiz{
+#part_creation_quiz{
     padding: 2em;
     width: 85%;
     margin-left: auto;
@@ -10,7 +11,7 @@
 }
 
 
-#conteneur{
+#container{
     margin-right: auto;
     margin-left: auto;
     width: 100%;
@@ -18,28 +19,20 @@
     border-radius: 0.7em;
 }
 
-#contenu{
+#content{
     width: 80%;
     margin-right: auto;
     margin-left: auto;
 }
 
-.titre{
+.title{
     text-align: center;
     text-transform: uppercase;
     color: white;
     font-weight: bold;
 }
 
-.erreur_message{
-  color: white;
-  font-weight: bold;
-  border: 2px solid;
-  border-radius: 3px;
-  margin-bottom: 10px;
-}
-
-.texte_image{
+.textImage{
   color: white;
   font-size: 20px;
 }
@@ -115,7 +108,7 @@ form {
     }
   }
 
-  .verif{
+  .verificationCreation{
       width: 50%;
       border-radius: 5px;
       background-color: #00FA9A;

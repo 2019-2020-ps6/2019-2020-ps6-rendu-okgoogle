@@ -1,12 +1,12 @@
-<div id="partie_creation_theme">
-  <div id="conteneur">
-    <div id="contenu">
+<div id="part_creation_theme">
+  <div id="container">
+    <div id="content">
 
-      <div *ngIf="themeCreer" class="verif">
+      <div *ngIf="themeCreated" class="verificationCreation">
         <p>Le thème a bien été créé !</p>
       </div>
 
-      <h2 class="titre">Créer un nouveau thème</h2>
+      <h2 class="title">Créer un nouveau thème</h2>
 
       <form class="theme-form" [formGroup]="ThemeForm">
 
@@ -44,7 +44,7 @@
         
         <div
           *ngIf="ThemeForm.controls.name.invalid && (ThemeForm.controls.name.dirty || ThemeForm.controls.name.touched)"
-          class="alert alert-danger requis">
+          class="alert alert-danger alert">
 
           <div *ngIf="ThemeForm.controls.name.errors.required">
             Le nom du thème est requis.
@@ -54,7 +54,7 @@
       
         <div
           *ngIf="ThemeForm.controls.imageUrl.invalid && (ThemeForm.controls.imageUrl.dirty || ThemeForm.controls.imageUrl.touched)"
-          class="alert alert-danger requis">
+          class="alert alert-danger alert">
 
           <div *ngIf="ThemeForm.controls.imageUrl.errors.required">
             L'Url de l'image est requise.
@@ -63,9 +63,9 @@
         </div>
         <div *ngIf="imageUrl && WithImage">
 
-          <span class="texte_image">Image enregistrée:</span>
+          <span class="textImage">Image enregistrée:</span>
           <br>
-          <img width="100" [src]="imageUrl" alt="Ue">
+          <img width="100" [src]="imageUrl" alt="Image apercu">
 
         </div>
 
@@ -78,6 +78,6 @@
   <!-- <br><br>{{ThemeForm.getRawValue() | json}} -->
 </div>
 
-<div id="partie_liste_theme">
+<div id="part_liste_theme">
   <app-theme-list></app-theme-list>
 </div>

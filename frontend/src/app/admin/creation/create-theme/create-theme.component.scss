@@ -1,46 +1,46 @@
 @import '../../../../styles/button.scss';
+@import '../../../../styles/validator.scss';
 
-#partie_creation_theme{
+  #part_creation_theme{
     padding: 2em;
     width: 85%;
     margin-left: auto;
     margin-right: auto;
-     padding-bottom: 0;
-}
+    padding-bottom: 0;
+  }
 
-#partie_liste_theme{
+  #part_liste_theme{
     padding: 2em;
     width: 85%;
     margin-left: auto;
     margin-right: auto;
-    
-    
-}
+  }
 
-#conteneur{
+  #container{
     margin-right: auto;
     margin-left: auto;
     width: 100%;
     background-color: rgb(255, 140, 105,0.75);
     border-radius: 0.7em;
-}
+  }
 
-#contenu{
+  #content{
     width: 80%;
     margin-right: auto;
     margin-left: auto;
-}
+  }
 
-.titre{
+  .title{
     text-align: center;
     text-transform: uppercase;
-}
+  }
 
-form {
+  form {
     max-width: 600px;
     text-align: center;
     margin: 20px auto;
   }
+
   form input, form textarea {
     border: 0;
     outline: 0;
@@ -57,7 +57,7 @@ form {
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     resize: none;
     
-  }
+}
 
   input{
     box-sizing: border-box;
@@ -69,27 +69,26 @@ form {
     box-shadow: 0 0px 2px #e74c3c !important;
   }
 
-  .verif{
-      width: 50%;
-      border-radius: 5px;
-      background-color: #00FA9A;
-      text-align: center;
-      margin-left: auto;
-      margin-right: auto;
+  .verificationCreation{
+    width: 50%;
+    border-radius: 5px;
+    background-color: #00FA9A;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .input-custom{
-      margin-left: auto;
-      margin-right: auto;
-      box-sizing: border-box;
-     
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
   }
   
   button:disabled,
-button[disabled]{
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  color: #666666;
+  button[disabled]{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
 }
 
 // vars
@@ -162,16 +161,7 @@ $purple-blue-gradient: linear-gradient(to right, $purple, $blue);
   }
 }
 
-
-.requis{
-  color: red;
-  font-weight: bold;
-  border: 2px solid;
-  border-radius: 3px;
-  margin-bottom: 10px;
-}
-
-.texte_image{
+.textImage{
   color: #333;
   font-size: 20px;
 }

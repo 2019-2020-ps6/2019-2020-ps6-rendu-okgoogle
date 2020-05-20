@@ -13,9 +13,9 @@ import { ThemeService } from 'src/services/theme.service';
 export class CreateThemeComponent implements OnInit {
   
   public ThemeForm: FormGroup;
-  public themeCreer: boolean;
+  public themeCreated: boolean;
   public WithImage: boolean = true;
-  imageUrl: any;
+  public imageUrl: string;
 
   constructor(private themeService: ThemeService,public formBuilder: FormBuilder, public quizService: QuizService) {
     this.initialiseForm();
@@ -60,7 +60,7 @@ export class CreateThemeComponent implements OnInit {
   
       this.themeService.addTheme(themeToCreate);
   
-      this.themeCreer = true;
+      this.themeCreated = true;
       this.initialiseForm()
     }else{
       //invalid theme do nothing

@@ -19,7 +19,7 @@
   font-weight: bold;
 }
   
-#partie_creation_question{
+#part_creation_question{
   padding: 2em;
   width: 85%;
   margin-left: auto;
@@ -37,7 +37,7 @@ input[type='checkbox']{
   cursor: pointer;
 }
 
-#conteneur{
+#container{
   margin-right: auto;
   margin-left: auto;
   width: 100%;
@@ -45,7 +45,7 @@ input[type='checkbox']{
   border-radius: 0.7em;
 }
 
-#contenu{
+#content{
   width: 80%;
   margin-right: auto;
   margin-left: auto;
@@ -159,8 +159,8 @@ button[disabled]{
   border-radius: 8px;
 }
 
-.contenuQuestion{
+.contentQuestion{
   display: flex;
-   flex-flow: row wrap;
-   justify-content: center;
+  flex-flow: row wrap;
+  justify-content: center;
 }

@@ -1,12 +1,12 @@
-<div id="partie_creation_quiz">
-  <div id="conteneur">
-    <div id="contenu">
-      <div *ngIf="quizCreer" class="verif">
+<div id="part_creation_quiz">
+  <div id="container">
+    <div id="content">
+      <div *ngIf="quizCreated" class="verificationCreation">
         <p>Le quiz a bien été créé !</p>
       </div>
-      <h2 class="titre">Créer un nouveau quiz</h2>
-
+      <h2 class="title">Créer un nouveau quiz</h2>
       <form class="quiz-form" [formGroup]="quizForm">
+
         <input placeholder="Nom du quiz" class="input-custom" type="text" [formControlName]="'name'">
         <br>
         <span class="toggle__label">Sans image</span>
@@ -28,27 +28,20 @@
         <button class="button blue" [disabled]="quizForm.invalid" (click)="addQuiz()">Créer</button>
         <div *ngIf="quizForm.controls.name.invalid && (quizForm.controls.name.dirty || quizForm.controls.name.touched)"
           class="alert alert-danger">
-          <div class="erreur_message" *ngIf="quizForm.controls.name.errors.required">
+          <div class="alert" *ngIf="quizForm.controls.name.errors.required">
             Le nom du quiz est requis.
           </div>
         </div>
-
-        
-        <div
-          *ngIf="quizForm.controls.imageUrl.invalid && (quizForm.controls.imageUrl.dirty || quizForm.controls.imageUrl.touched)"
-          class="alert alert-danger">
-
-          <div class="erreur_message" *ngIf="quizForm.controls.imageUrl.errors.required">
+        <div *ngIf="quizForm.controls.imageUrl.invalid && (quizForm.controls.imageUrl.dirty || quizForm.controls.imageUrl.touched)" class="alert alert-danger">
+          <div class="alert" *ngIf="quizForm.controls.imageUrl.errors.required">
             L'Url de l'image est requise.
           </div>
         </div>
-
         <div *ngIf="imageUrl && WithImage">
-          <span class="texte_image">Image enregistrée:</span> <br> <img width="100" [src]="imageUrl" alt="Ue">
+          <span class="textImage">Image enregistrée:</span> <br> <img width="100" [src]="imageUrl" alt="Ue">
         </div>
 
       </form>
-
     </div>
   </div>
 </div>
