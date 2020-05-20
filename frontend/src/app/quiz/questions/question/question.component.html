@@ -49,7 +49,7 @@
                 <div class="answers container">
                     <ul class="answer card" *ngFor="let answer of question.answers; let i=index">
                         <li>
-                            <p>Réponse {{i+1}}</p>
+                            <p style="color: white; font-weight: bold;">Réponse {{i+1}}</p>
                             <img *ngIf="answer.imageUrl" [src]="answer.imageUrl" width="100" alt="">
                         </li>
                         <li>
@@ -59,12 +59,10 @@
 
                                 </ng-container>
                                 <br>
-                                <label (click)="editAnswer(answer,i)" class="modifier">Modifier</label> &nbsp;<i
-                                    (click)="editAnswer(answer,i)" class="fas fa-edit modifier"></i>
+                                <button (click)="editAnswer(answer,i)" class="button blue">Modifier</button>
                                 <br>
-                                <label (click)="supprAnswerConfirmation(answer)"
-                                    class="supprimer">Supprimer</label>&nbsp;
-                                <i (click)="supprAnswerConfirmation(answer)" class="fas fa-trash-alt supprimer"></i>
+                                <button (click)="supprAnswerConfirmation(answer)"
+                                    class="button red">Supprimer</button>&nbsp;
                             </div>
                             <div *ngIf="answer === answerToDelete">
                                 <div *ngIf="confirmationDeleteAnswer" class='confirm--active'>
