@@ -6,7 +6,7 @@
                     {{question.label}} &nbsp; <i (click)="editQuestion()" class="fas fa-edit"></i>
                     <input *ngIf="edit_question" type="text" name="" [formControlName]="'label'" id="">
                     <button *ngIf="edit_question" (click)="validateQuestion()">Valider</button>
-                    <button *ngIf="edit_question" (click)="annulerQuestion()">Annuler</button>
+                    <button *ngIf="edit_question" (click)="cancelQuestion()">Annuler</button>
                 </h2>
 
                 <div class="question" *ngIf="question.imgUrl">
@@ -65,7 +65,7 @@
                                     </li>
                                     <li>
                                         <button (click)="validateAnswer(answer)">Valider</button>
-                                        <button (click)="annulerAnswer()">Annuler</button>
+                                        <button (click)="cancelAnswer()">Annuler</button>
                                     </li>
                                 </ul>
                             </form>
@@ -79,7 +79,7 @@
                    Correct
                     <input class="correctOrNot" type="checkbox" [formControlName]="'isCorrect'" (click)="isChecked()">
                     <button (click)="createAnswer(answer)">Valider</button>
-                    <button (click)="annulerCreateAnswer()">Annuler</button>
+                    <button (click)="cancelCreateAnswer()">Annuler</button>
                 </form>
                 <br>
                 <div>

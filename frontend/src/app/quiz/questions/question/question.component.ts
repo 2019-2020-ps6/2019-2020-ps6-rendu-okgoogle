@@ -82,7 +82,7 @@ export class questionComponent implements OnInit{
         this.edit_question = false;
     }
 
-    annulerQuestion(){
+    cancelQuestion(){
         this.edit_question = false;
     }
 
@@ -105,7 +105,7 @@ export class questionComponent implements OnInit{
         }
         this.quizService.editAnswer(themeid,quizid,this.question.id,answerAModifier.id, answer);
     }
-    annulerAnswer(){
+    cancelAnswer(){
         this.editanswer_i = -1;
     }
 
@@ -140,7 +140,7 @@ export class questionComponent implements OnInit{
         this.quizService.addAnswer(themeid,quizid,this.question.id.toString(),answer);
     }
 
-    annulerCreateAnswer(){
+    cancelCreateAnswer(){
         this._addAnswer = false;
     }
 }
