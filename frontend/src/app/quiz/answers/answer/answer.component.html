@@ -15,8 +15,8 @@
                 <h4 class="card__title">{{quiz.name}}</h4>
             </div>
             <div id="boutons">
-                <a *ngIf="curStatus === 'admin'" class="button blue" (click)="editAnswer()">Edit</a>
-                <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteAnswer()">Delete</a>
+                <a *ngIf="curStatus === 'admin'" class="button blue" (click)="editAnswer()">Modifier</a>
+                <a *ngIf="curStatus === 'admin'" class="button red" (click)="deleteAnswer()">Supprimer</a>
                 <div *ngIf="confirmationDelete" class='confirm--active'>
     
                     <div class="confirmBox">
