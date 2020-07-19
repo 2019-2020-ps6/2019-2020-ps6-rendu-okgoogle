@@ -24,7 +24,7 @@
     "@angular/router": "~8.2.14",
     "@types/jquery": "^3.3.34",
     "compass-mixins": "^0.12.10",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "ng2-search-filter": "^0.5.1",
     "ngx-cookie-service": "^3.0.3",
     "rxjs": "~6.4.0",
